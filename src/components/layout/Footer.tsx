@@ -29,10 +29,10 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2.5 mb-4">
               <div className="w-7 h-7 rounded-md flex items-center justify-center" style={{ background: 'var(--accent-gradient)' }}>
-                <span className="text-white text-[10px] font-bold tracking-wider">DR</span>
+                <span className="text-white text-[10px] font-bold tracking-wider">CL</span>
               </div>
               <span className="text-[15px] font-bold tracking-tight" style={{ color: 'var(--text-primary)' }}>
-                DevRank<span className="font-normal" style={{ color: 'var(--text-muted)' }}>.pro</span>
+                Controva<span className="font-normal" style={{ color: 'var(--text-muted)' }}> LLC</span>
               </span>
             </div>
             <p className="text-sm mb-6 leading-relaxed" style={{ color: 'var(--text-muted)' }}>
@@ -95,7 +95,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-14 pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style={{ borderTop: '1px solid var(--border-subtle)' }}>
-          <p className="text-xs" style={{ color: 'var(--text-muted)' }}>2025 DevRank Pro. All rights reserved.</p>
+          <p className="text-xs" style={{ color: 'var(--text-muted)' }}>© 2025 Controva LLC. All rights reserved.</p>
           <p className="text-xs" style={{ color: 'var(--text-muted)' }}>Built with obsessive attention to detail.</p>
         </div>
       </div>

@@ -11,7 +11,7 @@ interface Message {
 
 const botResponses: Record<string, string> = {
   default: "Thanks for your message! Our team will get back to you shortly. In the meantime, you can book a free strategy call or explore our services page.",
-  hi: "Hello! Welcome to NexusGrowth. How can I help you scale your business today?",
+  hi: "Hello! Welcome to Controva LLC. How can I help you scale your business today?",
   hello: "Hey there! Ready to grow your business? Ask me about our services, pricing, or book a call!",
   pricing: "We offer three tiers: Starter ($3,500/mo), Growth ($6,500/mo — most popular), and Enterprise ($12,000/mo). All include our 30-Day Profit Guarantee. Want details on any plan?",
   services: "We offer: Custom Web & Mobile Development, Social Media Marketing, E-commerce Scaling (Shopify/TikTok Shop), AI Automation & Lead Systems, Enterprise Infrastructure, and Brand Identity Design. Which interests you?",
@@ -19,7 +19,7 @@ const botResponses: Record<string, string> = {
   marketing: "Our performance marketing covers Facebook, Instagram, TikTok, LinkedIn, and X. We use AI-driven creative optimization and lookalike audience engineering. Average ROAS is 3.2x.",
   ai: "Our AI systems include custom GPT integrations, lead qualification bots, automated follow-ups, predictive analytics, and conversational AI. These run 24/7 to qualify and nurture your leads.",
   guarantee: "Our 30-Day Profit Guarantee: if you don't see measurable profit within 30 days of launch, we refund 100% of your fees. No questions asked. We're that confident in our system.",
-  contact: "You can reach us at hello@nexusgrowth.io or call +1 (555) 234-5678. Or book a free strategy call — we'll audit your business and create a custom growth blueprint.",
+  contact: "You can reach us at support@controvallc.com or visit controvallc.com. Or book a free strategy call — we'll audit your business and create a custom growth blueprint.",
 };
 
 function getBotResponse(input: string): string {
@@ -35,7 +35,7 @@ export default function AIChatbot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 0,
-      text: "Hi! I'm the DevRank Pro AI assistant. Ask me about our services, pricing, or how we can help grow your business!",
+      text: "Hi! I'm the Controva LLC AI assistant. Ask me about our services, pricing, or how we can help grow your business!",
       sender: 'bot',
       timestamp: new Date(),
     },
@@ -111,7 +111,7 @@ export default function AIChatbot() {
                   <Bot size={18} className="text-white" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-white">NexusGrowth AI</p>
+                  <p className="text-sm font-semibold text-white">Controva AI</p>
                   <p className="text-xs text-white/70">Online</p>
                 </div>
               </div>

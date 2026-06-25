@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect, useCallback, type React
 import type { ThemeMode } from '@/types';
 
 export const defaultPalettes = [
+  { name: 'Rose Pink', accent1: '#E91E8C', accent2: '#FF6EC7' },
   { name: 'Electric Blue', accent1: '#4F6BFF', accent2: '#8B5CF6' },
   { name: 'Crimson Red', accent1: '#FF3366', accent2: '#FF6B35' },
   { name: 'Emerald Green', accent1: '#10B981', accent2: '#06B6D4' },
@@ -29,10 +30,10 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | null>(null);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [mode, setModeState] = useState<ThemeMode>('dark');
+  const [mode, setModeState] = useState<ThemeMode>('light');
   const [palette, setPaletteState] = useState(0);
-  const [customAccent1, setCustomAccent1] = useState('#4F6BFF');
-  const [customAccent2, setCustomAccent2] = useState('#8B5CF6');
+  const [customAccent1, setCustomAccent1] = useState('#E91E8C');
+  const [customAccent2, setCustomAccent2] = useState('#FF6EC7');
   const [isCustom, setIsCustom] = useState(false);
   const [mounted, setMounted] = useState(false);
 

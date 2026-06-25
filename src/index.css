@@ -4,30 +4,30 @@
 
 @layer base {
   :root {
-    /* === DARK MODE (Default) - High Contrast === */
-    --bg-primary: #07070B;
-    --bg-secondary: #0E0E14;
-    --bg-tertiary: #16161F;
-    --bg-card: #12121A;
-    --text-primary: #FFFFFF;
-    --text-secondary: #C8C8D4;
-    --text-muted: #7A7A8A;
-    --border-subtle: rgba(255,255,255,0.07);
-    --border-active: rgba(255,255,255,0.15);
+    /* === LIGHT MODE (Default) - Clean & Professional === */
+    --bg-primary: #FAFAFB;
+    --bg-secondary: #FFFFFF;
+    --bg-tertiary: #F3F0F5;
+    --bg-card: #FFFFFF;
+    --text-primary: #0A0A0F;
+    --text-secondary: #3D3D4D;
+    --text-muted: #6E6E80;
+    --border-subtle: rgba(0,0,0,0.07);
+    --border-active: rgba(0,0,0,0.15);
 
-    /* Accent - Electric */
-    --accent-1: #4F6BFF;
-    --accent-2: #8B5CF6;
-    --accent-gradient: linear-gradient(135deg, #4F6BFF, #8B5CF6);
-    --accent-glow: rgba(79,107,255,0.35);
-    --accent-subtle: rgba(79,107,255,0.12);
-    --accent-border: rgba(79,107,255,0.5);
+    /* Accent - Professional Rose Pink */
+    --accent-1: #E91E8C;
+    --accent-2: #FF6EC7;
+    --accent-gradient: linear-gradient(135deg, #E91E8C, #FF6EC7);
+    --accent-glow: rgba(233,30,140,0.25);
+    --accent-subtle: rgba(233,30,140,0.08);
+    --accent-border: rgba(233,30,140,0.4);
 
     /* Corner glows */
-    --glow-tl: rgba(79,107,255,0.18);
-    --glow-tr: rgba(139,92,246,0.14);
-    --glow-bl: rgba(79,107,255,0.12);
-    --glow-br: rgba(139,92,246,0.10);
+    --glow-tl: rgba(233,30,140,0.12);
+    --glow-tr: rgba(255,110,199,0.10);
+    --glow-bl: rgba(233,30,140,0.08);
+    --glow-br: rgba(255,110,199,0.06);
 
     --radius: 0.625rem;
   }

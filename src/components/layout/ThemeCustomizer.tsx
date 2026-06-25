@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Settings, Sun, Moon, Check, Palette } from 'lucide-react';
 import { useTheme, defaultPalettes } from '@/context/ThemeContext';
@@ -6,6 +6,33 @@ import { useTheme, defaultPalettes } from '@/context/ThemeContext';
 export default function ThemeCustomizer() {
   const [open, setOpen] = useState(false);
   const [customTab, setCustomTab] = useState(false);
+  const [showDot, setShowDot] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
+
+  // Show notification dot + tooltip only on first visit
+  useEffect(() => {
+    const seen = localStorage.getItem('drp-theme-hint');
+    if (!seen) {
+      setShowDot(true);
+      const t = setTimeout(() => setShowTooltip(true), 2000);
+      return () => clearTimeout(t);
+    }
+  }, []);
+
+  const handleOpen = () => {
+    setOpen(!open);
+    if (showDot) {
+      setShowDot(false);
+      setShowTooltip(false);
+      localStorage.setItem('drp-theme-hint', 'true');
+    }
+  };
+
+  const dismissTooltip = () => {
+    setShowTooltip(false);
+    setShowDot(false);
+    localStorage.setItem('drp-theme-hint', 'true');
+  };
   const {
     palette, isDark, toggleMode, setPalette,
     customAccent1, customAccent2, isCustom, applyCustomColors,
@@ -167,9 +194,74 @@ export default function ThemeCustomizer() {
         )}
       </AnimatePresence>
 
+      {/* Notification tooltip */}
+      <AnimatePresence>
+        {showTooltip && !open && (
+          <motion.div
+            initial={{ opacity: 0, x: 12, scale: 0.92 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: 12, scale: 0.92 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute bottom-14 right-0 w-[220px] rounded-2xl p-4 shadow-2xl"
+            style={{
+              backgroundColor: 'var(--bg-secondary)',
+              border: '1px solid var(--accent-border)',
+              boxShadow: '0 12px 40px var(--accent-glow)',
+            }}
+          >
+            {/* Arrow pointing to button */}
+            <div
+              className="absolute -bottom-2 right-4 w-4 h-4 rotate-45"
+              style={{
+                backgroundColor: 'var(--bg-secondary)',
+                borderRight: '1px solid var(--accent-border)',
+                borderBottom: '1px solid var(--accent-border)',
+              }}
+            />
+
+            <div className="flex items-start gap-2.5 mb-3">
+              <div
+                className="w-7 h-7 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5"
+                style={{ background: 'var(--accent-gradient)' }}
+              >
+                <Palette size={13} className="text-white" />
+              </div>
+              <div>
+                <p className="text-xs font-bold mb-0.5" style={{ color: 'var(--text-primary)' }}>
+                  Personalise your experience
+                </p>
+                <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+                  Change theme, colours & appearance to match your style.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-2">
+              <button
+                onClick={handleOpen}
+                className="flex-1 py-1.5 rounded-lg text-[11px] font-semibold text-white"
+                style={{ background: 'var(--accent-gradient)' }}
+              >
+                Customise
+              </button>
+              <button
+                onClick={dismissTooltip}
+                className="px-3 py-1.5 rounded-lg text-[11px] font-medium"
+                style={{
+                  backgroundColor: 'var(--bg-tertiary)',
+                  color: 'var(--text-muted)',
+                }}
+              >
+                Dismiss
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <motion.button
-        onClick={() => setOpen(!open)}
-        className="w-12 h-12 rounded-full flex items-center justify-center"
+        onClick={handleOpen}
+        className="relative w-12 h-12 rounded-full flex items-center justify-center"
         style={{
           background: 'var(--accent-gradient)',
           boxShadow: '0 4px 20px var(--accent-glow)',
@@ -178,6 +270,25 @@ export default function ThemeCustomizer() {
         whileTap={{ scale: 0.95 }}
       >
         <Settings size={18} className="text-white" />
+
+        {/* Notification dot */}
+        <AnimatePresence>
+          {showDot && (
+            <motion.span
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0 }}
+              className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full flex items-center justify-center"
+              style={{ backgroundColor: '#EF4444', border: '2px solid var(--bg-primary)' }}
+            >
+              {/* Ping ring */}
+              <span
+                className="absolute inset-0 rounded-full animate-ping"
+                style={{ backgroundColor: '#EF4444', opacity: 0.6 }}
+              />
+            </motion.span>
+          )}
+        </AnimatePresence>
       </motion.button>
     </div>
   );

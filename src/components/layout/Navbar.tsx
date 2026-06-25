@@ -38,10 +38,10 @@ export default function Navbar() {
               className="w-7 h-7 rounded-md flex items-center justify-center"
               style={{ background: 'var(--accent-gradient)' }}
             >
-              <span className="text-white text-[10px] font-bold tracking-wider">DR</span>
+              <span className="text-white text-[10px] font-bold tracking-wider">CL</span>
             </div>
             <span className="text-[15px] font-bold tracking-tight" style={{ color: 'var(--text-primary)' }}>
-              DevRank<span className="font-normal" style={{ color: 'var(--text-muted)' }}>.pro</span>
+              Controva<span className="font-normal" style={{ color: 'var(--text-muted)' }}> LLC</span>
             </span>
           </Link>
 

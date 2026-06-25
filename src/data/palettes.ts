@@ -1,4 +1,5 @@
 export const palettes = [
+  { name: 'Rose Pink', accent1: '#E91E8C', accent2: '#FF6EC7' },
   { name: 'Electric Blue', accent1: '#4F6BFF', accent2: '#8B5CF6' },
   { name: 'Crimson Red', accent1: '#FF3366', accent2: '#FF6B35' },
   { name: 'Emerald Green', accent1: '#10B981', accent2: '#06B6D4' },
