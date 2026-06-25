@@ -121,7 +121,7 @@ export default function HeroSection() {
   };
   const word = {
     hidden: { opacity: 0, y: 40, rotateX: -25 },
-    show: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+    show: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
   };
 
   const headline1 = 'We Build Digital'.split(' ');
@@ -174,7 +174,7 @@ export default function HeroSection() {
         <motion.div
           initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold mb-7"
           style={{
             backgroundColor: 'var(--accent-subtle)',

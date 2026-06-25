@@ -201,7 +201,7 @@ export default function ThemeCustomizer() {
             initial={{ opacity: 0, x: 12, scale: 0.92 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             exit={{ opacity: 0, x: 12, scale: 0.92 }}
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
             className="absolute bottom-14 right-0 w-[220px] rounded-2xl p-4 shadow-2xl"
             style={{
               backgroundColor: 'var(--bg-secondary)',
