@@ -38,6 +38,16 @@ export default function FeaturedCaseStudySection({ study, index }: FeaturedCaseS
         >
           {study.result}
         </span>
+        <a
+          href="/contact"
+          className="inline-flex items-center gap-2 mt-5 text-sm font-semibold self-start group"
+          style={{ color: 'var(--accent-1)' }}
+        >
+          Start a Similar Project
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-1">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
       </div>
     </motion.div>
   );

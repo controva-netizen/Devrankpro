@@ -39,10 +39,17 @@ export default function Footer() {
               Engineering-driven growth for businesses that refuse to settle. We build systems, not just websites.
             </p>
             <div className="flex items-center gap-3">
-              {[Linkedin, Twitter, Instagram].map((Icon, i) => (
+              {[
+                { Icon: Linkedin, href: 'https://linkedin.com/company/controvallc', label: 'LinkedIn' },
+                { Icon: Twitter, href: 'https://x.com/controvallc', label: 'X / Twitter' },
+                { Icon: Instagram, href: 'https://instagram.com/controvallc', label: 'Instagram' },
+              ].map(({ Icon, href, label }) => (
                 <a
-                  key={i}
-                  href="#"
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
                   className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-200"
                   style={{ color: 'var(--text-muted)', backgroundColor: 'var(--bg-tertiary)' }}
                   onMouseEnter={(e) => {

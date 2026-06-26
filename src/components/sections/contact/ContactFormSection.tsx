@@ -152,7 +152,7 @@ export default function ContactFormSection() {
               <option value="other">Other</option>
             </select>
 
-            <GradientButton className="w-full rounded-xl py-4">
+            <GradientButton type="submit" className="w-full rounded-xl py-4">
               Send Message
             </GradientButton>
           </motion.form>
