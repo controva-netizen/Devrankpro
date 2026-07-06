@@ -2,12 +2,14 @@ import { useRef, useEffect, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Check, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { horizontalCapabilities } from '@/data/content';
+import { useTheme } from '@/context/ThemeContext';
 
 export default function HorizontalScrollSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const isDragging = useRef(false);
   const dragStart = useRef({ x: 0, scrollLeft: 0 });
+  const { isDark } = useTheme();
 
   /* ── Track active card from scroll position ── */
   useEffect(() => {
@@ -18,25 +20,22 @@ export default function HorizontalScrollSection() {
       const idx = Math.round(el.scrollLeft / cardWidth);
       setActiveIndex(Math.min(idx, horizontalCapabilities.length - 1));
     };
-    // passive:true — never blocks page scroll
     el.addEventListener('scroll', handleScroll, { passive: true });
     return () => el.removeEventListener('scroll', handleScroll);
   }, []);
 
-  /* ── Mouse drag-to-scroll (horizontal only) ── */
+  /* ── Mouse drag-to-scroll ── */
   const handleMouseDown = (e: React.MouseEvent) => {
     isDragging.current = true;
     dragStart.current = {
       x: e.pageX,
       scrollLeft: scrollRef.current?.scrollLeft ?? 0,
     };
-    // Change cursor
     if (scrollRef.current) scrollRef.current.style.cursor = 'grabbing';
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDragging.current || !scrollRef.current) return;
-    // Only prevent default on the drag, NOT on wheel
     const dx = e.pageX - dragStart.current.x;
     scrollRef.current.scrollLeft = dragStart.current.scrollLeft - dx;
   };
@@ -46,7 +45,7 @@ export default function HorizontalScrollSection() {
     if (scrollRef.current) scrollRef.current.style.cursor = 'grab';
   };
 
-  /* ── Dot / arrow navigation ── */
+  /* ── Navigation ── */
   const scrollToCard = useCallback((idx: number) => {
     const el = scrollRef.current;
     if (!el) return;
@@ -58,13 +57,12 @@ export default function HorizontalScrollSection() {
   const next = () => scrollToCard(Math.min(horizontalCapabilities.length - 1, activeIndex + 1));
 
   return (
-    <section className="relative py-20" style={{ backgroundColor: 'var(--bg-primary)' }}>
-
-      {/* Header + arrow controls row */}
-      <div className="max-w-7xl mx-auto px-6 mb-10 flex items-end justify-between gap-4">
+    <section className="relative py-24" style={{ backgroundColor: 'var(--bg-primary)' }}>
+      {/* Header + arrow controls */}
+      <div className="max-w-7xl mx-auto px-6 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
           <motion.p
-            className="text-[11px] font-semibold uppercase tracking-[0.2em] mb-3"
+            className="text-[11px] font-bold uppercase tracking-[0.25em] mb-4"
             style={{ color: 'var(--accent-1)' }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -73,7 +71,7 @@ export default function HorizontalScrollSection() {
             PLATFORM ECOSYSTEM
           </motion.p>
           <motion.h2
-            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight"
+            className="text-4xl md:text-5xl lg:text-6xl font-extrabold font-display tracking-tight leading-[1.1]"
             style={{ color: 'var(--text-primary)' }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -85,54 +83,48 @@ export default function HorizontalScrollSection() {
           </motion.h2>
         </div>
 
-        {/* Prev / Next arrows */}
-        <div className="flex gap-2 flex-shrink-0">
+        <div className="flex gap-3 flex-shrink-0">
           <button
             onClick={prev}
             disabled={activeIndex === 0}
-            className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200"
+            className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300"
             style={{
-              border: '1px solid var(--border-active)',
+              border: '1px solid',
+              borderColor: activeIndex === 0 ? 'var(--border-subtle)' : 'var(--accent-border)',
               backgroundColor: activeIndex === 0 ? 'transparent' : 'var(--accent-subtle)',
               color: activeIndex === 0 ? 'var(--text-muted)' : 'var(--accent-1)',
               opacity: activeIndex === 0 ? 0.4 : 1,
             }}
-            aria-label="Previous card"
+            aria-label="Previous"
           >
-            <ChevronLeft size={18} />
+            <ChevronLeft size={20} />
           </button>
           <button
             onClick={next}
             disabled={activeIndex === horizontalCapabilities.length - 1}
-            className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200"
+            className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300"
             style={{
-              border: '1px solid var(--border-active)',
-              backgroundColor:
-                activeIndex === horizontalCapabilities.length - 1
-                  ? 'transparent'
-                  : 'var(--accent-subtle)',
-              color:
-                activeIndex === horizontalCapabilities.length - 1
-                  ? 'var(--text-muted)'
-                  : 'var(--accent-1)',
+              border: '1px solid',
+              borderColor: activeIndex === horizontalCapabilities.length - 1 ? 'var(--border-subtle)' : 'var(--accent-border)',
+              backgroundColor: activeIndex === horizontalCapabilities.length - 1 ? 'transparent' : 'var(--accent-subtle)',
+              color: activeIndex === horizontalCapabilities.length - 1 ? 'var(--text-muted)' : 'var(--accent-1)',
               opacity: activeIndex === horizontalCapabilities.length - 1 ? 0.4 : 1,
             }}
-            aria-label="Next card"
+            aria-label="Next"
           >
-            <ChevronRight size={18} />
+            <ChevronRight size={20} />
           </button>
         </div>
       </div>
 
-      {/* Horizontal Scroll Container — NO wheel interception */}
+      {/* Glass Cards Container */}
       <div
         ref={scrollRef}
-        className="flex gap-6 overflow-x-auto hide-scrollbar scroll-snap-x pb-4"
+        className="flex gap-6 overflow-x-auto hide-scrollbar scroll-snap-x pb-8 pt-4"
         style={{
           paddingLeft: 'max(1.5rem, calc((100vw - 1280px) / 2 + 1.5rem))',
           paddingRight: '1.5rem',
           cursor: 'grab',
-          // Critical: allow normal page scroll via touchpad/wheel
           overscrollBehaviorX: 'contain',
         }}
         onMouseDown={handleMouseDown}
@@ -140,85 +132,116 @@ export default function HorizontalScrollSection() {
         onMouseUp={stopDrag}
         onMouseLeave={stopDrag}
       >
-        {horizontalCapabilities.map((cap, i) => (
-          <motion.article
-            key={cap.number}
-            className="scroll-snap-start flex-shrink-0 rounded-2xl overflow-hidden flex flex-col md:flex-row"
-            style={{
-              width: 'min(75vw, 900px)',
-              minHeight: '400px',
-              backgroundColor: 'var(--bg-secondary)',
-              border: '1px solid var(--border-subtle)',
-            }}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.06 }}
-          >
-            {/* Left: Gradient Sidebar */}
-            <div
-              className="w-full md:w-[38%] flex items-center justify-center relative overflow-hidden py-10 md:py-0"
-              style={{ background: 'var(--accent-gradient)', minHeight: '130px' }}
+        {horizontalCapabilities.map((cap, i) => {
+          const isActive = activeIndex === i;
+
+          return (
+            <motion.article
+              key={cap.number}
+              onClick={() => scrollToCard(i)}
+              className="scroll-snap-start flex-shrink-0 rounded-[28px] overflow-hidden relative group transition-all duration-500"
+              style={{
+                width: 'min(75vw, 850px)',
+                minHeight: '420px',
+                backgroundColor: isActive 
+                  ? (isDark ? 'rgba(255,255,255,0.03)' : 'rgba(255,255,255,0.7)')
+                  : (isDark ? 'rgba(255,255,255,0.01)' : 'rgba(0,0,0,0.02)'),
+                border: '1px solid',
+                borderColor: isActive ? 'var(--accent-border)' : 'var(--border-subtle)',
+                backdropFilter: 'blur(20px)',
+                boxShadow: isActive ? '0 12px 40px var(--accent-glow)' : 'none',
+                transform: isActive ? 'scale(1)' : 'scale(0.98)',
+                opacity: isActive ? 1 : 0.6,
+              }}
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.6 }}
             >
-              <span className="text-[8rem] md:text-[9rem] font-extrabold text-white opacity-20 leading-none select-none">
+              {/* Massive Faded Background Number */}
+              <div 
+                className="absolute -right-8 -bottom-16 text-[16rem] md:text-[22rem] font-extrabold font-display leading-none select-none pointer-events-none transition-all duration-700"
+                style={{ 
+                  color: 'var(--text-primary)',
+                  opacity: isActive ? 0.04 : 0.02,
+                  transform: isActive ? 'translateY(0)' : 'translateY(20px)'
+                }}
+              >
                 {cap.number}
-              </span>
-            </div>
+              </div>
 
-            {/* Right: Content */}
-            <div className="flex-1 p-7 md:p-9 flex flex-col justify-center">
-              <h3
-                className="text-xl md:text-2xl font-bold mb-3 tracking-tight"
-                style={{ color: 'var(--text-primary)' }}
-              >
-                {cap.title}
-              </h3>
-              <p className="text-sm leading-relaxed mb-5" style={{ color: 'var(--text-secondary)' }}>
-                {cap.description}
-              </p>
-              <ul className="space-y-2.5 mb-5">
-                {cap.features.map((f) => (
-                  <li key={f} className="flex items-center gap-3 text-sm" style={{ color: 'var(--text-secondary)' }}>
-                    <div
-                      className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
-                      style={{ backgroundColor: 'var(--accent-subtle)' }}
-                    >
-                      <Check size={11} style={{ color: 'var(--accent-1)' }} />
+              {/* Subtle Inner Gradient Glow */}
+              <div 
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{ background: 'radial-gradient(circle at 0% 0%, var(--accent-subtle), transparent 70%)' }}
+              />
+
+              <div className="relative z-10 p-8 md:p-14 flex flex-col h-full">
+                {/* Number Badge */}
+                <div 
+                  className="w-12 h-12 rounded-2xl flex items-center justify-center font-bold font-display text-lg mb-8 transition-colors duration-500"
+                  style={{ 
+                    backgroundColor: isActive ? 'var(--accent-1)' : 'var(--bg-tertiary)',
+                    color: isActive ? '#FFFFFF' : 'var(--text-muted)'
+                  }}
+                >
+                  {cap.number}
+                </div>
+
+                <h3
+                  className="text-2xl md:text-4xl font-bold mb-4 font-display tracking-tight"
+                  style={{ color: 'var(--text-primary)' }}
+                >
+                  {cap.title}
+                </h3>
+                <p className="text-base md:text-lg leading-relaxed mb-10 max-w-2xl" style={{ color: 'var(--text-secondary)' }}>
+                  {cap.description}
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 mb-10 mt-auto">
+                  {cap.features.map((f) => (
+                    <div key={f} className="flex items-start gap-3">
+                      <div
+                        className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                        style={{ backgroundColor: 'var(--accent-subtle)' }}
+                      >
+                        <Check size={14} strokeWidth={3} style={{ color: 'var(--accent-1)' }} />
+                      </div>
+                      <span className="text-sm font-medium leading-relaxed" style={{ color: 'var(--text-primary)' }}>
+                        {f}
+                      </span>
                     </div>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <a
-                href="/services"
-                className="inline-flex items-center gap-2 text-sm font-semibold group self-start"
-                style={{ color: 'var(--accent-1)' }}
-              >
-                Learn More
-                <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-              </a>
-            </div>
-          </motion.article>
-        ))}
+                  ))}
+                </div>
 
-        {/* End spacer */}
+                <a
+                  href="/services"
+                  className="inline-flex items-center gap-2 text-sm font-bold group self-start transition-colors"
+                  style={{ color: 'var(--accent-1)' }}
+                >
+                  Explore Capabilities
+                  <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                </a>
+              </div>
+            </motion.article>
+          );
+        })}
         <div className="flex-shrink-0 w-6" />
       </div>
 
       {/* Progress Dots */}
-      <div className="flex items-center justify-center gap-2 mt-6">
+      <div className="flex items-center justify-center gap-3 mt-8">
         {horizontalCapabilities.map((_, i) => (
           <button
             key={i}
             onClick={() => scrollToCard(i)}
             aria-label={`Go to card ${i + 1}`}
-            className="transition-all duration-300 rounded-full"
+            className="transition-all duration-500 rounded-full"
             style={{
-              width: activeIndex === i ? 24 : 8,
+              width: activeIndex === i ? 32 : 8,
               height: 8,
-              backgroundColor:
-                activeIndex === i ? 'var(--accent-1)' : 'var(--border-active)',
-              borderRadius: 9999,
+              backgroundColor: activeIndex === i ? 'var(--accent-1)' : 'var(--border-subtle)',
+              opacity: activeIndex === i ? 1 : 0.5,
             }}
           />
         ))}

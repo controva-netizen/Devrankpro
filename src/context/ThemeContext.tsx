@@ -11,6 +11,7 @@ export const defaultPalettes = [
   { name: 'Ocean Teal', accent1: '#0EA5E9', accent2: '#14B8A6' },
   { name: 'Sunset Orange', accent1: '#F97316', accent2: '#E11D48' },
   { name: 'Neon Lime', accent1: '#84CC16', accent2: '#22D3EE' },
+  { name: 'Controva', accent1: '#FF758C', accent2: '#9333EA' },
 ];
 
 interface ThemeContextType {
@@ -30,8 +31,8 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | null>(null);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [mode, setModeState] = useState<ThemeMode>('light');
-  const [palette, setPaletteState] = useState(0);
+  const [mode, setModeState] = useState<ThemeMode>('dark');
+  const [palette, setPaletteState] = useState(9); // Index 9 is Controva
   const [customAccent1, setCustomAccent1] = useState('#1E3A8A');
   const [customAccent2, setCustomAccent2] = useState('#3B82F6');
   const [isCustom, setIsCustom] = useState(false);

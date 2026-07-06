@@ -1,5 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from '@/context/ThemeContext';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -59,20 +60,22 @@ function AnimatedRoutes() {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <BlogProvider>
-      <div className="min-h-screen relative" style={{ backgroundColor: 'var(--bg-primary)' }}>
-        <CornerGlow />
-        <ScrollToTop />
-        <Navbar />
-        <div className="relative z-10">
-          <AnimatedRoutes />
-        </div>
-        <Footer />
-        <AIChatbot />
-        <ThemeCustomizer />
-      </div>
-      </BlogProvider>
-    </ThemeProvider>
+    <HelmetProvider>
+      <ThemeProvider>
+        <BlogProvider>
+          <div className="min-h-screen relative" style={{ backgroundColor: 'var(--bg-primary)' }}>
+            <CornerGlow />
+            <ScrollToTop />
+            <Navbar />
+            <div className="relative z-10">
+              <AnimatedRoutes />
+            </div>
+            <Footer />
+            <AIChatbot />
+            <ThemeCustomizer />
+          </div>
+        </BlogProvider>
+      </ThemeProvider>
+    </HelmetProvider>
   );
 }

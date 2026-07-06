@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useBlog } from '@/context/BlogContext';
 import BlogDiscussionSection from '@/components/sections/blog/BlogDiscussionSection';
+import SEO from '@/components/shared/SEO';
 
 export default function BlogSlugPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -16,8 +17,30 @@ export default function BlogSlugPage() {
     return <Navigate to="/blog" replace />;
   }
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt,
+    image: post.image ? [post.image] : [],
+    datePublished: post.date,
+    author: [{
+      '@type': 'Organization',
+      name: post.author,
+      url: 'https://www.controvallc.com'
+    }]
+  };
+
   return (
     <article className="pt-32 pb-24 min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
+      <SEO 
+        title={`${post.title} | Controva Blog`}
+        description={post.excerpt}
+        image={post.image || undefined}
+        type="article"
+        url={`https://www.controvallc.com/blog/${post.slug}`}
+        schema={articleSchema}
+      />
       {/* ── Hero Header ── */}
       <div className="max-w-[1280px] mx-auto px-6 mb-12">
         <a 

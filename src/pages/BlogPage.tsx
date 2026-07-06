@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Clock, User } from 'lucide-react';
+import { ArrowRight, Clock, User, Rss } from 'lucide-react';
 import SectionHeader from '@/components/shared/SectionHeader';
 import { useBlog } from '@/context/BlogContext';
+import SEO from '@/components/shared/SEO';
 
 export default function BlogPage() {
   const { posts } = useBlog();
@@ -10,11 +11,32 @@ export default function BlogPage() {
 
   return (
     <div className="pt-32 pb-24 min-h-[80vh]">
+      <SEO 
+        title="Insights & Engineering Blog | Controva LLC"
+        description="Read the latest technical guides, architecture deep-dives, and performance marketing strategies from the Controva engineering team."
+        url="https://www.controvallc.com/blog"
+      />
       <div className="max-w-[1280px] mx-auto px-6">
-        <SectionHeader 
-          label="INSIGHTS & ENGINEERING" 
-          headline="The Controva Blog" 
-        />
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <SectionHeader 
+            label="INSIGHTS & ENGINEERING" 
+            headline="The Controva Blog" 
+          />
+          <a 
+            href="/rss.xml"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold transition-all hover:scale-105 active:scale-95"
+            style={{ 
+              backgroundColor: 'var(--accent-subtle)', 
+              color: 'var(--accent-1)',
+              border: '1px solid var(--accent-border)'
+            }}
+          >
+            <Rss size={16} />
+            Subscribe to RSS
+          </a>
+        </div>
         
         {/* Featured Post */}
         <motion.div
