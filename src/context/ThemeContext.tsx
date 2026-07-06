@@ -31,7 +31,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | null>(null);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [mode, setModeState] = useState<ThemeMode>('dark');
+  const [mode, setModeState] = useState<ThemeMode>('light');
   const [palette, setPaletteState] = useState(9); // Index 9 is Controva
   const [customAccent1, setCustomAccent1] = useState('#1E3A8A');
   const [customAccent2, setCustomAccent2] = useState('#3B82F6');
@@ -46,8 +46,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const savedCustom2 = localStorage.getItem('drp-custom2');
     const savedIsCustom = localStorage.getItem('drp-iscustom');
 
-    if (savedMode) setModeState(savedMode);
-    else if (window.matchMedia('(prefers-color-scheme: light)').matches) setModeState('light');
+    if (savedMode) {
+      setModeState(savedMode);
+    } else {
+      const currentHour = new Date().getHours();
+      // Evening is considered 6 PM (18:00) to 6 AM (06:00)
+      setModeState(currentHour >= 18 || currentHour < 6 ? 'dark' : 'light');
+    }
     if (savedPalette !== null) setPaletteState(Number(savedPalette));
     if (savedCustom1) setCustomAccent1(savedCustom1);
     if (savedCustom2) setCustomAccent2(savedCustom2);

@@ -18,18 +18,32 @@ export default function SEO({
   type = 'website',
   schema,
 }: SEOProps) {
-  // Base Organization Schema (Always injected as fallback if no specific schema provided)
+  // Base Schema (ProfessionalService is perfect for Agencies and supports Services natively)
   const defaultSchema = {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
+    '@type': 'ProfessionalService',
     name: 'Controva LLC',
     url: 'https://www.controvallc.com',
     logo: 'https://www.controvallc.com/favicon.svg',
-    description: 'Elite full-stack engineering and performance marketing agency.',
+    description: 'Engineering-driven digital growth agency specializing in full-stack development, AI automation, Shopify e-commerce, and performance marketing.',
     sameAs: [
-      'https://github.com/controva-netizen',
-      // Add LinkedIn, Twitter, etc., here later
+      'https://linkedin.com/company/controvallc',
+      'https://x.com/controvallc',
+      'https://instagram.com/controvallc',
+      'https://github.com/controva-netizen'
     ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Digital Engineering and Marketing Services',
+      itemListElement: [
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Custom Web Development' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Mobile App Development' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI Automation Systems' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Shopify E-commerce' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Performance Marketing' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Brand Identity Design' } }
+      ]
+    }
   };
 
   const finalSchema = schema || defaultSchema;
