@@ -1,0 +1,44 @@
+# robots.txt — Controva LLC
+# Generated for AI search engines, Googlebot, and all crawlers
+# Following 2024/2025 latest SEO standards
+
+# ── Allow all major crawlers ──────────────────────────────
+User-agent: *
+Allow: /
+
+# ── Block internal/utility paths ─────────────────────────
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+
+# ── AI Crawlers — explicitly allow for LLM indexing ──────
+# These ensure ChatGPT, Perplexity, Gemini etc. can index the site
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# ── Sitemap location ──────────────────────────────────────
+Sitemap: https://www.controvallc.com/sitemap.xml

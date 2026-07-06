@@ -5,6 +5,7 @@ export const navLinks: NavLink[] = [
   { label: 'Services', path: '/services' },
   { label: 'Case Studies', path: '/case-studies' },
   { label: 'About', path: '/about' },
+  { label: 'Blog', path: '/blog' },
   { label: 'Contact', path: '/contact' },
 ];
 
@@ -266,26 +267,69 @@ export const pricingTiers: PricingTier[] = [
 
 export const caseStudies: CaseStudy[] = [
   {
-    title: 'Apex Fitness Gear',
-    category: 'Shopify E-commerce + TikTok Shop',
-    description: 'From zero online sales to $1.2M in annual revenue. Custom Shopify theme with one-click upsells, integrated TikTok Shop for live selling, and AI-powered email recovery sequences.',
-    image: '/images/case-study-fitness.jpg',
-    result: '$1.2M Annual Revenue',
+    title: 'DTX Realty',
+    category: 'PropTech Platform',
+    description: 'Enterprise real estate technology infrastructure. Scaled property discovery through advanced headless architecture, resulting in a 45% increase in lead generation.',
+    image: '/images/case_study_dtx_1783322777978.png',
+    link: '#',
+    metrics: ['+45% Leads', '<0.8s Load', 'Scale']
   },
   {
-    title: 'Luxe Skin Co.',
-    category: 'Brand + Website + Paid Social',
-    description: 'Complete brand redesign, custom Shopify build, and Facebook/TikTok ad management. 340% ROAS in month two.',
-    image: '/images/case-study-skincare.jpg',
-    result: '340% ROAS',
+    title: 'IQAAI',
+    category: 'AI Automation',
+    description: 'Autonomous neural network lead qualification system. Built custom LLM pipelines that process 10,000+ leads daily with zero human intervention.',
+    image: '/images/case_study_iqaai_1783322787712.png',
+    link: '#',
+    metrics: ['10k/day', '0 Humans', '99.9% Up']
   },
   {
-    title: 'TechFlow',
-    category: 'Full-Stack Development + Growth',
-    description: 'Custom Next.js application with real-time collaboration features, Stripe billing integration, and LinkedIn ad campaigns driving 2,400 qualified trial signups in 90 days.',
-    image: '/images/case-study-saas.jpg',
-    result: '2,400 Trial Signups',
+    title: 'ImagineStudio',
+    category: 'Digital Agency',
+    description: 'Creative studio platform redesign. Implemented WebGL interactions and high-performance React architecture for an immersive luxury brand experience.',
+    image: '/images/case_study_imaginestudio_1783322797152.png',
+    link: '#',
+    metrics: ['+120% Time', 'WebGL', 'Awwwards']
   },
+  {
+    title: 'Controva AI',
+    category: 'Cloud Infrastructure',
+    description: 'Internal AI infrastructure scaling. Deployed distributed server clusters to handle complex machine learning model training and inference pipelines.',
+    image: '/images/case_study_controva_ai_1783322816322.png',
+    link: '#',
+    metrics: ['1ms Latency', 'Auto-scale', 'Docker']
+  },
+  {
+    title: 'Lumiuns',
+    category: 'Headless E-Commerce',
+    description: 'High-end luxury commerce migration. Moved from monolithic Shopify to Next.js/Sanity, dropping bounce rates by 32% and increasing conversion value.',
+    image: '/images/case_study_lumiuns_1783322826776.png',
+    link: '#',
+    metrics: ['-32% Bounce', '+18% CR', 'Sanity']
+  },
+  {
+    title: 'Signage',
+    category: 'Enterprise IoT',
+    description: 'Digital billboard management system. Engineered the real-time websocket architecture controlling over 500+ screens globally.',
+    image: '/images/case_study_signage_1783322837970.png',
+    link: '#',
+    metrics: ['500+ Nodes', 'WebSockets', 'Global']
+  },
+  {
+    title: 'Total Office',
+    category: 'B2B Solutions',
+    description: 'Corporate procurement platform. Streamlined B2B ordering and inventory sync with legacy ERPs via custom API middleware.',
+    image: '/images/case_study_totaloffice_1783322856246.png',
+    link: '#',
+    metrics: ['ERP Sync', 'B2B', 'Automated']
+  },
+  {
+    title: 'Hyperstackdev',
+    category: 'Developer Tools',
+    description: 'DevOps infrastructure scaling platform. Automated CI/CD pipelines and infrastructure-as-code deployments for modern startup teams.',
+    image: '/images/case_study_hyperstack_1783322866456.png',
+    link: '#',
+    metrics: ['CI/CD', 'Terraform', 'DevOps']
+  }
 ];
 
 export const resultsBar = [

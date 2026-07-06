@@ -11,6 +11,10 @@ import ServicesPage from '@/pages/ServicesPage';
 import CaseStudiesPage from '@/pages/CaseStudiesPage';
 import AboutPage from '@/pages/AboutPage';
 import ContactPage from '@/pages/ContactPage';
+import BlogPage from '@/pages/BlogPage';
+import BlogSlugPage from '@/pages/BlogSlugPage';
+import BlogAdminPage from '@/pages/BlogAdminPage';
+import { BlogProvider } from '@/context/BlogContext';
 import { useEffect } from 'react';
 
 function ScrollToTop() {
@@ -44,6 +48,9 @@ function AnimatedRoutes() {
         <Route path="/services" element={<PageWrapper><ServicesPage /></PageWrapper>} />
         <Route path="/case-studies" element={<PageWrapper><CaseStudiesPage /></PageWrapper>} />
         <Route path="/about" element={<PageWrapper><AboutPage /></PageWrapper>} />
+        <Route path="/blog" element={<PageWrapper><BlogPage /></PageWrapper>} />
+        <Route path="/blog/:slug" element={<PageWrapper><BlogSlugPage /></PageWrapper>} />
+        <Route path="/admin/blog" element={<PageWrapper><BlogAdminPage /></PageWrapper>} />
         <Route path="/contact" element={<PageWrapper><ContactPage /></PageWrapper>} />
       </Routes>
     </AnimatePresence>
@@ -53,6 +60,7 @@ function AnimatedRoutes() {
 export default function App() {
   return (
     <ThemeProvider>
+      <BlogProvider>
       <div className="min-h-screen relative" style={{ backgroundColor: 'var(--bg-primary)' }}>
         <CornerGlow />
         <ScrollToTop />
@@ -64,6 +72,7 @@ export default function App() {
         <AIChatbot />
         <ThemeCustomizer />
       </div>
+      </BlogProvider>
     </ThemeProvider>
   );
 }

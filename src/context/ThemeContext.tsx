@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect, useCallback, type React
 import type { ThemeMode } from '@/types';
 
 export const defaultPalettes = [
-  { name: 'Rose Pink', accent1: '#E91E8C', accent2: '#FF6EC7' },
+  { name: 'Classic Blue', accent1: '#1E3A8A', accent2: '#3B82F6' },
   { name: 'Electric Blue', accent1: '#4F6BFF', accent2: '#8B5CF6' },
   { name: 'Crimson Red', accent1: '#FF3366', accent2: '#FF6B35' },
   { name: 'Emerald Green', accent1: '#10B981', accent2: '#06B6D4' },
@@ -32,8 +32,8 @@ const ThemeContext = createContext<ThemeContextType | null>(null);
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [mode, setModeState] = useState<ThemeMode>('light');
   const [palette, setPaletteState] = useState(0);
-  const [customAccent1, setCustomAccent1] = useState('#E91E8C');
-  const [customAccent2, setCustomAccent2] = useState('#FF6EC7');
+  const [customAccent1, setCustomAccent1] = useState('#1E3A8A');
+  const [customAccent2, setCustomAccent2] = useState('#3B82F6');
   const [isCustom, setIsCustom] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -88,13 +88,18 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     root.style.setProperty('--accent-1', a1);
     root.style.setProperty('--accent-2', a2);
     root.style.setProperty('--accent-gradient', `linear-gradient(135deg, ${a1}, ${a2})`);
-    root.style.setProperty('--accent-glow', `${a1}59`);
-    root.style.setProperty('--accent-subtle', `${a1}1A`);
-    root.style.setProperty('--accent-border', `${a1}80`);
-    root.style.setProperty('--glow-tl', `${a1}26`);
-    root.style.setProperty('--glow-tr', `${a2}1E`);
-    root.style.setProperty('--glow-bl', `${a1}18`);
-    root.style.setProperty('--glow-br', `${a2}12`);
+    // accent-glow: used for box-shadows — gentle, not harsh
+    root.style.setProperty('--accent-glow', `${a1}30`);
+    root.style.setProperty('--accent-subtle', `${a1}12`);
+    root.style.setProperty('--accent-border', `${a1}55`);
+
+    // Corner glow vars — lower opacity in light mode, slightly higher in dark
+    // These drive CornerGlow.tsx and update live when palette changes
+    const isD = mode === 'dark';
+    root.style.setProperty('--glow-tl', `${a1}${isD ? '18' : '0D'}`);
+    root.style.setProperty('--glow-tr', `${a2}${isD ? '14' : '0A'}`);
+    root.style.setProperty('--glow-bl', `${a1}${isD ? '12' : '08'}`);
+    root.style.setProperty('--glow-br', `${a2}${isD ? '0E' : '06'}`);
   }, [mode, getColors]);
 
   useEffect(() => {

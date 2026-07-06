@@ -130,7 +130,7 @@ export default function HeroSection() {
   return (
     <section
       className="relative flex items-center justify-center overflow-hidden"
-      style={{ minHeight: '88vh' }}
+      style={{ minHeight: '90vh' }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
@@ -168,7 +168,7 @@ export default function HeroSection() {
       />
 
       {/* ── Content ── */}
-      <div className="relative max-w-5xl mx-auto px-6 pt-24 pb-14 text-center" style={{ zIndex: 3 }}>
+      <div className="relative max-w-5xl mx-auto px-6 pt-28 pb-14 text-center" style={{ zIndex: 3 }}>
 
         {/* Badge */}
         <motion.div
@@ -238,8 +238,13 @@ export default function HeroSection() {
         >
           <motion.a
             href="/contact"
-            className="inline-flex items-center gap-2 px-7 py-3 rounded-xl text-white font-semibold text-sm glow-button"
-            style={{ background: 'var(--accent-gradient)', boxShadow: '0 4px 24px var(--accent-glow)' }}
+            className="inline-flex items-center gap-2 px-7 py-3 rounded-xl font-semibold text-sm btn-fill-bottom glow-button"
+            style={{ 
+              backgroundColor: 'var(--accent-subtle)', 
+              color: 'var(--accent-1)',
+              border: '1px solid var(--accent-border)',
+              boxShadow: '0 4px 24px var(--accent-glow)' 
+            }}
             whileHover={{ scale: 1.05, boxShadow: '0 6px 32px var(--accent-glow)' }}
             whileTap={{ scale: 0.96 }}
           >
@@ -253,13 +258,13 @@ export default function HeroSection() {
           </motion.a>
           <motion.a
             href="/case-studies"
-            className="inline-flex items-center gap-2 px-7 py-3 rounded-xl font-semibold text-sm transition-all duration-200"
+            className="inline-flex items-center gap-2 px-7 py-3 rounded-xl font-semibold text-sm transition-all duration-200 btn-fill-bottom"
             style={{
-              border: '1px solid var(--accent-border)',
-              color: 'var(--accent-1)',
-              backgroundColor: 'var(--accent-subtle)',
+              border: '1px solid var(--border-subtle)',
+              color: 'var(--text-primary)',
+              backgroundColor: 'transparent',
             }}
-            whileHover={{ scale: 1.05, boxShadow: '0 4px 16px var(--accent-glow)' }}
+            whileHover={{ scale: 1.05, boxShadow: '0 4px 16px var(--accent-glow)', borderColor: 'var(--accent-1)' }}
             whileTap={{ scale: 0.96 }}
           >
             See Our Results

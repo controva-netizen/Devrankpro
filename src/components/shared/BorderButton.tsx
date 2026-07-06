@@ -15,9 +15,9 @@ export default function BorderButton({ children, onClick, className = '', href }
     return (
       <motion.a
         href={href}
-        className={baseClasses}
+        className={`${baseClasses} btn-fill-bottom`}
         style={{ borderColor: 'var(--border-subtle)', color: 'var(--text-primary)' }}
-        whileHover={{ scale: 1.03, backgroundColor: 'var(--accent-subtle)', borderColor: 'var(--accent-1)' }}
+        whileHover={{ scale: 1.03, borderColor: 'var(--accent-1)' }}
         whileTap={{ scale: 0.98 }}
       >
         {children}
@@ -28,9 +28,9 @@ export default function BorderButton({ children, onClick, className = '', href }
   return (
     <motion.button
       onClick={onClick}
-      className={baseClasses}
+      className={`${baseClasses} btn-fill-bottom`}
       style={{ borderColor: 'var(--border-subtle)', color: 'var(--text-primary)' }}
-      whileHover={{ scale: 1.03, backgroundColor: 'var(--accent-subtle)', borderColor: 'var(--accent-1)' }}
+      whileHover={{ scale: 1.03, borderColor: 'var(--accent-1)' }}
       whileTap={{ scale: 0.98 }}
     >
       {children}

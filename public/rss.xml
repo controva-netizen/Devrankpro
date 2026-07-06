@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Controva LLC — Insights &amp; Engineering</title>
+    <link>https://www.controvallc.com/blog</link>
+    <description>Engineering-driven insights on Headless Commerce, AI Automation, and B2B Growth Strategy.</description>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 06 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.controvallc.com/rss.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+      <title>Why Monolithic E-Commerce is Dead: The ROI of Headless Shopify</title>
+      <link>https://www.controvallc.com/blog/roi-of-headless-shopify</link>
+      <guid>https://www.controvallc.com/blog/roi-of-headless-shopify</guid>
+      <pubDate>Thu, 02 Jul 2026 12:00:00 +0000</pubDate>
+      <description>A technical breakdown of why enterprise brands are abandoning traditional Shopify setups for Next.js and Sanity, and how it directly impacts conversion rates.</description>
+      <category>Engineering &amp; E-Commerce</category>
+    </item>
+
+    <item>
+      <title>Stop Paying Humans for Data Entry: The Ultimate AI Automation Pipeline</title>
+      <link>https://www.controvallc.com/blog/ai-automation-pipeline</link>
+      <guid>https://www.controvallc.com/blog/ai-automation-pipeline</guid>
+      <pubDate>Sun, 28 Jun 2026 12:00:00 +0000</pubDate>
+      <description>How we built an autonomous lead qualification system using LLMs and Zapier that processes 10,000 leads per day with zero human intervention.</description>
+      <category>AI &amp; Automation</category>
+    </item>
+
+    <item>
+      <title>The "Zero-Risk" Offer: Why Performance Marketing Outperforms Retainers</title>
+      <link>https://www.controvallc.com/blog/performance-marketing-vs-retainers</link>
+      <guid>https://www.controvallc.com/blog/performance-marketing-vs-retainers</guid>
+      <pubDate>Mon, 15 Jun 2026 12:00:00 +0000</pubDate>
+      <description>Traditional agency retainers align incentives poorly. Discover the mathematics behind performance-based marketing and why it guarantees better ROI.</description>
+      <category>Growth &amp; Strategy</category>
+    </item>
+
+    <item>
+      <title>Migrating from Shopify Plus to Next.js: A Performance Breakdown</title>
+      <link>https://www.controvallc.com/blog/shopify-plus-to-nextjs-migration</link>
+      <guid>https://www.controvallc.com/blog/shopify-plus-to-nextjs-migration</guid>
+      <pubDate>Fri, 05 Jun 2026 12:00:00 +0000</pubDate>
+      <description>An inside look at the architecture decisions, caching strategies, and performance metrics behind a $10M/year store migration.</description>
+      <category>Engineering &amp; E-Commerce</category>
+    </item>
+
+  </channel>
+</rss>
