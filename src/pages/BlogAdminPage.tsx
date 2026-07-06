@@ -10,7 +10,6 @@ import type { BlogPost } from '@/data/blog';
 const ADMIN_PASSWORD = 'controva2026';
 
 function LoginGate({ onLogin }: { onLogin: () => void }) {
-  const { isDark } = useTheme();
   const [pw, setPw] = useState('');
   const [error, setError] = useState(false);
 
@@ -108,7 +107,6 @@ function PostForm({
   onSave: (data: Omit<BlogPost, 'id'>) => void;
   onCancel: () => void;
 }) {
-  const { isDark } = useTheme();
   const [form, setForm] = useState<Omit<BlogPost, 'id'>>(initial ?? emptyForm);
 
   const set = (k: keyof typeof form, v: string) => {
