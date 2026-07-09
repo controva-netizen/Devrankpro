@@ -131,7 +131,7 @@ export default function HeroSection() {
 
       {/* ── Content ── */}
       <motion.div 
-        style={{ perspective: 1200, rotateX, rotateY, transformStyle: 'preserve-3d' }}
+        style={{ perspective: 1200, rotateX, rotateY }}
         className="relative max-w-5xl mx-auto px-6 pt-28 pb-14 text-center z-10 w-full"
       >
         {/* Badge */}
@@ -178,14 +178,14 @@ export default function HeroSection() {
 
         {/* CTAs */}
         <motion.div
-          className="flex flex-wrap items-center justify-center gap-4 mb-16"
+          className="flex flex-wrap items-center justify-center gap-4 mb-16 relative z-50"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <a
             href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold text-sm btn-fill-bottom glow-button transition-transform active:scale-95 hover:scale-[1.02]"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold text-sm btn-fill-bottom glow-button transition-transform active:scale-95"
             style={{ 
               backgroundColor: 'var(--accent-subtle)', 
               border: '1px solid var(--accent-border)',

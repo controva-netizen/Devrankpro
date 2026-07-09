@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 interface SEOProps {
   title?: string;
   description?: string;
+  keywords?: string;
   image?: string;
   url?: string;
   type?: 'website' | 'article';
@@ -12,7 +13,8 @@ interface SEOProps {
 
 export default function SEO({
   title = 'Controva LLC — Engineering-Driven Digital Growth',
-  description = 'Elite full-stack engineering meets performance marketing. We architect your entire digital presence from code to conversion.',
+  description = 'Engineering-driven digital growth agency specializing in full-stack development, AI automation, Shopify e-commerce, and performance marketing.',
+  keywords = 'digital marketing agency, web development, AI automation, Shopify, e-commerce, performance marketing, full-stack development, lead generation',
   image = 'https://www.controvallc.com/images/og-home.jpg',
   url = 'https://www.controvallc.com',
   type = 'website',
@@ -54,6 +56,7 @@ export default function SEO({
       <title>{title}</title>
       <meta name="title" content={title} />
       <meta name="description" content={description} />
+      {keywords && <meta name="keywords" content={keywords} />}
       <link rel="canonical" href={url} />
 
       {/* Open Graph / Facebook */}

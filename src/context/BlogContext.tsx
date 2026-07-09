@@ -18,14 +18,20 @@ export function BlogProvider({ children }: { children: ReactNode }) {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         const parsed = JSON.parse(stored) as BlogPost[];
-        return parsed.map((p) => {
+        const merged = parsed.map((p) => {
           const seed = seedPosts.find((s) => s.id === p.id);
-          // If the cached post is missing content but the seed has it, merge it in.
           if (seed && !p.content && seed.content) {
             return { ...p, content: seed.content };
           }
           return p;
         });
+
+        // Add any brand new hardcoded posts that aren't in localStorage yet
+        const missingSeeds = seedPosts.filter(s => !parsed.some(p => p.id === s.id));
+        const finalPosts = [...missingSeeds, ...merged];
+        
+        // Ensure they are sorted by date (newest first)
+        return finalPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
       }
       return seedPosts;
     } catch {
