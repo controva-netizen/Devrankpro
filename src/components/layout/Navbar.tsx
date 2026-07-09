@@ -31,21 +31,17 @@ export default function Navbar() {
           className="pointer-events-auto flex items-center justify-between w-full max-w-7xl rounded-full transition-all duration-500 ease-out border px-3 sm:px-5"
           style={{
             height: 60,
-            backgroundColor: isDark
-              ? 'rgba(14,14,18,0.82)'
-              : 'rgba(255,255,255,0.82)',
-            backdropFilter: 'blur(24px) saturate(180%)',
-            WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-            borderColor: isDark
-              ? 'rgba(255,255,255,0.09)'
-              : 'rgba(148,163,184,0.45)',
+            backgroundColor: scrolled
+              ? (isDark ? 'rgba(14,14,18,0.82)' : 'rgba(255,255,255,0.82)')
+              : 'transparent',
+            backdropFilter: scrolled ? 'blur(24px) saturate(180%)' : 'none',
+            WebkitBackdropFilter: scrolled ? 'blur(24px) saturate(180%)' : 'none',
+            borderColor: scrolled
+              ? (isDark ? 'rgba(255,255,255,0.09)' : 'rgba(148,163,184,0.45)')
+              : 'transparent',
             boxShadow: scrolled
-              ? isDark
-                ? '0 20px 40px -15px rgba(0,0,0,0.55)'
-                : '0 8px 32px -8px rgba(0,0,0,0.12)'
-              : isDark
-                ? '0 4px 16px rgba(0,0,0,0.3)'
-                : '0 2px 12px rgba(0,0,0,0.06)',
+              ? (isDark ? '0 20px 40px -15px rgba(0,0,0,0.55)' : '0 8px 32px -8px rgba(0,0,0,0.12)')
+              : 'none',
           }}
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}

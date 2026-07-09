@@ -1,68 +1,111 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import { blogPosts as seedPosts, type BlogPost } from '@/data/blog';
+import { supabase } from '@/lib/supabase';
 
 interface BlogContextType {
   posts: BlogPost[];
-  addPost: (post: Omit<BlogPost, 'id'>) => void;
-  updatePost: (id: string, post: Omit<BlogPost, 'id'>) => void;
-  deletePost: (id: string) => void;
+  loading: boolean;
+  addPost: (post: Omit<BlogPost, 'id'>) => Promise<void>;
+  updatePost: (id: string, post: Omit<BlogPost, 'id'>) => Promise<void>;
+  deletePost: (id: string) => Promise<void>;
 }
 
 const BlogContext = createContext<BlogContextType | null>(null);
 
-const STORAGE_KEY = 'controva_blog_posts';
-
 export function BlogProvider({ children }: { children: ReactNode }) {
-  const [posts, setPosts] = useState<BlogPost[]>(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        const parsed = JSON.parse(stored) as BlogPost[];
-        const merged = parsed.map((p) => {
-          const seed = seedPosts.find((s) => s.id === p.id);
-          if (seed && !p.content && seed.content) {
-            return { ...p, content: seed.content };
-          }
-          return p;
-        });
-
-        // Add any brand new hardcoded posts that aren't in localStorage yet
-        const missingSeeds = seedPosts.filter(s => !parsed.some(p => p.id === s.id));
-        const finalPosts = [...missingSeeds, ...merged];
-        
-        // Ensure they are sorted by date (newest first)
-        return finalPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-      }
-      return seedPosts;
-    } catch {
-      return seedPosts;
-    }
-  });
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(posts));
-  }, [posts]);
+    fetchPosts();
+  }, []);
 
-  const addPost = (post: Omit<BlogPost, 'id'>) => {
-    const newPost: BlogPost = {
-      ...post,
-      id: Date.now().toString(),
-    };
-    setPosts((prev) => [newPost, ...prev]);
+  const fetchPosts = async () => {
+    setLoading(true);
+    const { data, error } = await supabase
+      .from('blog_posts')
+      .select('*');
+
+    if (error) {
+      console.error('Error fetching posts:', error);
+      // Fallback to seed posts if Supabase fails (e.g. table not created yet)
+      setPosts(seedPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()));
+    } else {
+      if (data && data.length > 0) {
+        // Sort by date manually since date is a string (e.g., 'Jul 02, 2026')
+        const sorted = data.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        setPosts(sorted as BlogPost[]);
+      } else {
+        // If table is empty, fallback to seedPosts for initial display
+        setPosts(seedPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()));
+      }
+    }
+    setLoading(false);
   };
 
-  const updatePost = (id: string, updated: Omit<BlogPost, 'id'>) => {
+  const addPost = async (post: Omit<BlogPost, 'id'>) => {
+    const { data, error } = await supabase
+      .from('blog_posts')
+      .insert([post])
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Error adding post:', error);
+      alert('Failed to add post. Please ensure you created the Supabase table.');
+      return;
+    }
+    if (data) {
+      setPosts((prev) => {
+        const next = [data as BlogPost, ...prev];
+        return next.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      });
+    }
+  };
+
+  const updatePost = async (id: string, updated: Omit<BlogPost, 'id'>) => {
+    // Basic check for seed post IDs (1, 2, 3...) which aren't valid UUIDs
+    if (id.length < 10) {
+      alert('Cannot update a hardcoded seed post. Please create a new post.');
+      return;
+    }
+
+    const { error } = await supabase
+      .from('blog_posts')
+      .update(updated)
+      .eq('id', id);
+
+    if (error) {
+      console.error('Error updating post:', error);
+      alert('Failed to update post.');
+      return;
+    }
     setPosts((prev) =>
-      prev.map((p) => (p.id === id ? { ...updated, id } : p))
+      prev.map((p) => (p.id === id ? { ...p, ...updated } : p))
     );
   };
 
-  const deletePost = (id: string) => {
+  const deletePost = async (id: string) => {
+    if (id.length < 10) {
+      alert('Cannot delete a hardcoded seed post. Please remove it from src/data/blog.ts manually.');
+      return;
+    }
+
+    const { error } = await supabase
+      .from('blog_posts')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      console.error('Error deleting post:', error);
+      alert('Failed to delete post.');
+      return;
+    }
     setPosts((prev) => prev.filter((p) => p.id !== id));
   };
 
   return (
-    <BlogContext.Provider value={{ posts, addPost, updatePost, deletePost }}>
+    <BlogContext.Provider value={{ posts, loading, addPost, updatePost, deletePost }}>
       {children}
     </BlogContext.Provider>
   );

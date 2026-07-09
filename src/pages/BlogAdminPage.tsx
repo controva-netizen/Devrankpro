@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Pencil, Trash2, Eye, LogOut, Clock, X, Check, AlertTriangle } from 'lucide-react';
+import { Plus, Pencil, Trash2, Eye, LogOut, Clock, X, Check, AlertTriangle, Loader2 } from 'lucide-react';
 import { useBlog } from '@/context/BlogContext';
 import { useTheme } from '@/context/ThemeContext';
 import type { BlogPost } from '@/data/blog';
@@ -104,10 +104,11 @@ function PostForm({
   onCancel,
 }: {
   initial?: BlogPost;
-  onSave: (data: Omit<BlogPost, 'id'>) => void;
+  onSave: (data: Omit<BlogPost, 'id'>) => Promise<void>;
   onCancel: () => void;
 }) {
   const [form, setForm] = useState<Omit<BlogPost, 'id'>>(initial ?? emptyForm);
+  const [isSaving, setIsSaving] = useState(false);
 
   const set = (k: keyof typeof form, v: string) => {
     setForm((prev) => {
@@ -145,7 +146,7 @@ function PostForm({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 z-[999] flex items-center justify-center p-4 pt-8"
       style={{ backgroundColor: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(8px)' }}
       onClick={(e) => e.target === e.currentTarget && onCancel()}
     >
@@ -153,12 +154,11 @@ function PostForm({
         initial={{ scale: 0.96, y: 20 }}
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.96, y: 20 }}
-        className="w-full max-w-2xl rounded-2xl overflow-hidden"
+        className="w-full max-w-2xl rounded-2xl overflow-hidden flex flex-col shadow-2xl"
         style={{
           backgroundColor: 'var(--bg-secondary)',
           border: '1px solid var(--border-subtle)',
-          maxHeight: '90vh',
-          overflowY: 'auto',
+          maxHeight: '85vh',
         }}
       >
         {/* Header */}
@@ -175,7 +175,7 @@ function PostForm({
         </div>
 
         {/* Body */}
-        <div className="p-6 flex flex-col gap-5">
+        <div className="p-6 flex flex-col gap-5 overflow-y-auto" style={{ flex: 1 }}>
           {/* Title */}
           <div>
             <label style={labelStyle}>Title *</label>
@@ -292,15 +292,17 @@ function PostForm({
             Cancel
           </button>
           <button
-            onClick={() => {
+            onClick={async () => {
               if (!form.title || !form.slug || !form.excerpt) return;
-              onSave(form);
+              setIsSaving(true);
+              await onSave(form);
+              setIsSaving(false);
             }}
-            disabled={!form.title || !form.slug || !form.excerpt}
+            disabled={!form.title || !form.slug || !form.excerpt || isSaving}
             className="flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-semibold text-white transition-all disabled:opacity-40"
             style={{ background: 'var(--accent-gradient)', fontFamily: "'Inter', sans-serif" }}
           >
-            <Check size={15} />
+            {isSaving ? <Loader2 size={15} className="animate-spin" /> : <Check size={15} />}
             {initial ? 'Save Changes' : 'Publish Post'}
           </button>
         </div>
@@ -310,7 +312,8 @@ function PostForm({
 }
 
 /* ── Delete Confirm ──────────────────────────────────────── */
-function DeleteConfirm({ title, onConfirm, onCancel }: { title: string; onConfirm: () => void; onCancel: () => void }) {
+function DeleteConfirm({ title, onConfirm, onCancel }: { title: string; onConfirm: () => Promise<void>; onCancel: () => void }) {
+  const [isDeleting, setIsDeleting] = useState(false);
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -341,11 +344,16 @@ function DeleteConfirm({ title, onConfirm, onCancel }: { title: string; onConfir
             Cancel
           </button>
           <button
-            onClick={onConfirm}
-            className="flex-1 py-2.5 rounded-xl text-sm font-semibold text-white"
+            onClick={async () => {
+              setIsDeleting(true);
+              await onConfirm();
+              setIsDeleting(false);
+            }}
+            disabled={isDeleting}
+            className="flex-1 py-2.5 rounded-xl text-sm font-semibold text-white flex items-center justify-center gap-2 disabled:opacity-50"
             style={{ backgroundColor: '#EF4444', fontFamily: "'Inter', sans-serif" }}
           >
-            Delete
+            {isDeleting ? <Loader2 size={15} className="animate-spin" /> : 'Delete'}
           </button>
         </div>
       </motion.div>
@@ -355,7 +363,7 @@ function DeleteConfirm({ title, onConfirm, onCancel }: { title: string; onConfir
 
 /* ── Main Admin Page ─────────────────────────────────────── */
 export default function BlogAdminPage() {
-  const { posts, addPost, updatePost, deletePost } = useBlog();
+  const { posts, loading, addPost, updatePost, deletePost } = useBlog();
   const { isDark } = useTheme();
   const navigate = useNavigate();
 
@@ -463,7 +471,12 @@ export default function BlogAdminPage() {
           </div>
 
           {/* Rows */}
-          {posts.length === 0 ? (
+          {loading ? (
+            <div className="px-6 py-16 text-center flex flex-col items-center gap-3" style={{ color: 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}>
+              <Loader2 size={24} className="animate-spin text-blue-500" />
+              Loading posts from Supabase...
+            </div>
+          ) : posts.length === 0 ? (
             <div className="px-6 py-16 text-center" style={{ color: 'var(--text-muted)', fontFamily: "'Inter', sans-serif" }}>
               No posts yet. Click "New Post" to get started.
             </div>
@@ -546,21 +559,21 @@ export default function BlogAdminPage() {
       <AnimatePresence>
         {modal === 'create' && (
           <PostForm
-            onSave={(data) => { addPost(data); setModal(null); }}
+            onSave={async (data) => { await addPost(data); setModal(null); }}
             onCancel={() => setModal(null)}
           />
         )}
         {modal !== null && typeof modal === 'object' && modal.type === 'edit' && (
           <PostForm
             initial={modal.post}
-            onSave={(data) => { updatePost(modal.post.id, data); setModal(null); }}
+            onSave={async (data) => { await updatePost(modal.post.id, data); setModal(null); }}
             onCancel={() => setModal(null)}
           />
         )}
         {modal !== null && typeof modal === 'object' && modal.type === 'delete' && (
           <DeleteConfirm
             title={modal.post.title}
-            onConfirm={() => { deletePost(modal.post.id); setModal(null); }}
+            onConfirm={async () => { await deletePost(modal.post.id); setModal(null); }}
             onCancel={() => setModal(null)}
           />
         )}

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Settings, Sun, Moon, Check, Palette } from 'lucide-react';
 import { useTheme, defaultPalettes } from '@/context/ThemeContext';
@@ -8,6 +8,22 @@ export default function ThemeCustomizer() {
   const [customTab, setCustomTab] = useState(false);
   const [showDot, setShowDot] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Close when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+    if (open) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [open]);
 
   // Show notification dot + tooltip only on first visit
   useEffect(() => {
@@ -50,7 +66,7 @@ export default function ThemeCustomizer() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-[100]">
+    <div ref={containerRef} className="fixed bottom-6 right-6 z-[100]">
       <AnimatePresence>
         {open && (
           <motion.div
