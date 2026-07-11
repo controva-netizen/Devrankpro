@@ -9,6 +9,15 @@ const blogRoutes = blogPosts.map(post => `/blog/${post.slug}`);
 const staticRoutes = ['/', '/about', '/contact', '/services', '/case-studies', '/blog'];
 const allRoutes = [...staticRoutes, ...blogRoutes];
 
+let executablePath: string | undefined;
+let args = ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu', '--disable-dev-shm-usage'];
+
+if (process.env.VERCEL) {
+  const chromium = (await import('@sparticuz/chromium')).default;
+  executablePath = await chromium.executablePath();
+  args = chromium.args;
+}
+
 // https://vite.dev/config/
 export default defineConfig({
   base: '/',
@@ -20,7 +29,8 @@ export default defineConfig({
         renderAfterTime: 2000,
         launchOptions: {
           headless: true,
-          args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu', '--disable-dev-shm-usage']
+          executablePath,
+          args
         }
       }),
       server: {
