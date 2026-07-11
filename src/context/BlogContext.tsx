@@ -32,9 +32,11 @@ export function BlogProvider({ children }: { children: ReactNode }) {
       setPosts(seedPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()));
     } else {
       if (data && data.length > 0) {
+        // Merge Supabase posts with the seed posts
+        const allPosts = [...(data as BlogPost[]), ...seedPosts];
         // Sort by date manually since date is a string (e.g., 'Jul 02, 2026')
-        const sorted = data.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-        setPosts(sorted as BlogPost[]);
+        const sorted = allPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        setPosts(sorted);
       } else {
         // If table is empty, fallback to seedPosts for initial display
         setPosts(seedPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()));
