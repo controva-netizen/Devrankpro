@@ -13,6 +13,7 @@ let executablePath: string | undefined;
 let args = ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu', '--disable-dev-shm-usage'];
 
 if (process.env.VERCEL) {
+  // @ts-ignore
   const chromium = (await import('@sparticuz/chromium')).default;
   executablePath = await chromium.executablePath();
   args = chromium.args;
