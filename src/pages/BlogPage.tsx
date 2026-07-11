@@ -6,7 +6,16 @@ import { useBlog } from '@/context/BlogContext';
 import SEO from '@/components/shared/SEO';
 
 export default function BlogPage() {
-  const { posts } = useBlog();
+  const { posts, loading } = useBlog();
+  
+  if (loading) {
+    return <div className="pt-32 pb-24 min-h-[80vh] flex items-center justify-center font-semibold" style={{ color: 'var(--text-secondary)' }}>Loading insights...</div>;
+  }
+
+  if (!posts || posts.length === 0) {
+    return <div className="pt-32 pb-24 min-h-[80vh] flex items-center justify-center font-semibold" style={{ color: 'var(--text-secondary)' }}>No articles found.</div>;
+  }
+
   const featuredPost = posts[0];
   const regularPosts = posts.slice(1);
 
