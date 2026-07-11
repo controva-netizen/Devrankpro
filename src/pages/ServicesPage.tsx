@@ -4,6 +4,7 @@ import {
   Globe, Smartphone, ShoppingCart, Megaphone, Bot, Server,
   Check, ArrowRight, Sparkles, Code2, Rocket
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { serviceCategories, detailedServices, pricingTiers } from '@/data/content';
 import ServiceCategorySection from '@/components/sections/services/ServiceCategorySection';
 
@@ -133,13 +134,13 @@ function ServiceCardsGrid() {
 
                 <div className="flex items-center justify-between pt-4" style={{ borderTop: '1px solid var(--border-subtle)' }}>
                   <span className="text-sm font-semibold gradient-text">{service.price}</span>
-                  <a
-                    href="/contact"
+                  <Link
+                    to="/contact"
                     className="flex items-center gap-1 text-xs font-medium transition-all duration-200 group-hover:gap-2"
                     style={{ color: 'var(--accent-1)' }}
                   >
                     Get Started <ArrowRight size={12} />
-                  </a>
+                  </Link>
                 </div>
               </motion.div>
             );
@@ -286,8 +287,8 @@ function PricingSection() {
                 ))}
               </ul>
 
-              <a
-                href="/contact"
+              <Link
+                to="/contact"
                 className="block w-full text-center py-3.5 rounded-xl font-semibold text-sm transition-all duration-200"
                 style={
                   tier.featured
@@ -296,7 +297,7 @@ function PricingSection() {
                 }
               >
                 {tier.cta}
-              </a>
+              </Link>
             </motion.div>
           ))}
         </div>

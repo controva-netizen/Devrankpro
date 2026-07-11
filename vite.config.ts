@@ -1,11 +1,34 @@
 import path from "path"
 import react from "@vitejs/plugin-react"
 import { defineConfig } from "vite"
+import prerender from '@prerenderer/rollup-plugin'
+import PuppeteerRenderer from '@prerenderer/renderer-puppeteer'
+import { blogPosts } from "./src/data/blog"
+
+const blogRoutes = blogPosts.map(post => `/blog/${post.slug}`);
+const staticRoutes = ['/', '/about', '/contact', '/services', '/case-studies', '/blog'];
+const allRoutes = [...staticRoutes, ...blogRoutes];
 
 // https://vite.dev/config/
 export default defineConfig({
   base: '/',
-  plugins: [react()],
+  plugins: [
+    react(),
+    prerender({
+      routes: allRoutes,
+      renderer: new PuppeteerRenderer({
+        renderAfterTime: 2000,
+        launchOptions: {
+          headless: true,
+          args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu', '--disable-dev-shm-usage']
+        }
+      }),
+      server: {
+        port: 3000,
+        host: 'localhost',
+      },
+    })
+  ],
   server: {
     port: 3000,
   },

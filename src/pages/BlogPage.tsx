@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Clock, User, Rss } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import SectionHeader from '@/components/shared/SectionHeader';
 import { useBlog } from '@/context/BlogContext';
 import SEO from '@/components/shared/SEO';
@@ -45,8 +46,8 @@ export default function BlogPage() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mt-16 mb-16"
         >
-          <a 
-            href={`/blog/${featuredPost.slug}`}
+          <Link 
+            to={`/blog/${featuredPost.slug}`}
             className="group block rounded-[24px] overflow-hidden card-hover"
             style={{ 
               backgroundColor: 'var(--bg-secondary)',
@@ -93,7 +94,7 @@ export default function BlogPage() {
                 </div>
               </div>
             </div>
-          </a>
+          </Link>
         </motion.div>
 
         {/* Regular Posts Grid */}
@@ -105,8 +106,8 @@ export default function BlogPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 + (i * 0.1) }}
             >
-              <a 
-                href={`/blog/${post.slug}`}
+              <Link 
+                to={`/blog/${post.slug}`}
                 className="group flex flex-col h-full rounded-[20px] overflow-hidden card-hover"
                 style={{ 
                   backgroundColor: 'var(--bg-secondary)',
@@ -154,7 +155,7 @@ export default function BlogPage() {
                     <ArrowRight size={16} className="ml-2 transform transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>
-              </a>
+              </Link>
             </motion.div>
           ))}
         </div>

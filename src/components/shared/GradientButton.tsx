@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import type { ReactNode } from 'react';
 
 interface GradientButtonProps {
@@ -15,16 +16,31 @@ export default function GradientButton({ children, onClick, className = '', href
   const style = { background: 'var(--accent-gradient)' };
 
   if (href) {
+    const isExternal = href.startsWith('http');
+    if (isExternal) {
+      return (
+        <motion.a
+          href={href}
+          className={baseClasses}
+          style={style}
+          whileHover={disabled ? {} : { scale: 1.05, boxShadow: '0 0 30px var(--accent-glow)' }}
+          whileTap={disabled ? {} : { scale: 0.98 }}
+        >
+          {children}
+        </motion.a>
+      );
+    }
+    const MotionLink = motion(Link);
     return (
-      <motion.a
-        href={href}
+      <MotionLink
+        to={href}
         className={baseClasses}
         style={style}
         whileHover={disabled ? {} : { scale: 1.05, boxShadow: '0 0 30px var(--accent-glow)' }}
         whileTap={disabled ? {} : { scale: 0.98 }}
       >
         {children}
-      </motion.a>
+      </MotionLink>
     );
   }
 

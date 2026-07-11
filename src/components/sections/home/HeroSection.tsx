@@ -3,6 +3,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Shield, ArrowRight, TrendingUp, Users, Zap } from 'lucide-react';
 import { heroStats } from '@/data/content';
 import { useTheme } from '@/context/ThemeContext';
+import { Link } from 'react-router-dom';
 import SEO from '@/components/shared/SEO';
 
 /* ─── Animated stat counter ────────────────────────────── */
@@ -183,8 +184,8 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <a
-            href="/contact"
+          <Link
+            to="/contact"
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold text-sm btn-fill-bottom glow-button transition-transform active:scale-95"
             style={{ 
               backgroundColor: 'var(--accent-subtle)', 
@@ -195,9 +196,9 @@ export default function HeroSection() {
           >
             Claim Your Growth Blueprint
             <ArrowRight size={16} />
-          </a>
-          <a
-            href="/case-studies"
+          </Link>
+          <Link
+            to="/case-studies"
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold text-sm btn-fill-bottom transition-all duration-200"
             style={{
               backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
@@ -206,7 +207,7 @@ export default function HeroSection() {
             }}
           >
             See Our Results
-          </a>
+          </Link>
         </motion.div>
 
         {/* Premium Glass Stats */}

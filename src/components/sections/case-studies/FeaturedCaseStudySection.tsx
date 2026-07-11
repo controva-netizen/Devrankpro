@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import type { CaseStudy } from '@/types';
+import { Link } from 'react-router-dom';
 
 interface FeaturedCaseStudyProps {
   study: CaseStudy;
@@ -56,8 +57,8 @@ export default function FeaturedCaseStudySection({ study, index }: FeaturedCaseS
             </span>
           ))}
         </div>
-        <a
-          href="/contact"
+        <Link
+          to="/contact"
           className="inline-flex items-center gap-2 mt-5 text-sm font-semibold self-start group"
           style={{ color: 'var(--accent-1)' }}
         >
@@ -65,7 +66,7 @@ export default function FeaturedCaseStudySection({ study, index }: FeaturedCaseS
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-1">
             <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
           </svg>
-        </a>
+        </Link>
       </div>
     </motion.div>
   );

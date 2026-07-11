@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { bentoServices } from '@/data/content';
 import SectionHeader from '@/components/shared/SectionHeader';
+import { Link } from 'react-router-dom';
 
 const gridLayout = [
   'col-span-1 md:col-span-2',
@@ -21,9 +22,9 @@ export default function CapabilitiesBentoSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {bentoServices.map((service, i) => (
-            <a
+            <Link
               key={service.id}
-              href="/services"
+              to="/services"
               className={`${gridLayout[i]} group rounded-[20px] overflow-hidden card-hover block`}
               style={{
                 backgroundColor: 'var(--bg-secondary)',
@@ -88,7 +89,7 @@ export default function CapabilitiesBentoSection() {
                   )}
                 </div>
               </motion.div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

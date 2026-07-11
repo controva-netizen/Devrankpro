@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Check, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { horizontalCapabilities } from '@/data/content';
 import { useTheme } from '@/context/ThemeContext';
+import { Link } from 'react-router-dom';
 
 export default function HorizontalScrollSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -214,14 +215,14 @@ export default function HorizontalScrollSection() {
                   ))}
                 </div>
 
-                <a
-                  href="/services"
+                <Link
+                  to="/services"
                   className="inline-flex items-center gap-2 text-sm font-bold group self-start transition-colors"
                   style={{ color: 'var(--accent-1)' }}
                 >
                   Explore Capabilities
                   <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-                </a>
+                </Link>
               </div>
             </motion.article>
           );

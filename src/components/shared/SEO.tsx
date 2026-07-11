@@ -65,13 +65,16 @@ export default function SEO({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
+      <meta property="og:site_name" content="Controva LLC" />
+      <meta property="og:locale" content="en_US" />
 
       {/* Twitter */}
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content={url} />
-      <meta property="twitter:title" content={title} />
-      <meta property="twitter:description" content={description} />
-      <meta property="twitter:image" content={image} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@controvallc" />
+      <meta name="twitter:url" content={url} />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={image} />
 
       {/* Answer Engine & Generative Engine Optimization (JSON-LD) */}
       <script type="application/ld+json">

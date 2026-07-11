@@ -1,4 +1,4 @@
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Clock, User, ArrowLeft } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
@@ -9,8 +9,12 @@ import SEO from '@/components/shared/SEO';
 
 export default function BlogSlugPage() {
   const { slug } = useParams<{ slug: string }>();
-  const { posts } = useBlog();
+  const { posts, loading } = useBlog();
   
+  if (loading) {
+    return <div className="min-h-screen pt-32 pb-24 flex items-center justify-center">Loading article...</div>;
+  }
+
   const post = posts.find(p => p.slug === slug);
 
   if (!post) {
@@ -43,13 +47,13 @@ export default function BlogSlugPage() {
       />
       {/* ── Hero Header ── */}
       <div className="max-w-[1280px] mx-auto px-6 mb-12">
-        <a 
-          href="/blog" 
+        <Link 
+          to="/blog" 
           className="inline-flex items-center gap-2 text-sm font-semibold mb-8 transition-colors hover:opacity-80"
           style={{ color: 'var(--accent-1)' }}
         >
           <ArrowLeft size={16} /> Back to Insights
-        </a>
+        </Link>
         
         <div className="mb-6">
           <span 
@@ -154,13 +158,13 @@ export default function BlogSlugPage() {
                 <p className="text-sm leading-relaxed mb-6" style={{ color: 'var(--text-secondary)' }}>
                   We build digital empires that scale. Specializing in high-performance web architecture, AI automation, and headless commerce.
                 </p>
-                <a 
-                  href="/contact" 
+                <Link 
+                  to="/contact" 
                   className="block w-full py-3 px-4 rounded-xl text-center text-sm font-bold transition-transform hover:scale-105"
                   style={{ backgroundColor: 'var(--text-primary)', color: 'var(--bg-primary)' }}
                 >
                   Work with us
-                </a>
+                </Link>
               </div>
 
               {/* Share Card */}
