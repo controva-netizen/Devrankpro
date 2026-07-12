@@ -1,5 +1,6 @@
 import path from "path"
 import react from "@vitejs/plugin-react"
+// @ts-ignore
 import legacy from "@vitejs/plugin-legacy"
 import { defineConfig } from "vite"
 import prerender from '@prerenderer/rollup-plugin'
