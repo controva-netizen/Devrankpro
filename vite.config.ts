@@ -1,5 +1,6 @@
 import path from "path"
 import react from "@vitejs/plugin-react"
+import legacy from "@vitejs/plugin-legacy"
 import { defineConfig } from "vite"
 import prerender from '@prerenderer/rollup-plugin'
 import PuppeteerRenderer from '@prerenderer/renderer-puppeteer'
@@ -24,6 +25,9 @@ export default defineConfig({
   base: '/',
   plugins: [
     react(),
+    legacy({
+      targets: ['defaults', 'safari >= 11', 'ios >= 11']
+    }),
     prerender({
       routes: allRoutes,
       renderer: new PuppeteerRenderer({

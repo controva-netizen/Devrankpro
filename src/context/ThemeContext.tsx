@@ -32,9 +32,9 @@ const ThemeContext = createContext<ThemeContextType | null>(null);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [mode, setModeState] = useState<ThemeMode>('light');
-  const [palette, setPaletteState] = useState(9); // Index 9 is Controva
-  const [customAccent1, setCustomAccent1] = useState('#1E3A8A');
-  const [customAccent2, setCustomAccent2] = useState('#3B82F6');
+  const [palette, setPaletteState] = useState(6); // Index 6 is Ocean Teal
+  const [customAccent1, setCustomAccent1] = useState('#0EA5E9');
+  const [customAccent2, setCustomAccent2] = useState('#14B8A6');
   const [isCustom, setIsCustom] = useState(false);
   const [mounted, setMounted] = useState(false);
 
