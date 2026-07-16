@@ -12,9 +12,9 @@ interface SEOProps {
 }
 
 export default function SEO({
-  title = 'Controva LLC — Engineering-Driven Digital Growth',
-  description = 'Engineering-driven digital growth agency specializing in full-stack development, AI automation, Shopify e-commerce, and performance marketing.',
-  keywords = 'digital marketing agency, web development, AI automation, Shopify, e-commerce, performance marketing, full-stack development, lead generation',
+  title = 'Controva LLC — Custom VoIP & AI Voice Infrastructure',
+  description = 'Controva LLC engineers production-grade VoIP infrastructure and AI Voice Agents. Specializing in FreeSWITCH, Kamailio, SIP integrations, and low-latency voice AI.',
+  keywords = 'VoIP engineering, FreeSWITCH, Kamailio, AI Voice Agents, SIP trunking, telecom infrastructure, WebRTC, low-latency voice AI',
   image = 'https://www.controvallc.com/images/og-home.jpg',
   url = 'https://www.controvallc.com',
   type = 'website',
@@ -27,7 +27,7 @@ export default function SEO({
     name: 'Controva LLC',
     url: 'https://www.controvallc.com',
     logo: 'https://www.controvallc.com/favicon.svg',
-    description: 'Engineering-driven digital growth agency specializing in full-stack development, AI automation, Shopify e-commerce, and performance marketing.',
+    description: 'Controva LLC engineers production-grade VoIP infrastructure and AI Voice Agents. Specializing in FreeSWITCH, Kamailio, SIP integrations, and low-latency voice AI.',
     sameAs: [
       'https://linkedin.com/company/controvallc',
       'https://x.com/controvallc',
@@ -36,14 +36,13 @@ export default function SEO({
     ],
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
-      name: 'Digital Engineering and Marketing Services',
+      name: 'Custom VoIP and Voice AI Engineering Services',
       itemListElement: [
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Custom Web Development' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Mobile App Development' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI Automation Systems' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Shopify E-commerce' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Performance Marketing' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Brand Identity Design' } }
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'FreeSWITCH & Kamailio Integration' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Voice AI Agent Development' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Custom VoIP Architecture' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'SIP Trunking & Routing' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Low-Latency WebRTC Solutions' } }
       ]
     }
   };

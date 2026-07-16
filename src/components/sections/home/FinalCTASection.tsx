@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { Shield } from 'lucide-react';
 import GradientButton from '@/components/shared/GradientButton';
 
 export default function FinalCTASection() {
@@ -64,10 +63,10 @@ export default function FinalCTASection() {
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
         >
-          <Shield size={14} style={{ color: 'var(--accent-1)' }} />
-          <span className="text-xs font-medium" style={{ color: 'var(--accent-1)' }}>
-            30-Day Profit Guarantee applies to all engagements
-          </span>
+          <p className="text-sm font-medium opacity-80 uppercase tracking-widest mt-8 flex items-center gap-2 text-primary-text">
+            <span className="w-2 h-2 rounded-full bg-accent-1 animate-pulse"></span>
+            Enterprise-grade SLA & Latency Optimization
+          </p>
         </motion.div>
       </div>
     </section>

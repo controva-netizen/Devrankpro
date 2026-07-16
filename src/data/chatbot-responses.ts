@@ -47,7 +47,7 @@ export const serviceResponses: FallbackResponse[] = [
 // Pricing responses
 export const pricingResponses: FallbackResponse[] = [
   {
-    text: "We offer three tiers: Starter ($3,500/mo), Growth ($6,500/mo — our most popular), and Enterprise ($12,000/mo). All plans include our 30-Day Profit Guarantee. Individual services start from $2,500/mo. Would you like details on a specific plan?",
+    text: "We offer three tiers: Starter ($5,000), Growth ($9,500 — our most popular), and Enterprise ($18,000+). All plans include Enterprise-grade SLAs. Individual services start from $3,000/mo. Would you like details on a specific plan?",
     quickReplies: [
       { label: 'Starter Plan', value: 'Tell me about the Starter plan', action: 'message' },
       { label: 'Growth Plan', value: 'Tell me about the Growth plan', action: 'message' },

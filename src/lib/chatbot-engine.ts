@@ -77,7 +77,9 @@ ${knowledgeContext}
 COMPANY INFO:
 - Website: https://www.controvallc.com
 - Email: support@controvallc.com
-- Guarantee: 30-Day Profit Guarantee (refund if no profit in 30 days)`;
+- Focus: We prioritize sub-second latency and custom VoIP architectures over generic templates.
+- Process: Audit, Engineering, Load Testing, SLA Guarantee.
+- Guarantee: Enterprise-grade SLA & Falsifiable Deployment Outcomes`;
 }
 
 // Get preferred AI provider (from localStorage or auto-detect)

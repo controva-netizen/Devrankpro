@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Shield, ArrowRight, TrendingUp, Users, Zap } from 'lucide-react';
+import { ArrowRight, TrendingUp, Users, Zap } from 'lucide-react';
 import { heroStats } from '@/data/content';
 import { useTheme } from '@/context/ThemeContext';
 import { Link } from 'react-router-dom';
@@ -137,19 +137,15 @@ export default function HeroSection() {
       >
         {/* Badge */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 10 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest mb-8"
-          style={{
-            backgroundColor: 'var(--accent-subtle)',
-            color: 'var(--accent-1)',
-            border: '1px solid var(--accent-border)',
-            backdropFilter: 'blur(12px)',
-          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+          className="mt-12 mb-8 flex flex-col sm:flex-row items-center justify-center gap-6 text-sm font-medium uppercase tracking-widest text-primary-text/60"
         >
-          <Shield size={12} strokeWidth={2.5} />
-          30-Day Profit Guarantee
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-accent-1 animate-pulse shadow-[0_0_10px_var(--accent-1)]" />
+            Production-Grade Voice AI & SIP Infrastructure
+          </div>
         </motion.div>
 
         {/* Headline with Blur Reveal */}

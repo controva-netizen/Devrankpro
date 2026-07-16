@@ -229,8 +229,8 @@ function PricingSection() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
             Invest in Growth
           </h2>
-          <p className="text-base max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-            Every plan includes our 30-Day Profit Guarantee. If you don't see results, you don't pay.
+          <p className="text-primary-text/60 max-w-2xl mx-auto">
+            Every plan includes Falsifiable Deployment Outcomes and guaranteed latency SLA.
           </p>
         </div>
 

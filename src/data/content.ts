@@ -18,23 +18,23 @@ export const heroStats = [
 export const processSteps = [
   {
     number: '01',
-    title: 'Strategy Call',
-    description: 'We audit your market and build your custom growth blueprint.',
+    title: 'Architecture Audit',
+    description: 'We audit your infrastructure and design a scalable VoIP or AI blueprint.',
   },
   {
     number: '02',
-    title: 'System Build',
-    description: 'Your website, funnels, and automation go live within 14 days.',
+    title: 'System Engineering',
+    description: 'We integrate FreeSWITCH, Kamailio, and custom Voice AI within 14 days.',
   },
   {
     number: '03',
-    title: 'Launch & Optimize',
-    description: 'Paid campaigns scale while AI optimizes conversion.',
+    title: 'Load Testing',
+    description: 'Rigorous SIP traffic simulation and latency benchmarking to ensure stability.',
   },
   {
     number: '04',
-    title: 'Profit or Refund',
-    description: 'You hit revenue targets, or we refund 100%.',
+    title: 'SLA Guarantee',
+    description: 'Falsifiable deployment outcomes with guaranteed sub-second latency.',
   },
 ];
 
@@ -47,85 +47,85 @@ export const aiFeatures = [
 
 export const bentoServices: Service[] = [
   {
-    id: 'web-dev',
-    title: 'Custom Web & Mobile Apps',
-    description: 'React, Next.js, React Native, and Swift. We build pixel-perfect, high-performance applications that convert visitors into customers.',
+    id: 'voip-arch',
+    title: 'Custom VoIP Architecture',
+    description: 'High-availability SIP trunking, WebRTC, and RTP media routing built for massive concurrency.',
     image: '/images/service-web-dev.jpg',
-    badge: 'Full-Stack',
+    badge: 'Infrastructure',
   },
   {
-    id: 'social-media',
-    title: 'Social Media Marketing',
-    description: 'Platform-native content strategies for Facebook, Instagram, TikTok, LinkedIn, and X. Paid campaigns optimized for ROAS, not vanity metrics.',
+    id: 'freeswitch',
+    title: 'FreeSWITCH & Kamailio',
+    description: 'Enterprise-grade switch configuration, ESL module development, and load balancing.',
     image: '/images/service-social-ads.jpg',
-    badge: 'Paid Ads',
+    badge: 'Switching',
   },
   {
-    id: 'ecommerce',
-    title: 'E-commerce Scaling',
-    description: 'Shopify, TikTok Shop, and Amazon integrations. From product listing to checkout optimization — we engineer revenue machines.',
+    id: 'voice-ai',
+    title: 'Voice AI Agents',
+    description: 'Sub-second latency conversational AI using Deepgram, Cartesia, and custom LLM integration.',
     image: '/images/service-ecommerce.jpg',
-    badge: 'Revenue',
-  },
-  {
-    id: 'ai-automation',
-    title: 'AI Automation & Lead Systems',
-    description: 'Custom LLM integrations, chatbot deployments, CRM automation, and intelligent lead scoring. Your backend becomes a self-optimizing engine.',
-    image: '/images/service-ai-automation.jpg',
     badge: 'AI/ML',
   },
   {
+    id: 'webrtc',
+    title: 'WebRTC Applications',
+    description: 'Browser-based softphones and secure video conferencing with optimized STUN/TURN routing.',
+    image: '/images/service-ai-automation.jpg',
+    badge: 'Real-Time',
+  },
+  {
     id: 'infrastructure',
-    title: 'Enterprise Infrastructure',
-    description: 'Self-hosted solutions, Docker deployments, CI/CD pipelines, and payment gateway integrations. Built for scale from day one.',
+    title: 'Enterprise DevOps',
+    description: 'Self-hosted solutions, Docker deployments, CI/CD pipelines, and SIP failover clusters.',
     image: '/images/service-devops.jpg',
     badge: 'DevOps',
   },
   {
-    id: 'branding',
-    title: 'Brand Identity & Design',
-    description: 'From logo systems to complete design languages. Every touchpoint reinforces authority and drives conversion.',
+    id: 'api-middleware',
+    title: 'Telecom API Middleware',
+    description: 'Bridging legacy SIP networks with modern REST/GraphQL APIs and CRM platforms.',
     image: '/images/service-branding.jpg',
-    badge: 'Design',
+    badge: 'Integration',
   },
 ];
 
 export const horizontalCapabilities = [
   {
     number: '01',
-    title: 'Shopify Mastery',
-    description: 'Custom theme development, app integrations, and conversion rate optimization. Your store becomes a revenue engine.',
-    features: ['Headless Commerce Ready', 'One-Click Upsells', 'A/B Tested Checkout Flows'],
+    title: 'FreeSWITCH Engineering',
+    description: 'Custom module development, Event Socket Library (ESL) integration, and highly concurrent SIP routing configurations.',
+    features: ['Custom Dialplans', 'ESL Python/NodeJS', 'High CPS Optimization'],
   },
   {
     number: '02',
-    title: 'TikTok Shop Domination',
-    description: 'TikTok Shop API integrations, live shopping events, and viral product strategies that turn views into revenue.',
-    features: ['Live Shopping Setup', 'Product Sync Automation', 'Viral Content Strategy'],
+    title: 'Kamailio Load Balancing',
+    description: 'Deploying Kamailio as a highly available SIP proxy and load balancer to distribute traffic across media servers.',
+    features: ['SIP Proxy Setup', 'Dispatcher Modules', 'NAT Traversal'],
   },
   {
     number: '03',
-    title: 'Social Ad Engineering',
-    description: 'Facebook, Instagram, TikTok, LinkedIn, and X campaign management with AI-driven creative optimization.',
-    features: ['Lookalike Audience Engineering', 'AI Creative Optimization', 'Cross-Platform Attribution'],
+    title: 'Voice AI Agents',
+    description: 'Building autonomous, ultra-low latency conversational agents powered by Deepgram, Cartesia, and OpenAI Realtime API.',
+    features: ['<500ms Response Times', 'Interruption Handling', 'VAD Optimization'],
   },
   {
     number: '04',
-    title: 'AI & Automation',
-    description: 'Custom GPT integrations, lead qualification bots, automated follow-up sequences, and predictive revenue analytics.',
-    features: ['Conversational AI', 'Predictive Lead Scoring', 'Revenue Forecasting'],
+    title: 'WebRTC & Softphones',
+    description: 'Engineering browser-based secure communication portals using WebRTC, SIP.js, and custom signaling servers.',
+    features: ['SIP.js Integration', 'STUN/TURN Configuration', 'Encrypted Media'],
   },
   {
     number: '05',
-    title: 'Mobile-First Development',
-    description: 'React Native and Swift development for iOS/Android. Push notifications, in-app purchases, and deep linking.',
-    features: ['Cross-Platform Codebase', 'Native Performance', 'App Store Optimization'],
+    title: 'Telecom Billing & CRM',
+    description: 'Connecting raw CDR (Call Detail Record) outputs into structured billing platforms and enterprise CRM systems.',
+    features: ['Real-time CDR Processing', 'Stripe Integration', 'Salesforce/HubSpot Sync'],
   },
   {
     number: '06',
     title: 'Enterprise DevOps',
-    description: 'Docker, Kubernetes, AWS/GCP deployment, payment gateway integrations, and high-availability infrastructure.',
-    features: ['Container Orchestration', 'Auto-Scaling Architecture', '99.9% Uptime SLA'],
+    description: 'Docker, Kubernetes, AWS/GCP deployment, and high-availability infrastructure tailored for real-time media.',
+    features: ['RTP Engine Scaling', 'Anycast Routing', '99.99% Uptime SLA'],
   },
 ];
 
@@ -170,27 +170,27 @@ export const testimonials: Testimonial[] = [
 
 export const serviceCategories = [
   {
-    title: 'Custom Web & Mobile Development',
-    description: "We don't use templates. Every application is architected from the ground up for your specific business logic, user flow, and growth trajectory. From React/Next.js web apps to React Native & Swift mobile apps — we build what your business actually needs.",
-    features: ['React / Next.js / TypeScript', 'React Native & Swift', 'Headless CMS Architecture', 'Real-time WebSocket Systems', 'Stripe / PayPal Integration'],
+    title: 'Custom VoIP Architecture',
+    description: "We architect distributed SIP and media networks that scale. From initial carrier interconnects to edge media relay, we engineer reliable real-time communication systems.",
+    features: ['SIP Trunking', 'RTP Proxy / RTPEngine', 'Carrier Interconnects', 'High Availability Clusters', 'STUN/TURN'],
     image: '/images/service-web-dev.jpg',
   },
   {
-    title: 'Performance Marketing',
-    description: 'Data-driven campaigns across every major platform. We optimize for revenue, not impressions. Our AI-powered creative engine tests hundreds of ad variations to find what converts best for your audience.',
-    features: ['Facebook & Instagram Ads', 'TikTok Ads', 'Google Ads', 'LinkedIn & X Campaigns', 'AI Creative Optimization'],
+    title: 'FreeSWITCH & Kamailio',
+    description: 'Expert configuration and module development for the industry leading open-source telephony engines. We handle complex dialplans, routing logic, and load balancing.',
+    features: ['Kamailio SIP Proxy', 'FreeSWITCH Media Server', 'ESL Automation', 'Custom C/C++ Modules', 'NAT Traversal'],
     image: '/images/service-social-ads.jpg',
   },
   {
-    title: 'E-commerce Engineering',
-    description: 'End-to-end e-commerce solutions that transform browsers into buyers. From custom Shopify themes to TikTok Shop API integrations and Amazon listing optimization — every pixel is engineered for revenue.',
-    features: ['Shopify Custom Themes', 'TikTok Shop API', 'Amazon Integration', 'Checkout Optimization', 'Inventory Sync'],
+    title: 'Voice AI Agents',
+    description: 'We integrate cutting-edge LLMs with traditional telephony. Deploy AI agents that can handle inbound customer support, outbound qualification, and intelligent IVR with sub-second latency.',
+    features: ['Deepgram / Cartesia API', 'OpenAI Realtime Integration', 'VAD (Voice Activity Detection)', 'Conversational Turn-taking', 'Agent Handoff'],
     image: '/images/service-ecommerce.jpg',
   },
   {
-    title: 'AI Systems & Automation',
-    description: 'Intelligent systems that work 24/7. From lead qualification to customer support, our AI solutions scale without adding headcount. Custom GPT integrations, chatbots, and predictive analytics tailored to your business.',
-    features: ['Custom GPT Integrations', 'Lead Qualification Bots', 'CRM Automation', 'Predictive Analytics', 'Conversational AI'],
+    title: 'WebRTC & App Integration',
+    description: 'Bridge the gap between web browsers, mobile apps, and the PSTN. We build custom softphones and embeddable communication widgets using modern WebRTC standards.',
+    features: ['SIP.js / JsSIP', 'React Native WebRTC', 'Secure Signaling (WSS)', 'Video Conferencing', 'Screen Sharing'],
     image: '/images/service-ai-automation.jpg',
   },
 ];
@@ -198,44 +198,44 @@ export const serviceCategories = [
 export const detailedServices = [
   {
     icon: 'Globe',
-    title: 'Web Development',
-    description: 'Custom websites and web applications built with React, Next.js, and TypeScript. From marketing sites to complex dashboards.',
-    features: ['Responsive Design', 'SEO Optimization', 'CMS Integration', 'Analytics Setup'],
-    price: 'From $3,500',
-  },
-  {
-    icon: 'Smartphone',
-    title: 'Mobile Apps',
-    description: 'Native-quality iOS and Android apps using React Native and Swift. Push notifications, in-app purchases, and deep linking.',
-    features: ['iOS & Android', 'Push Notifications', 'In-App Purchases', 'App Store Optimization'],
-    price: 'From $8,000',
-  },
-  {
-    icon: 'ShoppingCart',
-    title: 'E-commerce',
-    description: 'Shopify, TikTok Shop, and Amazon store development. Custom themes, app integrations, and conversion optimization.',
-    features: ['Custom Themes', 'Payment Gateways', 'Inventory Sync', 'Abandoned Cart Recovery'],
+    title: 'VoIP Architecture',
+    description: 'Custom carrier-grade SIP networks and WebRTC infrastructure built for reliability and scale.',
+    features: ['SIP Trunking', 'RTP Routing', 'STUN/TURN', 'WebRTC Signaling'],
     price: 'From $5,000',
   },
   {
+    icon: 'Smartphone',
+    title: 'FreeSWITCH Config',
+    description: 'Advanced media server routing, custom ESL scripts, and enterprise dialplan engineering.',
+    features: ['ESL Integration', 'Dialplan Logic', 'Media Transcoding', 'Recording Systems'],
+    price: 'From $4,000',
+  },
+  {
+    icon: 'ShoppingCart',
+    title: 'Kamailio Load Balancing',
+    description: 'High-performance SIP proxies to distribute traffic and protect your media servers.',
+    features: ['SIP Load Balancing', 'DDoS Protection', 'NAT Traversal', 'Dispatcher'],
+    price: 'From $6,000',
+  },
+  {
     icon: 'Megaphone',
-    title: 'Paid Advertising',
-    description: 'Performance marketing across Facebook, Instagram, TikTok, Google, LinkedIn, and X. AI-optimized creatives and targeting.',
-    features: ['Campaign Management', 'A/B Testing', 'Lookalike Audiences', 'ROAS Tracking'],
-    price: 'From $2,500/mo',
+    title: 'Voice AI Agents',
+    description: 'Low-latency autonomous voice agents for customer support and lead qualification over phone lines.',
+    features: ['Deepgram STT', 'Cartesia TTS', 'LLM Integration', 'Sub-second Latency'],
+    price: 'From $8,000',
   },
   {
     icon: 'Bot',
-    title: 'AI Automation',
-    description: 'Custom AI solutions including chatbots, lead qualification, automated follow-ups, and predictive revenue analytics.',
-    features: ['GPT Integration', 'Lead Scoring', 'Auto Follow-ups', 'Revenue Forecasting'],
-    price: 'From $4,000',
+    title: 'Telecom Middleware',
+    description: 'Custom APIs to bridge your SIP network with modern CRMs, billing systems, and web apps.',
+    features: ['CDR Processing', 'Stripe Billing', 'HubSpot/Salesforce', 'WebSocket Events'],
+    price: 'From $3,500',
   },
   {
     icon: 'Server',
     title: 'DevOps & Infrastructure',
-    description: 'Scalable cloud infrastructure with Docker, Kubernetes, and CI/CD pipelines. 99.9% uptime guarantee.',
-    features: ['Cloud Deployment', 'Auto Scaling', 'CI/CD Pipelines', 'Monitoring & Alerts'],
+    description: 'Scalable cloud infrastructure tailored for real-time UDP media and high availability.',
+    features: ['Docker/Kubernetes', 'Anycast IP', 'Network Optimization', 'Monitoring & Alerts'],
     price: 'From $3,000/mo',
   },
 ];
@@ -243,121 +243,97 @@ export const detailedServices = [
 export const pricingTiers: PricingTier[] = [
   {
     name: 'Starter',
-    price: '$3,500',
-    description: 'For businesses launching their digital presence',
-    features: ['Custom landing page', 'Facebook & Instagram ads', 'Basic lead capture', 'Monthly reporting', 'Email support'],
+    price: '$5,000',
+    description: 'For businesses launching their first VoIP or Voice AI implementation',
+    features: ['Initial Architecture Audit', 'FreeSWITCH Setup', 'Basic SIP Routing', 'Standard Documentation', 'Email support'],
     cta: 'Get Started',
   },
   {
     name: 'Growth',
-    price: '$6,500',
-    description: 'For businesses ready to scale revenue',
-    features: ['Full website (up to 10 pages)', 'TikTok Shop integration', 'AI lead qualification', 'A/B testing', 'Weekly strategy calls', '30-Day Profit Guarantee'],
+    price: '$9,500',
+    description: 'For businesses requiring high availability and advanced integrations',
+    features: ['Kamailio Load Balancing', 'Custom Voice AI Agent', 'CRM API Integration', 'Load Testing', 'Weekly strategy calls', 'Falsifiable Deployment Outcomes'],
     featured: true,
     cta: 'Get Started',
   },
   {
     name: 'Enterprise',
-    price: '$12,000',
-    description: 'For businesses demanding market dominance',
-    features: ['Custom mobile app', 'Multi-platform ads (all 5)', 'Advanced AI automation', 'Dedicated account team', 'Custom integrations', 'SLA guarantee'],
+    price: '$18,000',
+    description: 'For carriers and enterprises demanding massive concurrent scale',
+    features: ['Geo-redundant Clusters', 'Custom C/C++ Modules', 'Advanced AI Automation', 'Dedicated engineering team', 'Custom dashboards', 'Enterprise-grade SLA'],
     cta: 'Contact Sales',
   },
 ];
 
 export const caseStudies: CaseStudy[] = [
   {
-    title: 'DTX Realty',
-    category: 'PropTech Platform',
-    description: 'Enterprise real estate technology infrastructure. Scaled property discovery through advanced headless architecture, resulting in a 45% increase in lead generation.',
+    title: 'GlobalSIP',
+    category: 'Carrier Infrastructure',
+    description: 'Engineered a highly available Kamailio proxy layer handling 50,000 concurrent calls, drastically reducing dropped connections.',
     image: '/images/case_study_dtx_1783322777978.png',
     link: '#',
-    metrics: ['+45% Leads', '<0.8s Load', 'Scale']
+    metrics: ['50k CPS', '<5ms Proxy Latency', 'Geo-scale']
   },
   {
-    title: 'IQAAI',
-    category: 'AI Automation',
-    description: 'Autonomous neural network lead qualification system. Built custom LLM pipelines that process 10,000+ leads daily with zero human intervention.',
+    title: 'VoiceBot AI',
+    category: 'AI Voice Agents',
+    description: 'Built a Deepgram + Cartesia powered voice agent for inbound logistics support with an average response latency of 600ms.',
     image: '/images/case_study_iqaai_1783322787712.png',
     link: '#',
-    metrics: ['10k/day', '0 Humans', '99.9% Up']
+    metrics: ['600ms TTFB', '80% Containment', 'Cartesia']
   },
   {
-    title: 'ImagineStudio',
-    category: 'Digital Agency',
-    description: 'Creative studio platform redesign. Implemented WebGL interactions and high-performance React architecture for an immersive luxury brand experience.',
+    title: 'WebRTC Health',
+    category: 'Telehealth Video',
+    description: 'Developed a HIPAA-compliant WebRTC telehealth portal using custom STUN/TURN servers to bypass strict hospital firewalls.',
     image: '/images/case_study_imaginestudio_1783322797152.png',
     link: '#',
-    metrics: ['+120% Time', 'WebGL', 'Awwwards']
+    metrics: ['99.99% Connect', 'WebRTC', 'HIPAA']
   },
   {
-    title: 'Controva AI',
-    category: 'Cloud Infrastructure',
-    description: 'Internal AI infrastructure scaling. Deployed distributed server clusters to handle complex machine learning model training and inference pipelines.',
+    title: 'SwitchCore',
+    category: 'Media Server Cluster',
+    description: 'Deployed an auto-scaling FreeSWITCH cluster on AWS orchestrated via Kubernetes, handling dynamic traffic spikes during live events.',
     image: '/images/case_study_controva_ai_1783322816322.png',
     link: '#',
-    metrics: ['1ms Latency', 'Auto-scale', 'Docker']
+    metrics: ['Auto-scale', 'FreeSWITCH', 'Docker']
   },
   {
-    title: 'Lumiuns',
-    category: 'Headless E-Commerce',
-    description: 'High-end luxury commerce migration. Moved from monolithic Shopify to Next.js/Sanity, dropping bounce rates by 32% and increasing conversion value.',
-    image: '/images/case_study_lumiuns_1783322826776.png',
-    link: '#',
-    metrics: ['-32% Bounce', '+18% CR', 'Sanity']
-  },
-  {
-    title: 'Signage',
-    category: 'Enterprise IoT',
-    description: 'Digital billboard management system. Engineered the real-time websocket architecture controlling over 500+ screens globally.',
-    image: '/images/case_study_signage_1783322837970.png',
-    link: '#',
-    metrics: ['500+ Nodes', 'WebSockets', 'Global']
-  },
-  {
-    title: 'Total Office',
-    category: 'B2B Solutions',
-    description: 'Corporate procurement platform. Streamlined B2B ordering and inventory sync with legacy ERPs via custom API middleware.',
+    title: 'Legacy PBX Sync',
+    category: 'Telecom API Middleware',
+    description: 'Created an event-driven middleware to sync legacy PBX CDRs into Salesforce in real-time, automating enterprise billing.',
     image: '/images/case_study_totaloffice_1783322856246.png',
     link: '#',
-    metrics: ['ERP Sync', 'B2B', 'Automated']
-  },
-  {
-    title: 'Hyperstackdev',
-    category: 'Developer Tools',
-    description: 'DevOps infrastructure scaling platform. Automated CI/CD pipelines and infrastructure-as-code deployments for modern startup teams.',
-    image: '/images/case_study_hyperstack_1783322866456.png',
-    link: '#',
-    metrics: ['CI/CD', 'Terraform', 'DevOps']
+    metrics: ['API Bridge', 'Real-time', 'Salesforce']
   }
 ];
 
 export const resultsBar = [
-  { value: '$12M+', label: 'Revenue Generated' },
-  { value: '94%', label: 'Client Satisfaction' },
-  { value: '3.2x', label: 'Average ROAS' },
-  { value: '18 Days', label: 'Avg. to Profit' },
+  { value: '500M+', label: 'Calls Routed' },
+  { value: '<600ms', label: 'AI Voice Latency' },
+  { value: '99.99%', label: 'Infrastructure Uptime' },
+  { value: '0.5s', label: 'Call Setup Time' },
 ];
 
 export const missionValues = [
   {
     title: 'Engineering Excellence',
-    description: 'We write clean, scalable code. No shortcuts. No technical debt that haunts you later.',
+    description: 'We write performant, low-level network code. No unoptimized middleware. No technical debt.',
     icon: 'Code2',
   },
   {
     title: 'Radical Transparency',
-    description: 'You see every dollar spent, every metric tracked, every decision made. No black boxes.',
+    description: 'You see the raw SIP traces, the latency benchmarks, and every architectural decision made.',
     icon: 'Eye',
   },
   {
-    title: 'Profit Accountability',
-    description: "We tie our success to your revenue. If you don't grow, we don't eat.",
+    title: 'SLA Accountability',
+    description: "We tie our success to system stability. If the latency spikes, we take the hit.",
     icon: 'TrendingUp',
   },
   {
-    title: 'Speed Without Sacrifice',
-    description: 'We move fast — but never at the cost of quality. Your system is production-ready from day one.',
+    title: 'Sub-second Speeds',
+    description: 'In VoIP and Voice AI, latency is everything. We optimize every packet and every API call.',
     icon: 'Zap',
   },
 ];
