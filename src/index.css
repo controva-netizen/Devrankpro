@@ -259,4 +259,36 @@
 
   .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   .hide-scrollbar::-webkit-scrollbar { display: none; }
+
+  /* Chatbot mobile full-screen */
+  @media (max-width: 768px) {
+    .chatbot-mobile-full {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      max-width: none !important;
+      max-height: none !important;
+      border-radius: 0 !important;
+      z-index: 9999 !important;
+    }
+  }
+
+  /* Chatbot message area scrollbar styling */
+  .chatbot-messages::-webkit-scrollbar {
+    width: 4px;
+  }
+  .chatbot-messages::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .chatbot-messages::-webkit-scrollbar-thumb {
+    background: var(--border-subtle);
+    border-radius: 4px;
+  }
+
+  /* Focus ring for accessibility */
+  .chatbot-focus:focus-visible {
+    outline: 2px solid var(--accent-1);
+    outline-offset: 2px;
+  }
 }

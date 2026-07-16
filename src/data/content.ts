@@ -364,27 +364,27 @@ export const missionValues = [
 
 export const teamMembers: TeamMember[] = [
   {
-    name: 'Alex Mercer',
+    name: 'Muhammad Aafaq',
     title: 'Founder & Lead Engineer',
-    bio: 'Former senior engineer at a FAANG company. Built the agency to bridge engineering and marketing.',
-    avatar: '/images/team-alex.jpg',
+    bio: 'Visionary technical leader steering Controva LLC’s architecture, building high-performance systems and driving engineering excellence.',
+    avatar: '/images/Armaghan.png',
   },
   {
-    name: 'Jordan Lee',
-    title: 'Head of Growth',
-    bio: 'Ex-agency director who managed $40M+ in ad spend. Specializes in ROAS optimization.',
-    avatar: '/images/team-jordan.jpg',
+    name: 'Muhammad Ahsan Ali',
+    title: 'Co Founder & Director',
+    bio: 'Strategic leader focused on expanding Controva LLC’s footprint, ensuring operational success and leading high-level company initiatives.',
+    avatar: '/images/Ahsin.png',
   },
   {
-    name: 'Priya Sharma',
-    title: 'AI & Automation Lead',
-    bio: 'ML engineer with a background in conversational AI and predictive systems.',
-    avatar: '/images/team-priya.jpg',
+    name: 'Waheeb Ullah',
+    title: 'Director of Growth',
+    bio: 'Data-driven growth expert scaling Controva LLC’s client success through advanced marketing strategies and optimized revenue channels.',
+    avatar: '/images/Waheeb ullah.png',
   },
   {
-    name: 'Marcus Webb',
+    name: 'Nida Siyal',
     title: 'Creative Director',
-    bio: 'Award-winning designer who believes every pixel should earn its place.',
-    avatar: '/images/team-marcus.jpg',
+    bio: 'Award-winning creative mastermind ensuring every Controva LLC project achieves stunning visual excellence and outstanding user experience.',
+    avatar: '/images/Nida.png',
   },
 ];

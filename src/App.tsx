@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
+import ChatbotAdminPage from '@/pages/ChatbotAdminPage';import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from '@/context/ThemeContext';
@@ -52,6 +52,7 @@ function AnimatedRoutes() {
         <Route path="/blog" element={<PageWrapper><BlogPage /></PageWrapper>} />
         <Route path="/blog/:slug" element={<PageWrapper><BlogSlugPage /></PageWrapper>} />
         <Route path="/admin/blog" element={<PageWrapper><BlogAdminPage /></PageWrapper>} />
+        <Route path="/admin/ai-chatbot" element={<PageWrapper><ChatbotAdminPage /></PageWrapper>} />
         <Route path="/contact" element={<PageWrapper><ContactPage /></PageWrapper>} />
       </Routes>
     </AnimatePresence>
