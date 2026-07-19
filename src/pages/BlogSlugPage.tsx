@@ -23,16 +23,30 @@ export default function BlogSlugPage() {
 
   const articleSchema = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://www.controvallc.com/blog/${post.slug}`
+    },
     headline: post.title,
     description: post.excerpt,
     image: post.image ? [post.image] : [],
     datePublished: post.date,
-    author: [{
-      '@type': 'Organization',
+    dateModified: post.date,
+    author: {
+      '@type': 'Person',
       name: post.author,
       url: 'https://www.controvallc.com'
-    }]
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Controva LLC',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.controvallc.com/favicon.svg'
+      }
+    },
+    keywords: post.category
   };
 
   return (

@@ -17,7 +17,8 @@ export default function HorizontalScrollSection() {
     const el = scrollRef.current;
     if (!el) return;
     const handleScroll = () => {
-      const cardWidth = el.offsetWidth * 0.75;
+      const firstChild = el.firstElementChild as HTMLElement;
+      const cardWidth = firstChild ? firstChild.offsetWidth + 24 : el.offsetWidth * 0.75;
       const idx = Math.round(el.scrollLeft / cardWidth);
       setActiveIndex(Math.min(idx, horizontalCapabilities.length - 1));
     };
@@ -50,7 +51,8 @@ export default function HorizontalScrollSection() {
   const scrollToCard = useCallback((idx: number) => {
     const el = scrollRef.current;
     if (!el) return;
-    const cardWidth = el.offsetWidth * 0.75;
+    const firstChild = el.firstElementChild as HTMLElement;
+    const cardWidth = firstChild ? firstChild.offsetWidth + 24 : el.offsetWidth * 0.75;
     el.scrollTo({ left: cardWidth * idx, behavior: 'smooth' });
   }, []);
 

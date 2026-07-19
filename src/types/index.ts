@@ -36,6 +36,7 @@ export interface CaseStudy {
   category: string;
   description: string;
   image: string;
+  result?: string;
   metrics?: string[];
   link?: string;
 }

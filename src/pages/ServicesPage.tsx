@@ -7,6 +7,7 @@ import {
 import { Link } from 'react-router-dom';
 import { serviceCategories, detailedServices, pricingTiers } from '@/data/content';
 import ServiceCategorySection from '@/components/sections/services/ServiceCategorySection';
+import SEO from '@/components/shared/SEO';
 
 function ServicesHero() {
   return (
@@ -307,8 +308,51 @@ function PricingSection() {
 }
 
 export default function ServicesPage() {
+  const servicesSchema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'ItemList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, item: { '@type': 'Service', name: 'Custom VoIP Architecture' } },
+          { '@type': 'ListItem', position: 2, item: { '@type': 'Service', name: 'FreeSWITCH & Kamailio Integration' } },
+          { '@type': 'ListItem', position: 3, item: { '@type': 'Service', name: 'Voice AI Agents' } },
+          { '@type': 'ListItem', position: 4, item: { '@type': 'Service', name: 'WebRTC & App Integration' } }
+        ]
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: 'Do you provide FreeSWITCH development services in the USA?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Yes, Controva LLC provides comprehensive FreeSWITCH development and custom SIP architecture services for enterprises and call centers operating across the USA. We specialize in high-availability clustering and WebRTC integration.'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: 'How much does it cost to build a custom VoIP network?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Custom VoIP architectures vary depending on scale. Standard deployments start with our Growth tier, while high-volume carrier-grade setups require custom engineering. By owning the infrastructure, USA businesses save substantially on per-minute SaaS fees.'
+            }
+          }
+        ]
+      }
+    ]
+  };
+
   return (
     <main>
+      <SEO 
+        title="VoIP Engineering Services | FreeSWITCH & Kamailio Integration"
+        description="We engineer custom VoIP networks, FreeSWITCH/Kamailio deployments, and Voice AI solutions. Scale your SIP infrastructure with sub-second latency."
+        keywords="FreeSWITCH Kamailio integration, SIP trunking service USA, Voice AI development, WebRTC solutions, custom VoIP architecture USA"
+        url="https://www.controvallc.com/services"
+        schema={servicesSchema}
+      />
       <ServicesHero />
       <ServiceCardsGrid />
       <ServiceProcess />

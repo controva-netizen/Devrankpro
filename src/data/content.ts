@@ -267,44 +267,68 @@ export const pricingTiers: PricingTier[] = [
 
 export const caseStudies: CaseStudy[] = [
   {
-    title: 'GlobalSIP',
-    category: 'Carrier Infrastructure',
-    description: 'Engineered a highly available Kamailio proxy layer handling 50,000 concurrent calls, drastically reducing dropped connections.',
+    title: 'DTX Realty',
+    category: 'PropTech Platform',
+    description: 'Enterprise real estate technology infrastructure. Scaled property discovery through advanced headless architecture, resulting in a 45% increase in lead generation.',
     image: '/images/case_study_dtx_1783322777978.png',
     link: '#',
-    metrics: ['50k CPS', '<5ms Proxy Latency', 'Geo-scale']
+    metrics: ['+45% Leads', '<0.8s Load', 'Scale']
   },
   {
-    title: 'VoiceBot AI',
-    category: 'AI Voice Agents',
-    description: 'Built a Deepgram + Cartesia powered voice agent for inbound logistics support with an average response latency of 600ms.',
+    title: 'IQAAI',
+    category: 'AI Automation',
+    description: 'Autonomous neural network lead qualification system. Built custom LLM pipelines that process 10,000+ leads daily with zero human intervention.',
     image: '/images/case_study_iqaai_1783322787712.png',
     link: '#',
-    metrics: ['600ms TTFB', '80% Containment', 'Cartesia']
+    metrics: ['10k/day', '0 Humans', '99.9% Up']
   },
   {
-    title: 'WebRTC Health',
-    category: 'Telehealth Video',
-    description: 'Developed a HIPAA-compliant WebRTC telehealth portal using custom STUN/TURN servers to bypass strict hospital firewalls.',
+    title: 'ImagineStudio',
+    category: 'Digital Agency',
+    description: 'Creative studio platform redesign. Implemented WebGL interactions and high-performance React architecture for an immersive luxury brand experience.',
     image: '/images/case_study_imaginestudio_1783322797152.png',
     link: '#',
-    metrics: ['99.99% Connect', 'WebRTC', 'HIPAA']
+    metrics: ['+120% Time', 'WebGL', 'Awwwards']
   },
   {
-    title: 'SwitchCore',
-    category: 'Media Server Cluster',
-    description: 'Deployed an auto-scaling FreeSWITCH cluster on AWS orchestrated via Kubernetes, handling dynamic traffic spikes during live events.',
+    title: 'Controva AI',
+    category: 'Cloud Infrastructure',
+    description: 'Internal AI infrastructure scaling. Deployed distributed server clusters to handle complex machine learning model training and inference pipelines.',
     image: '/images/case_study_controva_ai_1783322816322.png',
     link: '#',
-    metrics: ['Auto-scale', 'FreeSWITCH', 'Docker']
+    metrics: ['1ms Latency', 'Auto-scale', 'Docker']
   },
   {
-    title: 'Legacy PBX Sync',
-    category: 'Telecom API Middleware',
-    description: 'Created an event-driven middleware to sync legacy PBX CDRs into Salesforce in real-time, automating enterprise billing.',
+    title: 'Lumiuns',
+    category: 'Headless E-Commerce',
+    description: 'High-end luxury commerce migration. Moved from monolithic Shopify to Next.js/Sanity, dropping bounce rates by 32% and increasing conversion value.',
+    image: '/images/case_study_lumiuns_1783322826776.png',
+    link: '#',
+    metrics: ['-32% Bounce', '+18% CR', 'Sanity']
+  },
+  {
+    title: 'Signage',
+    category: 'Enterprise IoT',
+    description: 'Digital billboard management system. Engineered the real-time websocket architecture controlling over 500+ screens globally.',
+    image: '/images/case_study_signage_1783322837970.png',
+    link: '#',
+    metrics: ['500+ Nodes', 'WebSockets', 'Global']
+  },
+  {
+    title: 'Total Office',
+    category: 'B2B Solutions',
+    description: 'Corporate procurement platform. Streamlined B2B ordering and inventory sync with legacy ERPs via custom API middleware.',
     image: '/images/case_study_totaloffice_1783322856246.png',
     link: '#',
-    metrics: ['API Bridge', 'Real-time', 'Salesforce']
+    metrics: ['ERP Sync', 'B2B', 'Automated']
+  },
+  {
+    title: 'Hyperstackdev',
+    category: 'Developer Tools',
+    description: 'DevOps infrastructure scaling platform. Automated CI/CD pipelines and infrastructure-as-code deployments for modern startup teams.',
+    image: '/images/case_study_hyperstack_1783322866456.png',
+    link: '#',
+    metrics: ['CI/CD', 'Terraform', 'DevOps']
   }
 ];
 
@@ -343,7 +367,7 @@ export const teamMembers: TeamMember[] = [
     name: 'Muhammad Aafaq',
     title: 'Founder & Lead Engineer',
     bio: 'Visionary technical leader steering Controva LLC’s architecture, building high-performance systems and driving engineering excellence.',
-    avatar: '/images/Armaghan.png',
+    avatar: '/images/aafaq.png',
   },
   {
     name: 'Muhammad Ahsan Ali',
@@ -358,9 +382,61 @@ export const teamMembers: TeamMember[] = [
     avatar: '/images/Waheeb ullah.png',
   },
   {
-    name: 'Nida Siyal',
+    name: 'Armghan Ahamd',
     title: 'Creative Director',
     bio: 'Award-winning creative mastermind ensuring every Controva LLC project achieves stunning visual excellence and outstanding user experience.',
-    avatar: '/images/Nida.png',
+    avatar: '/images/Armaghan.png',
   },
+];
+
+export interface NicheService {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  keywords: string;
+  benefits: string[];
+}
+
+export const nicheServices: NicheService[] = [
+  {
+    id: 'healthcare-voip-usa',
+    slug: 'healthcare-voip-usa',
+    title: 'VoIP & HIPAA-Compliant SIP Engineering for Healthcare in the USA',
+    description: 'We build end-to-end, HIPAA-compliant VoIP architectures for USA-based healthcare providers using highly secure FreeSWITCH and Kamailio deployments. Ensure patient data privacy while handling thousands of concurrent telemedicine calls.',
+    keywords: 'healthcare VoIP USA, HIPAA compliant SIP trunking, FreeSWITCH telemedicine, Kamailio healthcare routing',
+    benefits: ['End-to-end SRTP encryption', 'HIPAA-compliant data handling', 'Sub-second telemedicine latency', 'Automated appointment AI voice agents']
+  },
+  {
+    id: 'call-center-sip-usa',
+    slug: 'call-center-sip-usa',
+    title: 'High-Volume SIP Infrastructure for USA Call Centers',
+    description: 'Scale your USA call center to 10,000+ concurrent calls with zero dropped packets. We engineer robust load balancing with Kamailio and core media handling with FreeSWITCH to eliminate SaaS per-minute fees.',
+    keywords: 'USA call center SIP trunking, high volume Kamailio load balancing, FreeSWITCH call center architecture',
+    benefits: ['Zero per-minute SaaS licensing fees', '10,000+ concurrent call capacity', 'Real-time AI transcriptions', 'Predictive dialing integrations']
+  },
+  {
+    id: 'financial-services-voip-usa',
+    slug: 'financial-services-voip-usa',
+    title: 'Ultra-Low Latency VoIP for Financial Services & Trading Floors in the USA',
+    description: 'For USA trading floors and financial institutions, every millisecond counts. We deploy edge-optimized SIP networks that guarantee ultra-low latency and strict SEC compliance for voice recording.',
+    keywords: 'financial services VoIP USA, low latency SIP trading, SEC compliant voice recording, FreeSWITCH finance',
+    benefits: ['Ultra-low latency edge routing', 'SEC-compliant SIP recording pipelines', 'High-availability failover (99.999% uptime)', 'Encrypted signaling (TLS/SRTP)']
+  },
+  {
+    id: 'ai-voice-agents-usa',
+    slug: 'ai-voice-agents-usa',
+    title: 'Custom AI Voice Agents & Conversational IVR for USA Enterprises',
+    description: 'Replace legacy IVR menus with Conversational AI. We engineer sub-second latency voice pipelines integrating LLMs directly into your SIP trunks, providing USA enterprises with 24/7 autonomous customer service.',
+    keywords: 'AI voice agents USA, conversational IVR development, LLM SIP integration, autonomous customer service AI',
+    benefits: ['Sub-500ms conversational latency', 'Direct LLM-to-SIP integrations', '24/7 autonomous customer support', 'Dynamic CRM data fetching during calls']
+  },
+  {
+    id: 'webrtc-development-usa',
+    slug: 'webrtc-development-usa',
+    title: 'Custom WebRTC Application Development in the USA',
+    description: 'Build native, browser-based communication platforms. We engineer scalable WebRTC SFUs (Selective Forwarding Units) and MCUs to power video conferencing, telehealth, and remote collaboration tools across the USA.',
+    keywords: 'WebRTC development USA, custom video conferencing engineering, SFU MCU deployment, browser based VoIP',
+    benefits: ['Scalable WebRTC SFU/MCU architecture', 'Zero-install browser communication', 'Mobile and desktop cross-compatibility', 'Advanced noise suppression integration']
+  }
 ];

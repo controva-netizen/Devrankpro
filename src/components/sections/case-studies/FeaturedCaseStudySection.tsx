@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import type { CaseStudy } from '@/types';
 import { Link } from 'react-router-dom';
+import AutoLinker from '@/components/shared/AutoLinker';
 
 interface FeaturedCaseStudyProps {
   study: CaseStudy;
@@ -43,20 +44,32 @@ export default function FeaturedCaseStudySection({ study, index }: FeaturedCaseS
         <h3 className="text-2xl md:text-3xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
           {study.title}
         </h3>
-        <p className="text-base leading-relaxed mb-6" style={{ color: 'var(--text-secondary)' }}>
-          {study.description}
-        </p>
-        <div className="flex flex-wrap gap-2 mb-6">
-          {study.metrics?.map((metric) => (
-            <span
-              key={metric}
-              className="inline-block px-4 py-2 rounded-full text-sm font-semibold"
-              style={{ backgroundColor: 'var(--bg-tertiary)', color: 'var(--text-primary)', border: '1px solid var(--border-subtle)' }}
-            >
-              {metric}
-            </span>
-          ))}
-        </div>
+        <AutoLinker 
+          text={study.description} 
+          className="text-base leading-relaxed mb-6 block"
+          style={{ color: 'var(--text-secondary)' }}
+        />
+        {study.result && (
+          <span
+            className="inline-block self-start px-4 py-2 rounded-full text-sm font-medium mb-6"
+            style={{ backgroundColor: 'var(--accent-subtle)', color: 'var(--accent-1)' }}
+          >
+            {study.result}
+          </span>
+        )}
+        {study.metrics && (
+          <div className="flex flex-wrap gap-2 mb-6">
+            {study.metrics.map((metric) => (
+              <span
+                key={metric}
+                className="inline-block px-4 py-2 rounded-full text-sm font-semibold"
+                style={{ backgroundColor: 'var(--bg-tertiary)', color: 'var(--text-primary)', border: '1px solid var(--border-subtle)' }}
+              >
+                {metric}
+              </span>
+            ))}
+          </div>
+        )}
         <Link
           to="/contact"
           className="inline-flex items-center gap-2 mt-5 text-sm font-semibold self-start group"

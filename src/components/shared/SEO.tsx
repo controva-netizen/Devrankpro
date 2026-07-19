@@ -16,7 +16,7 @@ export default function SEO({
   description = 'Controva LLC engineers production-grade VoIP infrastructure and AI Voice Agents. Specializing in FreeSWITCH, Kamailio, SIP integrations, and low-latency voice AI.',
   keywords = 'VoIP engineering, FreeSWITCH, Kamailio, AI Voice Agents, SIP trunking, telecom infrastructure, WebRTC, low-latency voice AI',
   image = 'https://www.controvallc.com/images/og-home.jpg',
-  url = 'https://www.controvallc.com',
+  url = 'https://www.controvallc.com/',
   type = 'website',
   schema,
 }: SEOProps) {
@@ -28,6 +28,12 @@ export default function SEO({
     url: 'https://www.controvallc.com',
     logo: 'https://www.controvallc.com/favicon.svg',
     description: 'Controva LLC engineers production-grade VoIP infrastructure and AI Voice Agents. Specializing in FreeSWITCH, Kamailio, SIP integrations, and low-latency voice AI.',
+    telephone: '+1-800-000-0000',
+    areaServed: 'Worldwide',
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'US'
+    },
     sameAs: [
       'https://linkedin.com/company/controvallc',
       'https://x.com/controvallc',
@@ -57,6 +63,10 @@ export default function SEO({
       <meta name="description" content={description} />
       {keywords && <meta name="keywords" content={keywords} />}
       <link rel="canonical" href={url} />
+
+      {/* GEO Targeting (USA) */}
+      <meta name="geo.region" content="US" />
+      <meta name="geo.placename" content="United States" />
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={type} />

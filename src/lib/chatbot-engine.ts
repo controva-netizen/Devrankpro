@@ -28,7 +28,7 @@ const intentPatterns: Record<ChatbotIntent, string[]> = {
   service_inquiry: ['service', 'what do you do', 'what do you offer', 'capabilities', 'solutions', 'web dev', 'marketing', 'ecommerce', 'ai', 'automation', 'shopify', 'app development', 'mobile app', 'branding', 'design'],
   pricing_inquiry: ['price', 'pricing', 'cost', 'how much', 'fee', 'rates', 'budget', 'plan', 'tier', 'starter', 'growth', 'enterprise', 'expensive', 'cheap', 'afford'],
   case_study_inquiry: ['case study', 'portfolio', 'client', 'result', 'work', 'project', 'past', 'example', 'success', 'dtx', 'iqaai', 'imaginestudio', 'lumiuns', 'signage'],
-  team_inquiry: ['team', 'who works', 'founder', 'ceo', 'leadership', 'staff', 'employee', 'muhammad aafaq', 'ahsan', 'waheeb', 'nida', 'engineer'],
+  team_inquiry: ['team', 'who works', 'founder', 'ceo', 'leadership', 'staff', 'employee', 'muhammad aafaq', 'ahsan', 'waheeb', 'armghan', 'engineer'],
   blog_inquiry: ['blog', 'article', 'post', 'read', 'content', 'news', 'insights', 'headless shopify', 'ai automation', 'b2b funnel'],
   contact_inquiry: ['contact', 'email', 'phone', 'call', 'reach', 'talk', 'speak', 'message', 'support', 'help', 'book a call', 'schedule', 'meeting'],
   lead_capture: ['book', 'demo', 'consultation', 'strategy call', 'get started', 'sign up', 'register', 'quote', 'proposal', 'interested', 'want to hire', 'work with you', 'start project'],

@@ -3,9 +3,9 @@
   <channel>
     <title>Controva LLC — Insights &amp; Engineering</title>
     <link>https://www.controvallc.com/blog</link>
-    <description>Engineering-driven insights on Headless Commerce, AI Automation, and B2B Growth Strategy.</description>
+    <description>Engineering-driven insights on VoIP Architecture, FreeSWITCH, Kamailio, and AI Voice Automation.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 06 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 16 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.controvallc.com/rss.xml" rel="self" type="application/rss+xml" />
 
     <item>
@@ -27,6 +27,33 @@
     </item>
 
     <item>
+      <title>Rethinking B2B Lead Generation: Why We Replaced Traditional Web Forms with Conversational Terminals</title>
+      <link>https://www.controvallc.com/blog/rethinking-b2b-lead-generation</link>
+      <guid>https://www.controvallc.com/blog/rethinking-b2b-lead-generation</guid>
+      <pubDate>Mon, 22 Jun 2026 12:00:00 +0000</pubDate>
+      <description>In enterprise B2B sales, traditional HTML contact forms are static bottlenecks. Discover why we engineered a conversational, terminal-based lead generation engine to maximize conversion velocity.</description>
+      <category>Engineering &amp; E-Commerce</category>
+    </item>
+
+    <item>
+      <title>Bridging the Gap Between Engineering and ROI: Interactive Case Studies for B2B SaaS</title>
+      <link>https://www.controvallc.com/blog/interactive-case-studies-roi</link>
+      <guid>https://www.controvallc.com/blog/interactive-case-studies-roi</guid>
+      <pubDate>Sat, 20 Jun 2026 12:00:00 +0000</pubDate>
+      <description>Non-technical enterprise decision-makers cannot parse raw code to understand business value. Discover how we built an interactive terminal UI component that translates technical execution into undeniable business ROI.</description>
+      <category>Growth &amp; Strategy</category>
+    </item>
+
+    <item>
+      <title>Zero-Shift Rendering &amp; Edge Deployments: Optimizing Next.js Enterprise Environments</title>
+      <link>https://www.controvallc.com/blog/zero-shift-rendering-edge-deployments</link>
+      <guid>https://www.controvallc.com/blog/zero-shift-rendering-edge-deployments</guid>
+      <pubDate>Thu, 18 Jun 2026 12:00:00 +0000</pubDate>
+      <description>Every visual stutter directly degrades user trust. Discover how we audited our internal routing to eliminate Cumulative Layout Shift (CLS) and streamline CI/CD deployments on Vercel.</description>
+      <category>Engineering &amp; E-Commerce</category>
+    </item>
+
+    <item>
       <title>The "Zero-Risk" Offer: Why Performance Marketing Outperforms Retainers</title>
       <link>https://www.controvallc.com/blog/performance-marketing-vs-retainers</link>
       <guid>https://www.controvallc.com/blog/performance-marketing-vs-retainers</guid>
@@ -42,6 +69,24 @@
       <pubDate>Fri, 05 Jun 2026 12:00:00 +0000</pubDate>
       <description>An inside look at the architecture decisions, caching strategies, and performance metrics behind a $10M/year store migration.</description>
       <category>Engineering &amp; E-Commerce</category>
+    </item>
+
+    <item>
+      <title>Reverse-Engineering a $1M B2B Sales Funnel</title>
+      <link>https://www.controvallc.com/blog/reverse-engineering-b2b-funnel</link>
+      <guid>https://www.controvallc.com/blog/reverse-engineering-b2b-funnel</guid>
+      <pubDate>Fri, 22 May 2026 12:00:00 +0000</pubDate>
+      <description>Step-by-step analysis of the exact landing pages, email sequences, and ad creatives we used to scale a B2B SaaS client past the $1M ARR mark.</description>
+      <category>Growth &amp; Strategy</category>
+    </item>
+
+    <item>
+      <title>The AI Sales Development Rep: Setting Up 24/7 Follow-up Sequences</title>
+      <link>https://www.controvallc.com/blog/ai-sales-development-rep</link>
+      <guid>https://www.controvallc.com/blog/ai-sales-development-rep</guid>
+      <pubDate>Sun, 10 May 2026 12:00:00 +0000</pubDate>
+      <description>Learn how to deploy an AI agent that handles your inbound lead responses, books meetings, and handles objections autonomously.</description>
+      <category>AI &amp; Automation</category>
     </item>
 
   </channel>

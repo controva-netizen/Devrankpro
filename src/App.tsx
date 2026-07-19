@@ -9,6 +9,7 @@ import CornerGlow from '@/components/layout/CornerGlow';
 import AIChatbot from '@/components/layout/AIChatbot';
 import HomePage from '@/pages/HomePage';
 import ServicesPage from '@/pages/ServicesPage';
+import ServiceNichePage from '@/pages/ServiceNichePage';
 import CaseStudiesPage from '@/pages/CaseStudiesPage';
 import AboutPage from '@/pages/AboutPage';
 import ContactPage from '@/pages/ContactPage';
@@ -47,6 +48,7 @@ function AnimatedRoutes() {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageWrapper><HomePage /></PageWrapper>} />
         <Route path="/services" element={<PageWrapper><ServicesPage /></PageWrapper>} />
+        <Route path="/services/:niche" element={<PageWrapper><ServiceNichePage /></PageWrapper>} />
         <Route path="/case-studies" element={<PageWrapper><CaseStudiesPage /></PageWrapper>} />
         <Route path="/about" element={<PageWrapper><AboutPage /></PageWrapper>} />
         <Route path="/blog" element={<PageWrapper><BlogPage /></PageWrapper>} />

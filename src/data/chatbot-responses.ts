@@ -73,7 +73,7 @@ export const caseStudyResponses: FallbackResponse[] = [
 // Team responses
 export const teamResponses: FallbackResponse[] = [
   {
-    text: "Our leadership team brings deep expertise across engineering, strategy, growth, and design: Muhammad Aafaq (Founder & Lead Engineer), Muhammad Ahsan Ali (Co-Founder & Director), Waheeb Ullah (Director of Growth), and Nida Siyal (Creative Director). Each leader drives excellence in their domain.",
+    text: "Our leadership team brings deep expertise across engineering, strategy, growth, and design: Muhammad Aafaq (Founder & Lead Engineer), Muhammad Ahsan Ali (Co-Founder & Director), Waheeb Ullah (Director of Growth), and Armghan Ahamd (Creative Director). Each leader drives excellence in their domain.",
     quickReplies: [
       { label: 'About the Founder', value: 'Tell me about Muhammad Aafaq', action: 'message' },
       { label: 'Growth Team', value: 'Tell me about the growth team', action: 'message' },

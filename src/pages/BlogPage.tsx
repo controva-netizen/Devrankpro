@@ -79,7 +79,7 @@ export default function BlogPage() {
                   {featuredPost.category}
                 </span>
                 <h2 
-                  className="text-3xl lg:text-4xl font-bold mb-4 font-display leading-tight transition-all duration-500 group-hover:text-[#22D3EE] group-hover:drop-shadow-[0_0_12px_rgba(34,211,238,0.6)]" 
+                  className="text-3xl lg:text-4xl font-bold mb-4 font-display leading-tight transition-colors duration-500 group-hover:text-[#22D3EE]" 
                   style={{ color: 'var(--text-primary)' }}
                 >
                   {featuredPost.title}
@@ -146,7 +146,7 @@ export default function BlogPage() {
                   </div>
                   
                   <h3 
-                    className="text-xl font-bold mb-3 font-display leading-tight transition-all duration-500 group-hover:text-[#22D3EE] group-hover:drop-shadow-[0_0_12px_rgba(34,211,238,0.6)]" 
+                    className="text-xl font-bold mb-3 font-display leading-tight transition-colors duration-500 group-hover:text-[#22D3EE]" 
                     style={{ color: 'var(--text-primary)' }}
                   >
                     {post.title}

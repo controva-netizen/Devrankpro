@@ -177,11 +177,11 @@ export const knowledgeBase: KnowledgeEntry[] = [
     content: `Waheeb Ullah is the Director of Infrastructure at Controva LLC. He is a data-driven systems expert scaling client capacity through advanced deployment strategies and optimized network channels.`,
   },
   {
-    id: 'team-nida',
+    id: 'team-armghan',
     category: 'team',
-    keywords: ['nida siyal', 'nida', 'creative director', 'design', 'creative'],
-    title: 'Team: Nida Siyal — Director of Voice UX',
-    content: `Nida Siyal is the Director of Voice UX at Controva LLC. She ensures every Voice AI project achieves stunning conversational flow, turn-taking accuracy, and outstanding user experience over phone lines.`,
+    keywords: ['armghan ahamd', 'armghan', 'creative director', 'design', 'creative'],
+    title: 'Team: Armghan Ahamd — Director of Voice UX',
+    content: `Armghan Ahamd is the Director of Voice UX at Controva LLC. He ensures every Voice AI project achieves stunning conversational flow, turn-taking accuracy, and outstanding user experience over phone lines.`,
   },
 
   // ── PROCESS ───────────────────────────────────────────────
