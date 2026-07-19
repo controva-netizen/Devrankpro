@@ -13,61 +13,77 @@
     /* ── Golden Ratio scale (rem) ──────────────────────────── */
     /* Base: 1rem (16px) → each step × 1.618                  */
     --φ: 1.618;
-    --fs-xs:   0.618rem;   /* ~9.9px  — captions, labels      */
-    --fs-sm:   0.764rem;   /* ~12.2px — small body            */
-    --fs-base: 1rem;       /* 16px    — body                  */
-    --fs-md:   1.236rem;   /* ~19.8px — lead / subtitle       */
-    --fs-lg:   1.618rem;   /* ~25.9px — section subhead       */
-    --fs-xl:   2rem;       /* ~32px   — section head          */
-    --fs-2xl:  2.618rem;   /* ~41.9px — page heading          */
-    --fs-3xl:  3.236rem;   /* ~51.8px — hero sub              */
-    --fs-4xl:  4.236rem;   /* ~67.8px — hero display          */
+    --fs-xs: 0.618rem;
+    /* ~9.9px  — captions, labels      */
+    --fs-sm: 0.764rem;
+    /* ~12.2px — small body            */
+    --fs-base: 1rem;
+    /* 16px    — body                  */
+    --fs-md: 1.236rem;
+    /* ~19.8px — lead / subtitle       */
+    --fs-lg: 1.618rem;
+    /* ~25.9px — section subhead       */
+    --fs-xl: 2rem;
+    /* ~32px   — section head          */
+    --fs-2xl: 2.618rem;
+    /* ~41.9px — page heading          */
+    --fs-3xl: 3.236rem;
+    /* ~51.8px — hero sub              */
+    --fs-4xl: 4.236rem;
+    /* ~67.8px — hero display          */
 
     /* ── Golden Ratio spacing (rem) ───────────────────────── */
-    --sp-1:  0.382rem;     /* ~6px   — tight gap             */
-    --sp-2:  0.618rem;     /* ~10px  — compact               */
-    --sp-3:  1rem;         /* 16px   — base                  */
-    --sp-4:  1.618rem;     /* ~26px  — comfortable           */
-    --sp-5:  2.618rem;     /* ~42px  — section gap           */
-    --sp-6:  4.236rem;     /* ~68px  — section padding       */
-    --sp-7:  6.854rem;     /* ~110px — hero padding          */
+    --sp-1: 0.382rem;
+    /* ~6px   — tight gap             */
+    --sp-2: 0.618rem;
+    /* ~10px  — compact               */
+    --sp-3: 1rem;
+    /* 16px   — base                  */
+    --sp-4: 1.618rem;
+    /* ~26px  — comfortable           */
+    --sp-5: 2.618rem;
+    /* ~42px  — section gap           */
+    --sp-6: 4.236rem;
+    /* ~68px  — section padding       */
+    --sp-7: 6.854rem;
+    /* ~110px — hero padding          */
 
     /* ── Line heights (Golden) ─────────────────────────────  */
-    --lh-tight:  1.236;
-    --lh-snug:   1.382;
-    --lh-base:   1.618;
-    --lh-loose:  2;
+    --lh-tight: 1.236;
+    --lh-snug: 1.382;
+    --lh-base: 1.618;
+    --lh-loose: 2;
 
     /* ── Border radius (Golden) ─────────────────────────────  */
     --radius-sm: 0.382rem;
-    --radius:    0.618rem;
+    --radius: 0.618rem;
     --radius-md: 1rem;
     --radius-lg: 1.618rem;
     --radius-xl: 2.618rem;
     --radius-full: 999px;
 
     /* ── Backgrounds (Light Default) ────────────────────────  */
-    --bg-primary:   #FAFAFB;
+    --bg-primary: #FAFAFB;
     --bg-secondary: #FFFFFF;
-    --bg-tertiary:  #F3F4F6;
-    --bg-card:      #FFFFFF;
+    --bg-tertiary: #F3F4F6;
+    --bg-card: #FFFFFF;
 
     /* ── Text ───────────────────────────────────────────────  */
-    --text-primary:   #0D1117;
+    --text-primary: #0D1117;
     --text-secondary: #374151;
-    --text-muted:     #6B7280;
+    --text-muted: #6B7280;
 
     /* ── Borders ────────────────────────────────────────────  */
     --border-subtle: rgba(0, 0, 0, 0.07);
     --border-active: rgba(0, 0, 0, 0.14);
 
     /* ── Accent (overridden by ThemeContext at runtime) ─────  */
-    --accent-1:        #1E3A8A;
-    --accent-2:        #3B82F6;
+    --accent-1: #1E3A8A;
+    --accent-2: #3B82F6;
     --accent-gradient: linear-gradient(135deg, #1E3A8A, #3B82F6);
-    --accent-glow:     #1E3A8A30;
-    --accent-subtle:   #1E3A8A12;
-    --accent-border:   #1E3A8A55;
+    --accent-glow: #1E3A8A30;
+    --accent-subtle: #1E3A8A12;
+    --accent-border: #1E3A8A55;
 
     /* ── Corner glow tints (live-updated via ThemeContext) ──  */
     --glow-tl: #1E3A8A0D;
@@ -97,7 +113,12 @@
   /* ── Display / headings: Space Grotesk ─────────────────── */
   /* IMPORTANT: Only set font-family & letter-spacing here.  */
   /* Tailwind text-* classes handle all font sizes.          */
-  h1, h2, h3, h4, h5, h6,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
   .font-display {
     font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
     letter-spacing: -0.02em;
@@ -131,6 +152,7 @@
   .card-hover {
     transition: border-color 300ms ease-out, box-shadow 300ms ease-out, transform 300ms ease-out;
   }
+
   .card-hover:hover {
     border-color: var(--accent-border);
     /* Very light shadow derived from accent */
@@ -143,6 +165,7 @@
     position: relative;
     z-index: 1;
   }
+
   .glow-button::before {
     content: '';
     position: absolute;
@@ -154,7 +177,10 @@
     transition: opacity 350ms ease-out;
     z-index: -1;
   }
-  .glow-button:hover::before { opacity: 0.35; }
+
+  .glow-button:hover::before {
+    opacity: 0.35;
+  }
 
   /* ── Bottom-to-Top Fill Button ──────────────────────── */
   .btn-fill-bottom {
@@ -163,6 +189,7 @@
     z-index: 1;
     transition: color 300ms ease-out;
   }
+
   .btn-fill-bottom::after {
     content: '';
     position: absolute;
@@ -174,13 +201,15 @@
     z-index: -1;
     transition: height 300ms cubic-bezier(0.22, 1, 0.36, 1);
   }
+
   .btn-fill-bottom:hover::after {
     height: 100%;
   }
+
   .btn-fill-bottom:hover {
     color: #FFFFFF !important;
   }
-  
+
   /* Make sure SVGs inside the button also turn white on hover */
   .btn-fill-bottom:hover svg {
     color: #FFFFFF !important;
@@ -190,6 +219,7 @@
   .gradient-border {
     position: relative;
   }
+
   .gradient-border::before {
     content: '';
     position: absolute;
@@ -204,14 +234,20 @@
     transition: opacity 300ms ease-out;
     pointer-events: none;
   }
-  .gradient-border:hover::before { opacity: 0.5; }
+
+  .gradient-border:hover::before {
+    opacity: 0.5;
+  }
 
   /* ── Section spacing on Golden ratio ─────────────────── */
   .section-pad {
     padding-top: var(--sp-6);
     padding-bottom: var(--sp-6);
   }
-  .section-gap { gap: var(--sp-5); }
+
+  .section-gap {
+    gap: var(--sp-5);
+  }
 }
 
 /* ============================================================
@@ -220,45 +256,115 @@
 @layer utilities {
 
   /* Font family utilities */
-  .font-display { font-family: 'Space Grotesk', sans-serif; }
-  .font-body    { font-family: 'Inter', sans-serif; }
+  .font-display {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .font-body {
+    font-family: 'Inter', sans-serif;
+  }
 
   /* Golden-ratio font size utilities */
-  .text-φ-xs   { font-size: var(--fs-xs);   }
-  .text-φ-sm   { font-size: var(--fs-sm);   }
-  .text-φ-base { font-size: var(--fs-base); }
-  .text-φ-md   { font-size: var(--fs-md);   }
-  .text-φ-lg   { font-size: var(--fs-lg);   }
-  .text-φ-xl   { font-size: var(--fs-xl);   }
-  .text-φ-2xl  { font-size: var(--fs-2xl);  }
-  .text-φ-3xl  { font-size: var(--fs-3xl);  }
-  .text-φ-4xl  { font-size: var(--fs-4xl);  }
+  .text-φ-xs {
+    font-size: var(--fs-xs);
+  }
+
+  .text-φ-sm {
+    font-size: var(--fs-sm);
+  }
+
+  .text-φ-base {
+    font-size: var(--fs-base);
+  }
+
+  .text-φ-md {
+    font-size: var(--fs-md);
+  }
+
+  .text-φ-lg {
+    font-size: var(--fs-lg);
+  }
+
+  .text-φ-xl {
+    font-size: var(--fs-xl);
+  }
+
+  .text-φ-2xl {
+    font-size: var(--fs-2xl);
+  }
+
+  .text-φ-3xl {
+    font-size: var(--fs-3xl);
+  }
+
+  .text-φ-4xl {
+    font-size: var(--fs-4xl);
+  }
 
   /* Animations */
   @keyframes pulse-line {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
+
+    0%,
+    100% {
+      opacity: 0.3;
+    }
+
+    50% {
+      opacity: 1;
+    }
   }
-  .animate-pulse-line { animation: pulse-line 2s ease-in-out infinite; }
+
+  .animate-pulse-line {
+    animation: pulse-line 2s ease-in-out infinite;
+  }
 
   @keyframes typing-dot {
-    0%, 60%, 100% { transform: translateY(0); }
-    30% { transform: translateY(-4px); }
+
+    0%,
+    60%,
+    100% {
+      transform: translateY(0);
+    }
+
+    30% {
+      transform: translateY(-4px);
+    }
   }
-  .animate-typing-1 { animation: typing-dot 1.4s infinite; }
-  .animate-typing-2 { animation: typing-dot 1.4s 0.2s infinite; }
-  .animate-typing-3 { animation: typing-dot 1.4s 0.4s infinite; }
+
+  .animate-typing-1 {
+    animation: typing-dot 1.4s infinite;
+  }
+
+  .animate-typing-2 {
+    animation: typing-dot 1.4s 0.2s infinite;
+  }
+
+  .animate-typing-3 {
+    animation: typing-dot 1.4s 0.4s infinite;
+  }
 
   /* Scroll-snap */
   .scroll-snap-x {
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
   }
-  .scroll-snap-start  { scroll-snap-align: start; }
-  .scroll-snap-center { scroll-snap-align: center; }
 
-  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-  .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .scroll-snap-start {
+    scroll-snap-align: start;
+  }
+
+  .scroll-snap-center {
+    scroll-snap-align: center;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 
   /* Chatbot mobile full-screen */
   @media (max-width: 768px) {
@@ -278,9 +384,11 @@
   .chatbot-messages::-webkit-scrollbar {
     width: 4px;
   }
+
   .chatbot-messages::-webkit-scrollbar-track {
     background: transparent;
   }
+
   .chatbot-messages::-webkit-scrollbar-thumb {
     background: var(--border-subtle);
     border-radius: 4px;

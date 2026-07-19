@@ -209,7 +209,7 @@ export default function NeuralNetworkSection() {
   }, [isVisible]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ backgroundColor: 'var(--bg-secondary)' }}>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ backgroundColor: 'transparent' }}>
       <div
         ref={containerRef}
         style={{

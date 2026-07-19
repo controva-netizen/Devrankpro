@@ -27,7 +27,7 @@ export default function TeamSection() {
               <img
                 src={member.avatar}
                 alt={member.name}
-                className="w-full aspect-square object-cover"
+                className="w-full aspect-square object-contain bg-[var(--bg-tertiary)]"
                 loading="lazy"
               />
               <div className="p-6">

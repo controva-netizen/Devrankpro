@@ -63,12 +63,12 @@ export default function ChatInput() {
             maxHeight: '120px',
             lineHeight: '1.5',
           }}
-          disabled={isTyping}
         />
       </div>
 
       <button
         onClick={handleSubmit}
+        onMouseDown={(e) => e.preventDefault()}
         disabled={!input.trim() || isTyping}
         className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 flex-shrink-0"
         style={{

@@ -6,7 +6,7 @@ export default function FinalCTASection() {
     <section
       className="relative py-32 overflow-hidden"
       style={{
-        backgroundColor: 'var(--bg-primary)',
+        backgroundColor: 'transparent',
         backgroundImage: `radial-gradient(ellipse at 50% 50%, var(--accent-subtle) 0%, transparent 70%)`,
       }}
     >

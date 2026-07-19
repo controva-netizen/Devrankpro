@@ -49,8 +49,8 @@ export const AI_PROVIDERS: ProviderConfig[] = [
   },
   {
     id: 'gemini',
-    name: 'Gemini 3.1 Flash Lite',
-    model: 'gemini-3.1-flash-lite',
+    name: 'Gemini 1.5 Flash',
+    model: 'gemini-1.5-flash',
     apiUrl: 'https://generativelanguage.googleapis.com/v1beta/models',
     apiKeyEnv: 'VITE_GEMINI_API_KEY',
     description: 'Fast, multimodal, good for general queries',
@@ -69,14 +69,21 @@ export const AI_PROVIDERS: ProviderConfig[] = [
   },
 ];
 
+// Helper to check if a key is a valid non-placeholder key
+function isValidKey(key: string | undefined): boolean {
+  if (!key) return false;
+  const trimmed = key.trim();
+  return trimmed.length > 10 && !trimmed.startsWith('your-') && !trimmed.includes('api-key');
+}
+
 // Get active provider from env
 export function getActiveProvider(): AIProvider {
   // Check in priority order
-  if (import.meta.env.VITE_CLAUDE_API_KEY) return 'claude';
-  if (import.meta.env.VITE_DEEPSEEK_API_KEY) return 'deepseek';
-  if (import.meta.env.VITE_GEMINI_API_KEY) return 'gemini';
-  if (import.meta.env.VITE_LLAMA_API_KEY) return 'llama';
-  if (import.meta.env.VITE_OPENAI_API_KEY) return 'openai';
+  if (isValidKey(import.meta.env.VITE_CLAUDE_API_KEY)) return 'claude';
+  if (isValidKey(import.meta.env.VITE_DEEPSEEK_API_KEY)) return 'deepseek';
+  if (isValidKey(import.meta.env.VITE_GEMINI_API_KEY)) return 'gemini';
+  if (isValidKey(import.meta.env.VITE_LLAMA_API_KEY)) return 'llama';
+  if (isValidKey(import.meta.env.VITE_OPENAI_API_KEY)) return 'openai';
   return 'fallback';
 }
 
@@ -116,7 +123,7 @@ export function getProviderApiKey(provider: AIProvider): string {
 
 // Check if provider is available
 export function isProviderAvailable(provider: AIProvider): boolean {
-  return getProviderApiKey(provider).length > 10;
+  return isValidKey(getProviderApiKey(provider));
 }
 
 // Get all available providers
@@ -190,6 +197,7 @@ export function buildRequestBody(
           'Content-Type': 'application/json',
         },
         body: {
+          systemInstruction: systemPrompt ? { role: 'user', parts: [{ text: systemPrompt }] } : undefined,
           contents: geminiContents,
           generationConfig: {
             temperature: config.temperature,

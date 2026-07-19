@@ -1,7 +1,7 @@
-  const defaultSettings = {
-    botName: 'Controva AI Assistant',
-    tone: 'professional',
-  };import { useState, useEffect } from 'react';
+const defaultSettings = {
+  botName: 'Controva AI Assistant',
+  tone: 'professional',
+}; import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   Bot,

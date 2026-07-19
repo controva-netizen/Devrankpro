@@ -73,7 +73,6 @@ export function generateConversationSummary(messages: { text: string; sender: st
   return summary.length > 500 ? summary.slice(0, 500) + '...' : summary;
 }
 
-// Send WhatsApp notification via CallMeBot
 async function sendViaCallMeBot(message: string): Promise<boolean> {
   if (!CALLMEBOT_PHONE || !CALLMEBOT_APIKEY) {
     console.warn('CallMeBot not configured');
@@ -82,22 +81,25 @@ async function sendViaCallMeBot(message: string): Promise<boolean> {
 
   try {
     const url = new URL('https://api.callmebot.com/whatsapp.php');
-    url.searchParams.set('phone', CALLMEBOT_PHONE.replace(/\+/g, ''));
+    // Ensure the phone number has a leading + (CallMeBot requires it)
+    let phoneStr = CALLMEBOT_PHONE.trim();
+    if (!phoneStr.startsWith('+')) {
+      phoneStr = '+' + phoneStr;
+    }
+    
+    url.searchParams.set('phone', phoneStr);
     url.searchParams.set('apikey', CALLMEBOT_APIKEY);
     url.searchParams.set('text', message);
 
     const response = await fetch(url.toString(), {
       method: 'GET',
-      // CallMeBot uses GET with query params
+      mode: 'no-cors', // CallMeBot API does not support CORS from browser
     });
 
-    if (response.ok) {
-      console.log('WhatsApp notification sent via CallMeBot');
-      return true;
-    } else {
-      console.error('CallMeBot failed:', response.status, await response.text());
-      return false;
-    }
+    // When using no-cors, the response is opaque and response.ok is false.
+    // As long as fetch doesn't throw a network error, we assume it was sent.
+    console.log('WhatsApp notification sent via CallMeBot (no-cors mode)');
+    return true;
   } catch (error) {
     console.error('CallMeBot error:', error);
     return false;

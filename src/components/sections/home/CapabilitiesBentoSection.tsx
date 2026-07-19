@@ -14,7 +14,7 @@ const gridLayout = [
 
 export default function CapabilitiesBentoSection() {
   return (
-    <section className="py-32" style={{ backgroundColor: 'var(--bg-primary)' }}>
+    <section className="py-32" style={{ backgroundColor: 'transparent' }}>
       <div className="max-w-[1280px] mx-auto px-6">
         <div className="mb-16">
           <SectionHeader label="OUR CAPABILITIES" headline="One Team. Every Discipline." />
@@ -27,7 +27,7 @@ export default function CapabilitiesBentoSection() {
               to="/services"
               className={`${gridLayout[i]} group rounded-[20px] overflow-hidden card-hover block`}
               style={{
-                backgroundColor: 'var(--bg-secondary)',
+                backgroundColor: 'transparent',
                 border: '1px solid var(--border-subtle)',
                 textDecoration: 'none',
               }}

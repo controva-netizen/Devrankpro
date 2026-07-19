@@ -169,6 +169,18 @@ export function ChatbotProvider({ children }: { children: ReactNode }) {
       }
 
       // Validate and store the answer
+      const lowerText = userText.toLowerCase().trim();
+      if (lowerText === 'cancel' || lowerText === 'exit' || lowerText === 'stop') {
+        setLeadCaptureStep(null);
+        addMessage({
+          id: uuidv4(),
+          text: "Okay, I've canceled that. What else can I help you with?",
+          sender: 'bot',
+          timestamp: Date.now(),
+        });
+        return true;
+      }
+
       if (validateLeadStep(currentStep, userText)) {
         const newData = { ...currentData };
         switch (currentStep) {

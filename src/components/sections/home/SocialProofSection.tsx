@@ -5,7 +5,7 @@ import SectionHeader from '@/components/shared/SectionHeader';
 
 export default function SocialProofSection() {
   return (
-    <section className="py-32" style={{ backgroundColor: 'var(--bg-primary)' }}>
+    <section className="py-32" style={{ backgroundColor: 'transparent' }}>
       <div className="max-w-[1280px] mx-auto px-6">
         <div className="mb-16">
           <SectionHeader label="CLIENT RESULTS" headline="Businesses That Chose Growth" />
@@ -17,7 +17,7 @@ export default function SocialProofSection() {
               key={t.name}
               className="rounded-2xl p-8 card-hover"
               style={{
-                backgroundColor: 'var(--bg-secondary)',
+                backgroundColor: 'transparent',
                 border: '1px solid var(--border-subtle)',
               }}
               initial={{ opacity: 0, y: 40 }}

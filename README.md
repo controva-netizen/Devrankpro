@@ -13,9 +13,9 @@ Welcome to the official source code for the **Controva LLC** enterprise corporat
 
 ## ✨ Key Features
 
-- **Premium Hero Section:** Interactive mouse-following spotlight, blur-reveal typography, and frosted glass performance cards.
+- **Premium Hero Section:** Interactive network nodes canvas background, blur-reveal typography, and frosted glass performance cards.
 - **Dynamic Case Studies:** A responsive grid showcasing high-ticket enterprise clients (e.g., DTX Realty, IQAAI, ImagineStudio).
-- **Interactive Markdown Blog:** Fully dynamic blog system using `react-markdown` and `remark-gfm`.
+- **Interactive Markdown Blog:** Fully dynamic blog system using `react-markdown` and `remark-gfm`. Includes 25+ pre-written, highly-optimized SEO articles.
 - **Live Discussion Board:** Real-time comments section powered by Supabase. Users can authenticate instantly via GitHub or Google to leave comments.
 - **Dark/Light Mode & Dynamic Themes:** Built-in theme switcher with 9 premium color palettes (including the custom "Controva" peach-to-purple gradient).
 - **SEO & RSS:** Auto-generated `sitemap.xml`, `robots.txt`, and an active `rss.xml` feed for blog syndication.

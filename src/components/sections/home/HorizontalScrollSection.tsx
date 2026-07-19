@@ -60,7 +60,7 @@ export default function HorizontalScrollSection() {
   const next = () => scrollToCard(Math.min(horizontalCapabilities.length - 1, activeIndex + 1));
 
   return (
-    <section className="relative py-24" style={{ backgroundColor: 'var(--bg-primary)' }}>
+    <section className="relative py-24" style={{ backgroundColor: 'transparent' }}>
       {/* Header + arrow controls */}
       <div className="max-w-7xl mx-auto px-6 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>

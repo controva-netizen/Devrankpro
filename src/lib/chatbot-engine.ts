@@ -64,8 +64,9 @@ function buildSystemPrompt(relevantKnowledge: KnowledgeEntry[]): string {
   return `You are the AI assistant for Controva LLC, an engineering-driven digital growth agency. You help website visitors learn about our services, pricing, team, case studies, and blog content. You are professional, knowledgeable, and concise.
 
 CRITICAL RULES:
-- Answer ONLY based on the provided knowledge context below. Do not make up information.
-- If you don't know something, say "I don't have that specific information, but I'd be happy to connect you with our team."
+- Answer questions about our agency or services based ONLY on the provided knowledge context below. Do not make up information about the company.
+- For general conversational questions (like "What is 2+2?" or "How are you?"), you may answer normally.
+- If a user asks about a service we don't offer, say "I don't have that specific information, but I'd be happy to connect you with our team."
 - Keep responses under 120 words. Use bullet points for lists.
 - Be friendly but professional. Use emojis sparingly (max 1 per response).
 - Always end with a subtle CTA when relevant: "Would you like to book a free strategy call?" or "Want to learn more about [topic]?"
@@ -148,23 +149,34 @@ export async function generateBotResponse(
   // Find relevant knowledge
   const relevantKnowledge = findKnowledgeByQuery(userMessage).slice(0, 5);
 
-  // If no knowledge found, use category-specific fallback
-  if (relevantKnowledge.length === 0) {
-    switch (intent) {
-      case 'service_inquiry':
-        return getRandomResponse(serviceResponses);
-      case 'pricing_inquiry':
-        return getRandomResponse(pricingResponses);
-      case 'case_study_inquiry':
-        return getRandomResponse(caseStudyResponses);
-      case 'team_inquiry':
-        return getRandomResponse(teamResponses);
-      case 'blog_inquiry':
-        return getRandomResponse(blogResponses);
-      case 'contact_inquiry':
-        return getRandomResponse(contactResponses);
-      default:
-        return getRandomResponse(fallbackResponses);
+  const provider = getPreferredProvider();
+
+  // If no AI provider is configured, fallback to static responses
+  if (provider === 'fallback') {
+    if (relevantKnowledge.length === 0) {
+      switch (intent) {
+        case 'service_inquiry':
+          return getRandomResponse(serviceResponses);
+        case 'pricing_inquiry':
+          return getRandomResponse(pricingResponses);
+        case 'case_study_inquiry':
+          return getRandomResponse(caseStudyResponses);
+        case 'team_inquiry':
+          return getRandomResponse(teamResponses);
+        case 'blog_inquiry':
+          return getRandomResponse(blogResponses);
+        case 'contact_inquiry':
+          return getRandomResponse(contactResponses);
+        default:
+          return getRandomResponse(fallbackResponses);
+      }
+    } else {
+      const topKnowledge = relevantKnowledge[0];
+      const fallbackText = `${topKnowledge.content}\n\nWould you like to know more about this or explore our other services?`;
+      return {
+        text: fallbackText,
+        quickReplies: generateQuickReplies(intent, topKnowledge),
+      };
     }
   }
 
@@ -185,17 +197,12 @@ export async function generateBotResponse(
 
   if (aiResponse) {
     // Generate quick replies based on intent
-    const quickReplies = generateQuickReplies(intent, relevantKnowledge[0]);
+    const topKnowledge = relevantKnowledge.length > 0 ? relevantKnowledge[0] : null;
+    const quickReplies = topKnowledge ? generateQuickReplies(intent, topKnowledge) : [];
     return { text: aiResponse, quickReplies };
   }
 
-  // Fallback to knowledge-based response
-  const topKnowledge = relevantKnowledge[0];
-  const fallbackText = `${topKnowledge.content}\n\nWould you like to know more about this or explore our other services?`;
-  return {
-    text: fallbackText,
-    quickReplies: generateQuickReplies(intent, topKnowledge),
-  };
+  return getRandomResponse(fallbackResponses);
 }
 
 // Generate contextual quick replies based on intent and knowledge

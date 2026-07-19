@@ -1,4 +1,4 @@
-import ChatbotAdminPage from '@/pages/ChatbotAdminPage';import { Routes, Route, useLocation } from 'react-router-dom';
+import ChatbotAdminPage from '@/pages/ChatbotAdminPage'; import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from '@/context/ThemeContext';
