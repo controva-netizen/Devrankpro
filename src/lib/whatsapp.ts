@@ -86,7 +86,7 @@ async function sendViaCallMeBot(message: string): Promise<boolean> {
     if (!phoneStr.startsWith('+')) {
       phoneStr = '+' + phoneStr;
     }
-    
+
     url.searchParams.set('phone', phoneStr);
     url.searchParams.set('apikey', CALLMEBOT_APIKEY);
     url.searchParams.set('text', message);
