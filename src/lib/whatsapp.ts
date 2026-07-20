@@ -91,7 +91,7 @@ async function sendViaCallMeBot(message: string): Promise<boolean> {
     url.searchParams.set('apikey', CALLMEBOT_APIKEY);
     url.searchParams.set('text', message);
 
-    const response = await fetch(url.toString(), {
+    await fetch(url.toString(), {
       method: 'GET',
       mode: 'no-cors', // CallMeBot API does not support CORS from browser
     });
