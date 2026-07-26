@@ -53,7 +53,7 @@ export default function FinalCTASection() {
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
         >
-          Or call us: <span style={{ color: 'var(--text-secondary)' }}>+1 (555) 234-5678</span>
+          Or call us: <span style={{ color: 'var(--text-secondary)' }}>+447763090208</span>
         </motion.p>
 
         <motion.div

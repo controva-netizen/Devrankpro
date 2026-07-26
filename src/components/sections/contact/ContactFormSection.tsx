@@ -49,7 +49,7 @@ export default function ContactFormSection() {
             <div className="space-y-6 mb-8">
               {[
                 { icon: Mail, label: 'Email', value: 'support@controvallc.com' },
-                { icon: Phone, label: 'Phone', value: '+1 (555) 234-5678' },
+                { icon: Phone, label: 'Phone', value: '+447763090208' },
                 { icon: MapPin, label: 'Location', value: 'San Francisco, CA / Remote Worldwide' },
               ].map(({ icon: Icon, label, value }) => (
                 <div key={label} className="flex items-center gap-4">

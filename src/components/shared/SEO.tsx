@@ -28,7 +28,7 @@ export default function SEO({
     url: 'https://www.controvallc.com',
     logo: 'https://www.controvallc.com/favicon.svg',
     description: 'Controva LLC engineers production-grade VoIP infrastructure and AI Voice Agents. Specializing in FreeSWITCH, Kamailio, SIP integrations, and low-latency voice AI.',
-    telephone: '+1-800-000-0000',
+    telephone: '+447763090208',
     areaServed: 'Worldwide',
     address: {
       '@type': 'PostalAddress',
