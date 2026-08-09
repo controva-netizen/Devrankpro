@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Growth Office</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     TOKENS — pulled directly from TGO Brand Guidelines (2026)
+     Primary:   Pure Black #000000 / Pale Butter Yellow #F4EBAA
+     Secondary: Pure White #FFFFFF
+     Type:      Poppins SemiBold (H1) / Montserrat Regular (H2, body)
+     Tints given in guidelines: 100 / 80 / 60 / 40%
+     ============================================================ */
+  :root{
+    --black:#000000;
+    --black-80: rgba(0,0,0,0.8);
+    --black-60: rgba(0,0,0,0.6);
+    --black-40: rgba(0,0,0,0.4);
+    --black-14: rgba(0,0,0,0.14);
+    --black-08: rgba(0,0,0,0.08);
+
+    --butter:#F4EBAA;
+    --butter-80: rgba(244,235,170,0.8);
+    --butter-60: rgba(244,235,170,0.6);
+    --butter-line-on-black: rgba(244,235,170,0.22);
+    --butter-deep:#E8D571;
+
+    --white:#FFFFFF;
+    --white-70: rgba(255,255,255,0.7);
+    --white-55: rgba(255,255,255,0.55);
+    --white-20: rgba(255,255,255,0.2);
+
+    --off:#FBFAF5;
+    --radius: 2px;
+    --max: 1180px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Montserrat', sans-serif;
+    font-weight:400;
+    color:var(--black);
+    background:var(--white);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1, .h1, .display{
+    font-family:'Poppins', sans-serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    line-height:1.08;
+  }
+
+  h2, .h2{
+    font-family:'Montserrat', sans-serif;
+    font-weight:600;
+    letter-spacing:-0.005em;
+    line-height:1.15;
+  }
+
+  h3{
+    font-family:'Montserrat', sans-serif;
+    font-weight:600;
+    line-height:1.25;
+  }
+
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  :focus-visible{
+    outline:3px solid var(--butter-deep);
+    outline-offset:3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:var(--white);
+    border-bottom:1px solid var(--black-08);
+  }
+  .nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:76px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Poppins', sans-serif;
+    font-weight:600;
+    font-size:16px;
+    letter-spacing:0.02em;
+  }
+  .brand .mark{
+    width:32px;height:32px;
+    display:inline-flex;align-items:center;justify-content:center;
+    background:var(--black);
+    color:var(--butter);
+    font-family:'Poppins', sans-serif;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:0.02em;
+    border-radius:var(--radius);
+  }
+
+  .nav-links{
+    display:flex;
+    gap:36px;
+    font-size:14px;
+    font-weight:500;
+  }
+  .nav-links a{
+    position:relative;
+    padding:4px 0;
+  }
+  .nav-links a::after{
+    content:"";
+    position:absolute;
+    left:0; bottom:0;
+    width:0; height:2px;
+    background:var(--black);
+    transition:width 0.2s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+
+  .nav-cta{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--black);
+    color:var(--butter);
+    font-family:'Montserrat', sans-serif;
+    font-size:13px;
+    font-weight:600;
+    padding:11px 20px;
+    border-radius:var(--radius);
+    white-space:nowrap;
+    transition:background 0.15s ease;
+  }
+  .nav-cta:hover{background:#1a1a1a;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--black);
+    color:var(--white);
+    padding:110px 0 90px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap:60px;
+    align-items:end;
+    position:relative;
+    z-index:2;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    color:var(--butter);
+    font-family:'Montserrat', sans-serif;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    margin-bottom:26px;
+  }
+  .eyebrow .dot{width:6px;height:6px;background:var(--butter);border-radius:50%;}
+
+  .hero h1{
+    font-size:clamp(40px, 5.2vw, 66px);
+    color:var(--white);
+    max-width:14ch;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--butter);
+  }
+
+  .hero-side{padding-bottom:8px;}
+  .hero-side p{
+    font-family:'Montserrat', sans-serif;
+    font-size:17px;
+    color:var(--white-70);
+    max-width:34ch;
+    margin-bottom:28px;
+  }
+
+  .cta-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+    align-items:center;
+  }
+  .btn-primary{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--butter);
+    color:var(--black);
+    font-family:'Montserrat', sans-serif;
+    font-weight:700;
+    font-size:15px;
+    padding:16px 26px;
+    border-radius:var(--radius);
+    transition:transform 0.15s ease, background 0.15s ease;
+  }
+  .btn-primary:hover{background:var(--white); transform:translateY(-2px);}
+  .btn-primary svg{width:16px;height:16px;transition:transform 0.15s ease;}
+  .btn-primary:hover svg{transform:translateX(3px);}
+
+  .secondary-note{
+    font-family:'Montserrat', sans-serif;
+    font-size:13px;
+    color:var(--white-55);
+    margin-top:22px;
+  }
+  .secondary-note a{
+    color:var(--butter);
+    font-weight:600;
+    border-bottom:1px solid var(--butter-line-on-black);
+  }
+  .secondary-note a:hover{border-color:var(--butter);}
+
+  .hero-bg-mark{
+    position:absolute;
+    right:-40px; top:-60px;
+    opacity:0.04;
+    z-index:1;
+    width:480px;
+    pointer-events:none;
+    font-family:'Poppins', sans-serif;
+    font-weight:700;
+    font-size:480px;
+    color:var(--butter);
+    line-height:1;
+    user-select:none;
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  .section{padding:100px 0;}
+  .section-label{
+    font-family:'Montserrat', sans-serif;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--black-60);
+    margin-bottom:14px;
+  }
+  .section-head h2{
+    font-size:clamp(26px,3.4vw,38px);
+    max-width:17ch;
+    margin-bottom:16px;
+    text-transform:uppercase;
+    letter-spacing:0.005em;
+  }
+  .section-head p{
+    font-family:'Montserrat', sans-serif;
+    font-size:16px;
+    color:var(--black-80);
+    max-width:52ch;
+  }
+
+  /* ---------- PAIN POINTS ---------- */
+  .pain-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--black-14);
+    margin-top:52px;
+    border:1px solid var(--black-14);
+  }
+  .pain-card{
+    background:var(--white);
+    padding:38px 32px;
+  }
+  .pain-card .num{
+    font-family:'Poppins', sans-serif;
+    font-weight:600;
+    font-size:13px;
+    color:var(--black-40);
+    margin-bottom:22px;
+  }
+  .pain-card h3{
+    font-size:19px;
+    margin-bottom:12px;
+    max-width:16ch;
+  }
+  .pain-card p{
+    font-family:'Montserrat', sans-serif;
+    font-size:14.5px;
+    color:var(--black-80);
+  }
+
+  /* ---------- FRAMEWORK (signature) ---------- */
+  .framework{
+    background:var(--butter);
+    padding:100px 0;
+  }
+  .framework .section-label{color:var(--black-60);}
+  .framework .section-head h2{color:var(--black);}
+  .framework .section-head p{color:var(--black-80);}
+
+  .fw-chain{
+    display:flex;
+    align-items:stretch;
+    margin-top:56px;
+    gap:0;
+  }
+  .fw-step{
+    flex:1;
+    position:relative;
+    padding:34px 30px 0 0;
+  }
+  .fw-step .fw-index{
+    font-family:'Poppins', sans-serif;
+    font-weight:600;
+    font-size:14px;
+    color:var(--black);
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:22px;
+  }
+  .fw-step .fw-index .line{
+    height:2px;
+    flex:1;
+    background:var(--black);
+    opacity:0.22;
+  }
+  .fw-step:first-child .fw-index .line-before{display:none;}
+  .fw-step h3{
+    font-size:22px;
+    margin-bottom:12px;
+  }
+  .fw-step p{
+    font-family:'Montserrat', sans-serif;
+    font-size:14.5px;
+    color:var(--black-80);
+    max-width:26ch;
+  }
+  .fw-arrow{
+    position:absolute;
+    right:-2px;
+    top:calc(50% - 40px);
+    width:34px;height:34px;
+    display:none;
+  }
+  .fw-step:not(:last-child) .fw-arrow{display:block;}
+
+  /* ---------- WHO WE ARE ---------- */
+  .who{
+    display:grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap:70px;
+    align-items:center;
+  }
+  .who-visual{
+    background:var(--black);
+    aspect-ratio:4/5;
+    position:relative;
+    overflow:hidden;
+  }
+  .who-visual img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center 18%;
+    display:block;
+  }
+  .who-visual .tag{
+    position:absolute;
+    left:0; bottom:0;
+    right:0;
+    padding:26px 28px;
+    background:linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0) 100%);
+    color:var(--white);
+    font-family:'Montserrat', sans-serif;
+    line-height:1.3;
+  }
+  .who-visual .tag .name{
+    font-family:'Poppins', sans-serif;
+    font-weight:600;
+    font-size:16px;
+    color:var(--butter);
+    display:block;
+    margin-bottom:3px;
+  }
+  .who-visual .tag .role{
+    font-size:12.5px;
+    color:var(--white-70);
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+  }
+  .who-copy p{
+    font-family:'Montserrat', sans-serif;
+    font-size:17px;
+    color:var(--black-80);
+    margin-bottom:20px;
+    max-width:56ch;
+  }
+  .who-copy p:first-of-type{
+    font-size:19px;
+    color:var(--black);
+    font-weight:600;
+  }
+
+  /* ---------- SERVICES ---------- */
+  .services{background:var(--off);}
+  .service-grid{
+    margin-top:56px;
+    display:grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap:24px;
+    align-items:stretch;
+  }
+  .service-card{
+    padding:44px 40px;
+    border-radius:var(--radius);
+    display:flex;
+    flex-direction:column;
+  }
+  .service-card.primary{
+    background:var(--black);
+    color:var(--white);
+  }
+  .service-card.secondary{
+    background:var(--white);
+    border:1px solid var(--black-14);
+    color:var(--black);
+  }
+  .tier-tag{
+    font-family:'Montserrat', sans-serif;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    margin-bottom:18px;
+    display:inline-block;
+  }
+  .service-card.primary .tier-tag{color:var(--butter);}
+  .service-card.secondary .tier-tag{color:var(--black-60);}
+
+  .service-card h3{font-size:24px; margin-bottom:14px;}
+  .service-card.primary p{color:var(--white-70); font-family:'Montserrat', sans-serif;}
+  .service-card.secondary p{color:var(--black-80); font-family:'Montserrat', sans-serif;}
+  .service-card p{font-size:15px; margin-bottom:26px;}
+
+  .service-list{
+    list-style:none;
+    margin-bottom:30px;
+    font-family:'Montserrat', sans-serif;
+    font-size:14px;
+  }
+  .service-list li{
+    display:flex;
+    gap:10px;
+    padding:9px 0;
+    border-top:1px solid var(--butter-line-on-black);
+  }
+  .service-card.secondary .service-list li{border-top:1px solid var(--black-14);}
+  .service-list li:first-child{border-top:none;}
+
+  .service-cta{
+    margin-top:auto;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Montserrat', sans-serif;
+    font-weight:700;
+    font-size:14px;
+    padding-top:8px;
+  }
+  .service-card.primary .service-cta{color:var(--butter);}
+  .service-card.secondary .service-cta{color:var(--black);}
+  .service-cta svg{width:14px;height:14px;}
+
+  .service-note{
+    font-family:'Montserrat', sans-serif;
+    font-size:12.5px;
+    color:var(--black-60);
+    margin-top:20px;
+    max-width:60ch;
+  }
+
+  /* ---------- CLOSING CTA ---------- */
+  .closing{
+    background:var(--black);
+    color:var(--white);
+    padding:110px 0;
+    text-align:center;
+  }
+  .closing h2{
+    font-size:clamp(28px,3.8vw,44px);
+    max-width:20ch;
+    margin:0 auto 22px;
+    text-transform:uppercase;
+  }
+  .closing p{
+    font-family:'Montserrat', sans-serif;
+    color:var(--white-70);
+    max-width:48ch;
+    margin:0 auto 36px;
+    font-size:16px;
+  }
+  .closing .cta-row{justify-content:center;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--white);
+    border-top:1px solid var(--black-08);
+    padding:36px 0;
+  }
+  footer .wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'Montserrat', sans-serif;
+    font-size:13px;
+    color:var(--black-60);
+  }
+  footer .brand{font-size:14px;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px){
+    .hero .wrap{grid-template-columns:1fr; gap:36px;}
+    .pain-grid{grid-template-columns:1fr;}
+    .fw-chain{flex-direction:column; gap:34px;}
+    .fw-step{padding-right:0;}
+    .fw-arrow{display:none !important;}
+    .who{grid-template-columns:1fr;}
+    .who-visual{aspect-ratio:16/9;}
+    .service-grid{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+  }
+
+  @media (max-width: 560px){
+    .wrap{padding:0 20px;}
+    .section{padding:70px 0;}
+    .hero{padding:80px 0 60px;}
+    .nav-cta{padding:9px 14px; font-size:12px;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="brand">
+      <span class="mark">TGO</span>
+      THE GROWTH OFFICE
+    </div>
+    <div class="nav-links">
+      <a href="#what-we-do">What We Do</a>
+      <a href="#who-we-help">Who We Help</a>
+      <a href="#framework">Method</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Book a Discovery Call</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg-mark">TGO</div>
+  <div class="wrap">
+    <div>
+      <div class="eyebrow"><span class="dot"></span>For experts &amp; personal brands</div>
+      <h1>Expertise isn't a business model. <em>Yet.</em></h1>
+    </div>
+    <div class="hero-side">
+      <p>You've built real authority in your field. The Growth Office builds the commercial structure around it — positioning, pricing, and a growth plan designed for what you already know.</p>
+      <div class="cta-row">
+        <a href="#contact" class="btn-primary">
+          Book a Discovery Call
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/></svg>
+        </a>
+      </div>
+      <p class="secondary-note">Running a growing business instead? We also work with founders — <a href="#who-we-help">start with a Growth Audit →</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="who-we-help">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-label">Where it usually breaks down</div>
+      <h2>The gap between what you know and how it's sold.</h2>
+      <p>Deep expertise doesn't automatically translate into a business that scales. These are the three places we're brought in most often.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="num">01</div>
+        <h3>Expertise without commercial strategy</h3>
+        <p>You're excellent at the work. The pricing, positioning, and offer structure around it were never built with the same rigor.</p>
+      </div>
+      <div class="pain-card">
+        <div class="num">02</div>
+        <h3>Overwhelm from complexity</h3>
+        <p>Too many possible directions, channels, and priorities — and no clear system for deciding which ones actually move the business forward.</p>
+      </div>
+      <div class="pain-card">
+        <div class="num">03</div>
+        <h3>Lack of differentiation online</h3>
+        <p>The website, the messaging, the presence — none of it makes clear why you, specifically, are the one to work with.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="framework" id="framework">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-label">How we work</div>
+      <h2>Discover. Strategise. Scale.</h2>
+      <p>A fixed sequence, not a menu of tactics. Each stage produces something concrete you use in the next.</p>
+    </div>
+    <div class="fw-chain">
+      <div class="fw-step">
+        <div class="fw-index"><span class="line line-before"></span>01</div>
+        <h3>Discover</h3>
+        <p>We map what makes your offer, and your position in the market, genuinely different.</p>
+        <svg class="fw-arrow" viewBox="0 0 24 24" fill="none"><path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="#000000" stroke-width="2"/></svg>
+      </div>
+      <div class="fw-step">
+        <div class="fw-index"><span class="line"></span>02</div>
+        <h3>Strategise</h3>
+        <p>We build the commercial structure: pricing, positioning, and a growth plan built around it.</p>
+        <svg class="fw-arrow" viewBox="0 0 24 24" fill="none"><path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="#000000" stroke-width="2"/></svg>
+      </div>
+      <div class="fw-step">
+        <div class="fw-index"><span class="line"></span>03</div>
+        <h3>Scale</h3>
+        <p>You leave with a system built to grow the business — not another document that sits in a drive.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="what-we-do">
+  <div class="wrap who">
+    <div class="who-visual">
+      <img src="founder-photo.jpg" alt="Elysa, Founder of The Growth Office, working outdoors on a laptop">
+      <div class="tag">
+        <span class="name">Elysa</span>
+        <span class="role">Founder, The Growth Office</span>
+      </div>
+    </div>
+    <div class="who-copy">
+      <p>I'm a coach turned multi-business founder — and that's exactly why The Growth Office exists.</p>
+      <p>I've built and run multiple businesses of my own, which means I've sat on both sides of this problem: doing the work that makes you good at what you do, and separately, building the commercial structure that makes it a business. Most experts and personal brands are excellent at the first and under-supported on the second.</p>
+      <p>The Growth Office is that support — a strategic partner, not a traditional agency or coaching program. We work in a fixed sequence: Discover, Strategise, Scale. No open-ended engagements, no vague promises — a defined process that ends in a plan you can act on.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section services">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-label">Ways to work with us</div>
+      <h2>Start where you are.</h2>
+      <p>Our full engagement is built for experts and personal brands. For growing businesses exploring strategic support for the first time, we offer a lighter, standalone entry point.</p>
+    </div>
+
+    <div class="service-grid">
+      <div class="service-card primary">
+        <span class="tier-tag">For experts &amp; personal brands</span>
+        <h3>Growth Advisory</h3>
+        <p>A full strategic partnership through Discover, Strategise, and Scale — positioning, pricing, and a growth plan built around your expertise.</p>
+        <ul class="service-list">
+          <li>Complete Discover → Strategise → Scale engagement</li>
+          <li>Positioning &amp; pricing built for your offer</li>
+          <li>A growth plan, not just a report</li>
+        </ul>
+        <a href="#contact" class="service-cta">Book a Discovery Call
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="currentColor" stroke-width="2.4"/></svg>
+        </a>
+      </div>
+
+      <div class="service-card secondary">
+        <span class="tier-tag">For growing businesses</span>
+        <h3>Growth Audit</h3>
+        <p>A focused, standalone review of where your business stands today and where the commercial gaps are.</p>
+        <ul class="service-list">
+          <li>Standalone — no ongoing commitment</li>
+          <li>Clear view of current gaps</li>
+          <li>A natural first step into Growth Advisory</li>
+        </ul>
+        <a href="#contact" class="service-cta">Book a Growth Audit
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="currentColor" stroke-width="2.4"/></svg>
+        </a>
+      </div>
+    </div>
+    <p class="service-note">Growth Advisory is our proven engagement, currently built and delivered for experts and personal brands. The Growth Audit is the entry point we recommend for other growing businesses.</p>
+  </div>
+</section>
+
+<section class="closing" id="contact">
+  <div class="wrap">
+    <h2>Bring the expertise. We'll build the business around it.</h2>
+    <p>A Discovery Call is a conversation, not a pitch — we'll tell you honestly whether Growth Advisory is the right fit.</p>
+    <div class="cta-row">
+      <a href="#" class="btn-primary">Book a Discovery Call
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">THE GROWTH OFFICE</div>
+    <div>Discover · Strategise · Scale</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -2,6 +2,16 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": "vite",
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/:path(.+)/", "destination": "/:path", "permanent": true },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "controvallc.com" }],
+      "destination": "https://www.controvallc.com/:path*",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]

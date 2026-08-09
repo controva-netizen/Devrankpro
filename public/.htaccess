@@ -7,12 +7,14 @@
   RewriteCond %{HTTP_HOST} ^controvallc\.com [NC]
   RewriteRule ^(.*)$ https://www.controvallc.com/$1 [L,R=301]
 
-  # 2. Remove trailing slashes (unless it's a directory or the root)
+  # 2. Redirect /index.html to canonical root
+  RewriteRule ^index\.html$ / [L,R=301]
+
+  # 3. Remove trailing slashes (unless it's a directory or the root)
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^(.*)/$ /$1 [L,R=301]
 
-  # 3. SPA Routing (fallback to index.html)
-  RewriteRule ^index\.html$ - [L]
+  # 4. SPA Routing (fallback to index.html)
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME} !-l

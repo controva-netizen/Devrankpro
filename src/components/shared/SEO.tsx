@@ -7,6 +7,8 @@ interface SEOProps {
   image?: string;
   url?: string;
   type?: 'website' | 'article';
+  /* Prevent search engines from indexing this page */
+  noindex?: boolean;
   /* JSON-LD Structured Data Schema for AEO / GEO */
   schema?: Record<string, any>;
 }
@@ -18,6 +20,7 @@ export default function SEO({
   image = 'https://www.controvallc.com/images/og-home.jpg',
   url = 'https://www.controvallc.com/',
   type = 'website',
+  noindex = false,
   schema,
 }: SEOProps) {
   // Base Schema (ProfessionalService is perfect for Agencies and supports Services natively)
@@ -63,6 +66,7 @@ export default function SEO({
       <meta name="description" content={description} />
       {keywords && <meta name="keywords" content={keywords} />}
       <link rel="canonical" href={url} />
+      {noindex && <meta name="robots" content="noindex, nofollow" />}
 
       {/* GEO Targeting (USA) */}
       <meta name="geo.region" content="US" />

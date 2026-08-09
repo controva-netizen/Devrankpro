@@ -1,8 +1,9 @@
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import { nicheServices } from '@/data/content';
 import SEO from '@/components/shared/SEO';
+import NotFoundPage from '@/pages/NotFoundPage';
 import FinalCTASection from '@/components/sections/home/FinalCTASection';
 
 export default function ServiceNichePage() {
@@ -10,7 +11,7 @@ export default function ServiceNichePage() {
   const service = nicheServices.find((s) => s.slug === niche);
 
   if (!service) {
-    return <Navigate to="/services" replace />;
+    return <NotFoundPage />;
   }
 
   const nicheSchema = {

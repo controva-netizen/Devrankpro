@@ -1,10 +1,11 @@
-import { useParams, Navigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Clock, User, ArrowLeft } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useBlog } from '@/context/BlogContext';
 import BlogDiscussionSection from '@/components/sections/blog/BlogDiscussionSection';
+import NotFoundPage from '@/pages/NotFoundPage';
 import SEO from '@/components/shared/SEO';
 
 export default function BlogSlugPage() {
@@ -18,7 +19,7 @@ export default function BlogSlugPage() {
   const post = posts.find(p => p.slug === slug);
 
   if (!post) {
-    return <Navigate to="/blog" replace />;
+    return <NotFoundPage />;
   }
 
   const articleSchema = {

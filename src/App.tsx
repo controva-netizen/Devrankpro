@@ -8,6 +8,7 @@ import ThemeCustomizer from '@/components/layout/ThemeCustomizer';
 import CornerGlow from '@/components/layout/CornerGlow';
 import AIChatbot from '@/components/layout/AIChatbot';
 import HomePage from '@/pages/HomePage';
+import AiReceptionistPage from '@/pages/AiReceptionistPage';
 import ServicesPage from '@/pages/ServicesPage';
 import ServiceNichePage from '@/pages/ServiceNichePage';
 import CaseStudiesPage from '@/pages/CaseStudiesPage';
@@ -16,6 +17,7 @@ import ContactPage from '@/pages/ContactPage';
 import BlogPage from '@/pages/BlogPage';
 import BlogSlugPage from '@/pages/BlogSlugPage';
 import BlogAdminPage from '@/pages/BlogAdminPage';
+import NotFoundPage from '@/pages/NotFoundPage';
 import { BlogProvider } from '@/context/BlogContext';
 import { useEffect } from 'react';
 
@@ -48,6 +50,7 @@ function AnimatedRoutes() {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageWrapper><HomePage /></PageWrapper>} />
         <Route path="/services" element={<PageWrapper><ServicesPage /></PageWrapper>} />
+        <Route path="/services/ai-receptionist" element={<PageWrapper><AiReceptionistPage /></PageWrapper>} />
         <Route path="/services/:niche" element={<PageWrapper><ServiceNichePage /></PageWrapper>} />
         <Route path="/case-studies" element={<PageWrapper><CaseStudiesPage /></PageWrapper>} />
         <Route path="/about" element={<PageWrapper><AboutPage /></PageWrapper>} />
@@ -56,6 +59,7 @@ function AnimatedRoutes() {
         <Route path="/admin/blog" element={<PageWrapper><BlogAdminPage /></PageWrapper>} />
         <Route path="/admin/ai-chatbot" element={<PageWrapper><ChatbotAdminPage /></PageWrapper>} />
         <Route path="/contact" element={<PageWrapper><ContactPage /></PageWrapper>} />
+        <Route path="*" element={<PageWrapper><NotFoundPage /></PageWrapper>} />
       </Routes>
     </AnimatePresence>
   );

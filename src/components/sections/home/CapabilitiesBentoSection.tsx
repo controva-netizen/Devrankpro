@@ -24,7 +24,7 @@ export default function CapabilitiesBentoSection() {
           {bentoServices.map((service, i) => (
             <Link
               key={service.id}
-              to="/services"
+              to={service.link || "/services"}
               className={`${gridLayout[i]} group rounded-[20px] overflow-hidden card-hover block`}
               style={{
                 backgroundColor: 'transparent',

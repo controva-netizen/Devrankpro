@@ -13,6 +13,7 @@ export interface Service {
   image: string;
   badge: string;
   features?: string[];
+  link?: string;
 }
 
 export interface DetailedService {
@@ -21,6 +22,7 @@ export interface DetailedService {
   description: string;
   features: string[];
   price: string;
+  link?: string;
 }
 
 export interface Testimonial {

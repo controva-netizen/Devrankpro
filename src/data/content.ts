@@ -3,6 +3,7 @@ import type { Service, Testimonial, CaseStudy, TeamMember, PricingTier, NavLink 
 export const navLinks: NavLink[] = [
   { label: 'Home', path: '/' },
   { label: 'Services', path: '/services' },
+  { label: 'AI Receptionist', path: '/services/ai-receptionist' },
   { label: 'Case Studies', path: '/case-studies' },
   { label: 'About', path: '/about' },
   { label: 'Blog', path: '/blog' },
@@ -66,6 +67,7 @@ export const bentoServices: Service[] = [
     description: 'Sub-second latency conversational AI using Deepgram, Cartesia, and custom LLM integration.',
     image: '/images/service-ecommerce.jpg',
     badge: 'AI/ML',
+    link: '/services/ai-receptionist'
   },
   {
     id: 'webrtc',
@@ -223,6 +225,7 @@ export const detailedServices = [
     description: 'Low-latency autonomous voice agents for customer support and lead qualification over phone lines.',
     features: ['Deepgram STT', 'Cartesia TTS', 'LLM Integration', 'Sub-second Latency'],
     price: 'From $8,000',
+    link: '/services/ai-receptionist'
   },
   {
     icon: 'Bot',

@@ -136,7 +136,7 @@ function ServiceCardsGrid() {
                 <div className="flex items-center justify-between pt-4" style={{ borderTop: '1px solid var(--border-subtle)' }}>
                   <span className="text-sm font-semibold gradient-text">{service.price}</span>
                   <Link
-                    to="/contact"
+                    to={service.link || "/contact"}
                     className="flex items-center gap-1 text-xs font-medium transition-all duration-200 group-hover:gap-2"
                     style={{ color: 'var(--accent-1)' }}
                   >
