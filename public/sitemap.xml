@@ -290,4 +290,34 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- ── Core Service Line Pages ──────────────────────── -->
+
+  <url>
+    <loc>https://www.controvallc.com/services/freeswitch-kamailio-development</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.controvallc.com/services/custom-voip-development</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.controvallc.com/services/telecom-api-middleware</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.controvallc.com/services/enterprise-voip-devops</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
 </urlset>

@@ -53,6 +53,7 @@ export const bentoServices: Service[] = [
     description: 'High-availability SIP trunking, WebRTC, and RTP media routing built for massive concurrency.',
     image: '/images/service-web-dev.jpg',
     badge: 'Infrastructure',
+    link: '/services/custom-voip-development'
   },
   {
     id: 'freeswitch',
@@ -60,6 +61,7 @@ export const bentoServices: Service[] = [
     description: 'Enterprise-grade switch configuration, ESL module development, and load balancing.',
     image: '/images/service-social-ads.jpg',
     badge: 'Switching',
+    link: '/services/freeswitch-kamailio-development'
   },
   {
     id: 'voice-ai',
@@ -75,6 +77,7 @@ export const bentoServices: Service[] = [
     description: 'Browser-based softphones and secure video conferencing with optimized STUN/TURN routing.',
     image: '/images/service-ai-automation.jpg',
     badge: 'Real-Time',
+    link: '/services/webrtc-development-usa'
   },
   {
     id: 'infrastructure',
@@ -82,6 +85,7 @@ export const bentoServices: Service[] = [
     description: 'Self-hosted solutions, Docker deployments, CI/CD pipelines, and SIP failover clusters.',
     image: '/images/service-devops.jpg',
     badge: 'DevOps',
+    link: '/services/enterprise-voip-devops'
   },
   {
     id: 'api-middleware',
@@ -89,6 +93,7 @@ export const bentoServices: Service[] = [
     description: 'Bridging legacy SIP networks with modern REST/GraphQL APIs and CRM platforms.',
     image: '/images/service-branding.jpg',
     badge: 'Integration',
+    link: '/services/telecom-api-middleware'
   },
 ];
 
@@ -204,6 +209,7 @@ export const detailedServices = [
     description: 'Custom carrier-grade SIP networks and WebRTC infrastructure built for reliability and scale.',
     features: ['SIP Trunking', 'RTP Routing', 'STUN/TURN', 'WebRTC Signaling'],
     price: 'From $5,000',
+    link: '/services/custom-voip-development'
   },
   {
     icon: 'Smartphone',
@@ -211,6 +217,7 @@ export const detailedServices = [
     description: 'Advanced media server routing, custom ESL scripts, and enterprise dialplan engineering.',
     features: ['ESL Integration', 'Dialplan Logic', 'Media Transcoding', 'Recording Systems'],
     price: 'From $4,000',
+    link: '/services/freeswitch-kamailio-development'
   },
   {
     icon: 'ShoppingCart',
@@ -218,6 +225,7 @@ export const detailedServices = [
     description: 'High-performance SIP proxies to distribute traffic and protect your media servers.',
     features: ['SIP Load Balancing', 'DDoS Protection', 'NAT Traversal', 'Dispatcher'],
     price: 'From $6,000',
+    link: '/services/freeswitch-kamailio-development'
   },
   {
     icon: 'Megaphone',
@@ -233,6 +241,7 @@ export const detailedServices = [
     description: 'Custom APIs to bridge your SIP network with modern CRMs, billing systems, and web apps.',
     features: ['CDR Processing', 'Stripe Billing', 'HubSpot/Salesforce', 'WebSocket Events'],
     price: 'From $3,500',
+    link: '/services/telecom-api-middleware'
   },
   {
     icon: 'Server',
@@ -240,6 +249,7 @@ export const detailedServices = [
     description: 'Scalable cloud infrastructure tailored for real-time UDP media and high availability.',
     features: ['Docker/Kubernetes', 'Anycast IP', 'Network Optimization', 'Monitoring & Alerts'],
     price: 'From $3,000/mo',
+    link: '/services/enterprise-voip-devops'
   },
 ];
 
@@ -392,54 +402,265 @@ export const teamMembers: TeamMember[] = [
   },
 ];
 
+export interface ServiceFaq {
+  question: string;
+  answer: string;
+}
+
 export interface NicheService {
   id: string;
   slug: string;
   title: string;
+  /* Short label shown in the hero pill and used as the H1 when the full title is long */
+  heroTagline: string;
   description: string;
   keywords: string;
   benefits: string[];
+  faqs: ServiceFaq[];
 }
 
 export const nicheServices: NicheService[] = [
   {
+    id: 'freeswitch-kamailio-development',
+    slug: 'freeswitch-kamailio-development',
+    title: 'FreeSWITCH & Kamailio Development Company',
+    heroTagline: 'Open-Source Telephony Engineering',
+    description: 'Controva is a specialist FreeSWITCH and Kamailio development company. We build and tune production SIP infrastructure — custom ESL modules, complex dialplans, Kamailio SIP proxies, dispatcher-based load balancing, and NAT traversal — for teams that have outgrown off-the-shelf CPaaS pricing.',
+    keywords: 'freeswitch development company, kamailio consulting, freeswitch developer, kamailio load balancer setup, freeswitch esl development',
+    benefits: [
+      'Custom ESL module development in Python, Node.js, and C',
+      'High-CPS dialplan engineering and call routing logic',
+      'Kamailio SIP proxy, dispatcher, and registrar configuration',
+      'NAT traversal, topology hiding, and SIP security hardening'
+    ],
+    faqs: [
+      {
+        question: 'What is the difference between FreeSWITCH and Kamailio, and do I need both?',
+        answer: 'FreeSWITCH is a media server — it handles the actual audio: transcoding, recording, IVR, conferencing, and voice-AI bridging. Kamailio is a SIP proxy and load balancer — it routes signalling and distributes traffic across media servers without touching the audio. Small deployments can run on FreeSWITCH alone; once you need high availability or thousands of concurrent calls, Kamailio in front of a FreeSWITCH cluster is the standard pattern. We help you decide which you actually need rather than over-building.'
+      },
+      {
+        question: 'Can you work with our existing FreeSWITCH or Kamailio deployment, or only new builds?',
+        answer: 'Both. A large share of our work is auditing, debugging, and extending existing deployments — tracking down one-way-audio and NAT issues, optimising dialplans, hardening against SIP scanning, and adding modules. We start with a review of your current configuration before proposing changes.'
+      },
+      {
+        question: 'How do you handle high call-per-second (CPS) loads?',
+        answer: 'We separate signalling from media, put Kamailio dispatcher in front of a pool of FreeSWITCH media servers, tune kernel and RTP settings, and load-test with realistic SIP traffic simulation before go-live. The exact CPS ceiling depends on your codecs and hardware, which we benchmark as part of the engagement.'
+      },
+      {
+        question: 'Do you provide ongoing support after deployment?',
+        answer: 'Yes. Beyond the initial build we offer retained support for monitoring, updates, incident response, and capacity planning. We hand over full documentation and SIP traces so your own team is never locked out of its own infrastructure.'
+      }
+    ]
+  },
+  {
+    id: 'custom-voip-development',
+    slug: 'custom-voip-development',
+    title: 'Custom VoIP Development Services',
+    heroTagline: 'Carrier-Grade SIP Architecture',
+    description: 'We design and build custom VoIP systems from the carrier interconnect up: SIP trunking, RTP media routing, WebRTC, high-availability clustering, and STUN/TURN. Purpose-built infrastructure that scales with your call volume instead of billing you per minute for it.',
+    keywords: 'custom voip development services, voip development company, sip trunking development company, custom sip architecture, rtp media routing',
+    benefits: [
+      'Carrier interconnect and SIP trunk provisioning',
+      'RTPengine media proxying and codec transcoding',
+      'High-availability clustering with automatic failover',
+      'STUN/TURN and secure WebRTC signalling'
+    ],
+    faqs: [
+      {
+        question: 'Why build custom VoIP instead of using a CPaaS like Twilio or Vonage?',
+        answer: 'CPaaS platforms are excellent for getting started, but at scale their per-minute pricing and lack of low-level control become the constraint. Custom infrastructure trades a higher up-front build cost for dramatically lower per-minute economics, full control over routing and media, and no vendor lock-in. We help you model the break-even point honestly before you commit — sometimes staying on CPaaS is the right call, and we will tell you so.'
+      },
+      {
+        question: 'Can you integrate with our existing carriers and phone numbers?',
+        answer: 'Yes. We provision and configure SIP trunks with your chosen carriers, port existing DIDs, and set up least-cost routing across multiple providers for redundancy. You keep your numbers and carrier relationships.'
+      },
+      {
+        question: 'How do you ensure call quality and reliability?',
+        answer: 'We proxy media through RTPengine, deploy geographically where it makes sense to keep latency low, run high-availability clusters so a single node failure does not drop calls, and instrument everything so quality problems are visible before customers report them.'
+      },
+      {
+        question: 'What does a typical custom VoIP engagement look like?',
+        answer: 'We start with an architecture audit of your requirements and traffic profile, deliver a design and cost model, then build and load-test in stages. You see the SIP traces and latency benchmarks at each step — nothing is a black box.'
+      }
+    ]
+  },
+  {
+    id: 'telecom-api-middleware',
+    slug: 'telecom-api-middleware',
+    title: 'Telecom API & Middleware Development',
+    heroTagline: 'CDR, CRM & Billing Integration',
+    description: 'We bridge raw SIP infrastructure to the systems your business actually runs on — real-time CDR processing, billing and Stripe integration, Salesforce and HubSpot sync, and WebSocket event streaming. The middleware layer that turns call data into revenue and reporting.',
+    keywords: 'telecom api integration, cdr processing, sip crm integration, voip billing integration, telecom middleware development',
+    benefits: [
+      'Real-time CDR (Call Detail Record) processing pipelines',
+      'Usage-based billing and Stripe integration',
+      'Salesforce, HubSpot, and CRM two-way sync',
+      'WebSocket and webhook event streaming'
+    ],
+    faqs: [
+      {
+        question: 'What is telecom middleware and why do I need it?',
+        answer: 'Middleware is the layer between your raw telephony platform and your business systems. It takes call events and CDRs from FreeSWITCH or Kamailio and turns them into the things you actually need — accurate invoices, CRM records updated during a call, real-time dashboards, and triggers into other tools. Without it, valuable call data sits trapped in log files.'
+      },
+      {
+        question: 'Can you integrate call data with our CRM in real time?',
+        answer: 'Yes. We build two-way integrations with Salesforce, HubSpot, and custom CRMs so an inbound call can pull up the caller record instantly and log the outcome automatically when the call ends. We use the CRM APIs directly rather than brittle screen-scraping.'
+      },
+      {
+        question: 'How accurate is your CDR-based billing?',
+        answer: 'We process CDRs in real time with reconciliation against the switch, so billing reflects actual connected-call duration rather than estimates. We handle rounding rules, multiple rate plans, and per-destination pricing, and we expose the raw records so your finance team can audit any invoice.'
+      },
+      {
+        question: 'Do you build custom APIs or only connect existing ones?',
+        answer: 'Both. We expose your telephony platform through clean REST and WebSocket APIs your other applications can consume, and we integrate outward into third-party services. The goal is that your telephony behaves like any other well-documented internal service.'
+      }
+    ]
+  },
+  {
+    id: 'enterprise-voip-devops',
+    slug: 'enterprise-voip-devops',
+    title: 'Enterprise VoIP DevOps & Infrastructure',
+    heroTagline: 'Real-Time Media at Scale',
+    description: 'Real-time voice is one of the hardest workloads to run reliably. We bring DevOps discipline to VoIP — Docker and Kubernetes tuned for RTP media, autoscaling media pools, geo-redundant failover, and full observability — so your voice infrastructure meets an enterprise SLA instead of hoping for the best.',
+    keywords: 'voip devops, sip infrastructure scaling, rtpengine kubernetes, voip high availability, real-time media devops',
+    benefits: [
+      'Docker and Kubernetes tuned for real-time UDP media',
+      'RTP engine autoscaling and media pool management',
+      'Geo-redundant failover and 99.99% uptime SLA design',
+      'Monitoring, alerting, and observability for SIP and RTP'
+    ],
+    faqs: [
+      {
+        question: 'Why is VoIP harder to run on Kubernetes than a normal web app?',
+        answer: 'Web apps are stateless and use TCP; real-time voice uses UDP for RTP media, is highly latency-sensitive, and holds long-lived stateful sessions. Standard Kubernetes networking and autoscaling assumptions break down for media. We configure host networking, media port ranges, session-aware scaling, and graceful draining so calls are never cut off mid-conversation during a deploy or scale event.'
+      },
+      {
+        question: 'What uptime can you realistically deliver?',
+        answer: 'With geo-redundant clustering, health-checked failover, and proper monitoring, a well-designed 99.99% uptime target is achievable — but the honest answer depends on your carrier redundancy and budget. We design to a specific SLA target we agree with you up front and are transparent about the trade-offs at each level.'
+      },
+      {
+        question: 'Can you take over an existing deployment that keeps having outages?',
+        answer: 'Yes — reliability rescue work is a common engagement. We start by instrumenting the system to find the real failure modes (often NAT, capacity limits, or missing failover), then fix root causes rather than papering over symptoms. You get the monitoring and runbooks so the fix sticks.'
+      },
+      {
+        question: 'Do you set up monitoring and alerting?',
+        answer: 'Yes. Observability is core to every engagement — we instrument SIP signalling, RTP media quality, and system health, set meaningful alerts, and give your team dashboards so problems are visible before they become outages.'
+      }
+    ]
+  },
+  {
     id: 'healthcare-voip-usa',
     slug: 'healthcare-voip-usa',
     title: 'VoIP & HIPAA-Compliant SIP Engineering for Healthcare in the USA',
+    heroTagline: 'Healthcare Solution',
     description: 'We build end-to-end, HIPAA-compliant VoIP architectures for USA-based healthcare providers using highly secure FreeSWITCH and Kamailio deployments. Ensure patient data privacy while handling thousands of concurrent telemedicine calls.',
     keywords: 'healthcare VoIP USA, HIPAA compliant SIP trunking, FreeSWITCH telemedicine, Kamailio healthcare routing',
-    benefits: ['End-to-end SRTP encryption', 'HIPAA-compliant data handling', 'Sub-second telemedicine latency', 'Automated appointment AI voice agents']
+    benefits: ['End-to-end SRTP encryption', 'HIPAA-compliant data handling', 'Sub-second telemedicine latency', 'Automated appointment AI voice agents'],
+    faqs: [
+      {
+        question: 'How do you make a VoIP system HIPAA-compliant?',
+        answer: 'HIPAA compliance for voice comes down to encrypting signalling (TLS) and media (SRTP) end to end, controlling and logging access to call recordings and PHI, and being able to sign a Business Associate Agreement for the parts we operate. We architect the system so patient data is encrypted in transit and at rest, and we document the controls for your compliance team.'
+      },
+      {
+        question: 'Can this integrate with our EHR or practice management system?',
+        answer: 'Yes. We integrate the telephony layer with EHR/EMR and scheduling systems so calls can trigger appointment lookups, reminders, and record updates, using the vendor APIs where available.'
+      },
+      {
+        question: 'Can you handle telemedicine video, not just voice?',
+        answer: 'Yes — we build WebRTC-based video for telehealth with the same encryption and compliance posture as the voice side, including browser-based access with no plugins for patients.'
+      }
+    ]
   },
   {
     id: 'call-center-sip-usa',
     slug: 'call-center-sip-usa',
     title: 'High-Volume SIP Infrastructure for USA Call Centers',
+    heroTagline: 'Call Center Infrastructure',
     description: 'Scale your USA call center to 10,000+ concurrent calls with zero dropped packets. We engineer robust load balancing with Kamailio and core media handling with FreeSWITCH to eliminate SaaS per-minute fees.',
     keywords: 'USA call center SIP trunking, high volume Kamailio load balancing, FreeSWITCH call center architecture',
-    benefits: ['Zero per-minute SaaS licensing fees', '10,000+ concurrent call capacity', 'Real-time AI transcriptions', 'Predictive dialing integrations']
+    benefits: ['Zero per-minute SaaS licensing fees', '10,000+ concurrent call capacity', 'Real-time AI transcriptions', 'Predictive dialing integrations'],
+    faqs: [
+      {
+        question: 'How much can a self-hosted call center platform save versus a SaaS dialer?',
+        answer: 'Savings come from eliminating per-seat and per-minute licensing at scale. The break-even depends on your call volume and agent count — we build a cost model comparing your current SaaS spend against infrastructure plus support before you commit, so the decision is based on your real numbers.'
+      },
+      {
+        question: 'Can you integrate predictive or power dialing?',
+        answer: 'Yes. We build and integrate outbound dialing — predictive, power, and preview modes — with pacing controls and compliance safeguards, connected to your CRM and lead lists.'
+      },
+      {
+        question: 'Will it integrate with our existing agent desktop and CRM?',
+        answer: 'Yes. We integrate with your CRM and agent tooling through APIs and WebRTC softphones, so agents keep one screen and calls log automatically.'
+      }
+    ]
   },
   {
     id: 'financial-services-voip-usa',
     slug: 'financial-services-voip-usa',
     title: 'Ultra-Low Latency VoIP for Financial Services & Trading Floors in the USA',
+    heroTagline: 'Financial Services',
     description: 'For USA trading floors and financial institutions, every millisecond counts. We deploy edge-optimized SIP networks that guarantee ultra-low latency and strict SEC compliance for voice recording.',
     keywords: 'financial services VoIP USA, low latency SIP trading, SEC compliant voice recording, FreeSWITCH finance',
-    benefits: ['Ultra-low latency edge routing', 'SEC-compliant SIP recording pipelines', 'High-availability failover (99.999% uptime)', 'Encrypted signaling (TLS/SRTP)']
+    benefits: ['Ultra-low latency edge routing', 'SEC-compliant SIP recording pipelines', 'High-availability failover (99.999% uptime)', 'Encrypted signaling (TLS/SRTP)'],
+    faqs: [
+      {
+        question: 'How do you meet SEC and FINRA voice recording requirements?',
+        answer: 'We build recording pipelines that capture, timestamp, encrypt, and archive calls with tamper-evident storage and retention controls, plus the audit trails compliance requires. We document the controls so your compliance team can demonstrate them to regulators.'
+      },
+      {
+        question: 'How low can latency realistically go?',
+        answer: 'By proxying media efficiently and deploying close to your users, we minimise added latency beyond the physical network path. The achievable floor depends on geography and carrier routing, which we benchmark and report honestly rather than promising a fixed number.'
+      },
+      {
+        question: 'Can you guarantee uptime for trading-critical voice?',
+        answer: 'We design geo-redundant, health-checked failover toward very high availability targets. The exact SLA depends on your carrier and infrastructure investment, which we agree with you up front.'
+      }
+    ]
   },
   {
     id: 'ai-voice-agents-usa',
     slug: 'ai-voice-agents-usa',
     title: 'Custom AI Voice Agents & Conversational IVR for USA Enterprises',
+    heroTagline: 'AI Voice Agents',
     description: 'Replace legacy IVR menus with Conversational AI. We engineer sub-second latency voice pipelines integrating LLMs directly into your SIP trunks, providing USA enterprises with 24/7 autonomous customer service.',
     keywords: 'AI voice agents USA, conversational IVR development, LLM SIP integration, autonomous customer service AI',
-    benefits: ['Sub-500ms conversational latency', 'Direct LLM-to-SIP integrations', '24/7 autonomous customer support', 'Dynamic CRM data fetching during calls']
+    benefits: ['Sub-500ms conversational latency', 'Direct LLM-to-SIP integrations', '24/7 autonomous customer support', 'Dynamic CRM data fetching during calls'],
+    faqs: [
+      {
+        question: 'How is an AI voice agent different from a traditional IVR?',
+        answer: 'A traditional IVR forces callers through rigid "press 1 for…" menus. An AI voice agent understands natural speech, handles interruptions, asks follow-up questions, and completes tasks conversationally — booking, qualifying, answering — then hands off to a human with full context when needed.'
+      },
+      {
+        question: 'What is the latency, and does it feel natural?',
+        answer: 'We engineer the speech-to-text, LLM, and text-to-speech pipeline for sub-second response with interruption handling, which is the threshold where conversation stops feeling like talking to a machine. Exact latency depends on the models and integrations chosen, which we benchmark during the build.'
+      },
+      {
+        question: 'Which AI models and voices can we use?',
+        answer: 'We integrate best-in-class components — for example Deepgram for transcription, Cartesia or similar for voice, and OpenAI or other LLMs for reasoning — and choose based on your latency, quality, and cost requirements rather than locking you to one vendor.'
+      }
+    ]
   },
   {
     id: 'webrtc-development-usa',
     slug: 'webrtc-development-usa',
     title: 'Custom WebRTC Application Development in the USA',
+    heroTagline: 'WebRTC Engineering',
     description: 'Build native, browser-based communication platforms. We engineer scalable WebRTC SFUs (Selective Forwarding Units) and MCUs to power video conferencing, telehealth, and remote collaboration tools across the USA.',
     keywords: 'WebRTC development USA, custom video conferencing engineering, SFU MCU deployment, browser based VoIP',
-    benefits: ['Scalable WebRTC SFU/MCU architecture', 'Zero-install browser communication', 'Mobile and desktop cross-compatibility', 'Advanced noise suppression integration']
+    benefits: ['Scalable WebRTC SFU/MCU architecture', 'Zero-install browser communication', 'Mobile and desktop cross-compatibility', 'Advanced noise suppression integration'],
+    faqs: [
+      {
+        question: 'What is the difference between an SFU and an MCU, and which do I need?',
+        answer: 'An SFU (Selective Forwarding Unit) forwards each participant’s stream without mixing, which scales efficiently and is right for most video conferencing. An MCU mixes streams server-side, using more CPU but less client bandwidth — useful for large broadcasts or low-power devices. We pick based on your participant counts and device mix, and often use a hybrid.'
+      },
+      {
+        question: 'Will it work without users installing anything?',
+        answer: 'Yes — WebRTC runs natively in modern browsers, so participants join from a link with no plugins or downloads. We also build native mobile integrations where you need them.'
+      },
+      {
+        question: 'Can you integrate WebRTC with our existing SIP/PSTN phone system?',
+        answer: 'Yes. We bridge WebRTC to SIP and the PSTN so browser users and phone users are on the same call, which is core to softphones and click-to-call features.'
+      }
+    ]
   }
 ];

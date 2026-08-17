@@ -2,6 +2,31 @@ import { motion } from 'framer-motion';
 import { PhoneCall, Calendar, Clock, HeartPulse, Check, ArrowRight, Bot } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '@/components/shared/SEO';
+import FaqSection, { faqPageSchema } from '@/components/shared/FaqSection';
+import ResultsBarSection from '@/components/sections/case-studies/ResultsBarSection';
+
+const aiReceptionistFaqs = [
+  {
+    question: 'How is an AI receptionist different from a regular answering service?',
+    answer: 'A human answering service scales linearly with cost — more calls means more agent hours. An AI receptionist answers every call instantly and simultaneously, 24/7, at a fixed engineering cost, and integrates directly with your calendar and CRM to actually complete tasks like booking rather than just taking a message.'
+  },
+  {
+    question: 'Will callers know they are talking to an AI?',
+    answer: 'We optimize for natural, low-latency conversation with interruption handling, so most callers experience it as a fast, efficient assistant rather than a rigid IVR menu. We are transparent about disclosure requirements in regulated industries like healthcare, and can configure the agent to identify itself where required.'
+  },
+  {
+    question: 'Can it actually book appointments, not just take messages?',
+    answer: 'Yes — that is the core use case. The agent connects to your calendar system in real time, checks availability, books, reschedules, and cancels conversationally, and can hand off to a human for anything outside its scope.'
+  },
+  {
+    question: 'How quickly can this be deployed?',
+    answer: 'A standard deployment — connecting your phone number, calendar, and defining the conversation flow — typically takes days, not months, since we are configuring proven infrastructure rather than building from scratch each time. Complex integrations (custom CRMs, HIPAA workflows) take longer and we scope that with you up front.'
+  },
+  {
+    question: 'Is it HIPAA-compliant for medical practices?',
+    answer: 'Yes, we build the medical receptionist configuration with encrypted call handling and PHI-aware data practices, and can sign a Business Associate Agreement for the parts we operate. See our healthcare VoIP page for the full compliance detail.'
+  }
+];
 
 function AiReceptionistHero() {
   return (
@@ -191,21 +216,26 @@ function MedicalNicheSection() {
 export default function AiReceptionistPage() {
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: 'Controva AI Receptionist Software',
-    applicationCategory: 'BusinessApplication',
-    operatingSystem: 'Any',
-    offers: {
-      '@type': 'Offer',
-      price: 'Contact for Pricing',
-      priceCurrency: 'USD'
-    },
-    description: 'Advanced AI voice receptionist software for handling inbound calls, scheduling appointments, and routing for medical practices and businesses.',
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      ratingCount: '124'
-    }
+    '@graph': [
+      {
+        '@type': 'Service',
+        serviceType: 'AI Receptionist & Voice Agent Development',
+        name: 'AI Receptionist Software & Voice Agents',
+        provider: {
+          '@type': 'Organization',
+          name: 'Controva LLC',
+          url: 'https://www.controvallc.com'
+        },
+        areaServed: 'Worldwide',
+        description: 'Advanced AI voice receptionist engineering for handling inbound calls, scheduling appointments, and routing for medical practices and businesses.',
+        offers: {
+          '@type': 'Offer',
+          price: 'Contact for Pricing',
+          priceCurrency: 'USD'
+        }
+      },
+      faqPageSchema(aiReceptionistFaqs)
+    ]
   };
 
   return (
@@ -220,7 +250,9 @@ export default function AiReceptionistPage() {
       <AiReceptionistHero />
       <BenefitsSection />
       <MedicalNicheSection />
-      
+      <ResultsBarSection />
+      <FaqSection faqs={aiReceptionistFaqs} />
+
       {/* CTA Section */}
       <section className="py-24 text-center" style={{ backgroundColor: 'var(--bg-secondary)' }}>
          <div className="max-w-2xl mx-auto px-6">
