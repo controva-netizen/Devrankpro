@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node prerender.js",
+    "build:no-prerender": "tsc -b && vite build",
+    "prerender": "node prerender.js",
     "start": "node server.js",
     "lint": "eslint .",
     "preview": "vite preview",
