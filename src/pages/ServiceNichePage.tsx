@@ -7,6 +7,7 @@ import NotFoundPage from '@/pages/NotFoundPage';
 import FinalCTASection from '@/components/sections/home/FinalCTASection';
 import ResultsBarSection from '@/components/sections/case-studies/ResultsBarSection';
 import FaqSection, { faqPageSchema } from '@/components/shared/FaqSection';
+import RelatedWork from '@/components/shared/RelatedWork';
 
 export default function ServiceNichePage() {
   const { niche } = useParams<{ niche: string }>();
@@ -94,6 +95,8 @@ export default function ServiceNichePage() {
       </section>
 
       <ResultsBarSection />
+
+      <RelatedWork titles={service.relatedCaseStudies} />
 
       <FaqSection faqs={service.faqs} />
 

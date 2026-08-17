@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import SEO from '@/components/shared/SEO';
 import FaqSection, { faqPageSchema } from '@/components/shared/FaqSection';
 import ResultsBarSection from '@/components/sections/case-studies/ResultsBarSection';
+import RelatedWork from '@/components/shared/RelatedWork';
 
 const aiReceptionistFaqs = [
   {
@@ -251,6 +252,7 @@ export default function AiReceptionistPage() {
       <BenefitsSection />
       <MedicalNicheSection />
       <ResultsBarSection />
+      <RelatedWork />
       <FaqSection faqs={aiReceptionistFaqs} />
 
       {/* CTA Section */}

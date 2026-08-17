@@ -3,11 +3,58 @@ import type { Service, Testimonial, CaseStudy, TeamMember, PricingTier, NavLink 
 export const navLinks: NavLink[] = [
   { label: 'Home', path: '/' },
   { label: 'Services', path: '/services' },
-  { label: 'AI Receptionist', path: '/services/ai-receptionist' },
   { label: 'Case Studies', path: '/case-studies' },
   { label: 'About', path: '/about' },
   { label: 'Blog', path: '/blog' },
   { label: 'Contact', path: '/contact' },
+];
+
+export interface ServicesMenuItem {
+  icon: string;
+  title: string;
+  description: string;
+  path: string;
+}
+
+// Powers the "Services" nav dropdown — the 6 core service lines, same set
+// shown as cards on /services.
+export const servicesMenu: ServicesMenuItem[] = [
+  {
+    icon: 'Globe',
+    title: 'VoIP Architecture',
+    description: 'Carrier-grade SIP networks & WebRTC infrastructure',
+    path: '/services/custom-voip-development'
+  },
+  {
+    icon: 'Smartphone',
+    title: 'FreeSWITCH Config',
+    description: 'Media server routing, ESL scripts, dialplan engineering',
+    path: '/services/freeswitch-development'
+  },
+  {
+    icon: 'ShoppingCart',
+    title: 'Kamailio Load Balancing',
+    description: 'High-performance SIP proxies protecting your media servers',
+    path: '/services/kamailio-load-balancing'
+  },
+  {
+    icon: 'Megaphone',
+    title: 'Voice AI Agents',
+    description: 'Low-latency autonomous agents for calls, over VoIP',
+    path: '/services/ai-receptionist'
+  },
+  {
+    icon: 'Bot',
+    title: 'Telecom Middleware',
+    description: 'CDR processing, CRM & billing integration APIs',
+    path: '/services/telecom-api-middleware'
+  },
+  {
+    icon: 'Server',
+    title: 'DevOps & Infrastructure',
+    description: 'Docker/Kubernetes for real-time media at scale',
+    path: '/services/enterprise-voip-devops'
+  },
 ];
 
 export const heroStats = [
@@ -61,7 +108,7 @@ export const bentoServices: Service[] = [
     description: 'Enterprise-grade switch configuration, ESL module development, and load balancing.',
     image: '/images/service-social-ads.jpg',
     badge: 'Switching',
-    link: '/services/freeswitch-kamailio-development'
+    link: '/services/freeswitch-development'
   },
   {
     id: 'voice-ai',
@@ -217,7 +264,7 @@ export const detailedServices = [
     description: 'Advanced media server routing, custom ESL scripts, and enterprise dialplan engineering.',
     features: ['ESL Integration', 'Dialplan Logic', 'Media Transcoding', 'Recording Systems'],
     price: 'From $4,000',
-    link: '/services/freeswitch-kamailio-development'
+    link: '/services/freeswitch-development'
   },
   {
     icon: 'ShoppingCart',
@@ -225,7 +272,7 @@ export const detailedServices = [
     description: 'High-performance SIP proxies to distribute traffic and protect your media servers.',
     features: ['SIP Load Balancing', 'DDoS Protection', 'NAT Traversal', 'Dispatcher'],
     price: 'From $6,000',
-    link: '/services/freeswitch-kamailio-development'
+    link: '/services/kamailio-load-balancing'
   },
   {
     icon: 'Megaphone',
@@ -417,38 +464,73 @@ export interface NicheService {
   keywords: string;
   benefits: string[];
   faqs: ServiceFaq[];
+  /* Titles of entries in `caseStudies` that are genuinely relevant to this
+     service — only set where the actual project matches, never as filler. */
+  relatedCaseStudies?: string[];
 }
 
 export const nicheServices: NicheService[] = [
   {
-    id: 'freeswitch-kamailio-development',
-    slug: 'freeswitch-kamailio-development',
-    title: 'FreeSWITCH & Kamailio Development Company',
-    heroTagline: 'Open-Source Telephony Engineering',
-    description: 'Controva is a specialist FreeSWITCH and Kamailio development company. We build and tune production SIP infrastructure — custom ESL modules, complex dialplans, Kamailio SIP proxies, dispatcher-based load balancing, and NAT traversal — for teams that have outgrown off-the-shelf CPaaS pricing.',
-    keywords: 'freeswitch development company, kamailio consulting, freeswitch developer, kamailio load balancer setup, freeswitch esl development',
+    id: 'freeswitch-development',
+    slug: 'freeswitch-development',
+    title: 'FreeSWITCH Development & Configuration',
+    heroTagline: 'Media Server Engineering',
+    description: 'Controva is a specialist FreeSWITCH development company. We build and tune production media servers — custom ESL modules, complex dialplans, media transcoding, and enterprise recording systems — for teams that have outgrown off-the-shelf CPaaS pricing.',
+    keywords: 'freeswitch development company, freeswitch developer, freeswitch esl development, freeswitch dialplan engineering, freeswitch config',
     benefits: [
       'Custom ESL module development in Python, Node.js, and C',
       'High-CPS dialplan engineering and call routing logic',
-      'Kamailio SIP proxy, dispatcher, and registrar configuration',
-      'NAT traversal, topology hiding, and SIP security hardening'
+      'Media transcoding and codec negotiation across carriers',
+      'Enterprise call recording and archival pipelines'
     ],
     faqs: [
       {
-        question: 'What is the difference between FreeSWITCH and Kamailio, and do I need both?',
-        answer: 'FreeSWITCH is a media server — it handles the actual audio: transcoding, recording, IVR, conferencing, and voice-AI bridging. Kamailio is a SIP proxy and load balancer — it routes signalling and distributes traffic across media servers without touching the audio. Small deployments can run on FreeSWITCH alone; once you need high availability or thousands of concurrent calls, Kamailio in front of a FreeSWITCH cluster is the standard pattern. We help you decide which you actually need rather than over-building.'
+        question: 'What exactly does FreeSWITCH do in a VoIP stack?',
+        answer: 'FreeSWITCH is the media server — it handles the actual audio: transcoding between codecs, recording, IVR menus, conferencing, and bridging calls to voice-AI pipelines. It is usually paired with a SIP proxy like Kamailio in front of it for routing and load balancing at scale; we build both, separately or together.'
       },
       {
-        question: 'Can you work with our existing FreeSWITCH or Kamailio deployment, or only new builds?',
-        answer: 'Both. A large share of our work is auditing, debugging, and extending existing deployments — tracking down one-way-audio and NAT issues, optimising dialplans, hardening against SIP scanning, and adding modules. We start with a review of your current configuration before proposing changes.'
+        question: 'Can you work with our existing FreeSWITCH deployment, or only new builds?',
+        answer: 'Both. A large share of our work is auditing, debugging, and extending existing deployments — tracking down one-way-audio and NAT issues, optimising dialplans, hardening against SIP scanning, and adding custom modules. We start with a review of your current configuration before proposing changes.'
       },
       {
-        question: 'How do you handle high call-per-second (CPS) loads?',
-        answer: 'We separate signalling from media, put Kamailio dispatcher in front of a pool of FreeSWITCH media servers, tune kernel and RTP settings, and load-test with realistic SIP traffic simulation before go-live. The exact CPS ceiling depends on your codecs and hardware, which we benchmark as part of the engagement.'
+        question: 'Do you write custom ESL modules, or only configure existing ones?',
+        answer: 'Both. Event Socket Library (ESL) integration lets FreeSWITCH talk to external application logic in Python, Node.js, or C — we build custom modules for call scoring, dynamic routing decisions, and CRM lookups mid-call, not just standard dialplan configuration.'
       },
       {
         question: 'Do you provide ongoing support after deployment?',
         answer: 'Yes. Beyond the initial build we offer retained support for monitoring, updates, incident response, and capacity planning. We hand over full documentation and SIP traces so your own team is never locked out of its own infrastructure.'
+      }
+    ]
+  },
+  {
+    id: 'kamailio-load-balancing',
+    slug: 'kamailio-load-balancing',
+    title: 'Kamailio SIP Load Balancing',
+    heroTagline: 'High-Availability SIP Proxy',
+    description: 'We deploy Kamailio as a highly available SIP proxy and load balancer, distributing signalling traffic across a pool of media servers and protecting them from SIP scanning and registration floods — the layer that keeps a FreeSWITCH cluster from becoming a single point of failure.',
+    keywords: 'kamailio consulting, kamailio load balancer setup, kamailio sip proxy, sip load balancing, kamailio dispatcher configuration',
+    benefits: [
+      'Kamailio dispatcher and load-balancing module configuration',
+      'SIP registrar and NAT traversal for distributed endpoints',
+      'DDoS and registration-flood protection at the proxy layer',
+      'Topology hiding and SIP security hardening'
+    ],
+    faqs: [
+      {
+        question: 'Why put Kamailio in front of my media servers instead of scaling FreeSWITCH alone?',
+        answer: 'FreeSWITCH handles media (audio) as well as signalling, which caps how far a single node scales. Kamailio only handles SIP signalling — it is extremely lightweight and can route thousands of registrations per second while distributing the actual calls across a pool of FreeSWITCH media servers behind it. That separation is what lets the system scale and survive a single media server failing.'
+      },
+      {
+        question: 'Can Kamailio protect us from SIP scanning and toll fraud attempts?',
+        answer: 'Yes — this is one of the most common reasons clients bring us in. We configure rate limiting, IP blacklisting, digest authentication hardening, and topology hiding at the proxy layer so scanning bots and brute-force registration attempts never reach your media servers at all.'
+      },
+      {
+        question: 'How do you handle failover if a media server goes down mid-call?',
+        answer: 'Kamailio\'s dispatcher module continuously health-checks the media server pool and stops routing new calls to a failed node within seconds. We configure this alongside FreeSWITCH-side clustering so in-progress calls degrade gracefully rather than dropping silently.'
+      },
+      {
+        question: 'Can you take over a Kamailio deployment someone else built, or configured incorrectly?',
+        answer: 'Yes. Misconfigured dispatcher weights, missing NAT handling, and open registrar endpoints are common issues we get called in to fix. We start with a security and configuration audit before making changes, and hand over documented SIP traces so the fix is verifiable, not just asserted.'
       }
     ]
   },
@@ -546,7 +628,8 @@ export const nicheServices: NicheService[] = [
         question: 'Do you set up monitoring and alerting?',
         answer: 'Yes. Observability is core to every engagement — we instrument SIP signalling, RTP media quality, and system health, set meaningful alerts, and give your team dashboards so problems are visible before they become outages.'
       }
-    ]
+    ],
+    relatedCaseStudies: ['Controva AI', 'Hyperstackdev']
   },
   {
     id: 'healthcare-voip-usa',

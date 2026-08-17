@@ -1,13 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sun, Moon } from 'lucide-react';
+import { Sun, Moon, ChevronDown, Globe, Smartphone, ShoppingCart, Megaphone, Bot, Server, ArrowRight } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
-import { navLinks } from '@/data/content';
+import { navLinks, servicesMenu } from '@/data/content';
+
+const serviceIcons: Record<string, typeof Globe> = { Globe, Smartphone, ShoppingCart, Megaphone, Bot, Server };
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { isDark, toggleMode } = useTheme();
   const location = useLocation();
 
@@ -17,8 +22,25 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => setMobileOpen(false), [location.pathname]);
+  useEffect(() => {
+    setMobileOpen(false);
+    setServicesMenuOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+  }, []);
+
   const isActive = (path: string) => location.pathname === path;
+  const isServicesActive = location.pathname.startsWith('/services');
+
+  const openServicesMenu = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setServicesMenuOpen(true);
+  };
+  const scheduleCloseServicesMenu = () => {
+    closeTimer.current = setTimeout(() => setServicesMenuOpen(false), 150);
+  };
 
   // Exclude "Contact" from center links — it lives on the right
   const centerLinks = navLinks.filter((l) => l.path !== '/contact');
@@ -103,40 +125,176 @@ export default function Navbar() {
 
           {/* ── Desktop nav links (centered) ──────────────────── */}
           <div className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
-            {centerLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className="relative px-4 py-2 text-[13px] font-medium tracking-tight transition-all rounded-full"
-                style={{
-                  color: isActive(link.path)
-                    ? isDark ? '#FFFFFF' : '#0D1117'
-                    : isDark ? 'rgba(148,163,184,0.9)' : 'rgba(71,85,105,0.9)',
-                  backgroundColor: isActive(link.path)
-                    ? isDark ? 'rgba(255,255,255,0.1)' : 'rgba(241,245,249,1)'
-                    : 'transparent',
-                  fontFamily: "'Inter', sans-serif",
-                }}
-                onMouseEnter={(e) => {
-                  if (!isActive(link.path)) {
-                    e.currentTarget.style.backgroundColor = isDark
-                      ? 'rgba(255,255,255,0.05)'
-                      : 'rgba(248,250,252,1)';
-                    e.currentTarget.style.color = isDark ? '#FFFFFF' : '#0D1117';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (!isActive(link.path)) {
-                    e.currentTarget.style.backgroundColor = 'transparent';
-                    e.currentTarget.style.color = isDark
-                      ? 'rgba(148,163,184,0.9)'
-                      : 'rgba(71,85,105,0.9)';
-                  }
-                }}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {centerLinks.map((link) => {
+              if (link.path === '/services') {
+                const active = isServicesActive;
+                return (
+                  <div
+                    key={link.path}
+                    className="relative"
+                    onMouseEnter={openServicesMenu}
+                    onMouseLeave={scheduleCloseServicesMenu}
+                  >
+                    <Link
+                      to={link.path}
+                      className="relative flex items-center gap-1 px-4 py-2 text-[13px] font-medium tracking-tight transition-all rounded-full"
+                      style={{
+                        color: active
+                          ? isDark ? '#FFFFFF' : '#0D1117'
+                          : isDark ? 'rgba(148,163,184,0.9)' : 'rgba(71,85,105,0.9)',
+                        backgroundColor: active
+                          ? isDark ? 'rgba(255,255,255,0.1)' : 'rgba(241,245,249,1)'
+                          : servicesMenuOpen
+                            ? isDark ? 'rgba(255,255,255,0.05)' : 'rgba(248,250,252,1)'
+                            : 'transparent',
+                        fontFamily: "'Inter', sans-serif",
+                      }}
+                      aria-haspopup="true"
+                      aria-expanded={servicesMenuOpen}
+                    >
+                      {link.label}
+                      <ChevronDown
+                        size={13}
+                        strokeWidth={2}
+                        style={{
+                          transition: 'transform 200ms ease',
+                          transform: servicesMenuOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                        }}
+                      />
+                    </Link>
+
+                    <AnimatePresence>
+                      {servicesMenuOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                          transition={{ duration: 0.16, ease: [0.22, 1, 0.36, 1] }}
+                          className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[560px]"
+                          style={{ zIndex: 60 }}
+                        >
+                          <div
+                            className="rounded-2xl overflow-hidden p-3"
+                            style={{
+                              backgroundColor: isDark ? 'rgba(20,20,26,0.98)' : 'rgba(255,255,255,0.98)',
+                              backdropFilter: 'blur(24px) saturate(180%)',
+                              WebkitBackdropFilter: 'blur(24px) saturate(180%)',
+                              border: isDark ? '1px solid rgba(255,255,255,0.09)' : '1px solid rgba(148,163,184,0.35)',
+                              boxShadow: isDark
+                                ? '0 24px 48px -12px rgba(0,0,0,0.6)'
+                                : '0 16px 40px -12px rgba(0,0,0,0.16)',
+                            }}
+                          >
+                            <div className="grid grid-cols-2 gap-1">
+                              {servicesMenu.map((item) => {
+                                const Icon = serviceIcons[item.icon] ?? Globe;
+                                return (
+                                  <Link
+                                    key={item.path}
+                                    to={item.path}
+                                    className="flex items-start gap-3 p-3 rounded-xl transition-colors duration-150"
+                                    style={{ backgroundColor: 'transparent' }}
+                                    onMouseEnter={(e) => {
+                                      e.currentTarget.style.backgroundColor = isDark
+                                        ? 'rgba(255,255,255,0.06)'
+                                        : 'rgba(248,250,252,1)';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                      e.currentTarget.style.backgroundColor = 'transparent';
+                                    }}
+                                  >
+                                    <div
+                                      className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                                      style={{ backgroundColor: 'var(--accent-subtle)' }}
+                                    >
+                                      <Icon size={16} style={{ color: 'var(--accent-1)' }} />
+                                    </div>
+                                    <div>
+                                      <p
+                                        className="text-[13px] font-semibold leading-tight"
+                                        style={{ color: isDark ? '#FFFFFF' : '#0D1117', fontFamily: "'Inter', sans-serif" }}
+                                      >
+                                        {item.title}
+                                      </p>
+                                      <p
+                                        className="text-[11.5px] mt-0.5 leading-snug"
+                                        style={{
+                                          color: isDark ? 'rgba(148,163,184,0.85)' : 'rgba(100,116,139,1)',
+                                          fontFamily: "'Inter', sans-serif",
+                                        }}
+                                      >
+                                        {item.description}
+                                      </p>
+                                    </div>
+                                  </Link>
+                                );
+                              })}
+                            </div>
+
+                            <div
+                              className="mt-2 pt-2"
+                              style={{ borderTop: isDark ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(148,163,184,0.25)' }}
+                            >
+                              <Link
+                                to="/services"
+                                className="flex items-center justify-between px-3 py-2.5 rounded-xl text-[13px] font-medium transition-colors duration-150"
+                                style={{ color: 'var(--accent-1)', fontFamily: "'Inter', sans-serif" }}
+                                onMouseEnter={(e) => {
+                                  e.currentTarget.style.backgroundColor = isDark
+                                    ? 'rgba(255,255,255,0.06)'
+                                    : 'rgba(248,250,252,1)';
+                                }}
+                                onMouseLeave={(e) => {
+                                  e.currentTarget.style.backgroundColor = 'transparent';
+                                }}
+                              >
+                                View all services
+                                <ArrowRight size={14} />
+                              </Link>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              }
+
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className="relative px-4 py-2 text-[13px] font-medium tracking-tight transition-all rounded-full"
+                  style={{
+                    color: isActive(link.path)
+                      ? isDark ? '#FFFFFF' : '#0D1117'
+                      : isDark ? 'rgba(148,163,184,0.9)' : 'rgba(71,85,105,0.9)',
+                    backgroundColor: isActive(link.path)
+                      ? isDark ? 'rgba(255,255,255,0.1)' : 'rgba(241,245,249,1)'
+                      : 'transparent',
+                    fontFamily: "'Inter', sans-serif",
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isActive(link.path)) {
+                      e.currentTarget.style.backgroundColor = isDark
+                        ? 'rgba(255,255,255,0.05)'
+                        : 'rgba(248,250,252,1)';
+                      e.currentTarget.style.color = isDark ? '#FFFFFF' : '#0D1117';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isActive(link.path)) {
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                      e.currentTarget.style.color = isDark
+                        ? 'rgba(148,163,184,0.9)'
+                        : 'rgba(71,85,105,0.9)';
+                    }
+                  }}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </div>
 
           {/* ── Right side: theme toggle + divider + contact ───── */}
@@ -265,30 +423,100 @@ export default function Navbar() {
             }}
           >
             <div className="flex flex-col p-2">
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.path}
-                  initial={{ opacity: 0, x: -8 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.04, duration: 0.2 }}
-                >
-                  <Link
-                    to={link.path}
-                    className="flex items-center px-4 py-3 text-[14px] font-medium rounded-xl transition-colors duration-150"
-                    style={{
-                      fontFamily: "'Inter', sans-serif",
-                      color: isActive(link.path)
-                        ? 'var(--accent-1)'
-                        : isDark ? 'rgba(226,232,240,1)' : 'rgba(15,23,42,1)',
-                      backgroundColor: isActive(link.path)
-                        ? 'var(--accent-subtle)'
-                        : 'transparent',
-                    }}
+              {navLinks.map((link, i) => {
+                if (link.path === '/services') {
+                  return (
+                    <motion.div
+                      key={link.path}
+                      initial={{ opacity: 0, x: -8 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.04, duration: 0.2 }}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => setMobileServicesOpen((v) => !v)}
+                        className="w-full flex items-center justify-between px-4 py-3 text-[14px] font-medium rounded-xl transition-colors duration-150"
+                        style={{
+                          fontFamily: "'Inter', sans-serif",
+                          color: isServicesActive
+                            ? 'var(--accent-1)'
+                            : isDark ? 'rgba(226,232,240,1)' : 'rgba(15,23,42,1)',
+                          backgroundColor: isServicesActive ? 'var(--accent-subtle)' : 'transparent',
+                        }}
+                        aria-expanded={mobileServicesOpen}
+                      >
+                        {link.label}
+                        <ChevronDown
+                          size={16}
+                          style={{
+                            transition: 'transform 200ms ease',
+                            transform: mobileServicesOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                          }}
+                        />
+                      </button>
+                      <AnimatePresence>
+                        {mobileServicesOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.2, ease: 'easeInOut' }}
+                            style={{ overflow: 'hidden' }}
+                          >
+                            <div className="pl-3 pb-1 flex flex-col gap-0.5">
+                              {servicesMenu.map((item) => {
+                                const Icon = serviceIcons[item.icon] ?? Globe;
+                                return (
+                                  <Link
+                                    key={item.path}
+                                    to={item.path}
+                                    className="flex items-center gap-3 px-4 py-2.5 text-[13.5px] font-medium rounded-xl transition-colors duration-150"
+                                    style={{
+                                      fontFamily: "'Inter', sans-serif",
+                                      color: isActive(item.path)
+                                        ? 'var(--accent-1)'
+                                        : isDark ? 'rgba(203,213,225,1)' : 'rgba(51,65,85,1)',
+                                      backgroundColor: isActive(item.path) ? 'var(--accent-subtle)' : 'transparent',
+                                    }}
+                                  >
+                                    <Icon size={14} style={{ opacity: 0.7 }} />
+                                    {item.title}
+                                  </Link>
+                                );
+                              })}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  );
+                }
+
+                return (
+                  <motion.div
+                    key={link.path}
+                    initial={{ opacity: 0, x: -8 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.04, duration: 0.2 }}
                   >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
+                    <Link
+                      to={link.path}
+                      className="flex items-center px-4 py-3 text-[14px] font-medium rounded-xl transition-colors duration-150"
+                      style={{
+                        fontFamily: "'Inter', sans-serif",
+                        color: isActive(link.path)
+                          ? 'var(--accent-1)'
+                          : isDark ? 'rgba(226,232,240,1)' : 'rgba(15,23,42,1)',
+                        backgroundColor: isActive(link.path)
+                          ? 'var(--accent-subtle)'
+                          : 'transparent',
+                      }}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                );
+              })}
               <div
                 className="my-2 h-[1px] mx-4"
                 style={{
