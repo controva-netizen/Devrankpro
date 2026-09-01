@@ -103,7 +103,11 @@ export default function Footer() {
 
         <div className="mt-14 pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style={{ borderTop: '1px solid var(--border-subtle)' }}>
           <p className="text-xs" style={{ color: 'var(--text-muted)' }}>© 2025 Controva LLC. All rights reserved.</p>
-          <p className="text-xs" style={{ color: 'var(--text-muted)' }}>Built with obsessive attention to detail.</p>
+          <div className="flex items-center gap-3">
+            <p className="text-xs" style={{ color: 'var(--text-muted)' }}>Project by <strong style={{ color: 'var(--text-primary)' }}>The Luminus LLC</strong></p>
+            <span className="w-1 h-1 rounded-full opacity-50" style={{ backgroundColor: 'var(--text-muted)' }}></span>
+            <p className="text-xs" style={{ color: 'var(--text-muted)' }}>Built with obsessive attention to detail.</p>
+          </div>
         </div>
       </div>
     </footer>
