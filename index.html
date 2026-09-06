@@ -21,31 +21,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-    <!-- ── Primary SEO ──────────────────────────────────────── -->
+    <!-- ── Primary SEO ──────────────────────────────────────────────────
+         Per-page title, description, canonical, Open Graph and Twitter
+         tags are owned by the SEO component (react-helmet-async) and are
+         baked in at prerender time. Only site-wide static tags live here
+         so the served HTML has exactly one of each. -->
     <title>Controva LLC — Custom VoIP & AI Voice Infrastructure</title>
-    <meta name="description" content="Controva LLC engineers production-grade VoIP infrastructure and AI Voice Agents. Specializing in FreeSWITCH, Kamailio, SIP integrations, and low-latency voice AI." />
-    <meta name="keywords" content="VoIP infrastructure company, FreeSWITCH development, Voice AI agents, custom SIP architecture, Kamailio integration" />
-    <meta name="geo.region" content="US" />
-    <meta name="geo.placename" content="Worldwide" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="author" content="Controva LLC" />
-
-    <!-- ── Open Graph (Facebook, LinkedIn) ──────────────────── -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Controva LLC — Custom VoIP & AI Voice Infrastructure" />
-    <meta property="og:description" content="We engineer production-grade VoIP infrastructure and AI Voice Agents. Specializing in FreeSWITCH, Kamailio, SIP integrations, and low-latency voice AI." />
-    <meta property="og:image" content="https://www.controvallc.com/images/og-home.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content="Controva LLC" />
     <meta property="og:locale" content="en_US" />
-
-    <!-- ── Twitter / X Card ─────────────────────────────────── -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@controvallc" />
-    <meta name="twitter:title" content="Controva LLC — Custom VoIP & AI Voice Infrastructure" />
-    <meta name="twitter:description" content="We engineer production-grade VoIP infrastructure and AI Voice Agents. Specializing in FreeSWITCH, Kamailio, SIP integrations, and low-latency voice AI." />
-    <meta name="twitter:image" content="https://www.controvallc.com/images/og-home.jpg" />
 
     <!-- ── Sitemap & RSS references ─────────────────────────── -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />

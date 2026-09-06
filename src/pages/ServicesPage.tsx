@@ -347,9 +347,9 @@ export default function ServicesPage() {
   return (
     <main>
       <SEO 
-        title="VoIP Engineering Services | FreeSWITCH & Kamailio Integration"
-        description="We engineer custom VoIP networks, FreeSWITCH/Kamailio deployments, and Voice AI solutions. Scale your SIP infrastructure with sub-second latency."
-        keywords="FreeSWITCH Kamailio integration, SIP trunking service USA, Voice AI development, WebRTC solutions, custom VoIP architecture USA"
+        title="Enterprise VoIP Engineering & AI Voice Infrastructure | Controva LLC"
+        description="We engineer carrier-grade VoIP networks, Kamailio & FreeSWITCH deployments, BYOC migrations, and low-latency Voice AI solutions. Built for enterprise concurrency."
+        keywords="FreeSWITCH development, Kamailio, sip trunking, twilio alternative, custom VoIP architecture, open source pbx, voice ai agents, byoc voip"
         url="https://www.controvallc.com/services"
         schema={servicesSchema}
       />

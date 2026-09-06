@@ -23,7 +23,8 @@ export default function BlogPage() {
     <div className="pt-32 pb-24 min-h-[80vh]">
       <SEO 
         title="Insights & Engineering Blog | Controva LLC"
-        description="Read the latest technical guides, architecture deep-dives, and performance marketing strategies from the Controva engineering team."
+        description="In-depth technical guides on FreeSWITCH, Kamailio, SIP trunking, AI receptionist software, and low-latency voice AI architecture."
+        keywords="voice ai agents, ai receptionist software, FreeSWITCH development, Kamailio, sip trunking, twilio alternative, open source pbx, ai medical receptionist"
         url="https://www.controvallc.com/blog"
       />
       <div className="max-w-[1280px] mx-auto px-6">

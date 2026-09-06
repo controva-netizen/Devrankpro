@@ -44,8 +44,9 @@ export default function HomePage() {
     <main>
       <SEO 
         title="Controva LLC — Custom VoIP & AI Voice Infrastructure"
-        description="We engineer production-grade VoIP infrastructure and AI Voice Agents. Specializing in FreeSWITCH, Kamailio, SIP integrations, and low-latency voice AI."
-        keywords="VoIP infrastructure company USA, FreeSWITCH development, Voice AI agents, custom SIP architecture, Kamailio integration USA"
+        description="We engineer production-grade VoIP infrastructure and AI Voice Agents. Specializing in FreeSWITCH, Kamailio, SIP trunking, AI receptionist software, and low-latency voice AI."
+        keywords="voice ai agents, ai receptionist, ai receptionist software, ai medical receptionist, FreeSWITCH development, Kamailio, sip trunking, twilio alternative, custom VoIP architecture, open source pbx"
+        url="https://www.controvallc.com/"
         schema={faqSchema}
       />
       <HeroSection />

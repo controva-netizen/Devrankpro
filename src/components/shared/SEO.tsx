@@ -15,8 +15,8 @@ interface SEOProps {
 
 export default function SEO({
   title = 'Controva LLC — Custom VoIP & AI Voice Infrastructure',
-  description = 'Controva LLC engineers production-grade VoIP infrastructure and AI Voice Agents. Specializing in FreeSWITCH, Kamailio, SIP integrations, and low-latency voice AI.',
-  keywords = 'VoIP engineering, FreeSWITCH, Kamailio, AI Voice Agents, SIP trunking, telecom infrastructure, WebRTC, low-latency voice AI',
+  description = 'Controva LLC engineers production-grade VoIP infrastructure and AI Voice Agents. Specializing in FreeSWITCH, Kamailio, SIP trunking, AI receptionist software, and low-latency voice AI.',
+  keywords = 'voice ai agents, ai receptionist, ai receptionist software, ai medical receptionist, FreeSWITCH development, Kamailio, sip trunking, twilio alternative, custom VoIP architecture, open source pbx, sub-500ms voice ai',
   image = 'https://www.controvallc.com/images/og-home.jpg',
   url = 'https://www.controvallc.com/',
   type = 'website',
@@ -49,9 +49,11 @@ export default function SEO({
       itemListElement: [
         { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'FreeSWITCH & Kamailio Integration' } },
         { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Voice AI Agent Development' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Custom VoIP Architecture' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'SIP Trunking & Routing' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Low-Latency WebRTC Solutions' } }
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI Receptionist Software & Phone Bots' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'HIPAA Compliant Medical Voice AI' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Custom VoIP Architecture & BYOC Migration' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'SIP Trunking & High-Concurrency Routing' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Low-Latency WebRTC & Telephony Solutions' } }
       ]
     }
   };
@@ -66,7 +68,10 @@ export default function SEO({
       <meta name="description" content={description} />
       {keywords && <meta name="keywords" content={keywords} />}
       <link rel="canonical" href={url} />
-      {noindex && <meta name="robots" content="noindex, nofollow" />}
+      {noindex 
+        ? <meta name="robots" content="noindex, nofollow" />
+        : <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+      }
 
       {/* GEO Targeting (USA) */}
       <meta name="geo.region" content="US" />
