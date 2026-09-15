@@ -176,13 +176,6 @@ export const knowledgeBase: KnowledgeEntry[] = [
     title: 'Team: Waheeb Ullah — Director of Infrastructure',
     content: `Waheeb Ullah is the Director of Infrastructure at Controva LLC. He is a data-driven systems expert scaling client capacity through advanced deployment strategies and optimized network channels.`,
   },
-  {
-    id: 'team-armghan',
-    category: 'team',
-    keywords: ['armghan ahamd', 'armghan', 'creative director', 'design', 'creative'],
-    title: 'Team: Armghan Ahamd — Director of Voice UX',
-    content: `Armghan Ahamd is the Director of Voice UX at Controva LLC. He ensures every Voice AI project achieves stunning conversational flow, turn-taking accuracy, and outstanding user experience over phone lines.`,
-  },
 
   // ── PROCESS ───────────────────────────────────────────────
   {

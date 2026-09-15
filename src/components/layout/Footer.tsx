@@ -12,12 +12,12 @@ const footerLinks = {
   company: [
     { label: 'About', path: '/about' },
     { label: 'Case Studies', path: '/case-studies' },
-    { label: 'Blog', path: '#' },
+    { label: 'Blog', path: '/blog' },
     { label: 'Contact', path: '/contact' },
   ],
   legal: [
-    { label: 'Privacy Policy', path: '#' },
-    { label: 'Terms of Service', path: '#' },
+    { label: 'Privacy Policy', path: '/privacy' },
+    { label: 'Terms of Service', path: '/terms' },
   ],
 };
 

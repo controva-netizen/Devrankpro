@@ -1,6 +1,6 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Check } from 'lucide-react';
+import { Check, ArrowRight, Phone } from 'lucide-react';
 import { nicheServices } from '@/data/content';
 import SEO from '@/components/shared/SEO';
 import NotFoundPage from '@/pages/NotFoundPage';
@@ -55,9 +55,28 @@ export default function ServiceNichePage() {
             <h1 className="text-4xl md:text-6xl font-bold mb-6 font-display leading-tight" style={{ color: 'var(--text-primary)' }}>
               {service.title}
             </h1>
-            <p className="text-xl text-[var(--text-secondary)] mb-12 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-[var(--text-secondary)] mb-10 max-w-3xl mx-auto leading-relaxed">
               {service.description}
             </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                to="/contact"
+                className="px-8 py-4 rounded-xl font-semibold text-white transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
+                style={{ background: 'var(--accent-gradient)', boxShadow: '0 4px 20px var(--accent-glow)' }}
+              >
+                Schedule Technical Audit
+                <ArrowRight size={16} />
+              </Link>
+              <a
+                href="tel:+447763090208"
+                className="px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 border inline-flex items-center gap-2"
+                style={{ borderColor: 'var(--border-subtle)', color: 'var(--text-primary)', backgroundColor: 'var(--bg-secondary)' }}
+              >
+                <Phone size={16} style={{ color: 'var(--accent-1)' }} />
+                +44 7763 090208
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>

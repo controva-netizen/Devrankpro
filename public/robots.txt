@@ -2,8 +2,14 @@
 # Generated for AI search engines, Googlebot, and all crawlers
 # Following 2024/2025 latest SEO standards
 
-# ── Allow all major crawlers ──────────────────────────────
+# ── Allow all major crawlers & Google Ads bots ───────────
 User-agent: *
+Allow: /
+
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: AdsBot-Google-Mobile
 Allow: /
 
 # ── Block internal/utility paths ─────────────────────────

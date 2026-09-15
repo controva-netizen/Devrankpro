@@ -97,6 +97,20 @@
     <priority>0.7</priority>
   </url>
 
+  <url>
+    <loc>https://www.controvallc.com/privacy</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://www.controvallc.com/terms</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
   <!-- ── Blog Posts ───────────────────────────────────── -->
 
   <url>

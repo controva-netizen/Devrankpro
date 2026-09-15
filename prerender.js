@@ -42,6 +42,8 @@ const routes = [
   '/about',
   '/case-studies',
   '/contact',
+  '/privacy',
+  '/terms',
   '/blog',
   ...blogSlugs.map((slug) => `/blog/${slug}`),
 ];

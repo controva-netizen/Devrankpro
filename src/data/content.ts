@@ -384,12 +384,6 @@ export const teamMembers: TeamMember[] = [
     bio: 'Data-driven growth expert scaling Controva LLC’s client success through advanced marketing strategies and optimized revenue channels.',
     avatar: '/images/Waheeb ullah.png',
   },
-  {
-    name: 'Armghan Ahamd',
-    title: 'Creative Director',
-    bio: 'Award-winning creative mastermind ensuring every Controva LLC project achieves stunning visual excellence and outstanding user experience.',
-    avatar: '/images/Armaghan.png',
-  },
 ];
 
 export interface NicheService {

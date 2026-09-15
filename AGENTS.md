@@ -282,7 +282,7 @@ There is **no test suite** currently configured in this project. The `package.js
 - **Admin password is hardcoded** (`controva2026` in `BlogAdminPage.tsx`). This is a simple client-side gate, not a true security boundary. Do not store sensitive data behind it.
 - **Supabase anon key is exposed** in the client bundle (standard for Supabase client-side apps). Row Level Security (RLS) should be enabled on Supabase tables to prevent unauthorized data access.
 - **No CSP headers** are configured in the build output. If deploying to a platform that supports custom headers, consider adding a Content-Security-Policy.
-- **Contact form** is currently a mock (`alert()` on submit). It does not send data anywhere. If wiring it up, use a backend endpoint or a form service (e.g., Formspree, Getform).
+- **Contact form** delivers directly to `support@controvallc.com` using a multi-provider fallback pipeline (`src/lib/contact-service.ts`): Hostinger Apache native PHP mailer (`public/api/contact.php`), FormSubmit AJAX, and optional Web3Forms.
 
 ---
 
