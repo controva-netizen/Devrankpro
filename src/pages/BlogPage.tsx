@@ -29,9 +29,10 @@ export default function BlogPage() {
       />
       <div className="max-w-[1280px] mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <SectionHeader 
-            label="INSIGHTS & ENGINEERING" 
-            headline="The Controva Blog" 
+          <SectionHeader
+            label="INSIGHTS & ENGINEERING"
+            headline="The Controva Blog"
+            as="h1"
           />
           <a 
             href="/rss.xml"

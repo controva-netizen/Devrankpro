@@ -7,6 +7,7 @@ import Footer from '@/components/layout/Footer';
 import ThemeCustomizer from '@/components/layout/ThemeCustomizer';
 import CornerGlow from '@/components/layout/CornerGlow';
 import AIChatbot from '@/components/layout/AIChatbot';
+import CookieConsent from '@/components/layout/CookieConsent';
 import HomePage from '@/pages/HomePage';
 import AiReceptionistPage from '@/pages/AiReceptionistPage';
 import ServicesPage from '@/pages/ServicesPage';
@@ -84,6 +85,7 @@ export default function App() {
             <Footer />
             <AIChatbot />
             <ThemeCustomizer />
+            <CookieConsent />
           </div>
         </BlogProvider>
       </ThemeProvider>

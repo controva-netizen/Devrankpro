@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 import { serviceCategories, detailedServices, pricingTiers } from '@/data/content';
 import ServiceCategorySection from '@/components/sections/services/ServiceCategorySection';
 import SEO from '@/components/shared/SEO';
+import FAQSection from '@/components/shared/FAQSection';
+import { servicesFaqs, buildFaqPageSchema } from '@/data/faq';
 
 function ServicesHero() {
   return (
@@ -320,27 +322,7 @@ export default function ServicesPage() {
           { '@type': 'ListItem', position: 4, item: { '@type': 'Service', name: 'WebRTC & App Integration' } }
         ]
       },
-      {
-        '@type': 'FAQPage',
-        mainEntity: [
-          {
-            '@type': 'Question',
-            name: 'Do you provide FreeSWITCH development services in the USA?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'Yes, Controva LLC provides comprehensive FreeSWITCH development and custom SIP architecture services for enterprises and call centers operating across the USA. We specialize in high-availability clustering and WebRTC integration.'
-            }
-          },
-          {
-            '@type': 'Question',
-            name: 'How much does it cost to build a custom VoIP network?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'Custom VoIP architectures vary depending on scale. Standard deployments start with our Growth tier, while high-volume carrier-grade setups require custom engineering. By owning the infrastructure, USA businesses save substantially on per-minute SaaS fees.'
-            }
-          }
-        ]
-      }
+      buildFaqPageSchema(servicesFaqs)
     ]
   };
 
@@ -349,7 +331,7 @@ export default function ServicesPage() {
       <SEO 
         title="Enterprise VoIP Engineering & AI Voice Infrastructure | Controva LLC"
         description="We engineer carrier-grade VoIP networks, Kamailio & FreeSWITCH deployments, BYOC migrations, and low-latency Voice AI solutions. Built for enterprise concurrency."
-        keywords="FreeSWITCH development, Kamailio, sip trunking, twilio alternative, custom VoIP architecture, open source pbx, voice ai agents, byoc voip"
+        keywords="enterprise VoIP engineering, SIP load balancer, carrier-grade telephony, BYOC migration, high-concurrency call routing, WebRTC integration, voice AI agents"
         url="https://www.controvallc.com/services"
         schema={servicesSchema}
       />
@@ -374,6 +356,7 @@ export default function ServicesPage() {
       </section>
 
       <PricingSection />
+      <FAQSection faqs={servicesFaqs} />
     </main>
   );
 }

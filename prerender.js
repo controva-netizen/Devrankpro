@@ -102,6 +102,11 @@ const server = app.listen(PORT, async () => {
         '--disable-dev-shm-usage',
         '--disable-gpu',
         '--no-first-run',
+        // Extra flags needed to launch Chrome on minimal/constrained Linux
+        // containers (shared hosting, small CI runners) that are missing
+        // some of the shared libraries a full desktop Chrome expects.
+        '--single-process',
+        '--no-zygote',
       ],
     });
 
@@ -182,14 +187,15 @@ const server = app.listen(PORT, async () => {
     if (ok === 0) console.warn('   [warn] no routes prerendered — shipping client-rendered build.');
     process.exit(0);
   } catch (err) {
-    console.warn(`\n⚠️  Prerender skipped — headless browser unavailable: ${err.message}`);
-    console.warn('   Shipping client-rendered build (no prerendered HTML this deploy).\n');
+    console.error(`\n✗ Prerender FAILED — headless browser unavailable: ${err.stack || err.message}`);
+    console.error('   Shipping client-rendered build (no prerendered HTML this deploy).');
+    console.error('   `npm run verify:prerender` will catch this and fail the build.\n');
     try {
       if (browser) await browser.close();
     } catch {
       /* ignore */
     }
     server.close();
-    process.exit(0); // non-fatal: do not break the deploy
+    process.exit(0); // still non-fatal here; scripts/verify-prerender.mjs is the fail-loud gate
   }
 });

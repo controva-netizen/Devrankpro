@@ -200,12 +200,7 @@ export default function AiReceptionistPage() {
       price: 'Contact for Pricing',
       priceCurrency: 'USD'
     },
-    description: 'Advanced AI voice receptionist software for handling inbound calls, scheduling appointments, and routing for medical practices and businesses.',
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      ratingCount: '124'
-    }
+    description: 'Advanced AI voice receptionist software for handling inbound calls, scheduling appointments, and routing for medical practices and businesses.'
   };
 
   return (

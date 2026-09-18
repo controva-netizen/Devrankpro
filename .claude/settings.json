@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//tmp/**)",
+      "mcp__claude_ai_Semrush__backlinks_research",
+      "mcp__claude_ai_Semrush__domain_overview",
+      "mcp__claude_ai_Semrush__organic_research",
+      "mcp__claude_ai_Semrush__site_audit",
+      "mcp__claude_ai_Semrush__get_report_schema",
+      "mcp__claude_ai_Semrush__execute_report",
+      "Bash(curl -s -o /dev/null -w \"llms.txt: HTTP %{http_code}\\\\n\" \"https://www.controvallc.com/llms.txt\")",
+      "Bash(curl -s \"https://www.controvallc.com/llms.txt\")",
+      "Bash(node -e ' *)"
+    ]
+  }
+}

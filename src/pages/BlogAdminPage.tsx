@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Pencil, Trash2, Eye, LogOut, Clock, X, Check, AlertTriangle, Loader2 } from 'lucide-react';
 import { useBlog } from '@/context/BlogContext';
 import { useTheme } from '@/context/ThemeContext';
+import SEO from '@/components/shared/SEO';
 import type { BlogPost } from '@/data/blog';
 
 /* ── Password Gate ───────────────────────────────────────── */
@@ -381,10 +382,16 @@ export default function BlogAdminPage() {
     navigate('/blog');
   };
 
-  if (!authed) return <LoginGate onLogin={handleLogin} />;
+  if (!authed) return (
+    <>
+      <SEO title="Admin | Controva LLC" noindex />
+      <LoginGate onLogin={handleLogin} />
+    </>
+  );
 
   return (
     <div className="min-h-screen pt-28 pb-24" style={{ backgroundColor: 'var(--bg-primary)' }}>
+      <SEO title="Admin | Controva LLC" noindex />
       <div className="max-w-[1100px] mx-auto px-6">
 
         {/* ── Header ── */}

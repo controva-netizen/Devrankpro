@@ -1,5 +1,41 @@
 import { Helmet } from 'react-helmet-async';
 
+// Exported (without '@context') so pages can compose it into their own
+// '@graph' alongside page-specific schema (e.g. FAQPage) without losing the
+// organization/service-catalog markup that the default alone would provide.
+export const professionalServiceEntity = {
+  '@type': 'ProfessionalService',
+  name: 'Controva LLC',
+  url: 'https://www.controvallc.com',
+  logo: 'https://www.controvallc.com/favicon.svg',
+  description: 'Controva LLC engineers production-grade VoIP infrastructure and AI Voice Agents. Specializing in FreeSWITCH, Kamailio, SIP integrations, and low-latency voice AI.',
+  telephone: '+447763090208',
+  areaServed: 'Worldwide',
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'US'
+  },
+  sameAs: [
+    'https://linkedin.com/company/controvallc',
+    'https://x.com/controvallc',
+    'https://instagram.com/controvallc',
+    'https://github.com/controva-netizen'
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Custom VoIP and Voice AI Engineering Services',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'FreeSWITCH & Kamailio Integration' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Voice AI Agent Development' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI Receptionist Software & Phone Bots' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'HIPAA Compliant Medical Voice AI' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Custom VoIP Architecture & BYOC Migration' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'SIP Trunking & High-Concurrency Routing' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Low-Latency WebRTC & Telephony Solutions' } }
+    ]
+  }
+};
+
 interface SEOProps {
   title?: string;
   description?: string;
@@ -18,47 +54,12 @@ export default function SEO({
   description = 'Controva LLC engineers production-grade VoIP infrastructure and AI Voice Agents. Specializing in FreeSWITCH, Kamailio, SIP trunking, AI receptionist software, and low-latency voice AI.',
   keywords = 'voice ai agents, ai receptionist, ai receptionist software, ai medical receptionist, FreeSWITCH development, Kamailio, sip trunking, twilio alternative, custom VoIP architecture, open source pbx, sub-500ms voice ai',
   image = 'https://www.controvallc.com/images/og-home.jpg',
-  url = 'https://www.controvallc.com/',
+  url = 'https://www.controvallc.com',
   type = 'website',
   noindex = false,
   schema,
 }: SEOProps) {
-  // Base Schema (ProfessionalService is perfect for Agencies and supports Services natively)
-  const defaultSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'ProfessionalService',
-    name: 'Controva LLC',
-    url: 'https://www.controvallc.com',
-    logo: 'https://www.controvallc.com/favicon.svg',
-    description: 'Controva LLC engineers production-grade VoIP infrastructure and AI Voice Agents. Specializing in FreeSWITCH, Kamailio, SIP integrations, and low-latency voice AI.',
-    telephone: '+447763090208',
-    areaServed: 'Worldwide',
-    address: {
-      '@type': 'PostalAddress',
-      addressCountry: 'US'
-    },
-    sameAs: [
-      'https://linkedin.com/company/controvallc',
-      'https://x.com/controvallc',
-      'https://instagram.com/controvallc',
-      'https://github.com/controva-netizen'
-    ],
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'Custom VoIP and Voice AI Engineering Services',
-      itemListElement: [
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'FreeSWITCH & Kamailio Integration' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Voice AI Agent Development' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI Receptionist Software & Phone Bots' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'HIPAA Compliant Medical Voice AI' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Custom VoIP Architecture & BYOC Migration' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'SIP Trunking & High-Concurrency Routing' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Low-Latency WebRTC & Telephony Solutions' } }
-      ]
-    }
-  };
-
-  const finalSchema = schema || defaultSchema;
+  const finalSchema = schema || { '@context': 'https://schema.org', ...professionalServiceEntity };
 
   return (
     <Helmet>

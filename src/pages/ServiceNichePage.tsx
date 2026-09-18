@@ -5,6 +5,7 @@ import { nicheServices } from '@/data/content';
 import SEO from '@/components/shared/SEO';
 import NotFoundPage from '@/pages/NotFoundPage';
 import FinalCTASection from '@/components/sections/home/FinalCTASection';
+import Breadcrumbs, { buildBreadcrumbSchema } from '@/components/shared/Breadcrumbs';
 
 export default function ServiceNichePage() {
   const { niche } = useParams<{ niche: string }>();
@@ -14,30 +15,42 @@ export default function ServiceNichePage() {
     return <NotFoundPage />;
   }
 
+  const breadcrumbItems = [
+    { label: 'Home', path: '/' },
+    { label: 'Services', path: '/services' },
+    { label: service.title },
+  ];
+
   const nicheSchema = {
     '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: service.title,
-    description: service.description,
-    provider: {
-      '@type': 'Organization',
-      name: 'Controva LLC'
-    },
-    areaServed: 'US'
+    '@graph': [
+      {
+        '@type': 'Service',
+        name: service.title,
+        description: service.description,
+        provider: {
+          '@type': 'Organization',
+          name: 'Controva LLC'
+        },
+        areaServed: 'US'
+      },
+      buildBreadcrumbSchema(breadcrumbItems),
+    ],
   };
 
   return (
     <main>
-      <SEO 
+      <SEO
         title={`${service.title} | Controva LLC`}
         description={service.description}
         keywords={service.keywords}
         url={`https://www.controvallc.com/services/${service.slug}`}
         schema={nicheSchema}
       />
-      
+      <Breadcrumbs items={breadcrumbItems} className="pt-24" />
+
       {/* Niche Hero */}
-      <section className="relative pt-40 pb-20 overflow-hidden" style={{ backgroundColor: 'var(--bg-primary)' }}>
+      <section className="relative pt-8 pb-20 overflow-hidden" style={{ backgroundColor: 'var(--bg-primary)' }}>
         <div className="absolute inset-0 z-0">
           <div className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full blur-[120px] opacity-20 pointer-events-none" style={{ background: 'var(--accent-1)' }} />
           <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full blur-[100px] opacity-10 pointer-events-none" style={{ background: 'var(--accent-2)' }} />

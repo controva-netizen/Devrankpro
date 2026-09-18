@@ -10,7 +10,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "prerender": "node prerender.js",
-    "build:full": "npm run build && npm run prerender",
+    "verify:prerender": "node scripts/verify-prerender.mjs",
+    "generate:rss": "node scripts/generate-rss.mjs",
+    "build:full": "npm run build && npm run prerender && npm run verify:prerender",
     "index-urls": "tsx scripts/submit-urls.ts"
   },
   "dependencies": {

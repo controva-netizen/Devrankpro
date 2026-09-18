@@ -4,9 +4,13 @@ interface SectionHeaderProps {
   label: string;
   headline: string;
   centered?: boolean;
+  /* Heading level for `headline` — defaults to h2 since most sections sit
+     below a page's own <h1>. Pass "h1" for a page whose only heading lives
+     inside this component (e.g. BlogPage). */
+  as?: 'h1' | 'h2';
 }
 
-export default function SectionHeader({ label, headline, centered = true }: SectionHeaderProps) {
+export default function SectionHeader({ label, headline, centered = true, as: Heading = 'h2' }: SectionHeaderProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -21,9 +25,9 @@ export default function SectionHeader({ label, headline, centered = true }: Sect
       >
         {label}
       </p>
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold" style={{ color: 'var(--text-primary)' }}>
+      <Heading className="text-3xl md:text-4xl lg:text-5xl font-bold" style={{ color: 'var(--text-primary)' }}>
         {headline}
-      </h2>
+      </Heading>
     </motion.div>
   );
 }

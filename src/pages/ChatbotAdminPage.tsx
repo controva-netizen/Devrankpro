@@ -128,7 +128,7 @@ export default function ChatbotAdminPage() {
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen flex items-center justify-center px-4" style={{ backgroundColor: 'var(--bg-primary)' }}>
-        <SEO title="AI Chatbot Admin | Controva LLC" />
+        <SEO title="AI Chatbot Admin | Controva LLC" noindex />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -190,7 +190,7 @@ export default function ChatbotAdminPage() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
-      <SEO title="AI Chatbot Admin | Controva LLC" />
+      <SEO title="AI Chatbot Admin | Controva LLC" noindex />
 
       {/* Header */}
       <div

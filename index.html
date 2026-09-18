@@ -8,6 +8,18 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
+      // Consent Mode v2 — default to denied until the visitor accepts the
+      // cookie banner (src/components/layout/CookieConsent.tsx). Required by
+      // Google for EEA/UK/CH traffic when running Google Ads; must be set
+      // before the gtag('config', ...) call below.
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        wait_for_update: 500,
+      });
+
       gtag('config', 'G-X2G6TCB5E4');
     </script>
     <meta charset="UTF-8" />

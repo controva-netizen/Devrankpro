@@ -1,0 +1,32 @@
+# Controva LLC
+
+> Controva LLC is an engineering-driven VoIP and AI Voice Infrastructure company. We build production-grade telephony systems (FreeSWITCH, Kamailio, SIP trunking, WebRTC) and AI Voice Agents / AI receptionist software for businesses that need reliable, low-latency, self-owned communication infrastructure instead of per-minute SaaS platforms.
+
+## Company facts
+
+- Legal name: Controva LLC
+- Website: https://www.controvallc.com
+- Contact: support@controvallc.com
+- Areas served: Worldwide (remote), primary base in the United States
+- Core expertise: FreeSWITCH & Kamailio development, custom SIP/VoIP architecture, BYOC (Bring Your Own Carrier) migration, SIP trunking and high-concurrency call routing, WebRTC and telephony app integration, AI Voice Agents, and AI receptionist software (including HIPAA-compliant configurations for medical practices).
+
+## Services
+
+- [Services overview](https://www.controvallc.com/services): Enterprise VoIP engineering, FreeSWITCH & Kamailio integration, voice AI agents, WebRTC & app integration, and BYOC migration.
+- [AI Receptionist Software](https://www.controvallc.com/services/ai-receptionist): 24/7 AI voice receptionist for inbound call handling, scheduling, and lead capture, including AI medical receptionist configurations.
+
+## Company
+
+- [About](https://www.controvallc.com/about): Mission, engineering values, and team.
+- [Case Studies](https://www.controvallc.com/case-studies): Client engagements and measurable outcomes.
+- [Contact](https://www.controvallc.com/contact): Project inquiries and support.
+
+## Resources
+
+- [Blog](https://www.controvallc.com/blog): Engineering articles on VoIP architecture, AI voice infrastructure, SIP/telephony, and related topics.
+- [Sitemap](https://www.controvallc.com/sitemap.xml)
+
+## Policies
+
+- [Privacy Policy](https://www.controvallc.com/privacy)
+- [Terms of Service](https://www.controvallc.com/terms)

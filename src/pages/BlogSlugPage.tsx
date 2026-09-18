@@ -7,6 +7,7 @@ import { useBlog } from '@/context/BlogContext';
 import BlogDiscussionSection from '@/components/sections/blog/BlogDiscussionSection';
 import NotFoundPage from '@/pages/NotFoundPage';
 import SEO from '@/components/shared/SEO';
+import Breadcrumbs, { buildBreadcrumbSchema } from '@/components/shared/Breadcrumbs';
 
 export default function BlogSlugPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -22,37 +23,48 @@ export default function BlogSlugPage() {
     return <NotFoundPage />;
   }
 
+  const breadcrumbItems = [
+    { label: 'Home', path: '/' },
+    { label: 'Blog', path: '/blog' },
+    { label: post.title },
+  ];
+
   const articleSchema = {
     '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `https://www.controvallc.com/blog/${post.slug}`
-    },
-    headline: post.title,
-    description: post.excerpt,
-    image: post.image ? [post.image] : [],
-    datePublished: post.date,
-    dateModified: post.date,
-    author: {
-      '@type': 'Person',
-      name: post.author,
-      url: 'https://www.controvallc.com'
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Controva LLC',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://www.controvallc.com/favicon.svg'
-      }
-    },
-    keywords: post.category
+    '@graph': [
+      {
+        '@type': 'BlogPosting',
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': `https://www.controvallc.com/blog/${post.slug}`
+        },
+        headline: post.title,
+        description: post.excerpt,
+        image: post.image ? [post.image] : [],
+        datePublished: post.date,
+        dateModified: post.date,
+        author: {
+          '@type': 'Person',
+          name: post.author,
+          url: 'https://www.controvallc.com'
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'Controva LLC',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://www.controvallc.com/favicon.svg'
+          }
+        },
+        keywords: post.category
+      },
+      buildBreadcrumbSchema(breadcrumbItems),
+    ],
   };
 
   return (
     <article className="pt-32 pb-24 min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
-      <SEO 
+      <SEO
         title={`${post.title} | Controva Blog`}
         description={post.excerpt}
         image={post.image || undefined}
@@ -60,6 +72,7 @@ export default function BlogSlugPage() {
         url={`https://www.controvallc.com/blog/${post.slug}`}
         schema={articleSchema}
       />
+      <Breadcrumbs items={breadcrumbItems} className="mb-6" />
       {/* ── Hero Header ── */}
       <div className="max-w-[1280px] mx-auto px-6 mb-12">
         <Link 
