@@ -5,15 +5,186 @@
     <link>https://www.controvallc.com/blog</link>
     <description>Engineering-driven insights on VoIP Architecture, FreeSWITCH, Kamailio, and AI Voice Automation.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 17 Sep 2026 00:23:32 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 21 Sep 2026 00:35:07 GMT</lastBuildDate>
     <atom:link href="https://www.controvallc.com/rss.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+      <title>The Future of Voice AI: What's Next After the AI Receptionist</title>
+      <link>https://www.controvallc.com/blog/future-of-voice-ai-2027-outlook</link>
+      <guid>https://www.controvallc.com/blog/future-of-voice-ai-2027-outlook</guid>
+      <pubDate>Mon, 21 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Where voice AI infrastructure is heading beyond basic call answering — proactive outbound intelligence, agentic workflows, and deeper system autonomy.</description>
+      <category>Voice AI</category>
+    </item>
+
+    <item>
+      <title>Zoom Phone, RingCentral, and Vonage: How Custom VoIP Compares for Enterprise</title>
+      <link>https://www.controvallc.com/blog/ringcentral-vonage-vs-custom-voip</link>
+      <guid>https://www.controvallc.com/blog/ringcentral-vonage-vs-custom-voip</guid>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 GMT</pubDate>
+      <description>A practical comparison of major UCaaS platforms against a custom-built VoIP architecture for enterprises with complex requirements.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>Text-to-Speech Latency Optimization: Streaming TTS for Natural Conversations</title>
+      <link>https://www.controvallc.com/blog/tts-latency-optimization-streaming</link>
+      <guid>https://www.controvallc.com/blog/tts-latency-optimization-streaming</guid>
+      <pubDate>Sat, 19 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Why waiting for a full TTS render before playback kills conversational flow, and how streaming synthesis gets voice AI agents to first-audio in milliseconds.</description>
+      <category>Voice AI</category>
+    </item>
+
+    <item>
+      <title>AI Receptionist ROI Calculator: What Are Missed Calls Actually Costing You?</title>
+      <link>https://www.controvallc.com/blog/ai-receptionist-roi-missed-calls-cost</link>
+      <guid>https://www.controvallc.com/blog/ai-receptionist-roi-missed-calls-cost</guid>
+      <pubDate>Fri, 18 Sep 2026 00:00:00 GMT</pubDate>
+      <description>A framework for calculating the true cost of missed calls, and the ROI math businesses should run before and after deploying an AI receptionist.</description>
+      <category>Industry Solutions</category>
+    </item>
+
+    <item>
+      <title>High-Concurrency SIP Trunking: Load Testing Your Infrastructure Before It Breaks</title>
+      <link>https://www.controvallc.com/blog/sip-trunking-load-testing-concurrency</link>
+      <guid>https://www.controvallc.com/blog/sip-trunking-load-testing-concurrency</guid>
+      <pubDate>Thu, 17 Sep 2026 00:00:00 GMT</pubDate>
+      <description>How to properly load test SIP trunking infrastructure to find the real breaking point before a traffic spike finds it for you.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>Designing IVR Flows That Don't Frustrate Callers: A UX Engineering Guide</title>
+      <link>https://www.controvallc.com/blog/ivr-design-patterns-caller-experience</link>
+      <guid>https://www.controvallc.com/blog/ivr-design-patterns-caller-experience</guid>
+      <pubDate>Wed, 16 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Most IVR menus are designed around internal org charts, not caller intent. Here is how to design call flows that actually get people where they need to go.</description>
+      <category>Voice AI</category>
+    </item>
+
+    <item>
+      <title>AI Voice Agents for Logistics: Automating Dispatch and Delivery Status Calls</title>
+      <link>https://www.controvallc.com/blog/ai-voice-agents-logistics-dispatch</link>
+      <guid>https://www.controvallc.com/blog/ai-voice-agents-logistics-dispatch</guid>
+      <pubDate>Tue, 15 Sep 2026 00:00:00 GMT</pubDate>
+      <description>How logistics and delivery companies use AI voice agents to handle driver dispatch calls, delivery status inquiries, and reschedule requests at scale.</description>
+      <category>Industry Solutions</category>
+    </item>
+
+    <item>
+      <title>The Economics of BYOC: Why Enterprises Are Bringing Their Own Carrier</title>
+      <link>https://www.controvallc.com/blog/byoc-economics-enterprise-carrier</link>
+      <guid>https://www.controvallc.com/blog/byoc-economics-enterprise-carrier</guid>
+      <pubDate>Mon, 14 Sep 2026 00:00:00 GMT</pubDate>
+      <description>BYOC decouples the platform from the carrier relationship. Here is the actual cost and control logic behind why enterprises are adopting it.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>Legacy PBX to Cloud Migration: A Zero-Downtime Playbook</title>
+      <link>https://www.controvallc.com/blog/pbx-to-cloud-migration-zero-downtime</link>
+      <guid>https://www.controvallc.com/blog/pbx-to-cloud-migration-zero-downtime</guid>
+      <pubDate>Sun, 13 Sep 2026 00:00:00 GMT</pubDate>
+      <description>A practical migration sequence for moving off a legacy on-premise PBX to a cloud VoIP platform without a disruptive cutover weekend.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>WebRTC Screen Sharing for Support Teams: Building Co-Browsing Into Your App</title>
+      <link>https://www.controvallc.com/blog/webrtc-screen-sharing-support-teams</link>
+      <guid>https://www.controvallc.com/blog/webrtc-screen-sharing-support-teams</guid>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 GMT</pubDate>
+      <description>How to add live screen sharing and co-browsing to a support workflow using WebRTC, and where it delivers the biggest resolution-time wins.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>Financial Services VoIP: Meeting FINRA and SEC Call Recording Requirements</title>
+      <link>https://www.controvallc.com/blog/financial-services-voip-finra-sec-compliance</link>
+      <guid>https://www.controvallc.com/blog/financial-services-voip-finra-sec-compliance</guid>
+      <pubDate>Fri, 11 Sep 2026 00:00:00 GMT</pubDate>
+      <description>What broker-dealers and financial services firms need in their VoIP infrastructure to meet FINRA Rule 3110 and SEC recordkeeping requirements.</description>
+      <category>Telecom Compliance</category>
+    </item>
+
+    <item>
+      <title>HubSpot + AI Receptionist: Automating Lead Capture from Every Missed Call</title>
+      <link>https://www.controvallc.com/blog/hubspot-ai-receptionist-lead-capture</link>
+      <guid>https://www.controvallc.com/blog/hubspot-ai-receptionist-lead-capture</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+      <description>How to wire an AI receptionist directly into HubSpot so every inbound call becomes a tracked, enriched lead automatically.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>Multi-Language Voice AI: Architecting Real-Time Translation for Phone Support</title>
+      <link>https://www.controvallc.com/blog/multi-language-voice-ai-translation</link>
+      <guid>https://www.controvallc.com/blog/multi-language-voice-ai-translation</guid>
+      <pubDate>Wed, 09 Sep 2026 00:00:00 GMT</pubDate>
+      <description>The technical approach behind voice AI agents that can converse fluently in multiple languages, and where real-time translation pipelines still struggle.</description>
+      <category>Voice AI</category>
+    </item>
+
+    <item>
+      <title>Salesforce + VoIP Integration: Building a Click-to-Call CRM Workflow</title>
+      <link>https://www.controvallc.com/blog/salesforce-voip-integration-click-to-call</link>
+      <guid>https://www.controvallc.com/blog/salesforce-voip-integration-click-to-call</guid>
+      <pubDate>Tue, 08 Sep 2026 00:00:00 GMT</pubDate>
+      <description>How to architect a Salesforce-integrated VoIP system that logs every call automatically and gives sales teams click-to-call without leaving the CRM.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>AI Voice Agents for Restaurants: Handling Reservations and Orders 24/7</title>
+      <link>https://www.controvallc.com/blog/ai-voice-agents-restaurants-reservations</link>
+      <guid>https://www.controvallc.com/blog/ai-voice-agents-restaurants-reservations</guid>
+      <pubDate>Sun, 06 Sep 2026 00:00:00 GMT</pubDate>
+      <description>How restaurants use AI voice agents to take reservations, phone orders, and answer common questions without pulling staff off the floor.</description>
+      <category>Industry Solutions</category>
+    </item>
+
+    <item>
+      <title>RTP and SRTP Explained: Securing Real-Time Voice Traffic</title>
+      <link>https://www.controvallc.com/blog/rtp-srtp-voice-encryption-explained</link>
+      <guid>https://www.controvallc.com/blog/rtp-srtp-voice-encryption-explained</guid>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 GMT</pubDate>
+      <description>How RTP carries voice media across a VoIP call, why unencrypted RTP is a real eavesdropping risk, and what SRTP changes.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>Function Calling for Phone Agents: How LLMs Actually Book Appointments</title>
+      <link>https://www.controvallc.com/blog/llm-function-calling-phone-agents</link>
+      <guid>https://www.controvallc.com/blog/llm-function-calling-phone-agents</guid>
+      <pubDate>Thu, 03 Sep 2026 00:00:00 GMT</pubDate>
+      <description>The technical mechanism that lets a voice AI agent check a real calendar and book a real appointment mid-conversation, explained.</description>
+      <category>Voice AI</category>
+    </item>
+
+    <item>
+      <title>Call Recording Compliance: A State-by-State Guide for VoIP Businesses</title>
+      <link>https://www.controvallc.com/blog/call-recording-compliance-state-guide</link>
+      <guid>https://www.controvallc.com/blog/call-recording-compliance-state-guide</guid>
+      <pubDate>Wed, 02 Sep 2026 00:00:00 GMT</pubDate>
+      <description>One-party versus two-party consent laws vary significantly by state. Here is what VoIP businesses need to know before recording any call.</description>
+      <category>Telecom Compliance</category>
+    </item>
 
     <item>
       <title>Asterisk vs FreeSWITCH for AI Telephony: Why Modern Voice Infrastructure Requires Event-Driven Architecture</title>
       <link>https://www.controvallc.com/blog/migrating-asterisk-to-freeswitch-concurrency</link>
       <guid>https://www.controvallc.com/blog/migrating-asterisk-to-freeswitch-concurrency</guid>
-      <pubDate>Mon, 31 Aug 2026 19:00:00 GMT</pubDate>
+      <pubDate>Tue, 01 Sep 2026 00:00:00 GMT</pubDate>
       <description>A technical post-mortem on why Asterisk channel locking breaks under heavy concurrent voice AI streaming, and why FreeSWITCH ESL and modular cores are the modern standard.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>Disaster Recovery for VoIP: Designing Failover That Actually Works</title>
+      <link>https://www.controvallc.com/blog/voip-disaster-recovery-failover-design</link>
+      <guid>https://www.controvallc.com/blog/voip-disaster-recovery-failover-design</guid>
+      <pubDate>Mon, 31 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Most VoIP failover plans have never actually been tested. Here is how to design and validate disaster recovery that holds up during a real outage.</description>
       <category>VoIP Engineering</category>
     </item>
 
@@ -21,7 +192,7 @@
       <title>The Complete Guide to HIPAA-Compliant Voice AI: Securing Autonomous Phone Agents for Clinics</title>
       <link>https://www.controvallc.com/blog/hipaa-compliant-voice-ai-guide</link>
       <guid>https://www.controvallc.com/blog/hipaa-compliant-voice-ai-guide</guid>
-      <pubDate>Sat, 29 Aug 2026 19:00:00 GMT</pubDate>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 GMT</pubDate>
       <description>A comprehensive blueprint for healthcare leaders to deploy AI medical receptionists and answering services with end-to-end SRTP encryption, BAA compliance, and EHR integration.</description>
       <category>Healthcare &amp; Compliance</category>
     </item>
@@ -30,61 +201,169 @@
       <title>The CPaaS Margin Trap: Building a Twilio Alternative with Custom SIP &amp; BYOC</title>
       <link>https://www.controvallc.com/blog/cpaas-margin-trap-byoc-sip-savings</link>
       <guid>https://www.controvallc.com/blog/cpaas-margin-trap-byoc-sip-savings</guid>
-      <pubDate>Fri, 28 Aug 2026 19:00:00 GMT</pubDate>
+      <pubDate>Sat, 29 Aug 2026 00:00:00 GMT</pubDate>
       <description>How enterprise contact centers are slashing telephony bills by 80% by migrating from proprietary CPaaS platforms to custom open-source SIP proxies and wholesale carrier routing.</description>
       <category>Infrastructure &amp; ROI</category>
+    </item>
+
+    <item>
+      <title>AI Receptionists for E-Commerce: Automating Order Status and Returns by Phone</title>
+      <link>https://www.controvallc.com/blog/ai-receptionist-ecommerce-order-support</link>
+      <guid>https://www.controvallc.com/blog/ai-receptionist-ecommerce-order-support</guid>
+      <pubDate>Sat, 29 Aug 2026 00:00:00 GMT</pubDate>
+      <description>How e-commerce and DTC brands use AI voice agents to handle order status, returns, and shipping questions by phone without scaling a call center team.</description>
+      <category>Industry Solutions</category>
     </item>
 
     <item>
       <title>Architecting Sub-500ms AI Voice Agents: The Kamailio + FreeSWITCH Hybrid Pipeline</title>
       <link>https://www.controvallc.com/blog/architecting-sub-500ms-ai-voice-agents</link>
       <guid>https://www.controvallc.com/blog/architecting-sub-500ms-ai-voice-agents</guid>
-      <pubDate>Thu, 27 Aug 2026 19:00:00 GMT</pubDate>
+      <pubDate>Fri, 28 Aug 2026 00:00:00 GMT</pubDate>
       <description>An engineering deep-dive into separating SIP signaling and media processing to build ultra-low-latency voice AI agents that handle thousands of concurrent calls with instant barge-in.</description>
       <category>Telephony &amp; AI Engineering</category>
+    </item>
+
+    <item>
+      <title>Mod_callcenter Deep Dive: Building Enterprise Call Queues in FreeSWITCH</title>
+      <link>https://www.controvallc.com/blog/mod-callcenter-freeswitch-queues</link>
+      <guid>https://www.controvallc.com/blog/mod-callcenter-freeswitch-queues</guid>
+      <pubDate>Fri, 28 Aug 2026 00:00:00 GMT</pubDate>
+      <description>A practical guide to configuring FreeSWITCH mod_callcenter for skills-based routing, queue strategies, and real-time agent management.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>The Engineering Behind Sub-500ms Speech-to-Text: Streaming ASR Pipelines Explained</title>
+      <link>https://www.controvallc.com/blog/streaming-asr-pipeline-latency</link>
+      <guid>https://www.controvallc.com/blog/streaming-asr-pipeline-latency</guid>
+      <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Why batch transcription is too slow for conversational voice AI, and how streaming ASR architectures achieve the latency needed for natural dialogue.</description>
+      <category>Voice AI</category>
+    </item>
+
+    <item>
+      <title>AI Voice Agents for Home Services: Answering Every HVAC and Plumbing Call</title>
+      <link>https://www.controvallc.com/blog/ai-voice-agents-home-services-hvac</link>
+      <guid>https://www.controvallc.com/blog/ai-voice-agents-home-services-hvac</guid>
+      <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
+      <description>How HVAC, plumbing, and home service companies use AI voice agents to book emergency service calls and estimate requests without losing business to voicemail.</description>
+      <category>Industry Solutions</category>
+    </item>
+
+    <item>
+      <title>Voice Biometrics and Fraud Detection in Autonomous Phone Systems</title>
+      <link>https://www.controvallc.com/blog/voice-biometrics-fraud-detection-ai</link>
+      <guid>https://www.controvallc.com/blog/voice-biometrics-fraud-detection-ai</guid>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 GMT</pubDate>
+      <description>How voice biometrics and behavioral signals help autonomous phone systems detect fraud and verify caller identity without adding friction to legitimate calls.</description>
+      <category>Voice AI</category>
+    </item>
+
+    <item>
+      <title>E911 Compliance for VoIP: What Changed with Kari's Law and RAY BAUM'S Act</title>
+      <link>https://www.controvallc.com/blog/e911-compliance-voip-karis-law</link>
+      <guid>https://www.controvallc.com/blog/e911-compliance-voip-karis-law</guid>
+      <pubDate>Sat, 22 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Kari's Law and RAY BAUM'S Act changed 911 requirements for multi-line telephone systems. Here is what VoIP deployments need to be compliant.</description>
+      <category>Telecom Compliance</category>
     </item>
 
     <item>
       <title>Custom VoIP Architecture: Building Beyond Twilio for Enterprise Communication Platforms</title>
       <link>https://www.controvallc.com/blog/custom-voip-architecture-enterprise</link>
       <guid>https://www.controvallc.com/blog/custom-voip-architecture-enterprise</guid>
-      <pubDate>Thu, 20 Aug 2026 19:00:00 GMT</pubDate>
+      <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
       <description>When Twilio's per-minute pricing becomes the single largest line item in your operating budget, it is time to architect a custom VoIP infrastructure. Here is the engineering blueprint.</description>
       <category>Engineering &amp; E-Commerce</category>
+    </item>
+
+    <item>
+      <title>Number Porting for Enterprise VoIP: A Step-by-Step Migration Guide</title>
+      <link>https://www.controvallc.com/blog/number-porting-enterprise-voip-guide</link>
+      <guid>https://www.controvallc.com/blog/number-porting-enterprise-voip-guide</guid>
+      <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
+      <description>A practical walkthrough of porting phone numbers to a new VoIP provider without dropping service, from LOA paperwork to the final cutover window.</description>
+      <category>VoIP Engineering</category>
     </item>
 
     <item>
       <title>The Technical Architecture of Enterprise-Grade SLAs: How We Guarantee 99.99% Uptime</title>
       <link>https://www.controvallc.com/blog/enterprise-sla-architecture-99-99-uptime</link>
       <guid>https://www.controvallc.com/blog/enterprise-sla-architecture-99-99-uptime</guid>
-      <pubDate>Tue, 18 Aug 2026 19:00:00 GMT</pubDate>
+      <pubDate>Wed, 19 Aug 2026 00:00:00 GMT</pubDate>
       <description>Making an SLA promise is easy. Building the infrastructure that backs it is a precise engineering discipline. Here is the exact architecture we deploy to guarantee enterprise-grade reliability.</description>
       <category>Engineering &amp; E-Commerce</category>
+    </item>
+
+    <item>
+      <title>AI Receptionist for Law Firms: Client Intake Without the Wait</title>
+      <link>https://www.controvallc.com/blog/ai-receptionist-law-firms-intake</link>
+      <guid>https://www.controvallc.com/blog/ai-receptionist-law-firms-intake</guid>
+      <pubDate>Wed, 19 Aug 2026 00:00:00 GMT</pubDate>
+      <description>How law firms use AI receptionists to capture new client intake calls, screen for conflicts, and schedule consultations without losing leads to voicemail.</description>
+      <category>Industry Solutions</category>
+    </item>
+
+    <item>
+      <title>TCPA Compliance for AI Outbound Calling: What You Need to Know</title>
+      <link>https://www.controvallc.com/blog/tcpa-compliance-ai-outbound-calling</link>
+      <guid>https://www.controvallc.com/blog/tcpa-compliance-ai-outbound-calling</guid>
+      <pubDate>Tue, 18 Aug 2026 00:00:00 GMT</pubDate>
+      <description>AI-powered outbound calling introduces new TCPA risk. Here is what enterprises need in place before automating outbound voice at scale.</description>
+      <category>Telecom Compliance</category>
     </item>
 
     <item>
       <title>B2B SaaS Pricing Strategy: The Engineering Behind Value-Based Pricing Models</title>
       <link>https://www.controvallc.com/blog/b2b-saas-pricing-strategy-value-based</link>
       <guid>https://www.controvallc.com/blog/b2b-saas-pricing-strategy-value-based</guid>
-      <pubDate>Sun, 16 Aug 2026 19:00:00 GMT</pubDate>
+      <pubDate>Mon, 17 Aug 2026 00:00:00 GMT</pubDate>
       <description>Most SaaS products are underpriced because their pricing was based on competitor research, not on the economic value delivered. Here is the framework for engineering a value-based pricing model.</description>
       <category>Growth &amp; Strategy</category>
+    </item>
+
+    <item>
+      <title>Scaling FreeSWITCH Horizontally: A Guide to Clustering and Load Balancing with Kamailio</title>
+      <link>https://www.controvallc.com/blog/freeswitch-horizontal-scaling-kamailio</link>
+      <guid>https://www.controvallc.com/blog/freeswitch-horizontal-scaling-kamailio</guid>
+      <pubDate>Mon, 17 Aug 2026 00:00:00 GMT</pubDate>
+      <description>How to move from a single FreeSWITCH box to a horizontally scaled cluster fronted by Kamailio, without breaking call state or media continuity.</description>
+      <category>VoIP Engineering</category>
     </item>
 
     <item>
       <title>Generative Engine Optimization (GEO): Getting Your Brand Inside AI Responses</title>
       <link>https://www.controvallc.com/blog/generative-engine-optimization-geo</link>
       <guid>https://www.controvallc.com/blog/generative-engine-optimization-geo</guid>
-      <pubDate>Fri, 14 Aug 2026 19:00:00 GMT</pubDate>
+      <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
       <description>GEO is the discipline of optimizing your brand and content to appear inside the synthesized answers produced by ChatGPT, Perplexity, and Google AI Overviews. Here is the technical playbook.</description>
       <category>Growth &amp; Strategy</category>
+    </item>
+
+    <item>
+      <title>Codec Selection for Voice AI: Why Opus is Replacing G.711 in Modern Pipelines</title>
+      <link>https://www.controvallc.com/blog/opus-vs-g711-codec-voice-ai</link>
+      <guid>https://www.controvallc.com/blog/opus-vs-g711-codec-voice-ai</guid>
+      <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
+      <description>A technical comparison of Opus and G.711 for real-time voice AI, and why codec choice directly determines transcription accuracy and perceived latency.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>AI Voice Agents for Real Estate: Never Miss a Lead Call Again</title>
+      <link>https://www.controvallc.com/blog/ai-voice-agents-real-estate</link>
+      <guid>https://www.controvallc.com/blog/ai-voice-agents-real-estate</guid>
+      <pubDate>Fri, 14 Aug 2026 00:00:00 GMT</pubDate>
+      <description>How real estate teams use AI voice agents to qualify inbound buyer and seller calls, schedule showings, and follow up on listing inquiries around the clock.</description>
+      <category>Industry Solutions</category>
     </item>
 
     <item>
       <title>AI Voice Agents: Replacing Your IVR with Conversational Intelligence</title>
       <link>https://www.controvallc.com/blog/ai-voice-agents-replace-ivr</link>
       <guid>https://www.controvallc.com/blog/ai-voice-agents-replace-ivr</guid>
-      <pubDate>Wed, 12 Aug 2026 19:00:00 GMT</pubDate>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 GMT</pubDate>
       <description>Traditional Interactive Voice Response (IVR) systems have an 83% abandonment rate at the menu stage. AI voice agents that understand natural language are replacing them at scale.</description>
       <category>AI &amp; Automation</category>
     </item>
@@ -93,79 +372,160 @@
       <title>Why Every Clinic Needs an AI Medical Receptionist (HIPAA Compliant)</title>
       <link>https://www.controvallc.com/blog/ai-medical-receptionist-hipaa</link>
       <guid>https://www.controvallc.com/blog/ai-medical-receptionist-hipaa</guid>
-      <pubDate>Tue, 11 Aug 2026 19:00:00 GMT</pubDate>
+      <pubDate>Wed, 12 Aug 2026 00:00:00 GMT</pubDate>
       <description>Discover how an AI medical receptionist can handle appointment scheduling, triage, and patient FAQs while maintaining strict HIPAA compliance.</description>
       <category>Healthcare &amp; Technology</category>
+    </item>
+
+    <item>
+      <title>Twilio vs Custom SIP: A Real Cost Breakdown at Scale</title>
+      <link>https://www.controvallc.com/blog/twilio-vs-custom-sip-cost-breakdown</link>
+      <guid>https://www.controvallc.com/blog/twilio-vs-custom-sip-cost-breakdown</guid>
+      <pubDate>Wed, 12 Aug 2026 00:00:00 GMT</pubDate>
+      <description>The per-minute rate on a Twilio invoice is only part of the story. Here is what the actual cost curve looks like once call volume crosses enterprise scale.</description>
+      <category>VoIP Engineering</category>
     </item>
 
     <item>
       <title>Shopify App Bloat: The Hidden Performance Killer Destroying Your Conversion Rate</title>
       <link>https://www.controvallc.com/blog/shopify-app-bloat-performance</link>
       <guid>https://www.controvallc.com/blog/shopify-app-bloat-performance</guid>
-      <pubDate>Mon, 10 Aug 2026 19:00:00 GMT</pubDate>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
       <description>The average Shopify store has 23 installed apps. Each one is injecting JavaScript into your storefront. Here is the engineering methodology to audit, remove, and replace app bloat.</description>
       <category>Engineering &amp; E-Commerce</category>
+    </item>
+
+    <item>
+      <title>SBC Architecture 101: Why Every VoIP Deployment Needs a Session Border Controller</title>
+      <link>https://www.controvallc.com/blog/session-border-controller-architecture</link>
+      <guid>https://www.controvallc.com/blog/session-border-controller-architecture</guid>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
+      <description>What a Session Border Controller actually does, why it sits at the edge of every carrier-grade VoIP network, and how to decide between hardware, virtual, and software SBCs.</description>
+      <category>VoIP Engineering</category>
     </item>
 
     <item>
       <title>The Rise of the AI Receptionist: How Autonomous Voice Agents are Replacing Traditional Phone Systems</title>
       <link>https://www.controvallc.com/blog/rise-of-ai-receptionist</link>
       <guid>https://www.controvallc.com/blog/rise-of-ai-receptionist</guid>
-      <pubDate>Sun, 09 Aug 2026 19:00:00 GMT</pubDate>
+      <pubDate>Mon, 10 Aug 2026 00:00:00 GMT</pubDate>
       <description>Explore how AI receptionist software is transforming customer service, reducing wait times, and cutting operational costs for businesses across the USA.</description>
       <category>AI &amp; Automation</category>
+    </item>
+
+    <item>
+      <title>The Complete Guide to AI Receptionists for Dental Practices</title>
+      <link>https://www.controvallc.com/blog/ai-receptionist-dental-practices</link>
+      <guid>https://www.controvallc.com/blog/ai-receptionist-dental-practices</guid>
+      <pubDate>Mon, 10 Aug 2026 00:00:00 GMT</pubDate>
+      <description>How AI receptionists handle appointment scheduling, insurance verification questions, and after-hours emergency triage for dental offices without adding front-desk headcount.</description>
+      <category>Industry Solutions</category>
     </item>
 
     <item>
       <title>The Engineering Anatomy of a Profitable Google Ads Campaign</title>
       <link>https://www.controvallc.com/blog/engineering-anatomy-google-ads-campaign</link>
       <guid>https://www.controvallc.com/blog/engineering-anatomy-google-ads-campaign</guid>
-      <pubDate>Sat, 08 Aug 2026 19:00:00 GMT</pubDate>
+      <pubDate>Sun, 09 Aug 2026 00:00:00 GMT</pubDate>
       <description>Running Google Ads profitably is not about creative intuition. It is a precise engineering discipline involving bidding algorithms, landing page architecture, and conversion tracking infrastructure.</description>
       <category>Growth &amp; Strategy</category>
+    </item>
+
+    <item>
+      <title>How AI Voice Agents Handle Interruptions: Engineering Barge-In Detection</title>
+      <link>https://www.controvallc.com/blog/barge-in-detection-voice-ai-agents</link>
+      <guid>https://www.controvallc.com/blog/barge-in-detection-voice-ai-agents</guid>
+      <pubDate>Sat, 08 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Natural conversation requires letting callers interrupt mid-sentence. Here is how modern voice AI pipelines detect and respond to barge-in in real time.</description>
+      <category>Voice AI</category>
     </item>
 
     <item>
       <title>Core Web Vitals in 2026: The Technical Playbook for LCP, CLS, and INP</title>
       <link>https://www.controvallc.com/blog/core-web-vitals-2026-technical-guide</link>
       <guid>https://www.controvallc.com/blog/core-web-vitals-2026-technical-guide</guid>
-      <pubDate>Thu, 06 Aug 2026 19:00:00 GMT</pubDate>
+      <pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
       <description>Google replaced FID with INP (Interaction to Next Paint) as a Core Web Vital. Learn the precise engineering techniques to dominate every performance metric and secure your search rankings.</description>
       <category>Engineering &amp; E-Commerce</category>
+    </item>
+
+    <item>
+      <title>NAT Traversal for VoIP: STUN, TURN, and ICE Explained</title>
+      <link>https://www.controvallc.com/blog/nat-traversal-stun-turn-ice-voip</link>
+      <guid>https://www.controvallc.com/blog/nat-traversal-stun-turn-ice-voip</guid>
+      <pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Why calls fail to connect behind corporate firewalls and home routers, and how STUN, TURN, and ICE solve the NAT traversal problem for real-time voice.</description>
+      <category>VoIP Engineering</category>
     </item>
 
     <item>
       <title>Multi-Agent AI Orchestration: Building Systems Where AI Agents Work as a Team</title>
       <link>https://www.controvallc.com/blog/multi-agent-ai-orchestration</link>
       <guid>https://www.controvallc.com/blog/multi-agent-ai-orchestration</guid>
-      <pubDate>Tue, 04 Aug 2026 19:00:00 GMT</pubDate>
+      <pubDate>Wed, 05 Aug 2026 00:00:00 GMT</pubDate>
       <description>The most powerful AI deployments in 2026 are not single models answering questions. They are networks of specialized agents—planner, researcher, writer, critic—working in concert to complete complex enterprise tasks.</description>
       <category>AI &amp; Automation</category>
+    </item>
+
+    <item>
+      <title>Building a Multi-Tenant PBX: Architecture Patterns for SaaS Telephony Providers</title>
+      <link>https://www.controvallc.com/blog/multi-tenant-pbx-architecture-saas</link>
+      <guid>https://www.controvallc.com/blog/multi-tenant-pbx-architecture-saas</guid>
+      <pubDate>Wed, 05 Aug 2026 00:00:00 GMT</pubDate>
+      <description>The design decisions that determine whether a multi-tenant PBX scales to thousands of customers or collapses under cross-tenant contention.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>WebRTC vs SIP: Choosing the Right Protocol for Your Communication Platform</title>
+      <link>https://www.controvallc.com/blog/webrtc-vs-sip-protocol-comparison</link>
+      <guid>https://www.controvallc.com/blog/webrtc-vs-sip-protocol-comparison</guid>
+      <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
+      <description>WebRTC and SIP solve overlapping problems differently. Here is how to decide which protocol — or hybrid architecture — fits your product.</description>
+      <category>VoIP Engineering</category>
     </item>
 
     <item>
       <title>Community-Led Growth: How B2B Companies Are Replacing Cold Outbound with Warm Communities</title>
       <link>https://www.controvallc.com/blog/community-led-growth-b2b</link>
       <guid>https://www.controvallc.com/blog/community-led-growth-b2b</guid>
-      <pubDate>Sun, 02 Aug 2026 19:00:00 GMT</pubDate>
+      <pubDate>Mon, 03 Aug 2026 00:00:00 GMT</pubDate>
       <description>The most sophisticated B2B growth playbook in 2026 is not cold email or paid ads. It is a community that generates leads, reduces churn, and drives referrals on autopilot.</description>
       <category>Growth &amp; Strategy</category>
+    </item>
+
+    <item>
+      <title>STIR/SHAKEN Compliance: What Every VoIP Business Needs to Know in 2026</title>
+      <link>https://www.controvallc.com/blog/stir-shaken-compliance-voip-2026</link>
+      <guid>https://www.controvallc.com/blog/stir-shaken-compliance-voip-2026</guid>
+      <pubDate>Sun, 02 Aug 2026 00:00:00 GMT</pubDate>
+      <description>A practical breakdown of STIR/SHAKEN attestation levels, why unattested calls get blocked or flagged as spam, and how to implement compliant caller ID authentication.</description>
+      <category>Telecom Compliance</category>
     </item>
 
     <item>
       <title>First-Party Data Strategy: Building a Privacy-First Marketing Engine for 2026</title>
       <link>https://www.controvallc.com/blog/first-party-data-strategy-2026</link>
       <guid>https://www.controvallc.com/blog/first-party-data-strategy-2026</guid>
-      <pubDate>Fri, 31 Jul 2026 19:00:00 GMT</pubDate>
+      <pubDate>Sat, 01 Aug 2026 00:00:00 GMT</pubDate>
       <description>Third-party cookies are dead. Discover how to build a first-party data infrastructure that gives you more precise targeting than any cookie ever could, while building genuine customer trust.</description>
       <category>Growth &amp; Strategy</category>
+    </item>
+
+    <item>
+      <title>The Complete Buyer's Guide to SIP Trunking Providers in 2026</title>
+      <link>https://www.controvallc.com/blog/sip-trunking-buyers-guide-2026</link>
+      <guid>https://www.controvallc.com/blog/sip-trunking-buyers-guide-2026</guid>
+      <pubDate>Sat, 01 Aug 2026 00:00:00 GMT</pubDate>
+      <description>How to evaluate SIP trunking providers on concurrency limits, codec support, geographic redundancy, and true per-minute economics before you sign a contract.</description>
+      <category>VoIP Engineering</category>
     </item>
 
     <item>
       <title>Composable Commerce: Why Modular Architecture is Replacing Monolithic Platforms</title>
       <link>https://www.controvallc.com/blog/composable-commerce-architecture</link>
       <guid>https://www.controvallc.com/blog/composable-commerce-architecture</guid>
-      <pubDate>Wed, 29 Jul 2026 19:00:00 GMT</pubDate>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
       <description>Composable commerce allows brands to select best-in-class tools for each function—search, CMS, checkout, personalization—and compose them into a unified, scalable digital storefront.</description>
       <category>Engineering &amp; E-Commerce</category>
     </item>
@@ -174,7 +534,7 @@
       <title>Agentic AI Workflows: Moving Beyond Zapier to True Autonomous Systems</title>
       <link>https://www.controvallc.com/blog/agentic-ai-workflows-2026</link>
       <guid>https://www.controvallc.com/blog/agentic-ai-workflows-2026</guid>
-      <pubDate>Mon, 27 Jul 2026 19:00:00 GMT</pubDate>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 GMT</pubDate>
       <description>Zapier and Make are great for simple task automation. But to replace entire departments with AI, you need agentic systems capable of planning, deciding, and executing without human oversight.</description>
       <category>AI &amp; Automation</category>
     </item>
@@ -183,7 +543,7 @@
       <title>Answer Engine Optimization (AEO): The Complete 2026 Strategy Guide</title>
       <link>https://www.controvallc.com/blog/answer-engine-optimization-aeo-2026</link>
       <guid>https://www.controvallc.com/blog/answer-engine-optimization-aeo-2026</guid>
-      <pubDate>Fri, 24 Jul 2026 19:00:00 GMT</pubDate>
+      <pubDate>Sat, 25 Jul 2026 00:00:00 GMT</pubDate>
       <description>Traditional SEO is dying. As ChatGPT, Perplexity, and Google AI Overviews dominate search results, discover the exact AEO strategies to get your brand cited by AI.</description>
       <category>Growth &amp; Strategy</category>
     </item>
@@ -192,7 +552,7 @@
       <title>The State of Open-Source Telephony: Navigating Kamailio, OpenSIPS, and CPaaS</title>
       <link>https://www.controvallc.com/blog/open-source-telephony-vs-cpaas</link>
       <guid>https://www.controvallc.com/blog/open-source-telephony-vs-cpaas</guid>
-      <pubDate>Tue, 21 Jul 2026 19:00:00 GMT</pubDate>
+      <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
       <description>Evaluating the pros and cons of deploying open-source telephony stacks versus relying on CPaaS providers like Twilio for massive scale.</description>
       <category>Engineering &amp; E-Commerce</category>
     </item>
@@ -201,7 +561,7 @@
       <title>FreeSWITCH vs Asterisk: Architecting Enterprise VoIP Core</title>
       <link>https://www.controvallc.com/blog/freeswitch-vs-asterisk</link>
       <guid>https://www.controvallc.com/blog/freeswitch-vs-asterisk</guid>
-      <pubDate>Sun, 19 Jul 2026 19:00:00 GMT</pubDate>
+      <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
       <description>A highly technical breakdown of the performance, threading models, and architectural differences between FreeSWITCH and Asterisk for enterprise VoIP infrastructure.</description>
       <category>Engineering &amp; E-Commerce</category>
     </item>
@@ -210,7 +570,7 @@
       <title>Why Monolithic E-Commerce is Dead: The ROI of Headless Shopify</title>
       <link>https://www.controvallc.com/blog/roi-of-headless-shopify</link>
       <guid>https://www.controvallc.com/blog/roi-of-headless-shopify</guid>
-      <pubDate>Wed, 01 Jul 2026 19:00:00 GMT</pubDate>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 GMT</pubDate>
       <description>A technical breakdown of why enterprise brands are abandoning traditional Shopify setups for Next.js and Sanity, and how it directly impacts conversion rates.</description>
       <category>Engineering &amp; E-Commerce</category>
     </item>
@@ -219,7 +579,7 @@
       <title>Stop Paying Humans for Data Entry: The Ultimate AI Automation Pipeline</title>
       <link>https://www.controvallc.com/blog/ai-automation-pipeline</link>
       <guid>https://www.controvallc.com/blog/ai-automation-pipeline</guid>
-      <pubDate>Sat, 27 Jun 2026 19:00:00 GMT</pubDate>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 GMT</pubDate>
       <description>How we built an autonomous lead qualification system using LLMs and Zapier that processes 10,000 leads per day with zero human intervention.</description>
       <category>AI &amp; Automation</category>
     </item>
@@ -228,7 +588,7 @@
       <title>Rethinking B2B Lead Generation: Why We Replaced Traditional Web Forms with Conversational Terminals</title>
       <link>https://www.controvallc.com/blog/rethinking-b2b-lead-generation</link>
       <guid>https://www.controvallc.com/blog/rethinking-b2b-lead-generation</guid>
-      <pubDate>Sun, 21 Jun 2026 19:00:00 GMT</pubDate>
+      <pubDate>Mon, 22 Jun 2026 00:00:00 GMT</pubDate>
       <description>In enterprise B2B sales, traditional HTML contact forms are static bottlenecks. Discover why we engineered a conversational, terminal-based lead generation engine to maximize conversion velocity.</description>
       <category>Engineering &amp; E-Commerce</category>
     </item>
@@ -237,7 +597,7 @@
       <title>Bridging the Gap Between Engineering and ROI: Interactive Case Studies for B2B SaaS</title>
       <link>https://www.controvallc.com/blog/interactive-case-studies-roi</link>
       <guid>https://www.controvallc.com/blog/interactive-case-studies-roi</guid>
-      <pubDate>Fri, 19 Jun 2026 19:00:00 GMT</pubDate>
+      <pubDate>Sat, 20 Jun 2026 00:00:00 GMT</pubDate>
       <description>Non-technical enterprise decision-makers cannot parse raw code to understand business value. Discover how we built an interactive terminal UI component that translates technical execution into undeniable business ROI.</description>
       <category>Growth &amp; Strategy</category>
     </item>
@@ -246,7 +606,7 @@
       <title>Zero-Shift Rendering &amp; Edge Deployments: Optimizing Next.js Enterprise Environments</title>
       <link>https://www.controvallc.com/blog/zero-shift-rendering-edge-deployments</link>
       <guid>https://www.controvallc.com/blog/zero-shift-rendering-edge-deployments</guid>
-      <pubDate>Wed, 17 Jun 2026 19:00:00 GMT</pubDate>
+      <pubDate>Thu, 18 Jun 2026 00:00:00 GMT</pubDate>
       <description>Every visual stutter directly degrades user trust. Discover how we audited our internal routing to eliminate Cumulative Layout Shift (CLS) and streamline CI/CD deployments on Vercel.</description>
       <category>Engineering &amp; E-Commerce</category>
     </item>
@@ -255,7 +615,7 @@
       <title>The "Zero-Risk" Offer: Why Performance Marketing Outperforms Retainers</title>
       <link>https://www.controvallc.com/blog/performance-marketing-vs-retainers</link>
       <guid>https://www.controvallc.com/blog/performance-marketing-vs-retainers</guid>
-      <pubDate>Sun, 14 Jun 2026 19:00:00 GMT</pubDate>
+      <pubDate>Mon, 15 Jun 2026 00:00:00 GMT</pubDate>
       <description>Traditional agency retainers align incentives poorly. Discover the mathematics behind performance-based marketing and why it guarantees better ROI.</description>
       <category>Growth &amp; Strategy</category>
     </item>
@@ -264,7 +624,7 @@
       <title>Migrating from Shopify Plus to Next.js: A Performance Breakdown</title>
       <link>https://www.controvallc.com/blog/shopify-plus-to-nextjs-migration</link>
       <guid>https://www.controvallc.com/blog/shopify-plus-to-nextjs-migration</guid>
-      <pubDate>Thu, 04 Jun 2026 19:00:00 GMT</pubDate>
+      <pubDate>Fri, 05 Jun 2026 00:00:00 GMT</pubDate>
       <description>An inside look at the architecture decisions, caching strategies, and performance metrics behind a $10M/year store migration.</description>
       <category>Engineering &amp; E-Commerce</category>
     </item>
@@ -273,7 +633,7 @@
       <title>Reverse-Engineering a $1M B2B Sales Funnel</title>
       <link>https://www.controvallc.com/blog/reverse-engineering-b2b-funnel</link>
       <guid>https://www.controvallc.com/blog/reverse-engineering-b2b-funnel</guid>
-      <pubDate>Thu, 21 May 2026 19:00:00 GMT</pubDate>
+      <pubDate>Fri, 22 May 2026 00:00:00 GMT</pubDate>
       <description>Step-by-step analysis of the exact landing pages, email sequences, and ad creatives we used to scale a B2B SaaS client past the $1M ARR mark.</description>
       <category>Growth &amp; Strategy</category>
     </item>
@@ -282,7 +642,7 @@
       <title>The AI Sales Development Rep: Setting Up 24/7 Follow-up Sequences</title>
       <link>https://www.controvallc.com/blog/ai-sales-development-rep</link>
       <guid>https://www.controvallc.com/blog/ai-sales-development-rep</guid>
-      <pubDate>Sat, 09 May 2026 19:00:00 GMT</pubDate>
+      <pubDate>Sun, 10 May 2026 00:00:00 GMT</pubDate>
       <description>Learn how to deploy an AI agent that handles your inbound lead responses, books meetings, and handles objections autonomously.</description>
       <category>AI &amp; Automation</category>
     </item>

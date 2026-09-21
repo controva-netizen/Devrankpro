@@ -40,11 +40,14 @@ if (posts.length === 0) {
 }
 
 // Newest first, by parsed date (falls back to source order if unparseable).
-posts.sort((a, b) => (new Date(b.date).getTime() || 0) - (new Date(a.date).getTime() || 0));
+posts.sort((a, b) => (new Date(`${b.date} UTC`).getTime() || 0) - (new Date(`${a.date} UTC`).getTime() || 0));
 
 const items = posts
   .map((post) => {
-    const pubDate = new Date(post.date);
+    // Parse as UTC explicitly — plain `new Date(post.date)` parses in the
+    // local timezone, which shifts the date backward by a day once
+    // converted via toUTCString() in any UTC+ timezone.
+    const pubDate = new Date(`${post.date} UTC`);
     const pubDateStr = isNaN(pubDate.getTime())
       ? new Date().toUTCString()
       : pubDate.toUTCString();
