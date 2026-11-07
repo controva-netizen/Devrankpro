@@ -107,7 +107,9 @@ const server = app.listen(PORT, async () => {
     console.log(`   Browser: ${executablePath || 'puppeteer default'}`);
 
     browser = await puppeteer.launch({
-      headless: true,
+      // No full Chrome (e.g. Hostinger): fall back to the chrome-headless-shell
+      // binary Puppeteer downloaded (see .puppeteerrc.cjs).
+      headless: executablePath ? true : 'shell',
       executablePath,
       args: [
         '--no-sandbox',
