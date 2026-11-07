@@ -8,6 +8,7 @@ import BlogDiscussionSection from '@/components/sections/blog/BlogDiscussionSect
 import NotFoundPage from '@/pages/NotFoundPage';
 import SEO from '@/components/shared/SEO';
 import Breadcrumbs, { buildBreadcrumbSchema } from '@/components/shared/Breadcrumbs';
+import { relatedServicesFor, relatedPostsFor } from '@/data/blog-links';
 
 export default function BlogSlugPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -22,6 +23,9 @@ export default function BlogSlugPage() {
   if (!post) {
     return <NotFoundPage />;
   }
+
+  const relatedServices = relatedServicesFor(post);
+  const relatedPosts = relatedPostsFor(post, posts);
 
   const breadcrumbItems = [
     { label: 'Home', path: '/' },
@@ -150,7 +154,12 @@ export default function BlogSlugPage() {
                     ul: ({node, ...props}) => <ul className="list-disc pl-6 mb-6 space-y-2" {...props} />,
                     li: ({node, ...props}) => <li className="leading-relaxed" {...props} />,
                     strong: ({node, ...props}) => <strong className="font-semibold" style={{ color: 'var(--text-primary)' }} {...props} />,
-                    a: ({node, ...props}) => <a className="underline hover:no-underline" style={{ color: 'var(--accent-1)' }} {...props} />
+                    a: ({node, href, children, ...props}) =>
+                      href && href.startsWith('/') ? (
+                        <Link to={href} className="underline hover:no-underline" style={{ color: 'var(--accent-1)' }}>{children}</Link>
+                      ) : (
+                        <a href={href} className="underline hover:no-underline" style={{ color: 'var(--accent-1)' }} {...props}>{children}</a>
+                      )
                   }}
                 >
                   {post.content}
@@ -160,6 +169,45 @@ export default function BlogSlugPage() {
               )}
             </div>
             
+            {/* ── Related services & articles (internal linking) ── */}
+            {relatedServices.length > 0 && (
+              <section className="mt-16" aria-labelledby="related-services-heading">
+                <h2 id="related-services-heading" className="text-2xl font-bold font-display mb-6" style={{ color: 'var(--text-primary)' }}>
+                  Related Services
+                </h2>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {relatedServices.map((svc) => (
+                    <Link
+                      key={svc.slug}
+                      to={svc.path}
+                      className="block p-6 rounded-2xl transition-transform hover:-translate-y-1"
+                      style={{ backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border-subtle)' }}
+                    >
+                      <h3 className="font-bold font-display text-lg mb-2" style={{ color: 'var(--text-primary)' }}>{svc.title}</h3>
+                      <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{svc.blurb}</p>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {relatedPosts.length > 0 && (
+              <section className="mt-12" aria-labelledby="related-articles-heading">
+                <h2 id="related-articles-heading" className="text-2xl font-bold font-display mb-6" style={{ color: 'var(--text-primary)' }}>
+                  Keep Reading
+                </h2>
+                <ul className="space-y-3 list-none p-0">
+                  {relatedPosts.map((rp) => (
+                    <li key={rp.slug}>
+                      <Link to={`/blog/${rp.slug}`} className="underline hover:no-underline font-medium" style={{ color: 'var(--accent-1)' }}>
+                        {rp.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+
             {/* ── Discussion Section ── */}
             <div className="mt-20 border-t pt-12" style={{ borderColor: 'var(--border-subtle)' }}>
               <BlogDiscussionSection />

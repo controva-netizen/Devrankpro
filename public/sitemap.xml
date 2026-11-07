@@ -610,6 +610,76 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>https://www.controvallc.com/blog/sip-alg-what-it-is-how-to-disable</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.controvallc.com/blog/twilio-alternatives-voice-engineering-guide</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.controvallc.com/blog/white-label-voip-platform-architecture</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.controvallc.com/blog/ai-outbound-calling-architecture-compliance</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.controvallc.com/blog/hipaa-compliant-voip-requirements-architecture</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.controvallc.com/blog/pipecat-vs-livekit-agents-voice-ai-framework</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.controvallc.com/blog/sip-trunk-vs-pri-differences-migration</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.controvallc.com/blog/voip-quality-testing-mos-jitter-packet-loss</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.controvallc.com/blog/open-source-sbc-kamailio-rtpengine</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.controvallc.com/blog/sip-response-codes-403-408-503-troubleshooting</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- ── Core Service Line Pages ──────────────────────── -->
 
   <url>

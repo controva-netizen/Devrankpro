@@ -5,8 +5,98 @@
     <link>https://www.controvallc.com/blog</link>
     <description>Engineering-driven insights on VoIP Architecture, FreeSWITCH, Kamailio, and AI Voice Automation.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 21 Sep 2026 00:35:07 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 07 Nov 2026 20:34:01 GMT</lastBuildDate>
     <atom:link href="https://www.controvallc.com/rss.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+      <title>SIP ALG Explained: What It Is, Why It Breaks VoIP, and How to Disable It</title>
+      <link>https://www.controvallc.com/blog/sip-alg-what-it-is-how-to-disable</link>
+      <guid>https://www.controvallc.com/blog/sip-alg-what-it-is-how-to-disable</guid>
+      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
+      <description>SIP ALG rewrites SIP packets inside your router and is one of the most common causes of one-way audio, dropped registrations, and failed calls. Here is how it works, how to confirm it is the problem, and how to turn it off.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>Twilio Alternatives for Voice: An Engineering Guide to Switching in 2026</title>
+      <link>https://www.controvallc.com/blog/twilio-alternatives-voice-engineering-guide</link>
+      <guid>https://www.controvallc.com/blog/twilio-alternatives-voice-engineering-guide</guid>
+      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Looking for a Twilio alternative for voice? This guide compares the real options, from other CPaaS vendors to carrier-direct SIP and self-hosted FreeSWITCH, and explains when each makes technical and financial sense.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>White Label VoIP Platform Architecture: How to Build One That Scales</title>
+      <link>https://www.controvallc.com/blog/white-label-voip-platform-architecture</link>
+      <guid>https://www.controvallc.com/blog/white-label-voip-platform-architecture</guid>
+      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
+      <description>A white label VoIP platform lets you sell phone service under your own brand. This guide explains the architecture behind one, covering multi-tenancy, billing, provisioning, and the build-versus-buy decision.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>AI Outbound Calling: Architecture, Compliance, and What Actually Works</title>
+      <link>https://www.controvallc.com/blog/ai-outbound-calling-architecture-compliance</link>
+      <guid>https://www.controvallc.com/blog/ai-outbound-calling-architecture-compliance</guid>
+      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
+      <description>AI outbound calling uses voice agents to place calls at scale, from appointment reminders to lead follow-up. Here is how the system is built, what the legal guardrails are in the US, and where teams go wrong.</description>
+      <category>Voice AI</category>
+    </item>
+
+    <item>
+      <title>HIPAA Compliant VoIP: Requirements, Architecture, and a Practical Checklist</title>
+      <link>https://www.controvallc.com/blog/hipaa-compliant-voip-requirements-architecture</link>
+      <guid>https://www.controvallc.com/blog/hipaa-compliant-voip-requirements-architecture</guid>
+      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
+      <description>What makes a VoIP system HIPAA compliant? This guide covers the technical safeguards, business associate agreements, call recording and voicemail rules, and the architecture decisions that matter for healthcare practices.</description>
+      <category>Healthcare &amp; Compliance</category>
+    </item>
+
+    <item>
+      <title>Pipecat vs LiveKit Agents: Choosing a Framework for Real-Time Voice AI</title>
+      <link>https://www.controvallc.com/blog/pipecat-vs-livekit-agents-voice-ai-framework</link>
+      <guid>https://www.controvallc.com/blog/pipecat-vs-livekit-agents-voice-ai-framework</guid>
+      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Pipecat and LiveKit Agents are two popular open-source frameworks for building voice AI agents. Here is how they differ in architecture, transport, and operations, and how to choose between them.</description>
+      <category>Voice AI</category>
+    </item>
+
+    <item>
+      <title>SIP Trunk vs PRI: Differences, Costs, and How to Migrate</title>
+      <link>https://www.controvallc.com/blog/sip-trunk-vs-pri-differences-migration</link>
+      <guid>https://www.controvallc.com/blog/sip-trunk-vs-pri-differences-migration</guid>
+      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
+      <description>PRI and SIP trunking both connect a business phone system to the public telephone network, but they work very differently. Here is how they compare on cost, scalability, reliability, and migration.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>VoIP Quality Testing: MOS, Jitter, Packet Loss, and the Tools to Measure Them</title>
+      <link>https://www.controvallc.com/blog/voip-quality-testing-mos-jitter-packet-loss</link>
+      <guid>https://www.controvallc.com/blog/voip-quality-testing-mos-jitter-packet-loss</guid>
+      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Bad call quality is rarely random. This guide explains the metrics that define VoIP quality, how to test them before and after launch, and which open-source tools are used to do it.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>Building an Open-Source SBC with Kamailio and rtpengine</title>
+      <link>https://www.controvallc.com/blog/open-source-sbc-kamailio-rtpengine</link>
+      <guid>https://www.controvallc.com/blog/open-source-sbc-kamailio-rtpengine</guid>
+      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
+      <description>You can build a capable session border controller from open-source parts. This guide explains how Kamailio and rtpengine work together, what they do well, and where a commercial SBC is still the better choice.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>SIP Response Codes Explained: Troubleshooting 403, 408, and 503 Errors</title>
+      <link>https://www.controvallc.com/blog/sip-response-codes-403-408-503-troubleshooting</link>
+      <guid>https://www.controvallc.com/blog/sip-response-codes-403-408-503-troubleshooting</guid>
+      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
+      <description>SIP response codes tell you exactly where a call failed, if you know how to read them. This guide explains the 4xx, 5xx, and 6xx families and gives a practical troubleshooting path for 403 Forbidden, 408 Request Timeout, and 503 Service Unavailable.</description>
+      <category>VoIP Engineering</category>
+    </item>
 
     <item>
       <title>The Future of Voice AI: What's Next After the AI Receptionist</title>
