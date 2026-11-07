@@ -17,9 +17,13 @@ const __dirname = path.dirname(__filename);
  */
 
 // ── Extract dynamic route slugs ───────────────────────────────────────────
-function extractSlugs(relPath) {
+function extractSlugs(relPath, blockRegex) {
   try {
-    const raw = fs.readFileSync(path.resolve(__dirname, relPath), 'utf-8');
+    let raw = fs.readFileSync(path.resolve(__dirname, relPath), 'utf-8');
+    if (blockRegex) {
+      const block = raw.match(blockRegex);
+      raw = block ? block[1] : '';
+    }
     const slugs = [];
     const re = /slug:\s*'([^']+)'/g;
     let m;
@@ -32,7 +36,11 @@ function extractSlugs(relPath) {
 }
 
 const blogSlugs = extractSlugs('./src/data/blog.ts');
-const nicheSlugs = extractSlugs('./src/data/content.ts');
+// Only the nicheServices array — content.ts has other `slug:` fields (case studies etc.)
+const nicheSlugs = extractSlugs(
+  './src/data/content.ts',
+  /export const nicheServices[\s\S]*?=\s*\[([\s\S]*?)\n\];/,
+);
 
 const routes = [
   '/',
@@ -59,8 +67,13 @@ if (!fs.existsSync(path.join(distPath, 'index.html'))) {
   process.exit(1); // this IS fatal: nothing to prerender
 }
 
-app.use(express.static(distPath));
-app.use((_req, res) => res.sendFile(path.resolve(distPath, 'index.html')));
+// Snapshot the pristine SPA shell before any route is written. Route "/" is
+// prerendered first and overwrites dist/index.html; without this snapshot the
+// SPA fallback would serve the hydrated homepage to every later route.
+const pristineIndexHtml = fs.readFileSync(path.join(distPath, 'index.html'), 'utf-8');
+
+app.use(express.static(distPath, { index: false }));
+app.use((_req, res) => res.type('html').send(pristineIndexHtml));
 
 // ── Locate a Chrome/Chromium binary ──────────────────────────────────────
 function getExecutablePath() {

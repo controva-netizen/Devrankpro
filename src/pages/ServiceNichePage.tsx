@@ -6,6 +6,10 @@ import SEO from '@/components/shared/SEO';
 import NotFoundPage from '@/pages/NotFoundPage';
 import FinalCTASection from '@/components/sections/home/FinalCTASection';
 import Breadcrumbs, { buildBreadcrumbSchema } from '@/components/shared/Breadcrumbs';
+import ResultsBarSection from '@/components/sections/case-studies/ResultsBarSection';
+import FAQSection from '@/components/shared/FAQSection';
+import { buildFaqPageSchema } from '@/data/faq';
+import RelatedWork from '@/components/shared/RelatedWork';
 
 export default function ServiceNichePage() {
   const { niche } = useParams<{ niche: string }>();
@@ -35,6 +39,7 @@ export default function ServiceNichePage() {
         areaServed: 'US'
       },
       buildBreadcrumbSchema(breadcrumbItems),
+      buildFaqPageSchema(service.faqs),
     ],
   };
 
@@ -55,7 +60,7 @@ export default function ServiceNichePage() {
           <div className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full blur-[120px] opacity-20 pointer-events-none" style={{ background: 'var(--accent-1)' }} />
           <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full blur-[100px] opacity-10 pointer-events-none" style={{ background: 'var(--accent-2)' }} />
         </div>
-        
+
         <div className="max-w-[1000px] mx-auto px-6 relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -63,7 +68,7 @@ export default function ServiceNichePage() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-8 border" style={{ color: 'var(--accent-1)', borderColor: 'var(--accent-1)', backgroundColor: 'rgba(0, 240, 255, 0.05)' }}>
-              Industry Solution
+              {service.heroTagline}
             </span>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 font-display leading-tight" style={{ color: 'var(--text-primary)' }}>
               {service.title}
@@ -117,6 +122,12 @@ export default function ServiceNichePage() {
           </div>
         </div>
       </section>
+
+      <ResultsBarSection />
+
+      <RelatedWork titles={service.relatedCaseStudies} />
+
+      <FAQSection faqs={service.faqs} />
 
       <FinalCTASection />
     </main>

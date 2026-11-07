@@ -1,14 +1,19 @@
+import { lazy, Suspense } from 'react';
 import SEO, { professionalServiceEntity } from '@/components/shared/SEO';
 import FAQSection from '@/components/shared/FAQSection';
 import { homeFaqs, buildFaqPageSchema } from '@/data/faq';
 import HeroSection from '@/components/sections/home/HeroSection';
 import RiskReversalSection from '@/components/sections/home/RiskReversalSection';
-import NeuralNetworkSection from '@/components/sections/home/NeuralNetworkSection';
 import CapabilitiesBentoSection from '@/components/sections/home/CapabilitiesBentoSection';
 import HorizontalScrollSection from '@/components/sections/home/HorizontalScrollSection';
 import OrbitalEcosystemSection from '@/components/sections/home/OrbitalEcosystemSection';
 import SocialProofSection from '@/components/sections/home/SocialProofSection';
 import FinalCTASection from '@/components/sections/home/FinalCTASection';
+
+// Pulls in three.js + @react-three/fiber (a full 3D engine) — code-split so
+// only the homepage pays that weight, instead of it landing in the shared
+// bundle every page loads.
+const NeuralNetworkSection = lazy(() => import('@/components/sections/home/NeuralNetworkSection'));
 
 export default function HomePage() {
   const schema = {
@@ -18,7 +23,7 @@ export default function HomePage() {
 
   return (
     <main>
-      <SEO 
+      <SEO
         title="Controva LLC — Custom VoIP & AI Voice Infrastructure"
         description="We engineer production-grade VoIP infrastructure and AI Voice Agents. Specializing in FreeSWITCH, Kamailio, SIP trunking, AI receptionist software, and low-latency voice AI."
         keywords="voice ai agents, ai receptionist, ai receptionist software, ai medical receptionist, FreeSWITCH development, Kamailio, sip trunking, twilio alternative, custom VoIP architecture, open source pbx"
@@ -27,7 +32,9 @@ export default function HomePage() {
       />
       <HeroSection />
       <RiskReversalSection />
-      <NeuralNetworkSection />
+      <Suspense fallback={<div style={{ height: '400px' }} />}>
+        <NeuralNetworkSection />
+      </Suspense>
       <CapabilitiesBentoSection />
       <HorizontalScrollSection />
       <OrbitalEcosystemSection />

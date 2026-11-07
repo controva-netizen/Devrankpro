@@ -22,6 +22,11 @@ export function BlogProvider({ children }: { children: ReactNode }) {
 
   const fetchPosts = async () => {
     setLoading(true);
+    if (!supabase) {
+      setPosts(seedPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()));
+      setLoading(false);
+      return;
+    }
     const { data, error } = await supabase
       .from('blog_posts')
       .select('*');
@@ -46,6 +51,10 @@ export function BlogProvider({ children }: { children: ReactNode }) {
   };
 
   const addPost = async (post: Omit<BlogPost, 'id'>) => {
+    if (!supabase) {
+      alert('Blog storage is not configured (missing Supabase environment variables).');
+      return;
+    }
     const { data, error } = await supabase
       .from('blog_posts')
       .insert([post])
@@ -71,6 +80,10 @@ export function BlogProvider({ children }: { children: ReactNode }) {
       alert('Cannot update a hardcoded seed post. Please create a new post.');
       return;
     }
+    if (!supabase) {
+      alert('Blog storage is not configured (missing Supabase environment variables).');
+      return;
+    }
 
     const { error } = await supabase
       .from('blog_posts')
@@ -90,6 +103,10 @@ export function BlogProvider({ children }: { children: ReactNode }) {
   const deletePost = async (id: string) => {
     if (id.length < 10) {
       alert('Cannot delete a hardcoded seed post. Please remove it from src/data/blog.ts manually.');
+      return;
+    }
+    if (!supabase) {
+      alert('Blog storage is not configured (missing Supabase environment variables).');
       return;
     }
 

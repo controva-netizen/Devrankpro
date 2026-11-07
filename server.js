@@ -14,7 +14,9 @@ const distPath = path.resolve(__dirname, 'dist');
 app.use(express.static(distPath));
 
 // SPA Fallback: All unknown routes get redirected to index.html
-app.get('*', (req, res) => {
+// (plain middleware, not app.get('*', ...) — Express 5's stricter
+// path-to-regexp rejects a bare '*' route pattern outright)
+app.use((req, res) => {
   const indexPath = path.resolve(distPath, 'index.html');
   if (fs.existsSync(indexPath)) {
     res.sendFile(indexPath);

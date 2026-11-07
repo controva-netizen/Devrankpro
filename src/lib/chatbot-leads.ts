@@ -12,6 +12,9 @@ export async function storeLead(
   leadData: LeadData,
   conversationId: string
 ): Promise<{ success: boolean; lead?: LeadRecord; error?: string }> {
+  if (!supabase) {
+    return { success: false, error: 'Supabase is not configured' };
+  }
   try {
     const leadScore = calculateLeadScore(leadData);
 
@@ -72,7 +75,7 @@ export async function notifyLeadViaWhatsApp(
 ): Promise<{ success: boolean; provider?: string; error?: string }> {
   const result = await sendWhatsAppNotification(leadData, messages);
 
-  if (result.success && result.provider !== 'none') {
+  if (result.success && result.provider !== 'none' && supabase) {
     // Update lead record to mark as notified
     try {
       await supabase
@@ -89,6 +92,7 @@ export async function notifyLeadViaWhatsApp(
 
 // Get all leads
 export async function getAllLeads(): Promise<LeadRecord[]> {
+  if (!supabase) return [];
   try {
     const { data, error } = await supabase
       .from('chatbot_leads')
@@ -126,6 +130,7 @@ export async function updateLeadStatus(
   leadId: string,
   status: LeadRecord['status']
 ): Promise<boolean> {
+  if (!supabase) return false;
   try {
     const { error } = await supabase
       .from('chatbot_leads')

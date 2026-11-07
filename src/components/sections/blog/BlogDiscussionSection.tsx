@@ -22,6 +22,8 @@ export default function BlogDiscussionSection() {
   const [isLoadingComments, setIsLoadingComments] = useState(true);
 
   useEffect(() => {
+    if (!supabase) return;
+
     // Check active session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
@@ -37,10 +39,15 @@ export default function BlogDiscussionSection() {
 
   useEffect(() => {
     if (!slug) return;
-    
+    const client = supabase;
+    if (!client) {
+      setIsLoadingComments(false);
+      return;
+    }
+
     const fetchComments = async () => {
       setIsLoadingComments(true);
-      const { data, error } = await supabase
+      const { data, error } = await client
         .from('comments')
         .select('*')
         .eq('post_slug', slug)
@@ -59,6 +66,7 @@ export default function BlogDiscussionSection() {
   }, [slug]);
 
   const handleSignIn = async (provider: 'github' | 'google' | 'linkedin_oidc') => {
+    if (!supabase) return;
     await supabase.auth.signInWithOAuth({
       provider,
       options: {
@@ -68,12 +76,13 @@ export default function BlogDiscussionSection() {
   };
 
   const handleSignOut = async () => {
+    if (!supabase) return;
     await supabase.auth.signOut();
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newComment.trim() || !user || !slug) return;
+    if (!newComment.trim() || !user || !slug || !supabase) return;
 
     setIsSubmitting(true);
     
