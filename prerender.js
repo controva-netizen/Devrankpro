@@ -106,24 +106,46 @@ const server = app.listen(PORT, async () => {
     const executablePath = getExecutablePath();
     console.log(`   Browser: ${executablePath || 'puppeteer default'}`);
 
-    browser = await puppeteer.launch({
-      // No full Chrome (e.g. Hostinger): fall back to the chrome-headless-shell
-      // binary Puppeteer downloaded (see .puppeteerrc.cjs).
-      headless: executablePath ? true : 'shell',
-      executablePath,
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--disable-gpu',
-        '--no-first-run',
-        // Extra flags needed to launch Chrome on minimal/constrained Linux
-        // containers (shared hosting, small CI runners) that are missing
-        // some of the shared libraries a full desktop Chrome expects.
-        '--single-process',
-        '--no-zygote',
-      ],
-    });
+    // Try several launch configurations until one works. Shared hosts (Hostinger)
+    // differ in what they allow: --single-process crashes chrome-headless-shell on
+    // many Linux hosts, and the default WebSocket debugging port can be refused
+    // (ECONNREFUSED) where a stdio pipe still works. dumpio forwards the browser's
+    // own stderr to the build log so a failure explains itself.
+    const baseArgs = [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-gpu',
+      '--no-first-run',
+    ];
+    const attempts = [
+      { name: 'pipe, standard flags', pipe: true, args: baseArgs },
+      { name: 'pipe, no-zygote', pipe: true, args: [...baseArgs, '--no-zygote'] },
+      { name: 'websocket, standard flags', pipe: false, args: baseArgs },
+      { name: 'pipe, single-process', pipe: true, args: [...baseArgs, '--single-process', '--no-zygote'] },
+    ];
+
+    let lastErr;
+    for (const attempt of attempts) {
+      try {
+        console.log(`   Launch attempt: ${attempt.name}`);
+        browser = await puppeteer.launch({
+          // No full Chrome (e.g. Hostinger): fall back to the chrome-headless-shell
+          // binary Puppeteer downloaded (see .puppeteerrc.cjs).
+          headless: executablePath ? true : 'shell',
+          executablePath,
+          pipe: attempt.pipe,
+          dumpio: true,
+          args: attempt.args,
+        });
+        console.log(`   Launched OK (${attempt.name})`);
+        break;
+      } catch (err) {
+        lastErr = err;
+        console.warn(`   [warn] launch failed (${attempt.name}): ${String(err.message).split('\n')[0]}`);
+      }
+    }
+    if (!browser) throw lastErr;
 
     const page = await browser.newPage();
     await page.setViewport({ width: 1440, height: 900 });
