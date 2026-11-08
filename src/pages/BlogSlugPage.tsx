@@ -10,6 +10,12 @@ import SEO from '@/components/shared/SEO';
 import Breadcrumbs, { buildBreadcrumbSchema } from '@/components/shared/Breadcrumbs';
 import { relatedServicesFor, relatedPostsFor } from '@/data/blog-links';
 
+/** "Nov 08, 2026" -> "2026-11-08" (UTC, so the day never shifts with the viewer's timezone). */
+function isoDate(display: string): string {
+  const d = new Date(`${display} UTC`);
+  return Number.isNaN(d.getTime()) ? display : d.toISOString().slice(0, 10);
+}
+
 export default function BlogSlugPage() {
   const { slug } = useParams<{ slug: string }>();
   const { posts, loading } = useBlog();
@@ -45,10 +51,11 @@ export default function BlogSlugPage() {
         headline: post.title,
         description: post.excerpt,
         image: post.image ? [post.image] : [],
-        datePublished: post.date,
-        dateModified: post.date,
+        // Google requires ISO 8601; post.date is a display string like "Nov 08, 2026".
+        datePublished: isoDate(post.date),
+        dateModified: isoDate(post.date),
         author: {
-          '@type': 'Person',
+          '@type': /team|llc|controva/i.test(post.author) ? 'Organization' : 'Person',
           name: post.author,
           url: 'https://www.controvallc.com'
         },

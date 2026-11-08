@@ -4296,5 +4296,3322 @@ The distinction between 4xx and 5xx matters for troubleshooting. A 4xx usually m
 
 **Chasing intermittent call failures in a production platform?** Our [FreeSWITCH engineering](/services/freeswitch-development) team debugs and hardens media and signaling stacks, and our [Kamailio load balancing](/services/kamailio-load-balancing) team builds routing and failover that fails over cleanly instead of returning 503s.
 `
+  },
+  {
+    id: '76',
+    title: 'What Is SIP? The Session Initiation Protocol Explained for Engineers',
+    excerpt: 'SIP is the signaling protocol that sets up, modifies, and ends voice and video sessions over IP. This guide explains how SIP works, what its core components do, and where it fits next to RTP, SDP, and WebRTC.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Sep 21, 2026',
+    readTime: '4 min read',
+    slug: 'what-is-sip-protocol-how-it-works',
+    image: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80',
+    content: `
+**SIP (Session Initiation Protocol) is the signaling protocol that starts, changes, and ends real-time sessions such as voice calls over an IP network.** It does not carry the audio itself. SIP negotiates the call; a separate protocol, RTP, carries the media. Understanding that split explains most VoIP behavior and most VoIP bugs.
+
+## How SIP Works in One Paragraph
+
+SIP is a text-based, request/response protocol modeled on HTTP. A device sends a request such as \`INVITE\`, and the far side answers with a numbered response such as \`180 Ringing\` or \`200 OK\`. Along the way, the two sides exchange a description of the media they can handle using SDP, then audio flows directly between them over RTP. When one side hangs up, a \`BYE\` request ends the session.
+
+## The Core Components
+
+| Component | Role |
+| --- | --- |
+| User agent (UA) | The endpoint: a desk phone, softphone, or server application that sends and receives SIP requests |
+| Registrar | Stores where a user can currently be reached (see [SIP registration](/blog/sip-registration-authentication-explained)) |
+| Proxy server | Routes requests toward their destination and applies policy |
+| Redirect server | Tells the caller where to try next instead of forwarding |
+| Session border controller | Secures and normalizes SIP at the network edge (see [SBC architecture](/blog/session-border-controller-architecture)) |
+| Back-to-back user agent (B2BUA) | Terminates one call leg and originates another, used by PBXs and media servers such as FreeSWITCH |
+
+## The Most Important SIP Methods
+
+* **INVITE** starts a session. See the full flow in [SIP INVITE call flow explained](/blog/sip-invite-call-flow-explained).
+* **ACK** confirms the final response to an INVITE.
+* **BYE** ends an established session.
+* **CANCEL** abandons an INVITE that has not been answered.
+* **REGISTER** tells a registrar where the user is reachable.
+* **OPTIONS** asks what the far end supports, and is widely used as a keep-alive and health check.
+
+## SIP, SDP, and RTP: Who Does What
+
+SIP carries the conversation about the call. Inside the SIP body, **SDP** describes codecs, IP addresses, and ports (covered in [SDP offer/answer explained](/blog/sdp-offer-answer-explained)). Then **RTP** moves the audio packets, optionally protected by SRTP (see [RTP and SRTP voice encryption](/blog/rtp-srtp-voice-encryption-explained)). Because signaling and media take different paths, NAT and firewalls often break one and not the other, which is the cause of one-way audio.
+
+## SIP vs WebRTC
+
+WebRTC is a browser technology for real-time media, but it deliberately leaves signaling undefined. Many WebRTC systems use SIP over WebSocket or bridge to SIP through a gateway. The full comparison is in [WebRTC vs SIP](/blog/webrtc-vs-sip-protocol-comparison).
+
+## Common SIP Problems
+
+* One-way or no audio caused by NAT, SDP addresses, or [SIP ALG](/blog/sip-alg-what-it-is-how-to-disable)
+* Registration failures from wrong credentials or blocked ports
+* Unexpected rejections, which are decoded in [SIP response codes](/blog/sip-response-codes-403-408-503-troubleshooting)
+* Poor audio quality, covered in [VoIP quality testing](/blog/voip-quality-testing-mos-jitter-packet-loss)
+
+## Frequently Asked Questions
+
+**Is SIP the same as VoIP?** No. VoIP is the general idea of voice over IP. SIP is one signaling protocol used to implement it.
+
+**What port does SIP use?** UDP and TCP port 5060 for unencrypted signaling and TCP port 5061 for SIP over TLS are the conventional defaults.
+
+**Does SIP carry the voice?** No. Voice travels over RTP, negotiated through SDP.
+
+---
+
+**Building or fixing a SIP platform?** Our [custom VoIP development](/services/custom-voip-development) team designs SIP infrastructure end to end, and our [Kamailio load balancing](/services/kamailio-load-balancing) team builds the routing layer that keeps it reliable at scale.
+`
+  },
+  {
+    id: '77',
+    title: 'SIP Registration and Authentication Explained: Digest, Nonces, and Expiry',
+    excerpt: 'How a SIP device registers, why the first REGISTER gets a 401, and how digest authentication, expiry, and keep-alives work. Includes a troubleshooting checklist for failed registrations.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Sep 22, 2026',
+    readTime: '4 min read',
+    slug: 'sip-registration-authentication-explained',
+    image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80',
+    content: `
+**SIP registration is how a device tells a registrar server where it can currently be reached, and digest authentication is how the server confirms the device is allowed to say so.** A registration binds an address of record, such as \`sip:alice@example.com\`, to a contact address such as \`sip:alice@203.0.113.7:5060\`. Calls to Alice are then routed to that contact.
+
+## The Registration Handshake
+
+1. The device sends \`REGISTER\` with its address of record and a requested expiry.
+2. The server replies **401 Unauthorized** (or 407 from a proxy) with a \`WWW-Authenticate\` header containing a realm and a one-time **nonce**.
+3. The device hashes its credentials with the nonce and sends the same \`REGISTER\` again with an \`Authorization\` header.
+4. If the response is valid, the server answers **200 OK** and returns the granted expiry.
+
+The 401 on the first attempt is normal. It is a challenge, not a failure. A problem exists only when the challenge repeats after the device has sent valid credentials.
+
+## How Digest Authentication Works
+
+The password never crosses the wire. The device computes a hash of the username, realm, password, nonce, and request details, and the server performs the same calculation and compares. Modern deployments should use a strong hash algorithm and TLS so the exchange is also protected from observation (see [SIP over TLS and SRTP setup](/blog/sip-tls-srtp-secure-voip-setup)).
+
+## Expiry and Re-registration
+
+A registration is temporary. The server grants an expiry in seconds, and the device must refresh before it lapses. Typical engineering trade-offs:
+
+* **Short expiry** reacts quickly to a device moving networks but increases signaling load.
+* **Long expiry** reduces load but leaves stale contacts if a device vanishes.
+* **NAT keep-alives** are separate from expiry. Devices behind NAT need frequent traffic to keep the firewall mapping open, which is a common reason for calls failing to reach a registered phone.
+
+## Registration at Scale
+
+With thousands of devices, the registrar becomes a core component. Practical points:
+
+* Store contacts in a fast shared store so that any proxy node can find any user
+* Rate-limit failed attempts to blunt password-guessing (see [VoIP security best practices](/blog/voip-security-best-practices))
+* Use consistent hashing or a dispatcher so a device's traffic reaches the right node (see [Kamailio dispatcher load balancing](/blog/kamailio-dispatcher-load-balancing-config))
+
+## Troubleshooting Failed Registrations
+
+| Symptom | Likely cause |
+| --- | --- |
+| Repeated 401 or 403 | Wrong username, password, or realm; account disabled; source IP not permitted |
+| 408 Timeout | Firewall, wrong port or transport, or [SIP ALG](/blog/sip-alg-what-it-is-how-to-disable) interference |
+| Registers, but inbound calls fail | NAT mapping closed; contact address not reachable; missing keep-alive |
+| Registers, then drops | Expiry too long for the NAT timeout |
+
+For the meaning of each code, see [SIP response codes explained](/blog/sip-response-codes-403-408-503-troubleshooting).
+
+## Registration vs Trunk Authentication
+
+Carrier SIP trunks often skip registration entirely and authenticate by source IP instead. Others register like a phone. Know which model your provider uses before debugging (see the [SIP trunking buyer's guide](/blog/sip-trunking-buyers-guide-2026)).
+
+---
+
+**Need a registrar that holds up under real load?** Our [Kamailio load balancing](/services/kamailio-load-balancing) team builds scalable, secure SIP registration and routing layers.
+`
+  },
+  {
+    id: '78',
+    title: 'SIP INVITE Call Flow Explained: From First Request to BYE',
+    excerpt: 'A step-by-step walkthrough of a SIP call: INVITE, 100 Trying, 180 Ringing, 200 OK, ACK, media, and BYE. Learn what each message does and how to read a call flow when something goes wrong.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Sep 23, 2026',
+    readTime: '4 min read',
+    slug: 'sip-invite-call-flow-explained',
+    image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80',
+    content: `
+**A basic SIP call is a three-way handshake plus a teardown: INVITE, a final response such as 200 OK, then ACK, followed by media and finally BYE.** Learning to read this sequence is the fastest way to debug call setup problems.
+
+## The Standard Successful Call
+
+\`\`\`
+Caller                    Proxy                    Callee
+  | --- INVITE (SDP offer) --->|--- INVITE ------------>|
+  |<-- 100 Trying -------------|<-- 180 Ringing --------|
+  |<-- 180 Ringing ------------|                        |
+  |                            |<-- 200 OK (SDP answer)-|
+  |<-- 200 OK -----------------|                        |
+  | --- ACK ------------------>|--- ACK -------------->|
+  |============ RTP media both ways =====================|
+  | --- BYE ------------------>|--- BYE -------------->|
+  |<-- 200 OK ------------------|<-- 200 OK ------------|
+\`\`\`
+
+## What Each Message Does
+
+* **INVITE** requests a session and normally carries an SDP offer listing codecs and the media address (see [SDP offer/answer](/blog/sdp-offer-answer-explained)).
+* **100 Trying** is hop-by-hop. It tells the sender the request was received and to stop retransmitting.
+* **180 Ringing** or **183 Session Progress** indicates alerting. A 183 with SDP allows early media such as ringback tones or announcements.
+* **200 OK** means the callee answered and includes the SDP answer.
+* **ACK** completes the INVITE transaction. It is its own message and is easy to lose to a firewall, which causes calls to drop after about 32 seconds as the 200 OK is retransmitted.
+* **BYE** terminates the dialog, answered by a 200 OK.
+
+## Transactions vs Dialogs
+
+A **transaction** is one request and its responses. A **dialog** is the longer-lived relationship identified by the Call-ID plus the From and To tags. INVITE creates the dialog; BYE ends it. Mid-call changes such as hold or codec change are re-INVITEs inside the same dialog.
+
+## Failed and Cancelled Calls
+
+* **CANCEL** abandons an INVITE that has not yet been answered, for example when the caller hangs up while it rings.
+* **4xx, 5xx, and 6xx** final responses end the attempt. A 486 means busy, a 404 means no such destination, a 503 means the next hop is overloaded (see [SIP response codes](/blog/sip-response-codes-403-408-503-troubleshooting)).
+* A **302** redirect tells the caller to try another address.
+
+## Reading a Trace Fast
+
+1. Find the Call-ID and filter to that one call.
+2. Check who sent the final response. The meaning changes between phone, proxy, and carrier.
+3. Look for retransmissions, which show a lost packet or a silent far end.
+4. Compare the SDP in the offer and answer for codec and address mismatches.
+5. Confirm ACK and BYE actually arrive at both ends.
+
+Continuous capture makes this routine. See [SIP monitoring with Homer and HEP](/blog/voip-monitoring-homer-hep-sip-capture).
+
+## Why Calls Connect but Have No Audio
+
+Signaling succeeded, so the failure is in media: the SDP advertised a private address, an RTP port range is blocked, or a media relay is missing. Review [NAT traversal with STUN, TURN, and ICE](/blog/nat-traversal-stun-turn-ice-voip) and the [fundamentals of SIP](/blog/what-is-sip-protocol-how-it-works).
+
+---
+
+**Stuck on a call-setup bug in production?** Our [FreeSWITCH engineering](/services/freeswitch-development) team traces and fixes signaling and media issues in live VoIP platforms.
+`
+  },
+  {
+    id: '79',
+    title: 'SIP Headers Reference Guide: Via, From, To, Contact, and Call-ID',
+    excerpt: 'A practical reference for the SIP headers engineers touch most: Via, From, To, Call-ID, CSeq, Contact, Record-Route, and P-Asserted-Identity, with what each does and what commonly breaks.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Sep 24, 2026',
+    readTime: '4 min read',
+    slug: 'sip-headers-reference-guide',
+    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80',
+    content: `
+**SIP headers carry the routing, identity, and transaction information that proxies and endpoints need to process a message.** Most real-world SIP faults can be traced to one mishandled header, so knowing the core set pays off quickly.
+
+## Mandatory Headers
+
+Every SIP request must contain these:
+
+| Header | Purpose |
+| --- | --- |
+| **Via** | Records the path the request took. Responses retrace it in reverse |
+| **From** | Who originated the request, with a \`tag\` that identifies the caller's side of the dialog |
+| **To** | The intended recipient. The callee adds its own \`tag\` in responses |
+| **Call-ID** | Unique identifier of the call or registration |
+| **CSeq** | A sequence number plus method name, ordering requests within a dialog |
+| **Max-Forwards** | Hop limit to prevent loops |
+
+## Via
+
+Each hop adds its own Via header on top. The \`branch\` parameter identifies the transaction. The \`received\` and \`rport\` parameters help a server route responses back through NAT when a client's advertised address differs from the real source.
+
+## From, To, and Tags
+
+The combination of Call-ID, From tag, and To tag identifies a dialog. A missing or reused tag produces mysterious "call leg does not exist" behavior in B2BUAs.
+
+## Contact
+
+Contact tells the far end where to send *subsequent* requests in the dialog. If a device behind NAT puts a private address here, in-dialog requests like BYE can never reach it. This is the single most common source of calls that cannot be hung up cleanly or that drop at the 32-second mark. See [SIP INVITE call flow](/blog/sip-invite-call-flow-explained).
+
+## Record-Route and Route
+
+A proxy that needs to stay in the signaling path adds **Record-Route**. Endpoints then store it and use **Route** headers on later requests so those requests traverse the proxy. Session border controllers and load balancers rely on this (see [Kamailio dispatcher configuration](/blog/kamailio-dispatcher-load-balancing-config)).
+
+## Identity Headers
+
+* **P-Asserted-Identity (PAI)** is a trusted network assertion of the caller's identity, used between trusted domains.
+* **Privacy** requests that identity be withheld from the callee.
+* **Identity** carries a signed attestation as part of caller authentication (see [STIR/SHAKEN compliance](/blog/stir-shaken-compliance-voip-2026)).
+* **Diversion** and **History-Info** record call forwarding, which carriers use for billing and for presenting the original called number.
+
+## Headers Often Seen in Production
+
+* **User-Agent** and **Server** identify software, helpful in tracing which hop generated an error
+* **Allow** and **Supported** list the methods and extensions an endpoint supports
+* **Session-Expires** enables session timers so dead calls get cleaned up
+* **Content-Type** and **Content-Length** describe the body, usually SDP (see [SDP explained](/blog/sdp-offer-answer-explained))
+
+## Debugging Tips
+
+1. Compare the top Via on a request with the actual source IP to spot NAT.
+2. Check that Contact is routable from the other side.
+3. Confirm Record-Route is added once, not duplicated.
+4. When identity looks wrong, find the earliest hop that altered PAI or From.
+
+## Normalization
+
+Interop problems often come from vendors using headers differently. A session border controller can rewrite or strip headers so each side sees what it expects (see [SBC architecture](/blog/session-border-controller-architecture)).
+
+---
+
+**Facing carrier interop issues or header-mangling problems?** Our [custom VoIP development](/services/custom-voip-development) team builds the normalization and routing logic that makes mixed-vendor networks behave.
+`
+  },
+  {
+    id: '80',
+    title: 'SDP Offer/Answer Explained: How VoIP Endpoints Negotiate Codecs and Media',
+    excerpt: 'SDP describes the media in a SIP call: codecs, IP address, and ports. Learn how the offer/answer model works, how to read an SDP body, and the mistakes that cause one-way audio and failed codec negotiation.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Sep 25, 2026',
+    readTime: '4 min read',
+    slug: 'sdp-offer-answer-explained',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+    content: `
+**SDP (Session Description Protocol) is the text format SIP uses to describe the media of a call: which codecs each side supports, where to send audio, and in which direction.** SIP carries the SDP, and two parties use an offer/answer exchange to agree on a single media configuration.
+
+## Reading an SDP Body
+
+\`\`\`
+v=0
+o=- 2890844526 2890844526 IN IP4 203.0.113.10
+s=-
+c=IN IP4 203.0.113.10
+t=0 0
+m=audio 16384 RTP/AVP 0 8 101
+a=rtpmap:0 PCMU/8000
+a=rtpmap:8 PCMA/8000
+a=rtpmap:101 telephone-event/8000
+a=ptime:20
+a=sendrecv
+\`\`\`
+
+* **c=** is the connection address where media should be sent. A wrong or private address here is a leading cause of one-way audio.
+* **m=audio 16384 RTP/AVP 0 8 101** means audio on UDP port 16384, offering payload types 0, 8, and 101 in order of preference.
+* **a=rtpmap** maps each payload type to a codec and clock rate.
+* **telephone-event** carries DTMF digits in RTP (RFC 2833/4733 style).
+* **a=sendrecv, sendonly, recvonly, inactive** set the direction, which is how hold works.
+
+## The Offer/Answer Model
+
+1. The caller's INVITE contains an **offer** listing its codecs in preference order.
+2. The callee picks codecs it also supports and returns an **answer** with the chosen subset.
+3. Both sides now send RTP to the address and port in the other side's SDP.
+
+The answer can only choose from what was offered. If there is no overlap, the callee responds **488 Not Acceptable Here** (see [SIP response codes](/blog/sip-response-codes-403-408-503-troubleshooting)).
+
+## Late Offer vs Early Offer
+
+With **early offer**, the INVITE carries the SDP. With **late offer**, the INVITE has none and the offer arrives in the 200 OK, with the answer in the ACK. Late offer is legal but trips up equipment that assumes early offer, and it complicates media handling in gateways.
+
+## Common Failure Modes
+
+| Problem | Cause |
+| --- | --- |
+| One-way or no audio | Private IP in \`c=\`, blocked RTP ports, no media relay (see [NAT traversal](/blog/nat-traversal-stun-turn-ice-voip)) |
+| 488 on call setup | No common codec between the two sides |
+| DTMF not detected | Mismatched telephone-event payload type or in-band vs out-of-band handling |
+| Call goes silent on hold or transfer | Re-INVITE direction or address handled incorrectly |
+| Choppy audio | Different \`ptime\` values or transcoding load (see [G.711 vs G.729](/blog/g711-vs-g729-codec-bandwidth)) |
+
+## Encryption in SDP
+
+For SRTP, SDP carries key material or fingerprints. WebRTC uses DTLS-SRTP, which is negotiated through SDP fingerprints and ICE candidates. See [RTP and SRTP voice encryption](/blog/rtp-srtp-voice-encryption-explained).
+
+## Practical Advice
+
+* Offer a short, ordered codec list rather than everything you support
+* Keep \`ptime\` consistent end to end where possible
+* Let a media relay such as RTPengine rewrite addresses at the network edge (see [open-source SBC with Kamailio and RTPengine](/blog/open-source-sbc-kamailio-rtpengine))
+* Capture both signaling and media when debugging, since the SDP alone does not prove packets flowed
+
+For the signaling that carries SDP, start with [what SIP is and how it works](/blog/what-is-sip-protocol-how-it-works).
+
+---
+
+**Need media handling that just works across carriers and NAT?** Our [FreeSWITCH development](/services/freeswitch-development) team builds media servers with correct codec negotiation, transcoding, and relay behavior.
+`
+  },
+  {
+    id: '81',
+    title: 'SIP Forking Explained: Parallel and Serial Ringing for Hunt Groups and Multi-Device Users',
+    excerpt: 'SIP forking lets one call ring several destinations at once or one after another. Learn how parallel and serial forking work, how proxies and B2BUAs implement them, and the pitfalls around early media and voicemail.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Sep 26, 2026',
+    readTime: '4 min read',
+    slug: 'sip-forking-parallel-serial-ringing',
+    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80',
+    content: `
+**SIP forking is when a proxy sends one incoming call to several destinations, either simultaneously (parallel) or one after another (serial).** It is how one number can ring a desk phone, a mobile app, and a softphone, and how hunt groups and ring groups are built.
+
+## Parallel Forking
+
+The proxy copies the INVITE to every registered contact for the user at once. The first endpoint to answer with a 200 OK wins, and the proxy sends CANCEL to the others.
+
+**Use it for:** multi-device users, ring-all groups, "simultaneous ring" to a mobile number.
+
+**Watch for:**
+
+* **Multiple 200 OK responses.** Two devices can answer within milliseconds. Only one dialog should survive; the proxy or B2BUA must BYE or reject the extra.
+* **Early media from several branches.** Several 183 responses with SDP can produce overlapping ringback or announcements. Decide which branch's early media the caller hears.
+* **Voicemail answering early.** If a forked branch is a mobile carrier, its voicemail can answer before a human does and win the race.
+
+## Serial Forking (Sequential Hunt)
+
+The proxy tries one destination, waits for a timeout or failure response, then tries the next.
+
+**Use it for:** escalation chains, on-call rotas, failover to a backup number.
+
+**Watch for:**
+
+* **Total ring time.** Three branches with 20-second timers means 60 seconds of ringing, long enough for callers to hang up.
+* **Which failures advance the chain.** Typically a 408, 480, 486, or 503 moves on, while a 603 Decline usually should not.
+
+## Forking in Proxies vs B2BUAs
+
+A **stateful proxy** such as Kamailio forks natively and is efficient, with no media involved. A **B2BUA** such as FreeSWITCH originates separate outbound legs (for example with \`originate\` and the \`,\` and \`:\` separators) and bridges the winner. The B2BUA approach gives more control over media, recording, and logic, at higher resource cost. For the trade-offs, see [FreeSWITCH vs Asterisk](/blog/freeswitch-vs-asterisk) and [Kamailio dispatcher configuration](/blog/kamailio-dispatcher-load-balancing-config).
+
+## Combining Strategies
+
+Real routing often mixes both: ring the desk phone and the mobile app in parallel for 15 seconds, then move serially to a colleague, then to voicemail. In a contact center, ring strategies move into the queue layer (see [call queue and ACD routing design](/blog/call-queue-acd-routing-design)).
+
+## Registration and Forking
+
+Forking depends on knowing every live contact for a user, which comes from registrations (see [SIP registration explained](/blog/sip-registration-authentication-explained)). Stale contacts waste time in parallel groups, so expiry and keep-alive tuning matter.
+
+## Testing Checklist
+
+1. Answer on each branch in turn and confirm the others stop ringing.
+2. Answer two at nearly the same instant and confirm exactly one call results.
+3. Let all branches time out and confirm the fallback (voicemail or next hop) fires.
+4. Verify caller ID and CDR records show the answering branch (see [CDR explained](/blog/call-detail-records-cdr-explained)).
+
+---
+
+**Designing complex routing like ring groups, escalation, and failover?** Our [custom VoIP development](/services/custom-voip-development) team builds routing logic tailored to how your business actually takes calls.
+`
+  },
+  {
+    id: '82',
+    title: 'SIP over TLS and SRTP: How to Secure VoIP Signaling and Media',
+    excerpt: 'Plain SIP and RTP travel unencrypted. This guide explains how TLS protects signaling and SRTP protects audio, how to set them up, and the certificate and interoperability issues that cause most failed rollouts.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Sep 27, 2026',
+    readTime: '4 min read',
+    slug: 'sip-tls-srtp-secure-voip-setup',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+    content: `
+**To secure a VoIP call you need two layers: SIP over TLS to encrypt the signaling, and SRTP to encrypt the audio.** Using only one leaves the other exposed. Signaling reveals who is calling whom, and credentials; media reveals what was said.
+
+## What Each Layer Protects
+
+| Layer | Protocol | Protects |
+| --- | --- | --- |
+| Signaling | SIP over TLS (SIPS, typically TCP 5061) | Caller and callee identity, headers, authentication, key exchange |
+| Media | SRTP (or DTLS-SRTP for WebRTC) | The audio payload itself |
+
+Without TLS, SRTP keys sent in SDP are visible to anyone who can read the signaling. Pair them. Background on SRTP is in [RTP and SRTP voice encryption](/blog/rtp-srtp-voice-encryption-explained).
+
+## Setting It Up
+
+**1. Certificates.** Use a certificate from a trusted CA for the public name of your SIP service, and automate renewal. Expired certificates are the number one cause of outages in TLS SIP deployments.
+
+**2. Enable TLS listeners.** On Kamailio, load the \`tls\` module and define a TLS socket; on FreeSWITCH, configure the Sofia profile with a TLS port and certificate chain.
+
+**3. Require TLS where possible.** Accept plain UDP only from known peers that cannot do better, and prefer TLS for end-user devices.
+
+**4. Negotiate SRTP.** Offer SRTP using SDES (keys in SDP, requires TLS) or DTLS-SRTP, and decide whether plain RTP is allowed as a fallback. Mandatory SRTP is stricter but breaks calls to peers that do not support it.
+
+**5. Set a minimum TLS version** and disable weak ciphers.
+
+## Common Interop Problems
+
+* **Certificate name mismatch.** The device validates the server name, so the certificate must match the hostname it dials.
+* **Incomplete chain.** Missing intermediate certificates work in some clients and fail in others.
+* **SRTP offered but not accepted.** Some carriers require plain RTP, so an SBC often bridges SRTP on one side to RTP on the other (see [SBC architecture](/blog/session-border-controller-architecture)).
+* **Re-INVITE crypto changes** causing audio to drop mid-call.
+* **NAT and TLS keep-alives.** TCP connections time out in firewalls, so use persistent connections with keep-alives.
+
+## Performance
+
+Encryption adds modest CPU cost. At high call volume, plan capacity and test (see [SIP trunking load testing](/blog/sip-trunking-load-testing-concurrency)). Media encryption is usually the larger cost because it applies to every packet.
+
+## Compliance Context
+
+Regulated sectors typically expect encryption in transit, plus access control and audit logging. See [HIPAA-compliant VoIP requirements](/blog/hipaa-compliant-voip-requirements-architecture) and [financial services VoIP compliance](/blog/financial-services-voip-finra-sec-compliance). Encryption is necessary but not sufficient on its own.
+
+## Verification
+
+1. Capture traffic and confirm signaling is unreadable.
+2. Confirm RTP is replaced by SRTP and cannot be played back.
+3. Test certificate renewal before it matters.
+4. Broader hardening is covered in [VoIP security best practices](/blog/voip-security-best-practices).
+
+---
+
+**Rolling out encrypted voice across carriers and endpoints?** Our [Kamailio and SBC engineering](/services/kamailio-load-balancing) team builds secure edges that translate between encrypted and legacy peers.
+`
+  },
+  {
+    id: '83',
+    title: 'VoIP Security Best Practices: A Practical Hardening Checklist',
+    excerpt: 'The main threats to VoIP systems are toll fraud, credential attacks, eavesdropping, and denial of service. This checklist covers network, authentication, encryption, monitoring, and operational controls that reduce risk.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Sep 28, 2026',
+    readTime: '4 min read',
+    slug: 'voip-security-best-practices',
+    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80',
+    content: `
+**VoIP security comes down to five controls: restrict who can reach your servers, authenticate everything, encrypt signaling and media, monitor for abuse, and limit what a compromised account can cost you.** A phone system is an internet-facing service with a direct billing meter attached, so it attracts attackers who expect to monetize access fast.
+
+## Main Threats
+
+* **Toll fraud:** attackers use stolen credentials to place expensive international or premium-rate calls (see [VoIP toll fraud prevention](/blog/voip-toll-fraud-prevention))
+* **Registration brute-force and scanning:** automated tools probe SIP ports for weak passwords
+* **Eavesdropping:** unencrypted RTP can be captured on the path
+* **Denial of service:** floods of INVITE or REGISTER overload the server
+* **Caller ID spoofing and impersonation**
+
+## 1. Network Controls
+
+* Do not expose management interfaces to the internet; use VPN or allow-lists
+* Allow SIP only from known carrier IPs for trunks, and rate-limit everything else
+* Restrict RTP port ranges and open only what you use
+* Place an SBC or hardened proxy at the edge (see [session border controller architecture](/blog/session-border-controller-architecture))
+* Block known abusive sources automatically (see [FreeSWITCH Fail2ban and firewall hardening](/blog/freeswitch-fail2ban-firewall-hardening))
+
+## 2. Authentication
+
+* Long, unique, randomly generated SIP passwords per device
+* No default or guessable credentials, and no extension number used as password
+* Lock or alert after repeated failures
+* Disable unused accounts and remove old users promptly
+
+## 3. Encryption
+
+Use TLS for signaling and SRTP for media. Setup details are in [SIP over TLS and SRTP](/blog/sip-tls-srtp-secure-voip-setup). Encrypt management traffic and recordings at rest too.
+
+## 4. Abuse and Cost Controls
+
+* Per-account call and spend limits, with hard stops
+* Destination allow-lists: default-deny international, then enable by account
+* Concurrent call caps and calls-per-second limits per account
+* Time-of-day rules for accounts that never call overnight
+
+## 5. Monitoring and Response
+
+* Alert on spikes in failed registrations, unusual destinations, and call volume
+* Keep CDRs and SIP traces long enough to investigate (see [CDR fraud analysis](/blog/voip-fraud-detection-cdr-analysis) and [SIP capture with HEP](/blog/voip-monitoring-homer-hep-sip-capture))
+* Write an incident runbook: who disables an account, who calls the carrier
+
+## 6. Operational Hygiene
+
+* Patch the PBX, media server, and OS on a schedule
+* Back up configuration and test restores (see [VoIP disaster recovery](/blog/voip-disaster-recovery-failover-design))
+* Separate voice and data VLANs on-premises
+* Review third-party integrations and API keys regularly
+
+## Quick Audit Questions
+
+1. Can anyone on the internet send REGISTER to my server? Should they?
+2. What is the worst a stolen password could cost in one hour?
+3. Would I notice within minutes if 500 calls to a premium destination started?
+4. Are my TLS certificates monitored for expiry?
+
+If any answer is uncomfortable, start there.
+
+---
+
+**Want an independent look at your voice infrastructure?** Our [enterprise VoIP DevOps](/services/enterprise-voip-devops) team hardens, monitors, and operates production telephony platforms.
+`
+  },
+  {
+    id: '84',
+    title: 'VoIP Toll Fraud Prevention: How Attacks Work and How to Stop Them',
+    excerpt: 'Toll fraud turns a compromised phone system into a source of huge call charges. Learn the common attack patterns, the controls that prevent them, and how to detect and contain an incident quickly.',
+    category: 'Telecom Compliance',
+    author: 'Telephony Engineering Team',
+    date: 'Sep 29, 2026',
+    readTime: '4 min read',
+    slug: 'voip-toll-fraud-prevention',
+    image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80',
+    content: `
+**Toll fraud is the unauthorized use of a phone system to place calls, usually to high-cost international or premium-rate numbers, leaving the victim with the bill.** Attackers rarely need advanced skills. They need one weak password, one exposed port, or one misconfigured trunk.
+
+## How the Attacks Usually Work
+
+1. **Scan and discover.** Bots probe public IP ranges for SIP services on port 5060 and common alternatives.
+2. **Guess credentials.** Weak or default passwords are tried against extensions, or an open relay that needs no authentication is found.
+3. **Place calls.** Traffic is pumped to numbers the attacker profits from, often overnight, on weekends, or during holidays when nobody is watching.
+4. **Disappear.** By the time the invoice arrives, the damage is done.
+
+Variants include compromised softphone accounts, stolen web-portal or API credentials, and abuse of voicemail dial-out and call-forward features.
+
+## Preventive Controls
+
+| Control | What it stops |
+| --- | --- |
+| Strong, unique SIP passwords | Credential guessing |
+| IP allow-lists and firewall rules | Unauthenticated access from random hosts |
+| Default-deny international dialing | Calls to unexpected countries |
+| Per-account spend and concurrency limits | Large losses from one compromised account |
+| Disable voicemail-to-outbound and unrestricted forwarding | Abuse of features that bypass dial rules |
+| Fail2ban or rate limiting | Brute-force registration attempts (see [FreeSWITCH Fail2ban hardening](/blog/freeswitch-fail2ban-firewall-hardening)) |
+
+The broader checklist is in [VoIP security best practices](/blog/voip-security-best-practices).
+
+## Detection
+
+Prevention fails sometimes. Detection shortens the loss window:
+
+* Real-time alerts when an account's spend or call count crosses a threshold
+* Alerts on new destination countries per account
+* Alerts for after-hours calling by accounts that never call then
+* Spikes in failed authentication followed by a success, a classic compromise signature
+
+Methods for analyzing call records are covered in [VoIP fraud detection with CDR analysis](/blog/voip-fraud-detection-cdr-analysis).
+
+## Incident Response Playbook
+
+1. **Contain:** disable the compromised account or block the destination immediately.
+2. **Preserve:** save CDRs, SIP traces, and logs before they rotate.
+3. **Notify:** contact your upstream carrier, who can block traffic and discuss billing disputes.
+4. **Root cause:** find how access was obtained and fix it, not just the symptom.
+5. **Rotate:** change credentials for related accounts and integrations.
+
+## Carrier and Contract Considerations
+
+Many carriers hold customers responsible for traffic that passed through their account, regardless of how it started. Ask providers about fraud alerts, spend caps, and their dispute process before an incident (see the [SIP trunking buyer's guide](/blog/sip-trunking-buyers-guide-2026)). Resellers and platform operators should enforce limits per customer, not only in aggregate.
+
+## Platform Operators: Per-Tenant Limits
+
+If you run a multi-tenant or white-label platform, one compromised tenant can exhaust your carrier relationship. Build per-tenant limits in from day one (see [white-label VoIP platform architecture](/blog/white-label-voip-platform-architecture)).
+
+---
+
+**Running a platform where fraud controls must be built in?** Our [custom VoIP development](/services/custom-voip-development) team implements spend limits, destination rules, and real-time alerting into the call path.
+`
+  },
+  {
+    id: '85',
+    title: 'VoIP Fraud Detection with CDR Analysis: Signals, Thresholds, and Alerts',
+    excerpt: 'Call detail records reveal fraud patterns early if you know what to look for. This guide covers the key CDR fields, the signals that indicate abuse, and how to turn them into automated alerts.',
+    category: 'Telecom Compliance',
+    author: 'Telephony Engineering Team',
+    date: 'Sep 30, 2026',
+    readTime: '4 min read',
+    slug: 'voip-fraud-detection-cdr-analysis',
+    image: 'https://images.unsplash.com/photo-1516110833967-0b5716ca1387?auto=format&fit=crop&w=800&q=80',
+    content: `
+**You can detect most VoIP fraud from call detail records alone by watching for deviations from each account's normal behavior in destination, volume, timing, and cost.** CDRs are cheap, already collected, and difficult for an attacker to avoid generating.
+
+## The CDR Fields That Matter
+
+From the full record structure described in [call detail records explained](/blog/call-detail-records-cdr-explained), fraud analysis leans on:
+
+* Calling and called number, and the **destination country or rate prefix**
+* **Start time** and **duration**
+* **Account or trunk** identifier and **source IP**
+* **Hangup cause**, which shows failures and rejections
+* **Cost** or rate applied
+
+## Fraud Signals
+
+| Signal | Why it matters |
+| --- | --- |
+| Sudden new destination country | Typical of stolen credentials used for premium routes |
+| Many short calls to the same prefix | Number-range pumping to generate termination revenue |
+| High concurrent calls from one account | Automated abuse, not human calling |
+| Calls outside the account's usual hours | Attackers favor nights, weekends, holidays |
+| Many failed authentications then success | Brute-force that succeeded |
+| Unusual source IP or country for an account | Credentials used from a new location |
+| Very long calls to unusual numbers | Revenue-share abuse |
+
+## Baselines Beat Fixed Rules
+
+A fixed rule like "alert above 100 calls per hour" will either fire constantly on busy accounts or miss attacks on quiet ones. Compute a **per-account baseline** from the past few weeks (typical hours, destinations, volume) and alert on deviation. Even simple rolling averages catch a lot.
+
+## Building the Pipeline
+
+1. **Stream CDRs** into a database or message queue as calls finish, not in a nightly batch.
+2. **Aggregate** by account over short windows such as 5, 15, and 60 minutes.
+3. **Evaluate rules** against the baseline and static caps.
+4. **Act in tiers:** notify at a soft threshold, throttle at a harder one, block at a hard one.
+5. **Review** false positives weekly and tune thresholds.
+
+Prevention controls that complement detection are in [VoIP toll fraud prevention](/blog/voip-toll-fraud-prevention). For caller-level analysis, voice-based approaches are in [voice biometrics for fraud detection](/blog/voice-biometrics-fraud-detection-ai).
+
+## Real-Time vs Near-Real-Time
+
+A CDR is written when a call ends. A long fraudulent call is invisible until it finishes. Pair CDRs with **live call state** (active calls per account, spend so far) so you can stop an in-progress attack. Your signaling layer is the right enforcement point (see [Kamailio routing and rate limiting](/blog/kamailio-dispatcher-load-balancing-config)).
+
+## Data Handling
+
+CDRs contain personal data. Apply retention limits, access controls, and encryption, and align with any regulatory requirements for your sector.
+
+---
+
+**Want fraud detection built into your billing and routing?** Our [telecom API and middleware](/services/telecom-api-middleware) team builds the data pipelines and enforcement logic that connect call records to real-time action.
+`
+  },
+  {
+    id: '86',
+    title: 'FreeSWITCH Fail2ban and Firewall Hardening: Blocking SIP Attacks Automatically',
+    excerpt: 'A practical guide to protecting a FreeSWITCH server from SIP scanners and brute-force attempts using firewall rules, Fail2ban jails, and sensible Sofia profile settings.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 01, 2026',
+    readTime: '4 min read',
+    slug: 'freeswitch-fail2ban-firewall-hardening',
+    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80',
+    content: `
+**A FreeSWITCH server on a public IP will be scanned within hours. The standard defence is layered: a default-deny firewall, Fail2ban to ban sources that fail authentication, and Sofia settings that avoid answering unknown callers.** None of these is exotic, and together they remove most automated attack traffic.
+
+## Layer 1: Firewall
+
+Start from default deny and open only what you need:
+
+* SIP signaling port(s) from known carrier IPs and, if needed, rate-limited from the wider internet
+* The RTP range you configured (for example 16384 to 32768), not the whole UDP space
+* Management (SSH, ESL port 8021) only from VPN or admin IPs. **Never expose the event socket publicly.**
+
+Use \`ipset\` or equivalent with iptables/nftables so you can maintain large allow- and block-lists efficiently.
+
+## Layer 2: Fail2ban
+
+FreeSWITCH logs failed authentication, and Fail2ban can watch those log lines and add firewall bans.
+
+**Make sure logging captures auth failures.** Set the \`sofia\` log level so that lines like \`SIP auth failure (REGISTER)\` and \`SIP auth challenge\` are written to the log file Fail2ban reads.
+
+**Filter:** a regex matching auth-failure lines and capturing the source IP.
+
+**Jail (example values to tune):**
+
+\`\`\`
+[freeswitch]
+enabled  = true
+port     = 5060,5061
+filter   = freeswitch
+logpath  = /var/log/freeswitch/freeswitch.log
+maxretry = 5
+findtime = 600
+bantime  = 3600
+action   = iptables-allports
+\`\`\`
+
+Adjust \`maxretry\` and \`findtime\` to your traffic. Legitimate devices that mistype a password or sit behind NAT with many users can be banned together, so allow-list known office IPs.
+
+## Layer 3: Sofia Profile Settings
+
+* Require authentication for registrations and inbound calls from unknown sources
+* Use ACLs on the profile so that only trusted IPs can send INVITEs without authenticating
+* Disable \`accept-blind-reg\` and \`accept-blind-auth\`, which skip checks
+* Avoid default users and the sample extensions (such as 1000 to 1019) with default passwords
+* Rate-limit with \`mod_limit\` or at an upstream proxy
+
+## Layer 4: Put an Edge in Front
+
+A hardened Kamailio or SBC absorbs scanning and floods so FreeSWITCH never sees them (see [open-source SBC with Kamailio and RTPengine](/blog/open-source-sbc-kamailio-rtpengine) and [FreeSWITCH horizontal scaling with Kamailio](/blog/freeswitch-horizontal-scaling-kamailio)).
+
+## Verify It Works
+
+1. From a test host, send repeated failed REGISTER attempts and confirm a ban appears.
+2. Confirm your own carrier and office IPs are not banned.
+3. Check that a banned IP is released after the ban time.
+4. Monitor for ban volume spikes, which signal an active attack (see [VoIP security best practices](/blog/voip-security-best-practices)).
+
+## What Fail2ban Does Not Do
+
+It reacts after failures, so a distributed attack from many IPs with few attempts each may slip through. Strong passwords, default-deny rules, and spend limits remain essential (see [toll fraud prevention](/blog/voip-toll-fraud-prevention)).
+
+---
+
+**Want your FreeSWITCH platform audited and hardened?** Our [FreeSWITCH development](/services/freeswitch-development) team secures and tunes production media servers.
+`
+  },
+  {
+    id: '87',
+    title: 'Call Detail Records (CDR) Explained: Fields, Formats, and What to Do With Them',
+    excerpt: 'CDRs are the log of every call your system handles. Learn what fields they contain, how FreeSWITCH, Asterisk, and Kamailio generate them, and how to use them for billing, troubleshooting, and fraud detection.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 02, 2026',
+    readTime: '4 min read',
+    slug: 'call-detail-records-cdr-explained',
+    image: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=800&q=80',
+    content: `
+**A call detail record (CDR) is a log entry created for each call that summarizes who called whom, when, for how long, and how it ended.** CDRs are the raw material for billing, reporting, capacity planning, troubleshooting, and fraud detection.
+
+## Typical CDR Fields
+
+| Field | Meaning |
+| --- | --- |
+| Call ID / UUID | Unique identifier linking the CDR to signaling traces |
+| Caller and callee numbers | Origin and destination, normalized (E.164 recommended) |
+| Start, answer, and end timestamps | Gives setup time, ring time, and duration |
+| Duration and billable seconds | Total time vs time to bill |
+| Disposition / hangup cause | Answered, busy, no answer, failed, and the reason code |
+| Account, trunk, or tenant | Who is responsible for the call |
+| Direction | Inbound, outbound, or internal |
+| Codec and quality data | Optional MOS, jitter, packet loss (see [VoIP quality testing](/blog/voip-quality-testing-mos-jitter-packet-loss)) |
+| Rate and cost | Applied price, if rated at write time |
+
+## How Common Platforms Produce Them
+
+* **FreeSWITCH:** \`mod_cdr_csv\`, \`mod_json_cdr\`, \`mod_xml_cdr\`, or \`mod_odbc_cdr\`/event handlers. JSON posted to your API at hangup is popular because it avoids files.
+* **Asterisk:** the CDR and CEL (channel event logging) subsystems.
+* **Kamailio:** the \`acc\` module writes records for SIP transactions, and it records signaling, not media duration.
+
+Choose by what you need. A proxy knows setup and teardown times; a media server also knows actual media behavior.
+
+## Design Tips
+
+1. **Write at hangup, and also capture in-progress state.** Long calls are invisible until they end.
+2. **Normalize numbers** to a single format at ingestion.
+3. **Never lose a record.** Buffer to disk or a queue if the database is down.
+4. **Store both legs** of bridged calls and link them with a shared correlation ID.
+5. **Keep timestamps in UTC** with millisecond precision.
+6. **Index** on account, time, and destination for fast queries.
+
+## What CDRs Power
+
+* **Billing** by rating each call against a rate table (see [VoIP billing system architecture](/blog/voip-billing-system-architecture))
+* **Routing decisions** by measuring carrier success rates and answer-seizure ratios (see [least cost routing](/blog/least-cost-routing-voip-lcr))
+* **Fraud detection** from anomalies in destination and volume (see [CDR fraud analysis](/blog/voip-fraud-detection-cdr-analysis))
+* **Capacity planning** from peak concurrency and calls-per-second trends
+* **Support** by finding a customer's specific call and tracing it
+
+## Common KPIs from CDRs
+
+* **ASR (answer-seizure ratio):** answered calls divided by attempts
+* **ACD (average call duration)**
+* **Post-dial delay:** time from INVITE to first ringing
+* **Concurrent calls** and **CPS** at peak
+
+## Privacy
+
+CDRs identify people and behavior. Set retention periods, restrict access, and follow any regulatory requirements that apply (see [call recording compliance by state](/blog/call-recording-compliance-state-guide) for the related recording rules).
+
+---
+
+**Need CDR pipelines that feed billing and analytics reliably?** Our [telecom API and middleware](/services/telecom-api-middleware) team builds the data layer that connects your call platform to your business systems.
+`
+  },
+  {
+    id: '88',
+    title: 'VoIP Billing System Architecture: Rating, Invoicing, and Real-Time Balance Control',
+    excerpt: 'How to design a VoIP billing system: ingesting CDRs, rating calls against rate decks, handling prepaid and postpaid balances, and enforcing limits in real time without losing records.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 03, 2026',
+    readTime: '4 min read',
+    slug: 'voip-billing-system-architecture',
+    image: 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?auto=format&fit=crop&w=800&q=80',
+    content: `
+**A VoIP billing system turns raw call records into correct charges, and for prepaid or credit-limited customers it must also decide in real time whether a call is allowed to start or continue.** Designing it as two cooperating parts, an authorization path and a rating path, avoids most painful rework.
+
+## The Two Paths
+
+**Real-time path (authorize and control):** before and during a call, check that the account is active, has sufficient balance or credit, is within concurrency limits, and is permitted to call that destination. This runs in the call setup path, so it must be fast and resilient.
+
+**Batch or streaming path (rate and invoice):** after a call, convert the CDR into a priced charge, update balances, and eventually produce invoices.
+
+## Core Components
+
+1. **Account and plan store:** customers, tenants, plans, balances, credit limits
+2. **Rate deck store:** prefix-based prices per destination, with effective dates
+3. **Rating engine:** longest-prefix match, increments and minimum durations, free minutes, taxes
+4. **Authorization service:** real-time allow/deny and maximum call time
+5. **CDR ingestion:** reliable intake (see [call detail records explained](/blog/call-detail-records-cdr-explained))
+6. **Ledger:** an append-only record of every charge and payment
+7. **Invoicing and payments:** invoice generation, payment provider integration, dunning
+
+## Rating Essentials
+
+* **Longest prefix match** on the dialed number finds the rate (for example +44 20 beats +44)
+* **Billing increments** such as 6/6 or 60/60 seconds change what customers pay
+* **Connection fees** and **minimum charge** per call
+* **Peak and off-peak** rates by time band
+* Keep **rate versions** so that a call is priced with the rates in effect at that time
+
+## Prepaid Control
+
+For prepaid accounts:
+
+1. At call setup, compute the **maximum allowed duration** from balance and rate.
+2. Reserve the estimated amount, or enforce a timer that ends the call at that limit.
+3. On hangup, reconcile the actual charge and release the reservation.
+
+Platforms like FreeSWITCH can enforce this with channel timers set per call, driven by an API of your own.
+
+## Reliability Rules
+
+* **Idempotency:** processing the same CDR twice must not double-charge. Use the call UUID as a key.
+* **Never silently drop:** failed CDR writes go to a retry queue.
+* **Audit trail:** a ledger, not an edited balance field.
+* **Reconciliation:** compare your CDR totals with carrier invoices to find leakage (see [BYOC economics](/blog/byoc-economics-enterprise-carrier)).
+
+## Multi-Tenant and Reseller Models
+
+White-label platforms need nested accounts and separate rates per level (see [white-label VoIP platform architecture](/blog/white-label-voip-platform-architecture) and [multi-tenant PBX architecture](/blog/multi-tenant-pbx-architecture-saas)). Each reseller marks up from its own cost.
+
+## Buy or Build?
+
+Off-the-shelf billing suits standard cases. Build or customize when pricing models, tenancy, or real-time controls are unusual. Pair either with spend limits (see [toll fraud prevention](/blog/voip-toll-fraud-prevention)).
+
+---
+
+**Planning custom billing and rating logic?** Our [custom VoIP development](/services/custom-voip-development) team builds rating engines and real-time balance control around your pricing model.
+`
+  },
+  {
+    id: '89',
+    title: 'Least Cost Routing (LCR) in VoIP: How It Works and How to Implement It',
+    excerpt: 'Least cost routing sends each call to the cheapest carrier that meets your quality bar. Learn how LCR works, how to build a rate-based routing table, and why cost alone is the wrong metric.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 04, 2026',
+    readTime: '4 min read',
+    slug: 'least-cost-routing-voip-lcr',
+    image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80',
+    content: `
+**Least cost routing (LCR) selects, for each call, the carrier route with the lowest price for that destination, while falling back to alternatives if the preferred route fails.** Done well it lowers termination spend. Done naively it quietly degrades call quality and completion.
+
+## How LCR Works
+
+1. You hold **rate decks** from multiple carriers, each listing a price per destination prefix.
+2. For a dialed number, find the **longest matching prefix** in each deck.
+3. Rank carriers by price for that prefix.
+4. Try the cheapest first. If it fails (busy, 503, timeout), **advance to the next** route.
+
+Route failures at the carrier level are normal. The ordered list effectively becomes a failover chain.
+
+## Why Pure Cost Ranking Fails
+
+A route that is 5 percent cheaper but completes 10 percent fewer calls costs you more in lost conversations, retries, and support. Mature routing weighs:
+
+* **ASR (answer-seizure ratio)** per carrier and destination
+* **Post-dial delay**
+* **Audio quality** (MOS, jitter, packet loss, see [VoIP quality testing](/blog/voip-quality-testing-mos-jitter-packet-loss))
+* **Caller ID handling and attestation** (see [STIR/SHAKEN](/blog/stir-shaken-compliance-voip-2026))
+* **Capacity** and concurrency limits per trunk
+* **Reliability history**
+
+A practical scoring method blends cost with quality and applies a minimum quality threshold below which a carrier is skipped regardless of price.
+
+## Implementation Patterns
+
+**In Kamailio:** the \`lcr\` module stores gateways and rules in a database and returns an ordered list to try with a failure route, or use \`dispatcher\` for weighted/priority sets (see [Kamailio dispatcher configuration](/blog/kamailio-dispatcher-load-balancing-config)).
+
+**In FreeSWITCH:** build the bridge string dynamically from a routing API using multiple gateways separated by \`|\` for sequential failover.
+
+**Table design:** destination prefix, carrier, price, priority, enabled flag, and effective dates.
+
+## Operating LCR
+
+* **Update rate decks automatically** when carriers send changes, with validation to catch format errors that would zero a price
+* **Measure per-route KPIs** from CDRs (see [call detail records explained](/blog/call-detail-records-cdr-explained))
+* **Dial a small share of traffic through new carriers** to evaluate before shifting volume
+* **Set per-carrier concurrency and CPS caps** to avoid congestion rejections
+* **Alert on sudden ASR drops**, which often indicate a carrier problem
+
+## LCR and Customer Pricing
+
+Margin is the difference between what you charge and what you pay. The billing side is covered in [VoIP billing system architecture](/blog/voip-billing-system-architecture), and large buyers can improve economics through direct carrier agreements (see [BYOC economics](/blog/byoc-economics-enterprise-carrier)).
+
+## Pitfalls
+
+* Rate deck errors that make an expensive route look free
+* Ignoring minimum billing increments, which change the true price of short calls
+* Failover loops that retry the same failing carrier
+* No visibility into why a route was chosen. Log the decision.
+
+---
+
+**Want routing that balances cost, quality, and failover?** Our [Kamailio load balancing](/services/kamailio-load-balancing) team builds carrier routing engines for wholesale and enterprise networks.
+`
+  },
+  {
+    id: '90',
+    title: 'Class 4 vs Class 5 Softswitch: Which One Does Your VoIP Business Need?',
+    excerpt: 'Class 4 softswitches route carrier-to-carrier wholesale traffic, while Class 5 softswitches provide subscriber features such as extensions and voicemail. This guide explains the difference and how to choose.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 05, 2026',
+    readTime: '4 min read',
+    slug: 'class-4-vs-class-5-softswitch',
+    image: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=800&q=80',
+    content: `
+**A Class 4 softswitch moves wholesale traffic between carriers, while a Class 5 softswitch serves end subscribers with features like extensions, voicemail, and call forwarding.** The terms come from the legacy telephone switching hierarchy, and they still describe two different jobs.
+
+## Quick Comparison
+
+| | Class 4 | Class 5 |
+| --- | --- | --- |
+| Main role | Trunk-to-trunk routing, interconnect | Subscriber services, business or residential |
+| Typical customers | Carriers, wholesale resellers, termination businesses | Businesses, hosted PBX users, consumers |
+| Key features | Routing, LCR, rate decks, capacity and CPS control, billing between carriers | Registration, extensions, IVR, voicemail, ring groups, call forwarding |
+| Scale | High call volume, mostly signaling and media passthrough | Many users, rich per-user features |
+| Billing | Per-minute, per-prefix wholesale | Per-seat, plan-based, plus usage |
+| Common interfaces | SIP trunks between networks | SIP phones, softphones, apps |
+
+## What a Class 4 System Does
+
+* Accepts traffic from many customers and routes it to many suppliers
+* Applies [least cost routing](/blog/least-cost-routing-voip-lcr) and quality-based failover
+* Enforces per-customer limits on concurrency and CPS
+* Normalizes numbers and signaling between carriers
+* Produces accurate CDRs for inter-carrier settlement (see [CDR explained](/blog/call-detail-records-cdr-explained))
+
+## What a Class 5 System Does
+
+* Registers and authenticates end devices (see [SIP registration](/blog/sip-registration-authentication-explained))
+* Provides the user-facing PBX features and dial plan
+* Handles voicemail, conferencing, auto attendant, and IVR (see [IVR design patterns](/blog/ivr-design-patterns-caller-experience))
+* Often multi-tenant, as described in [multi-tenant PBX architecture](/blog/multi-tenant-pbx-architecture-saas)
+
+## Do You Need One or Both?
+
+* **Wholesale or termination business:** Class 4.
+* **Hosted PBX, UCaaS, or call center product:** Class 5, connected upstream to carriers through trunks.
+* **Full-service provider:** both, with the Class 5 layer sending outbound traffic through a Class 4 layer that manages carrier relationships.
+
+Many modern platforms blur the line, using Kamailio for the routing and edge function and FreeSWITCH for media and features (see [FreeSWITCH horizontal scaling with Kamailio](/blog/freeswitch-horizontal-scaling-kamailio)).
+
+## Build, Buy, or Open Source?
+
+Commercial softswitches bundle routing, billing, and portals. Open-source building blocks offer flexibility and no per-channel licensing, at the cost of engineering effort. For a broader view of this decision, read [open-source telephony vs CPaaS](/blog/open-source-telephony-vs-cpaas) and [what a softswitch is](/blog/what-is-a-softswitch-architecture).
+
+## Questions to Decide
+
+1. Do you sell minutes to other carriers or features to end users?
+2. How many concurrent calls and CPS do you expect at peak?
+3. Do you need multi-tenancy and white-label branding?
+4. What billing and reporting do your customers expect?
+
+---
+
+**Deciding what to build for your VoIP business?** Our [custom VoIP development](/services/custom-voip-development) team designs and builds Class 4 and Class 5 platforms tuned to your market.
+`
+  },
+  {
+    id: '91',
+    title: 'What Is a Softswitch? Architecture, Components, and Use Cases',
+    excerpt: 'A softswitch is software that controls call routing and signaling between networks, replacing legacy telephone exchange hardware. Learn how softswitch architecture works and how it relates to SBCs, media servers, and PBXs.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 06, 2026',
+    readTime: '4 min read',
+    slug: 'what-is-a-softswitch-architecture',
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80',
+    content: `
+**A softswitch is software that handles call control, routing, and interconnection between telephone networks, doing in a general-purpose server what legacy telephone exchanges did in dedicated hardware.** It separates the *control* of calls from the *transport* of media, which is what makes IP telephony flexible.
+
+## The Control/Media Split
+
+A traditional switch combined decision-making and voice transport in one box. A softswitch divides them:
+
+* **Call control (signaling):** decides who can call whom, picks routes, applies policy. Handled with SIP (see [what SIP is](/blog/what-is-sip-protocol-how-it-works)).
+* **Media handling:** moves or transforms audio via RTP, including transcoding, mixing, and recording.
+* **Gateways:** connect IP networks to legacy TDM or PSTN circuits where still needed.
+
+## Main Building Blocks
+
+| Block | Function |
+| --- | --- |
+| Signaling proxy / routing engine | Parses SIP, applies routing and policy, distributes load |
+| Media server / relay | Anchors RTP, transcodes, plays announcements, records |
+| Session border controller | Edge security, NAT handling, normalization (see [SBC architecture](/blog/session-border-controller-architecture)) |
+| Database | Accounts, rate decks, routes, dial plans |
+| Billing and CDR | Records and prices calls (see [billing system architecture](/blog/voip-billing-system-architecture)) |
+| Management API and portal | Provisioning, reporting, customer self-service |
+| Monitoring | Health, KPIs, traces (see [SIP capture with HEP](/blog/voip-monitoring-homer-hep-sip-capture)) |
+
+## Softswitch vs PBX vs SBC
+
+* A **PBX** serves a business's internal phones and features.
+* An **SBC** protects and normalizes the border between networks.
+* A **softswitch** routes between many parties, often at carrier scale. The categories are described in [Class 4 vs Class 5 softswitch](/blog/class-4-vs-class-5-softswitch).
+
+In practice, products overlap, and one deployment often assembles all three roles from components.
+
+## Open-Source Building Blocks
+
+* **Kamailio / OpenSIPS** for high-throughput SIP routing and registrar roles (compare them in [OpenSIPS vs Kamailio](/blog/opensips-vs-kamailio))
+* **FreeSWITCH / Asterisk** for media and call features (see [FreeSWITCH vs Asterisk](/blog/freeswitch-vs-asterisk))
+* **RTPengine** for media relay and NAT handling
+* **PostgreSQL / MySQL / Redis** for state
+
+These combine into a scalable architecture with no per-channel licensing (see [open-source telephony vs CPaaS](/blog/open-source-telephony-vs-cpaas)).
+
+## Design Considerations
+
+1. **Scale signaling and media independently.** Signaling nodes are light; media nodes are CPU- and bandwidth-bound.
+2. **No single point of failure** in the signaling path (see [VoIP disaster recovery](/blog/voip-disaster-recovery-failover-design)).
+3. **Stateless where possible,** with shared state in a fast store.
+4. **Observability from day one,** including per-call tracing.
+5. **Security at the edge** (see [VoIP security best practices](/blog/voip-security-best-practices)).
+
+## Typical Use Cases
+
+* Wholesale voice termination and origination
+* Hosted PBX and UCaaS platforms
+* Contact center infrastructure
+* Enterprise voice backbones connecting multiple sites and carriers
+
+---
+
+**Planning a softswitch or carrier-grade routing layer?** Our [Kamailio load balancing](/services/kamailio-load-balancing) and [custom VoIP development](/services/custom-voip-development) teams build them from open-source components.
+`
+  },
+  {
+    id: '92',
+    title: 'VoIP Wholesale Termination: How the Business Works and What to Build',
+    excerpt: 'Wholesale VoIP termination means buying call routes from carriers and selling them on at a margin. Learn the business model, the technical stack, and the quality, compliance, and risk issues that decide whether it works.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 07, 2026',
+    readTime: '4 min read',
+    slug: 'voip-wholesale-termination-business-guide',
+    image: 'https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?auto=format&fit=crop&w=800&q=80',
+    content: `
+**VoIP wholesale termination is the business of delivering other companies' outbound calls to their final destinations, buying routes from upstream carriers and selling them at a margin.** The technology is well understood. The difficult parts are route quality, credit risk, and fraud.
+
+## How the Money Works
+
+You sell minutes to customers, such as resellers, PBX providers, or call centers, at a per-minute rate by destination. You buy those minutes from one or more upstream carriers at a lower rate. Your gross margin per destination is the difference, minus the cost of failed calls, support, and bad debt.
+
+Margins are usually thin. Volume, route quality, and operational discipline matter more than any single price.
+
+## The Technical Stack
+
+1. **Edge and SBC:** accepts customer traffic securely (see [SBC architecture](/blog/session-border-controller-architecture))
+2. **Routing engine:** chooses supplier per call using price and quality (see [least cost routing](/blog/least-cost-routing-voip-lcr))
+3. **Rate management:** customer sell rates and supplier cost rates, with versioning
+4. **Billing and balances:** real-time controls and invoicing (see [VoIP billing system architecture](/blog/voip-billing-system-architecture))
+5. **CDR and analytics:** margin, ASR, ACD per route (see [CDR explained](/blog/call-detail-records-cdr-explained))
+6. **Fraud controls:** limits and anomaly alerts (see [toll fraud prevention](/blog/voip-toll-fraud-prevention))
+7. **Portal and API:** customer self-service and provisioning
+
+This is effectively a Class 4 softswitch (see [Class 4 vs Class 5](/blog/class-4-vs-class-5-softswitch)).
+
+## Quality Is the Product
+
+Customers leave over completion rates and audio quality, not a fraction of a cent. Track:
+
+* **ASR** and **ACD** per destination and supplier
+* **Post-dial delay**
+* **Audio quality** metrics (see [VoIP quality testing](/blog/voip-quality-testing-mos-jitter-packet-loss))
+* **Caller ID delivery** and attestation, increasingly required in the US (see [STIR/SHAKEN](/blog/stir-shaken-compliance-voip-2026))
+
+## Risks to Plan For
+
+* **Credit risk:** customers can consume large volumes before payment. Use prepaid balances or credit limits with real-time enforcement.
+* **Fraud:** a hijacked customer account can generate costly traffic you owe suppliers for.
+* **Supplier failure:** keep several suppliers per major destination.
+* **Compliance:** traffic you carry may need robocall mitigation obligations and call authentication. Take legal advice for your jurisdictions.
+* **Interconnect disputes:** reconcile your records against supplier invoices regularly.
+
+## Getting Started Pragmatically
+
+1. Start with a narrow set of destinations and a few suppliers you can evaluate.
+2. Test routes yourself before selling them.
+3. Automate rate-deck loading and validation from day one.
+4. Build per-customer limits before the first customer.
+5. Add monitoring and alerting before scaling traffic.
+
+A related model is reselling under your own brand (see [white-label VoIP platform architecture](/blog/white-label-voip-platform-architecture)).
+
+---
+
+**Building a wholesale or reseller voice platform?** Our [custom VoIP development](/services/custom-voip-development) team builds routing, billing, and fraud controls for carrier-grade operations.
+`
+  },
+  {
+    id: '93',
+    title: 'DID Provider Evaluation Checklist: How to Choose Phone Number Suppliers for VoIP',
+    excerpt: 'DIDs are the phone numbers that connect your platform to the PSTN. This checklist covers coverage, porting, quality, compliance, API capabilities, and contract terms to compare before choosing a provider.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 08, 2026',
+    readTime: '4 min read',
+    slug: 'did-provider-evaluation-checklist',
+    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80',
+    content: `
+**A DID (Direct Inward Dialing) provider supplies the phone numbers that let callers on the public telephone network reach your system.** Number supply looks like a commodity, but quality, porting experience, and caller ID treatment vary a lot between providers, and switching later is painful.
+
+## 1. Coverage and Number Types
+
+* Countries and area codes you need now, and likely will in 12 months
+* Local, toll-free, mobile, and national number types
+* Inventory depth: can you obtain blocks of numbers, not just single ones?
+* Whether provisioning is **instant via API** or requires a ticket
+
+## 2. Porting
+
+Porting numbers in or out is where relationships are tested (see the [enterprise number porting guide](/blog/number-porting-enterprise-voip-guide)). Ask:
+
+* Typical porting timelines per country
+* Support for partial and bulk ports
+* Process for emergency or urgent ports
+* Fees and whether you can port numbers *out* easily
+
+## 3. Call Quality and Reliability
+
+* Redundant points of presence and diverse upstream carriers
+* Published uptime commitments and how credits are applied
+* Willingness to run a **trial** with test traffic and measure results (see [VoIP quality testing](/blog/voip-quality-testing-mos-jitter-packet-loss))
+* Failover options such as multiple SIP endpoints
+
+## 4. Technical Interface
+
+* Inbound delivery methods: SIP trunk with IP authentication, registration, or webhook
+* Support for TLS and SRTP (see [SIP over TLS and SRTP](/blog/sip-tls-srtp-secure-voip-setup))
+* Number formats in E.164, and clear handling of CNAM
+* API quality: search, order, release, assign, update routing
+* Webhooks or events for status changes
+
+## 5. Compliance and Emergency Calling
+
+* **E911/emergency services** support and registration of addresses (see [E911 compliance for VoIP](/blog/e911-compliance-voip-karis-law))
+* Caller ID authentication such as STIR/SHAKEN (see [STIR/SHAKEN compliance](/blog/stir-shaken-compliance-voip-2026))
+* SMS registration requirements where relevant (see [10DLC registration guide](/blog/10dlc-registration-guide))
+* Regulatory documentation for countries that require it
+
+## 6. Commercial Terms
+
+| Item | Question |
+| --- | --- |
+| Monthly number cost | Fixed, or volume tiers? |
+| Per-minute inbound | Included, or charged? |
+| Channel limits | Hard caps or burst? |
+| Minimum commitments | Contract length, termination fees |
+| Billing | Prepaid, postpaid, invoice detail |
+| Support | Hours, escalation path, named contact |
+
+## 7. Avoid Lock-In
+
+* Keep numbers portable, and do not let one supplier hold your only copy of porting authority
+* Abstract suppliers behind your own API so you can add or swap (see [Twilio alternatives guide](/blog/twilio-alternatives-voice-engineering-guide))
+* Consider multiple DID suppliers for critical numbers
+
+## Scoring It
+
+Weight each category by your priorities, run a small trial with every shortlisted supplier, and compare real results, not brochure claims. For the trunking side of the same decision, see the [SIP trunk provider selection checklist](/blog/sip-trunk-provider-selection-checklist).
+
+---
+
+**Want carrier integrations that never lock you into one supplier?** Our [telecom API and middleware](/services/telecom-api-middleware) team builds carrier abstraction layers so you can add or change providers without rewriting your platform.
+`
+  },
+  {
+    id: '94',
+    title: 'VoIP Latency: What Causes It, What Is Acceptable, and How to Reduce It',
+    excerpt: 'Latency is the delay between speaking and being heard. Learn the components of VoIP delay, the thresholds where conversation breaks down, and practical fixes at the network, codec, and platform level.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 09, 2026',
+    readTime: '4 min read',
+    slug: 'voip-latency-causes-and-fixes',
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
+    content: `
+**VoIP latency is the one-way delay between a person speaking and the other party hearing them. Conversation generally feels natural below about 150 ms one-way, becomes noticeably awkward as it approaches 300 ms, and degrades into talking over each other beyond that.** These figures follow common ITU-T G.114 guidance and should be treated as engineering targets, not hard limits.
+
+## Where the Delay Comes From
+
+| Source | Typical contribution |
+| --- | --- |
+| Codec algorithmic delay and packetization | Often 20 to 40 ms or more depending on codec and \`ptime\` |
+| Network propagation | Roughly bound by distance; transcontinental paths add tens of ms |
+| Network queuing and routing | Variable; grows with congestion |
+| Jitter buffer | Added deliberately to smooth jitter (see [jitter buffer explained](/blog/voip-jitter-buffer-explained)) |
+| Transcoding and media servers | Added per hop that decodes and re-encodes |
+| Device and OS audio stack | Sometimes significant on cheap hardware and wireless headsets |
+
+Latency adds across the whole path, so every element is worth a look.
+
+## Symptoms
+
+* Talking over each other and long awkward pauses
+* **Echo** becomes much more noticeable as delay increases
+* Callers repeating themselves, which hurts call center efficiency and customer experience
+
+## Fixes by Layer
+
+**Network**
+
+* Prioritize voice with DSCP/QoS markings and make sure the markings are honored
+* Avoid congested links and bufferbloat, especially on shared uplinks
+* Use a carrier or region close to your users
+
+**Platform**
+
+* Avoid unnecessary transcoding by agreeing a common codec end to end (see [G.711 vs G.729](/blog/g711-vs-g729-codec-bandwidth))
+* Keep media on the shortest path, rather than hairpinning through a distant server
+* Place SBC and media relays near users (see [open-source SBC with Kamailio and RTPengine](/blog/open-source-sbc-kamailio-rtpengine))
+
+**Endpoint**
+
+* Wired connections over weak Wi-Fi
+* Quality headsets and updated softphone clients
+* Appropriate packetization (20 ms is a common balance)
+
+## Latency for AI Voice Agents
+
+AI voice agents add speech recognition, model inference, and speech synthesis delays on top of network latency, and users judge the whole turn-taking gap. Techniques are in [architecting sub-500 ms AI voice agents](/blog/architecting-sub-500ms-ai-voice-agents), [streaming ASR latency](/blog/streaming-asr-pipeline-latency), and [TTS latency optimization](/blog/tts-latency-optimization-streaming).
+
+## How to Measure
+
+1. Run active tests between sites and record RTT (round-trip time), which is roughly twice one-way delay.
+2. Use RTCP statistics reported by endpoints and media servers.
+3. Test at peak hours, not only quiet ones.
+4. Include the full path, including mobile or remote users. Test methods are in [VoIP quality testing](/blog/voip-quality-testing-mos-jitter-packet-loss).
+
+## Jitter and Packet Loss Are Related
+
+Latency rarely travels alone. Variation in delay (jitter) and lost packets compound the user experience and force larger buffers, which add more delay.
+
+---
+
+**Chasing delay in a production voice platform?** Our [enterprise VoIP DevOps](/services/enterprise-voip-devops) team measures, tunes, and monitors end-to-end voice quality.
+`
+  },
+  {
+    id: '95',
+    title: 'G.711 vs G.729: Codec Bandwidth, Quality, and When to Use Each',
+    excerpt: 'G.711 delivers high-quality audio at about 64 kbps of codec payload, while G.729 compresses to 8 kbps at some quality cost. Compare bandwidth, CPU, licensing, and transcoding trade-offs to choose the right codec.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 10, 2026',
+    readTime: '4 min read',
+    slug: 'g711-vs-g729-codec-bandwidth',
+    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80',
+    content: `
+**G.711 is an uncompressed-quality narrowband codec at 64 kbps, and G.729 is a compressed codec at 8 kbps.** G.711 sounds better and is simple and universally supported. G.729 saves bandwidth and costs quality and CPU, and it is largely a legacy choice now that bandwidth is cheap.
+
+## Side-by-Side
+
+| | G.711 (PCMU / PCMA) | G.729 |
+| --- | --- | --- |
+| Codec bitrate | 64 kbps | 8 kbps |
+| Approx. IP bandwidth per direction (20 ms packets) | About 87 kbps including headers | About 31 kbps including headers |
+| Audio quality | Toll quality, best of narrowband codecs | Good, with some artifacts; degrades with loss and tandem encoding |
+| CPU load | Very low | Higher (compression) |
+| Packet-loss tolerance | Moderate, with loss concealment | Poorer, because of frame dependencies |
+| DTMF and fax | Reliable (G.711 pass-through is standard for fax) | Weaker for in-band tones and fax |
+| Licensing | Royalty-free | Patents have expired, but historically licensed; check your software and hardware |
+
+The IP bandwidth figures include RTP, UDP, and IP headers at 20 ms packetization. Layer-2 overhead adds more, so link planning must include it.
+
+## Why G.711 Is Usually the Default
+
+* Maximum interoperability: every carrier and device supports it
+* No transcoding when both legs agree, which avoids added latency and CPU
+* Better recognition accuracy for speech-to-text and AI systems (see [Opus vs G.711 for voice AI](/blog/opus-vs-g711-codec-voice-ai))
+* Bandwidth is rarely the constraint on modern business links
+
+## When G.729 Still Appears
+
+* Very constrained or expensive links such as satellite, some mobile data, or remote sites
+* Interoperating with legacy carriers or equipment that expect it
+* Capacity planning where thousands of channels share a limited uplink
+
+## Transcoding Is the Hidden Cost
+
+If one leg uses G.711 and the other G.729, a media server must decode and re-encode every packet. That consumes CPU, adds delay, and costs a little quality each time (tandem encoding). Offer a consistent preference order in your SDP so calls negotiate the same codec end to end (see [SDP offer/answer](/blog/sdp-offer-answer-explained)).
+
+## Modern Alternatives
+
+**Opus** adapts from low bitrate to wideband and handles loss gracefully, and is the standard for WebRTC. Use it where both ends support it. Many deployments run Opus for apps and G.711 toward the PSTN, with transcoding at the border (see [WebRTC to SIP gateway architecture](/blog/webrtc-to-sip-gateway-architecture)).
+
+## How to Decide
+
+1. Measure actual bandwidth headroom per site.
+2. Prefer G.711 or Opus where you can.
+3. Use G.729 only where a measured constraint demands it.
+4. Test real calls, because quality depends on loss and jitter as much as codec (see [VoIP quality testing](/blog/voip-quality-testing-mos-jitter-packet-loss) and [VoIP latency](/blog/voip-latency-causes-and-fixes)).
+
+---
+
+**Need codec strategy and transcoding capacity planned properly?** Our [FreeSWITCH development](/services/freeswitch-development) team builds media layers with predictable codec behavior and headroom.
+`
+  },
+  {
+    id: '96',
+    title: 'VoIP Jitter Buffer Explained: Static vs Adaptive, Sizing, and Trade-Offs',
+    excerpt: 'A jitter buffer smooths uneven packet arrival so audio plays evenly, at the price of added delay. Learn how static and adaptive buffers work, how to size them, and how to diagnose jitter problems.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 11, 2026',
+    readTime: '4 min read',
+    slug: 'voip-jitter-buffer-explained',
+    image: 'https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&fit=crop&w=800&q=80',
+    content: `
+**Jitter is variation in packet arrival time, and a jitter buffer is a short holding area at the receiver that evens it out before playback.** The trade-off is simple and unavoidable: a bigger buffer absorbs more variation but adds more delay.
+
+## Why Jitter Happens
+
+Voice packets are sent at regular intervals, such as every 20 ms. Across a network they take different amounts of time because of queuing, route changes, wireless contention, and load on shared links. They arrive unevenly, and sometimes out of order. Played as they arrive, the audio would stutter.
+
+## What the Buffer Does
+
+The receiver waits a short time before playing the first packet. Later packets that arrive slightly late can still be slotted in at the right moment. Packets that arrive after their playback time are discarded and treated as lost, which the codec masks with packet-loss concealment.
+
+## Static vs Adaptive
+
+| | Static | Adaptive |
+| --- | --- | --- |
+| Size | Fixed | Grows and shrinks with measured jitter |
+| Behavior | Predictable delay | Lower delay on good networks, resilient on bad ones |
+| Risk | Too small drops audio; too large adds delay | Adjustment moments can cause small glitches |
+| Typical use | Simple or legacy devices | Most modern endpoints and media servers |
+
+Most platforms use adaptive buffers with configurable minimum and maximum sizes.
+
+## Sizing Guidance
+
+* Start from measured jitter, not guesses. Capture RTCP reports or packet traces.
+* A common practical range is a few tens of milliseconds up to roughly 60 to 100 ms for adaptive maximums.
+* Remember that buffer delay adds directly to your total delay budget (see [VoIP latency causes and fixes](/blog/voip-latency-causes-and-fixes)).
+* Real-time AI conversations feel the cost of buffering too, so tune carefully (see [architecting sub-500 ms AI voice agents](/blog/architecting-sub-500ms-ai-voice-agents)).
+
+## Diagnosing Jitter Problems
+
+1. **Measure:** RTCP receiver reports give jitter and loss per call; packet captures show inter-arrival times.
+2. **Find the segment:** compare measurements at each hop to locate where variation appears.
+3. **Check the usual suspects:** Wi-Fi congestion, saturated uplinks, missing QoS, VPN overhead, overloaded media servers.
+4. **Retest after each change** to confirm improvement. Methods are in [VoIP quality testing: MOS, jitter, and packet loss](/blog/voip-quality-testing-mos-jitter-packet-loss).
+
+## Reducing Jitter at the Source
+
+* Apply DSCP/QoS so voice has priority, and verify it is honored end to end
+* Use wired connections for important devices
+* Separate voice and data traffic
+* Avoid bufferbloat on routers and modems by using smart queue management
+* Keep media servers well below CPU saturation (see [SIP trunking load testing](/blog/sip-trunking-load-testing-concurrency))
+
+## Jitter Buffers in Media Servers
+
+FreeSWITCH, for example, exposes a \`jitterbuffer_msec\` channel variable to set buffer behavior per call. Bridging two legs also means two buffers, so be deliberate about where they live. If a media relay only forwards packets, it normally should not add a buffer at all.
+
+---
+
+**Seeing choppy audio you can't explain?** Our [enterprise VoIP DevOps](/services/enterprise-voip-devops) team instruments and tunes voice paths so quality problems become measurable and fixable.
+`
+  },
+  {
+    id: '97',
+    title: 'VoIP and SIP Monitoring with Homer and HEP: Capture, Search, and Alert',
+    excerpt: 'Continuous SIP capture turns hours of guesswork into minutes. Learn how HEP-based capture with Homer works, what to monitor, and how to build useful dashboards and alerts for a VoIP platform.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 12, 2026',
+    readTime: '4 min read',
+    slug: 'voip-monitoring-homer-hep-sip-capture',
+    image: 'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?auto=format&fit=crop&w=800&q=80',
+    content: `
+**VoIP monitoring means recording every SIP message and key quality metric continuously, so that when a customer reports a bad call you can find it in minutes. HEP (Homer Encapsulation Protocol) and the open-source Homer stack are the most common way to do this.** Without capture, troubleshooting depends on reproducing the problem live, which rarely works for intermittent faults.
+
+## What HEP and Homer Do
+
+* **HEP** wraps copies of SIP packets (and optionally RTCP and logs) and ships them to a collector over UDP or TCP.
+* **Homer** stores them in a database and provides a web interface to search by number, Call-ID, IP, or time and to draw the call ladder diagram.
+
+Kamailio, OpenSIPS, FreeSWITCH, and Asterisk can send HEP natively or through a module, and an agent such as \`heplify\` can capture from the network interface without touching the platform. Mirror traffic into HEP at each important hop (edge, core, media) so that you can follow a call across your whole architecture.
+
+## What to Capture
+
+1. **SIP signaling** on all key nodes
+2. **RTCP quality reports** for jitter, loss, and round-trip time per call
+3. **Application logs** correlated by Call-ID where possible
+4. **CDRs** in your database (see [call detail records explained](/blog/call-detail-records-cdr-explained))
+
+Be mindful of privacy. Traces can contain numbers and, if you are not careful, credentials, so apply access controls and retention limits.
+
+## Dashboards That Earn Their Keep
+
+* Calls per second and concurrent calls
+* Answer-seizure ratio and failure codes by trunk (see [SIP response codes](/blog/sip-response-codes-403-408-503-troubleshooting))
+* Registration success and failure counts (see [SIP registration](/blog/sip-registration-authentication-explained))
+* Average and worst jitter, loss, and estimated MOS (see [jitter buffer explained](/blog/voip-jitter-buffer-explained))
+* Post-dial delay percentiles
+* Top destinations and accounts by volume, which doubles as fraud visibility (see [fraud detection with CDRs](/blog/voip-fraud-detection-cdr-analysis))
+
+## Alerts Worth Setting
+
+| Alert | Why |
+| --- | --- |
+| ASR drops sharply on a trunk | Carrier or routing fault |
+| Surge in 5xx responses | Overload or downstream failure |
+| Spike in failed registrations | Attack or misconfiguration |
+| Rising jitter or loss | Network or capacity problem |
+| Call volume to new destinations | Possible fraud |
+| Certificate approaching expiry | Avoid a TLS outage (see [SIP over TLS and SRTP](/blog/sip-tls-srtp-secure-voip-setup)) |
+
+## Operating Tips
+
+1. **Size storage** from message rate times retention, and test queries at scale.
+2. **Rotate and archive** traces to control cost.
+3. **Standardize on Call-ID correlation,** including across B2BUA legs, for example by passing a custom header.
+4. **Practice using the tool** before an outage, not during one.
+5. **Pair signaling data with infrastructure metrics** (CPU, network, memory) in your standard monitoring stack.
+
+## When to Go Further
+
+Active probing (synthetic test calls) detects problems before customers do, and load tests reveal capacity limits (see [SIP trunking load testing and concurrency](/blog/sip-trunking-load-testing-concurrency)).
+
+---
+
+**Want observability built into your voice platform?** Our [enterprise VoIP DevOps](/services/enterprise-voip-devops) team deploys monitoring, tracing, and alerting for production telephony.
+`
+  },
+  {
+    id: '98',
+    title: 'IVR Testing: Automated Strategies to Catch Broken Menus Before Callers Do',
+    excerpt: 'IVR systems fail quietly: a changed prompt, a dead integration, a menu loop. Learn the layers of IVR testing, from functional paths to load, and how to automate them so every release is verified.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 13, 2026',
+    readTime: '4 min read',
+    slug: 'ivr-testing-automation-strategies',
+    image: 'https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?auto=format&fit=crop&w=800&q=80',
+    content: `
+**IVR testing verifies that every menu path, prompt, integration, and failure route works as designed, ideally on every change, because IVR faults are silent: no error page, just frustrated callers.** Manual testing by dialing in does not scale, so effective teams automate.
+
+## What Can Go Wrong
+
+* A prompt file is missing or plays the wrong message
+* A menu option routes to the wrong queue or a dead number
+* Speech or DTMF recognition fails on real input
+* A back-end lookup times out and leaves the caller in silence
+* Business hours or holiday rules misfire
+* Load causes delays or dropped calls at peak
+
+## The Testing Layers
+
+| Layer | Question | Method |
+| --- | --- | --- |
+| Unit / logic | Does each node route correctly? | Test dial plan or flow logic with simulated inputs |
+| Functional path | Does each journey end where it should? | Automated calls that press digits and check outcomes |
+| Audio / prompts | Is the right prompt playing, intelligible? | Compare recognized transcript to expected text |
+| Integration | Do lookups and transfers work? | Test against sandbox back ends and verify results |
+| Failure handling | What if a service is down? | Fault injection: timeouts, empty responses |
+| Load | Does it work at peak volume? | Generate concurrent calls (see [SIP trunking load testing](/blog/sip-trunking-load-testing-concurrency)) |
+| Monitoring | Did it break after release? | Scheduled synthetic calls in production |
+
+## Building an Automated Test Caller
+
+A test harness is essentially a scripted phone:
+
+1. **Place a call** over SIP using a library or a tool such as SIPp, or from a FreeSWITCH/Asterisk script.
+2. **Wait for audio,** then **listen**: stream the prompt to a speech-to-text engine and check for expected phrases.
+3. **Send input:** DTMF digits via RFC 2833/4733 events, or synthesized speech for voice menus.
+4. **Assert the outcome:** a queue reached, a transfer connected, a recorded message played.
+5. **Record timings** and compare to thresholds.
+
+Treat each journey as a test case with an expected transcript and destination. Run the suite on every deployment and on a schedule.
+
+## Test Data and Environments
+
+* Keep a **staging environment** with its own numbers and sandbox integrations
+* Use **test accounts** that never page real agents
+* Control **time of day** in tests so hours-based logic can be verified
+* Never run load tests against production carriers without agreement (see [SIP trunk provider selection](/blog/sip-trunk-provider-selection-checklist))
+
+## AI-Driven IVRs
+
+Conversational voice agents add new failure modes: misunderstood intents, hallucinated answers, and latency. Test them with scripted conversations and scoring, plus human review (see [AI voice agents replacing IVR](/blog/ai-voice-agents-replace-ivr)).
+
+## Make Failures Visible
+
+Alert on synthetic call failures, long silences, and unexpected hangups. Design principles that reduce failures in the first place are in [IVR design patterns for caller experience](/blog/ivr-design-patterns-caller-experience).
+
+---
+
+**Need IVR flows tested and monitored like real software?** Our [call center SIP engineering](/services/call-center-sip-usa) team builds IVR and contact center infrastructure with automated verification in the release process.
+`
+  },
+  {
+    id: '99',
+    title: 'Call Queue and ACD Routing Design: Strategies, Skills, and Service Levels',
+    excerpt: 'An automatic call distributor (ACD) queues callers and routes them to the right agent. Learn the main routing strategies, skills-based design, queue metrics, and how to implement queues on FreeSWITCH and Asterisk.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 14, 2026',
+    readTime: '4 min read',
+    slug: 'call-queue-acd-routing-design',
+    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80',
+    content: `
+**An ACD (automatic call distributor) holds incoming calls in queues and distributes them to available agents according to rules.** Good queue design balances caller wait time, agent utilization, and getting each caller to someone who can help.
+
+## Core Concepts
+
+* **Queue:** a waiting line for calls with a shared purpose, such as billing or sales
+* **Agent state:** available, on call, wrapping up, on break, offline
+* **Routing strategy:** how the next agent is chosen
+* **Overflow and fallback:** what happens when no one is available or the wait is too long
+* **Service level:** the percentage of calls answered within a target time
+
+## Common Routing Strategies
+
+| Strategy | How it works | Best for |
+| --- | --- | --- |
+| Longest idle | Next call goes to the agent idle longest | Fair workload distribution |
+| Round robin | Rotate through agents | Simple teams, similar skills |
+| Ring all | Ring every available agent | Small teams, fast pickup |
+| Least calls / least talk time | Prefer the agent with the lowest load | Balancing productivity |
+| Skills-based | Match caller needs to agent skills and proficiency | Multi-language, tiered support |
+| Priority / VIP | Higher-priority callers jump the line | Premium customers, escalations |
+
+## Skills-Based Routing
+
+Callers are tagged by intent from IVR choices, caller ID lookup, or [AI voice agent triage](/blog/ai-voice-agents-replace-ivr). Agents carry skills such as language and product expertise, optionally with proficiency scores. The ACD finds the best available match and relaxes requirements as wait time grows, so callers are not stranded.
+
+## Wait Experience
+
+* Announce **position or estimated wait** honestly
+* Offer a **callback** instead of holding
+* Use music or messaging that fits your brand
+* Set a **maximum wait** after which calls overflow to voicemail or another team
+
+## Implementation Options
+
+**FreeSWITCH \`mod_callcenter\`** provides queues, agent states, strategies, and tiers (see [mod_callcenter queues in FreeSWITCH](/blog/mod-callcenter-freeswitch-queues)). **Asterisk** has \`app_queue\` with similar concepts. Custom ACD logic in an application layer, driven by events, is common when requirements go beyond built-ins.
+
+## Metrics to Track
+
+* **Service level** and **average speed of answer**
+* **Abandonment rate** and time before abandonment
+* **Average handle time**
+* **Occupancy** (time agents spend handling calls)
+* **First-contact resolution**, which comes from your CRM, not the ACD
+
+Feed these from CDRs and queue events (see [call detail records explained](/blog/call-detail-records-cdr-explained)).
+
+## Design Pitfalls
+
+1. Too many queues fragment agents and increase waits
+2. Over-strict skill rules leave calls waiting while capable agents sit idle
+3. No overflow path when the whole team is out
+4. Agents stuck in a stale state after a network drop
+5. No capacity testing before a campaign or seasonal peak (see [SIP trunking load testing](/blog/sip-trunking-load-testing-concurrency))
+
+---
+
+**Building a contact center that scales?** Our [call center SIP engineering](/services/call-center-sip-usa) and [FreeSWITCH development](/services/freeswitch-development) teams build high-concurrency queueing and agent infrastructure.
+`
+  },
+  {
+    id: '100',
+    title: 'Predictive Dialer Architecture: How Outbound Dialing Engines Work',
+    excerpt: 'A predictive dialer places several calls per available agent to minimize idle time. Learn the dialing modes, the pacing algorithm, the abandonment trade-off, and the compliance rules that shape the design.',
+    category: 'Telecom Compliance',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 15, 2026',
+    readTime: '4 min read',
+    slug: 'predictive-dialer-architecture',
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80',
+    content: `
+**A predictive dialer is an outbound calling engine that dials more numbers than there are free agents, predicting how many will be answered and how many agents will be free, so that agents spend their time talking rather than waiting.** Its central trade-off is agent utilization against the risk of answering a person when no agent is available.
+
+## Dialing Modes
+
+| Mode | How it works | Typical use |
+| --- | --- | --- |
+| Preview | Agent sees the record and chooses to dial | High-value or complex outreach |
+| Progressive | One call per available agent, after the agent is ready | Safe, simple, moderate efficiency |
+| Power | Fixed ratio of calls per agent | Higher volume with predictable ratios |
+| Predictive | Dynamic ratio from live statistics | High volume, large teams |
+
+## The Pacing Algorithm
+
+At its core the dialer estimates:
+
+* **Answer rate:** the share of attempts that reach a person
+* **Average talk time** and **wrap-up time**
+* **Agents becoming free** in the next few seconds
+
+From these it computes how many calls to launch now. Too aggressive and answered calls queue with no agent, producing dead air or abandoned calls. Too conservative and agents sit idle. Good dialers adapt continuously and respect a configurable **abandon-rate cap**.
+
+## Architecture Components
+
+1. **Campaign and list manager:** contacts, status, retry rules, time zones
+2. **Dialing engine:** pacing logic and call origination
+3. **Telephony layer:** SIP trunks and a media server such as FreeSWITCH, with high CPS capability
+4. **Answering machine detection (AMD):** distinguishes humans from voicemail, which is imperfect and affects outcomes
+5. **Agent connection:** bridges an answered call to a free agent or to an [AI voice agent](/blog/ai-outbound-calling-architecture-compliance)
+6. **Compliance engine:** do-not-call scrubbing, consent, calling-time rules, caller ID rules
+7. **Recording, dispositions, and CRM integration** (see [Salesforce click-to-call integration](/blog/salesforce-voip-integration-click-to-call))
+8. **Reporting:** agent and campaign statistics from CDRs and events
+
+## Compliance Shapes the Design
+
+In the United States, rules such as the TCPA restrict autodialed and prerecorded calls, require consent for certain calls, and limit abandoned calls. Requirements vary by jurisdiction and campaign type, so involve legal counsel. Technical detail is in [TCPA compliance for AI outbound calling](/blog/tcpa-compliance-ai-outbound-calling). Also see [call recording compliance by state](/blog/call-recording-compliance-state-guide) and [STIR/SHAKEN](/blog/stir-shaken-compliance-voip-2026).
+
+## Telephony Considerations
+
+* High **CPS (calls per second)** tolerance at the carrier and edge
+* Many carriers restrict outbound dialing patterns, so confirm acceptable use
+* Caller ID reputation affects answer rates (see [caller ID reputation and spam-likely fixes](/blog/caller-id-reputation-spam-likely-fix))
+* Load testing before large campaigns
+
+## Tuning Tips
+
+1. Start conservative and increase the ratio as data accumulates.
+2. Segment by list quality, since answer rates differ.
+3. Monitor abandoned-call percentage in real time.
+4. Review AMD accuracy regularly.
+5. Keep agent state accurate to make predictions reliable.
+
+For how dialer types differ, read [auto dialer types, compliance, and how to build one](/blog/auto-dialer-types-compliance-build).
+
+---
+
+**Building an outbound dialing platform?** Our [call center SIP engineering](/services/call-center-sip-usa) team builds compliant, high-concurrency dialer infrastructure.
+`
+  },
+  {
+    id: '101',
+    title: 'Auto Dialer Types, Compliance, and How to Build One',
+    excerpt: 'An auto dialer automatically places outbound calls. This guide compares the main types, explains the compliance rules that apply, and outlines how to build a dialer on FreeSWITCH or Asterisk.',
+    category: 'Telecom Compliance',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 15, 2026',
+    readTime: '4 min read',
+    slug: 'auto-dialer-types-compliance-build',
+    image: 'https://images.unsplash.com/photo-1596526131083-e8c633c948d2?auto=format&fit=crop&w=800&q=80',
+    content: `
+**An auto dialer is software that places outbound phone calls automatically from a contact list and connects answered calls to an agent or a recorded or AI-driven message.** The category covers everything from simple click-to-call lists to high-volume predictive systems, and the legal treatment differs by type.
+
+## Main Types
+
+* **Preview dialer:** shows the agent a record and waits for them to dial. Lowest risk, lowest throughput.
+* **Progressive dialer:** dials the next number when an agent becomes available.
+* **Power dialer:** dials a fixed number of lines per agent.
+* **Predictive dialer:** dials more than available agents using statistical pacing (see [predictive dialer architecture](/blog/predictive-dialer-architecture)).
+* **Voice broadcast / IVR dialer:** plays a message or runs an IVR to many recipients.
+* **AI dialer:** connects answered calls to an [AI voice agent](/blog/ai-outbound-calling-architecture-compliance) instead of a human.
+
+## Compliance Basics (United States)
+
+Rules depend on the type of call, the equipment, the recipient, and whether consent exists. Points commonly relevant:
+
+* The **Telephone Consumer Protection Act (TCPA)** restricts autodialed and prerecorded or artificial-voice calls to mobile numbers and, for prerecorded telemarketing, to landlines without appropriate consent.
+* **Do Not Call** registries (national and state) apply to telemarketing.
+* **Calling-hour limits** apply by the recipient's local time.
+* **Abandoned-call limits** apply to predictive dialing.
+* **Caller ID** must be accurate, and authentication such as STIR/SHAKEN affects deliverability (see [STIR/SHAKEN compliance](/blog/stir-shaken-compliance-voip-2026)).
+* **Recording consent** rules vary by state (see [call recording compliance guide](/blog/call-recording-compliance-state-guide)).
+
+This is general information, not legal advice. Specific obligations, including treatment of AI-generated voices, are changing, so confirm with counsel. Engineering detail is in [TCPA compliance for AI outbound calling](/blog/tcpa-compliance-ai-outbound-calling).
+
+## Building a Dialer: Core Pieces
+
+1. **Lead and campaign data model:** contacts, time zones, consent status, attempt history
+2. **Scheduler:** respects calling windows, retry intervals, and per-number frequency limits
+3. **Compliance gate:** blocks any number that is on a suppression list, lacks consent, or is outside allowed hours, *before* origination
+4. **Originator:** FreeSWITCH (\`originate\` via ESL, see [FreeSWITCH Event Socket guide](/blog/freeswitch-event-socket-esl-guide)) or Asterisk (AMI/ARI) places calls through SIP trunks
+5. **Call handling:** answering-machine detection, connect to agent or bot, play required disclosures
+6. **Outcomes and logging:** dispositions, recordings, CDRs, and an audit trail (see [CDR explained](/blog/call-detail-records-cdr-explained))
+7. **Throttling:** per-campaign CPS and concurrency, per-carrier limits
+
+## Telephony Practicalities
+
+* Use carriers that permit your calling pattern
+* Rotate and register caller ID properly, and monitor reputation (see [caller ID reputation fixes](/blog/caller-id-reputation-spam-likely-fix))
+* Test capacity before launch (see [SIP trunking load testing](/blog/sip-trunking-load-testing-concurrency))
+* Keep agents and bots on accurate state to avoid dead air
+
+## Common Mistakes
+
+* Treating compliance as a filter applied after dialing
+* No audit trail proving consent and suppression checks
+* Ignoring time zone and holiday rules
+* Overpacing, which creates abandoned calls
+
+---
+
+**Need a dialer where compliance is enforced in code, not procedure?** Our [call center SIP engineering](/services/call-center-sip-usa) team builds dialing platforms with the compliance gate in the call path.
+`
+  },
+  {
+    id: '102',
+    title: 'OpenSIPS vs Kamailio: Which SIP Server Should You Choose?',
+    excerpt: 'OpenSIPS and Kamailio share a common origin and solve similar problems. This comparison covers architecture, scripting, performance, modules, community, and a practical way to decide between them.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 16, 2026',
+    readTime: '4 min read',
+    slug: 'opensips-vs-kamailio',
+    image: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=800&q=80',
+    content: `
+**OpenSIPS and Kamailio are both high-performance open-source SIP servers that descend from the same original project (SER/OpenSER), and for most workloads either will do the job.** The decision usually comes down to team familiarity, specific modules, and the ecosystem around each.
+
+## What They Have in Common
+
+* Stateful and stateless SIP proxying, registrar, and load balancing
+* Thousands of calls per second on modest hardware when configured well
+* Flexible routing scripts, with extensive module libraries
+* TLS, WebSocket, and IPv6 support
+* Active communities and commercial support providers
+
+Both sit comfortably at the SIP edge or core of a platform (see [session border controller architecture](/blog/session-border-controller-architecture)).
+
+## Where They Differ
+
+| Area | Kamailio | OpenSIPS |
+| --- | --- | --- |
+| Scripting | Native routing language, plus KEMI for Lua, Python, JavaScript | Native routing language, with strong scripting-extension features |
+| Config style | Large module ecosystem, many ways to do one thing | Strong focus on integrated features such as dialog and billing helpers |
+| Load balancing | \`dispatcher\`, \`lcr\`, \`drouting\` | \`load_balancer\`, \`dispatcher\`, \`drouting\` |
+| Call control extras | Used widely as a pure SIP router | Offers modules for call control with resource tracking |
+| Control interfaces | RPC (JSON-RPC, XMLRPC), \`kamcmd\` | Management Interface (MI) over several transports |
+| Ecosystem | Large installed base, many tutorials | Strong in carrier and platform deployments, active summit community |
+
+Treat this table as a starting map. Module lists change between releases, so check the current documentation for any feature you depend on.
+
+## Performance
+
+Both are fast enough that your database, network, and routing logic typically become the bottleneck before the SIP engine does. Benchmark your own scenario rather than relying on published figures (see [SIP trunking load testing](/blog/sip-trunking-load-testing-concurrency)).
+
+## How to Decide
+
+1. **Team skills:** the best choice is usually the one your engineers already know.
+2. **Required features:** list your must-haves such as registration scale, dynamic routing, and WebSocket for WebRTC, and verify module support.
+3. **Hiring and community:** check availability of engineers and support in your region.
+4. **Commercial support:** both have vendors, so compare terms if you need an SLA.
+5. **Prototype both:** build the same simple routing flow (dispatch to two FreeSWITCH nodes) and compare effort and operability.
+
+## Typical Architectures
+
+A common pattern puts a SIP server in front of media servers: Kamailio or OpenSIPS handles registration, routing, and failover, while FreeSWITCH or Asterisk handles features and media (see [FreeSWITCH horizontal scaling with Kamailio](/blog/freeswitch-horizontal-scaling-kamailio) and [Kamailio dispatcher configuration](/blog/kamailio-dispatcher-load-balancing-config)). For media relay, RTPengine is a common companion (see [open-source SBC with Kamailio and RTPengine](/blog/open-source-sbc-kamailio-rtpengine)).
+
+## Our Bias, Stated Plainly
+
+We build most edge and routing layers on Kamailio because of our team's depth with it. That is a familiarity argument, not a claim that OpenSIPS is inferior. Choose on evidence from your own prototype.
+
+---
+
+**Choosing a SIP routing layer?** Our [Kamailio load balancing](/services/kamailio-load-balancing) team designs and builds production SIP edges and can advise on the right fit.
+`
+  },
+  {
+    id: '103',
+    title: 'FreeSWITCH XML Curl: Dynamic Configuration from Your Own API',
+    excerpt: 'mod_xml_curl lets FreeSWITCH fetch directory, dial plan, and configuration data from a web service at runtime. Learn how it works, when to use it, and how to keep it fast and safe.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 17, 2026',
+    readTime: '4 min read',
+    slug: 'freeswitch-xml-curl-dynamic-configuration',
+    image: 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=800&q=80',
+    content: `
+**\`mod_xml_curl\` makes FreeSWITCH request its configuration as XML from an HTTP endpoint at runtime, instead of reading static files.** This is the standard way to build multi-tenant or API-driven FreeSWITCH platforms where users, routes, and settings change without editing files or reloading.
+
+## What You Can Serve Dynamically
+
+* **directory:** users, passwords, domains, and per-user variables for registration and authentication
+* **dialplan:** routing for each call, generated for that call
+* **configuration:** module settings such as callcenter queues or sofia gateways
+* **languages / phrases:** prompts and speech phrases
+
+Each is a binding in \`xml_curl.conf.xml\` with a URL and the section it handles.
+
+## How a Request Works
+
+When FreeSWITCH needs, for example, a user for a registration, it sends an HTTP POST to your URL with form fields such as \`section\`, \`key_name\`, \`key_value\`, \`user\`, \`domain\`, and \`hostname\`. Your service returns an XML document in FreeSWITCH's format, and FreeSWITCH uses it as if it had read a file. A "not found" response is a small XML document that tells FreeSWITCH there is nothing matching.
+
+\`\`\`xml
+<document type="freeswitch/xml">
+  <section name="directory">
+    <domain name="tenant1.example.com">
+      <user id="1001">
+        <params>
+          <param name="password" value="generated-secret"/>
+        </params>
+      </user>
+    </domain>
+  </section>
+</document>
+\`\`\`
+
+## Design Guidance
+
+1. **Keep responses fast.** FreeSWITCH waits for your server. Slow responses delay calls and registrations, so aim for milliseconds and cache aggressively.
+2. **Secure the endpoint.** Restrict access to FreeSWITCH servers by network and authentication. This endpoint hands out credentials.
+3. **Handle failure deliberately.** Decide what happens if the API is down. Many setups keep a minimal local fallback config.
+4. **Generate XML safely.** Escape values properly. A tenant name containing special characters must not break or inject into the document.
+5. **Return only what the request needs.** Smaller responses parse faster.
+6. **Log request and response IDs** to ease debugging.
+
+## Alternatives and Complements
+
+* **Static files with automated deployment** work for stable, small setups.
+* **mod_lua / mod_python dialplans or the Event Socket** give procedural control per call (see [FreeSWITCH Event Socket guide](/blog/freeswitch-event-socket-esl-guide)).
+* **Database-backed directory** via ODBC suits some architectures.
+
+Many platforms combine xml_curl for directory with ESL or scripts for dial plan logic.
+
+## Multi-Tenant Patterns
+
+Dynamic directory plus per-domain variables is the base for hosted PBX platforms (see [multi-tenant PBX architecture](/blog/multi-tenant-pbx-architecture-saas) and [white-label VoIP platform architecture](/blog/white-label-voip-platform-architecture)).
+
+## Scaling Notes
+
+Each registration refresh and call may trigger a request, so load grows with users. Put a cache in front of your database, and consider a SIP proxy to absorb registrations (see [FreeSWITCH horizontal scaling with Kamailio](/blog/freeswitch-horizontal-scaling-kamailio)).
+
+---
+
+**Building an API-driven FreeSWITCH platform?** Our [FreeSWITCH development](/services/freeswitch-development) team builds dynamic, multi-tenant configuration layers that scale.
+`
+  },
+  {
+    id: '104',
+    title: 'FreeSWITCH Event Socket (ESL) Guide: Inbound vs Outbound Mode',
+    excerpt: 'The Event Socket Library lets external programs control FreeSWITCH calls in real time. Learn inbound and outbound modes, common commands and events, and design patterns for reliable call-control applications.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 18, 2026',
+    readTime: '4 min read',
+    slug: 'freeswitch-event-socket-esl-guide',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80',
+    content: `
+**The Event Socket Library (ESL) lets your own application connect to FreeSWITCH over TCP to receive call events and issue commands, which is how most custom call-control logic is built.** It turns FreeSWITCH into a programmable media engine controlled from Python, Node.js, Go, or any language that can speak the protocol.
+
+## Two Modes
+
+**Inbound mode.** Your application connects to FreeSWITCH (default port 8021, with a password). You subscribe to events and send API or \`sendmsg\` commands, typically for *originating* calls and *monitoring* everything on the system. Good for dialers, dashboards, and click-to-call.
+
+**Outbound mode.** The dial plan uses the \`socket\` application to connect *to your server* for a specific call. Your application then controls that one channel from start to finish. Good for IVRs, per-call logic, and AI voice agent bridges.
+
+| | Inbound | Outbound |
+| --- | --- | --- |
+| Connection | App connects to FreeSWITCH | FreeSWITCH connects to app for each call |
+| Scope | System-wide events and commands | One call at a time |
+| Typical use | Originate calls, monitor events | IVR flow, per-call application |
+| Scaling | One long-lived connection per node | One connection per active call |
+
+## Common Commands
+
+* \`originate\` to create a call
+* \`uuid_bridge\`, \`uuid_transfer\`, \`uuid_kill\` to manipulate existing channels
+* \`playback\`, \`record\`, \`say\`, \`play_and_get_digits\` through dial plan applications
+* \`event plain ALL\` or specific events to subscribe to
+
+## Useful Events
+
+\`CHANNEL_CREATE\`, \`CHANNEL_ANSWER\`, \`CHANNEL_HANGUP_COMPLETE\` (with variables that feed CDRs, see [CDR explained](/blog/call-detail-records-cdr-explained)), \`DTMF\`, \`CUSTOM sofia::register\` for registration tracking, and \`HEARTBEAT\` for node health.
+
+## Design Patterns That Hold Up
+
+1. **Never block the event loop.** Do database and HTTP work asynchronously or on workers.
+2. **Reconnect automatically** and resubscribe. Connections will drop.
+3. **Handle every channel's full lifecycle,** including unexpected hangups mid-operation.
+4. **Correlate with a UUID or custom variable** so logs, CDRs, and signaling traces tell one story.
+5. **Limit blast radius.** One bad call handler must not crash the node's controller.
+6. **Secure port 8021.** Bind to localhost or a private network, with a strong password (see [FreeSWITCH hardening](/blog/freeswitch-fail2ban-firewall-hardening)).
+
+## Where It Fits
+
+* Dialers: originate through ESL with pacing (see [predictive dialer architecture](/blog/predictive-dialer-architecture))
+* Contact centers and queues (see [mod_callcenter](/blog/mod-callcenter-freeswitch-queues))
+* AI voice agents: stream audio out and drive the call from a bot (see [LLM function calling for phone agents](/blog/llm-function-calling-phone-agents))
+* Provisioning plus dynamic config (see [mod_xml_curl](/blog/freeswitch-xml-curl-dynamic-configuration))
+
+## Choosing ESL vs Scripts
+
+Embedded scripts (Lua) avoid network hops and suit simple, high-volume logic. ESL suits complex applications with their own state, deployment, and language preferences.
+
+---
+
+**Need custom call-control applications on FreeSWITCH?** Our [FreeSWITCH development](/services/freeswitch-development) team builds ESL-based services for IVR, dialing, and voice AI.
+`
+  },
+  {
+    id: '105',
+    title: 'Kamailio Dispatcher Module: Load Balancing Configuration That Survives Failures',
+    excerpt: 'A practical guide to Kamailio\'s dispatcher module: destination sets, algorithms, health probing, failover, and configuration patterns for balancing traffic across FreeSWITCH or Asterisk nodes.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 19, 2026',
+    readTime: '4 min read',
+    slug: 'kamailio-dispatcher-load-balancing-config',
+    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+    content: `
+**Kamailio's \`dispatcher\` module distributes SIP requests across a set of destinations using a chosen algorithm, monitors their health with probes, and fails over automatically.** It is the workhorse behind most Kamailio-in-front-of-FreeSWITCH architectures.
+
+## Core Concepts
+
+* **Destination set:** a numbered group of backend addresses, for example set 1 with several FreeSWITCH nodes
+* **Algorithm:** how a destination is picked from the set
+* **Probing:** periodic SIP OPTIONS to detect when a destination is down
+* **Failover:** selecting the next destination if one fails to answer
+
+## Common Algorithms
+
+| Algorithm | Behavior | Use when |
+| --- | --- | --- |
+| Hash over Call-ID | Same call always maps to same node | Stateless distribution with call affinity |
+| Round robin | Rotate evenly | Equal, stateless backends |
+| Weighted round robin | Proportion by weight | Mixed-capacity nodes |
+| Hash over From/To/Request-URI | Affinity per user or number | Keep a user's traffic on one node |
+| Priority | Always the first available | Active/standby |
+| Load-based (relative weight and call counts) | Considers current load | Uneven call durations |
+
+Numbering and exact options differ by version, so confirm against the module documentation for your release.
+
+## Minimal Configuration Sketch
+
+\`\`\`
+loadmodule "dispatcher.so"
+modparam("dispatcher", "list_file", "/etc/kamailio/dispatcher.list")
+modparam("dispatcher", "flags", 2)
+modparam("dispatcher", "ds_ping_interval", 10)
+modparam("dispatcher", "ds_probing_mode", 1)
+modparam("dispatcher", "ds_ping_from", "sip:probe@lb.example.com")
+
+# routing logic
+route[DISPATCH] {
+    if (!ds_select_dst("1", "4")) {      # set 1, round robin
+        send_reply("503", "No destination available");
+        exit;
+    }
+    t_on_failure("LB_FAILURE");
+    route(RELAY);
+}
+
+failure_route[LB_FAILURE] {
+    if (t_is_canceled()) exit;
+    if (t_check_status("500|503|408") && ds_next_dst()) {
+        t_relay();
+    }
+}
+\`\`\`
+
+\`/etc/kamailio/dispatcher.list\` lists entries such as \`1 sip:10.0.0.11:5060 0 10\` (set, address, flags, priority/weight). Use a database table for dynamic changes.
+
+## Health Checking and Failover
+
+* Probe with OPTIONS so that failed nodes are removed from rotation automatically
+* In \`failure_route\`, retry only on errors that make sense (408, 5xx). Do not retry a 486 Busy or 603 Decline.
+* Cap the number of retries to avoid loops (see [SIP response codes](/blog/sip-response-codes-403-408-503-troubleshooting))
+
+## Operational Tips
+
+1. **Drain before maintenance:** set a node to inactive so existing calls finish and no new ones arrive.
+2. **Manage via RPC or database,** not config edits and restarts (\`kamcmd dispatcher.set_state\`).
+3. **Keep in-dialog requests on the right node** with Record-Route and loose routing.
+4. **Persist state** across Kamailio restarts where required.
+5. **Run Kamailio itself redundantly** with a floating IP or anycast, so the balancer is not the single point of failure (see [VoIP disaster recovery](/blog/voip-disaster-recovery-failover-design)).
+
+## Related Reading
+
+Why this pattern scales is explained in [FreeSWITCH horizontal scaling with Kamailio](/blog/freeswitch-horizontal-scaling-kamailio). For comparing Kamailio with the alternative, see [OpenSIPS vs Kamailio](/blog/opensips-vs-kamailio), and for registration load see [SIP registration explained](/blog/sip-registration-authentication-explained).
+
+---
+
+**Need a load balancer you can trust at 3 a.m.?** Our [Kamailio load balancing](/services/kamailio-load-balancing) team designs, builds, and operates highly available SIP edges.
+`
+  },
+  {
+    id: '106',
+    title: 'How to Set Up a coturn STUN/TURN Server for WebRTC and VoIP',
+    excerpt: 'coturn is the standard open-source STUN and TURN server. This guide covers what each role does, a working configuration, credentials, firewall ports, and how to test that relaying actually works.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 20, 2026',
+    readTime: '4 min read',
+    slug: 'coturn-stun-turn-server-setup',
+    image: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80',
+    content: `
+**A STUN server tells a client its public address, and a TURN server relays media when a direct path is impossible. coturn implements both, and it is what most WebRTC deployments run.** If users on corporate networks or mobile data cannot connect, a correctly configured TURN server is usually the fix.
+
+## STUN vs TURN in One Minute
+
+* **STUN** answers "what address do you see me as?" It is cheap and carries no media.
+* **TURN** allocates a relay address on the server and forwards media through it. It works through strict NAT and firewalls but uses your bandwidth.
+
+ICE tries direct paths first, then STUN-derived ones, and falls back to TURN. The full process is in [NAT traversal with STUN, TURN, and ICE](/blog/nat-traversal-stun-turn-ice-voip).
+
+## Installation and Core Configuration
+
+Install coturn from your distribution, enable the service, and edit \`/etc/turnserver.conf\`:
+
+\`\`\`
+listening-port=3478
+tls-listening-port=5349
+listening-ip=0.0.0.0
+external-ip=203.0.113.10        # public IP (use PUBLIC/PRIVATE if behind NAT)
+realm=turn.example.com
+fingerprint
+lt-cred-mech                      # long-term credentials
+use-auth-secret
+static-auth-secret=CHANGE_THIS_LONG_RANDOM_SECRET
+min-port=49152
+max-port=65535
+cert=/etc/letsencrypt/live/turn.example.com/fullchain.pem
+pkey=/etc/letsencrypt/live/turn.example.com/privkey.pem
+no-multicast-peers
+no-cli
+\`\`\`
+
+Use a real, long random secret. Renew the certificate automatically and reload coturn when it changes.
+
+## Time-Limited Credentials
+
+With \`use-auth-secret\`, your application generates short-lived usernames and passwords for each session: the username is an expiry timestamp (optionally with a user ID), and the password is an HMAC of that username with the shared secret. The browser receives them in its ICE server configuration. This avoids shipping a permanent password in client code.
+
+## Firewall Ports
+
+| Port | Protocol | Purpose |
+| --- | --- | --- |
+| 3478 | UDP and TCP | STUN/TURN |
+| 5349 | TCP (TLS) | TURN over TLS, which passes the strictest firewalls |
+| 443 (optional) | TCP | TURN over TLS on the HTTPS port for restrictive networks |
+| 49152 to 65535 | UDP | Relay allocations |
+
+## Security Hardening
+
+* Deny relaying to private and loopback ranges (\`denied-peer-ip\` entries) so TURN cannot be abused to reach your internal network
+* Set \`user-quota\` and \`total-quota\` to limit abuse
+* Do not run an open relay. Always require authentication.
+* Keep coturn updated and monitor bandwidth use (see [VoIP security best practices](/blog/voip-security-best-practices))
+
+## Testing
+
+1. Use a trickle ICE test page to confirm that **relay** candidates appear.
+2. From a restrictive network, force relay-only ICE policy in a test client and place a call.
+3. Check coturn logs for allocation and traffic.
+4. Confirm that expired credentials are rejected.
+
+## Capacity Planning
+
+Each relayed call consumes bandwidth in both directions. Estimate relay share conservatively. Many deployments relay only a minority of calls, but the percentage is highly variable by user population. Place servers near users to limit latency (see [VoIP latency](/blog/voip-latency-causes-and-fixes)).
+
+---
+
+**Need reliable WebRTC connectivity in the real world?** Our [WebRTC development](/services/webrtc-development-usa) team builds and operates TURN infrastructure, signaling, and SIP bridges.
+`
+  },
+  {
+    id: '107',
+    title: 'WebRTC to SIP Gateway Architecture: Bridging Browsers and Phone Networks',
+    excerpt: 'How to connect browser-based WebRTC clients to SIP infrastructure: the gateway\'s job, component options, codec and encryption translation, and the design choices that decide quality and scale.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 21, 2026',
+    readTime: '4 min read',
+    slug: 'webrtc-to-sip-gateway-architecture',
+    image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80',
+    content: `
+**A WebRTC-to-SIP gateway lets a browser or mobile app place and receive calls on a SIP/PSTN network by translating signaling and media between the two worlds.** Browsers speak WebRTC; carriers and PBXs speak SIP over UDP/TCP with plain RTP. Something has to sit in the middle.
+
+## Why a Gateway Is Required
+
+| Aspect | WebRTC | Traditional SIP |
+| --- | --- | --- |
+| Signaling | Not specified; commonly SIP over WebSocket or custom JSON | SIP over UDP/TCP/TLS |
+| Media encryption | Mandatory (DTLS-SRTP) | Optional (RTP or SRTP) |
+| Connectivity | ICE with STUN/TURN | Public addressing or SBC |
+| Preferred codec | Opus (G.711 also supported) | G.711, G.729, others |
+
+For the underlying comparison, see [WebRTC vs SIP](/blog/webrtc-vs-sip-protocol-comparison).
+
+## What the Gateway Does
+
+1. **Signaling translation:** WebSocket SIP or custom messages to standard SIP
+2. **ICE handling:** terminates ICE and DTLS from the browser
+3. **Media translation:** DTLS-SRTP to RTP/SRTP, and Opus to G.711 where needed
+4. **NAT traversal:** a public, reachable media address
+5. **Policy and security:** authentication, rate limits, fraud controls
+
+## Common Architectures
+
+**Option A: Kamailio + RTPengine.** Kamailio accepts SIP over WebSocket (the \`websocket\` module), applies routing and authentication, and instructs RTPengine to convert WebRTC media to plain RTP. Excellent for scale and control (see [open-source SBC with Kamailio and RTPengine](/blog/open-source-sbc-kamailio-rtpengine)).
+
+**Option B: FreeSWITCH as the WebRTC endpoint.** FreeSWITCH supports WebRTC via \`mod_verto\` or SIP over WebSocket, with media handled in-process. Simpler with fewer parts, and it concentrates signaling and media load on one tier.
+
+**Option C: Media-server platforms.** SFU-based systems such as LiveKit can bridge to SIP for conferencing and AI-agent use cases (see [Pipecat vs LiveKit Agents](/blog/pipecat-vs-livekit-agents-voice-ai-framework)).
+
+## Design Decisions
+
+* **Where does transcoding happen?** Opus-to-G.711 costs CPU. Place it on scalable media nodes and track utilization (see [G.711 vs G.729](/blog/g711-vs-g729-codec-bandwidth)).
+* **Where does TURN live?** Co-locate with the gateway region (see [coturn setup](/blog/coturn-stun-turn-server-setup)).
+* **How are users authenticated?** Issue short-lived tokens from your app rather than static SIP credentials in JavaScript.
+* **How do you scale?** Scale signaling and media separately, and use region-aware routing for latency.
+* **What about recording and AI?** Fork media at the gateway to recorders or voice agents with consent controls.
+
+## Client Side
+
+Browsers use libraries such as JsSIP or SIP.js for SIP over WebSocket (see [JsSIP and SIP.js softphone guide](/blog/jssip-sipjs-webrtc-softphone)), or direct WebRTC APIs with your own signaling.
+
+## Test Plan
+
+1. Browser to browser, then browser to PSTN, both directions
+2. Behind strict NAT and on mobile networks, forcing TURN
+3. DTMF, hold, transfer, and mute
+4. Reconnect after network change
+5. Load, with a realistic proportion of transcoded calls
+
+---
+
+**Adding calling to a web or mobile product?** Our [WebRTC development](/services/webrtc-development-usa) team builds gateways and client experiences that connect cleanly to SIP infrastructure.
+`
+  },
+  {
+    id: '108',
+    title: 'JsSIP vs SIP.js: Building a Browser Softphone with WebRTC',
+    excerpt: 'JsSIP and SIP.js are the two main JavaScript SIP libraries for browser calling. Compare them, see what a softphone needs beyond the library, and learn the pitfalls of audio devices, reconnection, and security.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 22, 2026',
+    readTime: '4 min read',
+    slug: 'jssip-sipjs-webrtc-softphone',
+    image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80',
+    content: `
+**JsSIP and SIP.js are JavaScript libraries that implement SIP over WebSocket in the browser, letting you build a softphone that registers to a SIP server and places calls using WebRTC.** Both are mature and workable. The larger effort is everything around the library.
+
+## What You Need on the Server Side
+
+A SIP server that accepts **SIP over secure WebSocket (WSS)** and handles WebRTC media: Kamailio with RTPengine, FreeSWITCH, or Asterisk. See [WebRTC to SIP gateway architecture](/blog/webrtc-to-sip-gateway-architecture). You also need TURN for difficult networks (see [coturn setup](/blog/coturn-stun-turn-server-setup)).
+
+## JsSIP vs SIP.js at a Glance
+
+| Consideration | JsSIP | SIP.js |
+| --- | --- | --- |
+| Focus | Lightweight SIP user agent | Higher-level API with session abstractions |
+| Learning curve | Direct, event-based, close to the protocol | Friendlier abstractions for common tasks |
+| Maintenance and activity | Check recent release activity and issues before committing | Check recent release activity and issues before committing |
+| Fit | Developers comfortable with SIP | Teams wanting faster initial development |
+
+Library maintenance status changes over time, so review each project's repository, release history, and open issues on the day you decide. Whichever you choose, wrap it behind your own thin interface so that you can swap it later.
+
+## Softphone Features Beyond Calling
+
+* **Device management:** microphone and speaker selection, permission prompts, and handling device unplug
+* **Call controls:** mute, hold, transfer (attended and blind), DTMF
+* **Multiple calls:** call waiting and swapping
+* **Presence of network quality:** show warnings when packet loss rises (see [VoIP quality testing](/blog/voip-quality-testing-mos-jitter-packet-loss))
+* **Ringing and notifications** when the tab is in the background
+
+## Pitfalls
+
+1. **Autoplay and permission policies** require a user gesture before audio plays in many browsers.
+2. **Reconnection:** WebSocket drops on network changes. Re-register and recover calls where possible.
+3. **Credentials in JavaScript:** do not ship permanent SIP passwords to the browser. Issue short-lived credentials from your backend.
+4. **Codec negotiation:** prefer Opus for browser legs with transcoding at the gateway (see [Opus vs G.711](/blog/opus-vs-g711-codec-voice-ai)).
+5. **Echo and noise:** enable browser echo cancellation and noise suppression, and test on speakers and headsets.
+6. **Mobile browsers:** background tabs throttle JavaScript, so inbound calls may need push notifications or a native wrapper.
+
+## Security Notes
+
+Use WSS only, validate origins on the server, and rate-limit registration attempts (see [VoIP security best practices](/blog/voip-security-best-practices)). Treat the browser as untrusted and enforce spend and destination rules in your backend (see [toll fraud prevention](/blog/voip-toll-fraud-prevention)).
+
+## When to Skip SIP Entirely
+
+If your product only connects users to each other inside your app, direct WebRTC with your own signaling can be simpler. SIP makes sense when you need the PSTN, a PBX, or existing carrier integrations. See [what SIP is](/blog/what-is-sip-protocol-how-it-works) for the trade-offs.
+
+---
+
+**Embedding voice calling in your web app?** Our [WebRTC development](/services/webrtc-development-usa) team builds production softphones and the signaling and media backends behind them.
+`
+  },
+  {
+    id: '109',
+    title: 'AI Call Center Architecture: How to Build a Voice AI Contact Center Stack',
+    excerpt: 'A reference architecture for an AI-powered call center: telephony edge, voice agent pipeline, human handoff, integrations, QA, and the controls needed to run it safely in production.',
+    category: 'Voice AI',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 23, 2026',
+    readTime: '4 min read',
+    slug: 'ai-call-center-architecture-guide',
+    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80',
+    content: `
+**An AI call center combines conventional telephony infrastructure with a real-time voice pipeline: audio from the phone network goes to speech recognition, a language model decides what to say or do, and synthesized speech goes back, with a clean path to a human agent when needed.** The AI is one component. The reliability of the phone layer around it decides whether the system works.
+
+## Reference Architecture
+
+1. **Telephony edge:** SIP trunks, SBC or Kamailio, and media servers (see [session border controller architecture](/blog/session-border-controller-architecture))
+2. **Call control:** FreeSWITCH or a WebRTC/SFU layer that anchors the call (see [FreeSWITCH Event Socket guide](/blog/freeswitch-event-socket-esl-guide))
+3. **Voice pipeline:** streaming speech-to-text, an LLM with tools, and streaming text-to-speech (see [architecting sub-500 ms voice agents](/blog/architecting-sub-500ms-ai-voice-agents))
+4. **Orchestration:** conversation state, turn-taking, interruptions (see [barge-in detection](/blog/barge-in-detection-voice-ai-agents))
+5. **Business integrations:** CRM, scheduling, billing, knowledge base (see [LLM function calling for phone agents](/blog/llm-function-calling-phone-agents))
+6. **Human handoff:** warm transfer into your queues with context (see [call queue and ACD design](/blog/call-queue-acd-routing-design))
+7. **Observability and QA:** transcripts, recordings, metrics, review tooling
+8. **Compliance layer:** consent, disclosure, retention, redaction
+
+## What AI Handles Well
+
+* Answering common questions from a defined knowledge base
+* Appointment scheduling and rescheduling (see [AI appointment scheduling](/blog/ai-appointment-scheduling-phone-calendar))
+* Intake, triage, and routing before a human joins
+* After-hours and overflow coverage (see [AI receptionist ROI](/blog/ai-receptionist-roi-missed-calls-cost))
+* Outbound reminders and follow-ups (with consent, see [AI outbound calling and compliance](/blog/ai-outbound-calling-architecture-compliance))
+
+## What Needs a Human
+
+Complex or emotional situations, high-value negotiations, anything the agent is not authorized to decide, and callers who simply ask for a person. Always provide that exit.
+
+## Design Principles
+
+* **Latency is user experience.** Budget every stage.
+* **Constrain the agent.** Give it narrow tools and clear policies; validate tool inputs in code, not only in prompts.
+* **Fail safe.** If the model or a dependency fails, transfer to a human or take a message.
+* **Log everything needed for audit,** with sensible redaction.
+* **Evaluate continuously** with test calls and sampled reviews, not just at launch.
+
+## Build Path
+
+| Stage | Goal |
+| --- | --- |
+| Pilot | One use case, limited hours, human review of every call |
+| Expand | More intents and integrations as quality metrics hold |
+| Scale | Load testing, redundancy, cost controls (see [SIP trunking load testing](/blog/sip-trunking-load-testing-concurrency)) |
+| Optimize | Prompt, model, and routing tuning from real transcripts |
+
+## Framework Options
+
+Open-source frameworks speed up the pipeline (see [Pipecat vs LiveKit Agents](/blog/pipecat-vs-livekit-agents-voice-ai-framework)), and the decision to build or buy is covered in [AI phone agent: build vs buy](/blog/ai-phone-agent-build-vs-buy).
+
+---
+
+**Designing an AI-assisted contact center?** Our [AI voice agent development](/services/ai-voice-agents-usa) team connects voice AI to real telephony, CRMs, and human queues.
+`
+  },
+  {
+    id: '110',
+    title: 'Voice Bot vs Chatbot vs IVR: What Is the Difference and Which Do You Need?',
+    excerpt: 'Voice bots, chatbots, and IVRs all automate conversations but work very differently. Compare how each handles input, understanding, and integration, and when each fits best.',
+    category: 'Voice AI',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 24, 2026',
+    readTime: '4 min read',
+    slug: 'voice-bot-vs-chatbot-vs-ivr',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+    content: `
+**A traditional IVR navigates callers through fixed menus using keypad digits or limited speech commands. A chatbot holds text conversations. A voice bot holds spoken conversations, understanding free-form speech and replying in synthesized voice.** Modern voice bots combine the conversational flexibility of a chatbot with the reach of the phone.
+
+## Side-by-Side
+
+| | IVR | Chatbot | Voice bot |
+| --- | --- | --- | --- |
+| Channel | Phone | Web, app, messaging | Phone and voice interfaces |
+| Input | DTMF digits, limited speech | Typed text | Natural speech |
+| Flexibility | Rigid menu tree | Flexible (varies by design) | Flexible, handles free-form requests |
+| Understanding | Pattern matching | Intent classification or LLM | Speech recognition plus language model |
+| Failure mode | Menu loops, "press 0 for an agent" | Misunderstanding, wrong answer | Misrecognition, latency, awkward turn-taking |
+| Build effort | Low to moderate | Moderate | Higher: telephony plus real-time AI |
+| Caller experience | Often disliked | Fine for digital users | Natural when latency is low |
+
+## When an IVR Is Still Right
+
+Simple, stable routing ("press 1 for sales"), regulatory prompts, or authentication steps by keypad. IVRs are predictable, cheap to run, and easy to test (see [IVR testing](/blog/ivr-testing-automation-strategies) and [IVR design patterns](/blog/ivr-design-patterns-caller-experience)).
+
+## When a Chatbot Is Right
+
+Customers already on your website or app, answers that benefit from links and images, and asynchronous conversations. It does not solve the phone channel.
+
+## When a Voice Bot Is Right
+
+* Callers phrase requests in many ways, making menus impractical
+* High call volume with repetitive requests such as hours, status, or booking
+* After-hours coverage (see [rise of the AI receptionist](/blog/rise-of-ai-receptionist))
+* Need to capture structured data conversationally, such as intake details
+
+See [AI voice agents replacing IVR](/blog/ai-voice-agents-replace-ivr) for a migration view.
+
+## The Hybrid Reality
+
+Most successful deployments blend all three: an IVR layer for compliance or authentication, a voice bot for conversational tasks, and a chatbot for follow-up by text, with handoff to humans when confidence is low. Shared back-end logic and knowledge keep the experience consistent.
+
+## Technical Requirements Unique to Voice Bots
+
+* **Low latency** from speech to response (see [VoIP latency](/blog/voip-latency-causes-and-fixes) and [streaming ASR latency](/blog/streaming-asr-pipeline-latency))
+* **Interruption handling** (see [barge-in detection](/blog/barge-in-detection-voice-ai-agents))
+* **Telephony integration** with SIP trunks and media servers (see [AI call center architecture](/blog/ai-call-center-architecture-guide))
+* **Safe tool use** to take actions in your systems (see [LLM function calling for phone agents](/blog/llm-function-calling-phone-agents))
+
+## Choosing
+
+Start with your top call reasons. If a short menu covers them, keep the IVR. If callers need conversation or you are losing calls, pilot a voice bot on one use case and measure containment and satisfaction.
+
+---
+
+**Exploring voice automation for your phone lines?** Our [AI voice agent development](/services/ai-voice-agents-usa) team helps you scope, build, and measure a voice bot pilot.
+`
+  },
+  {
+    id: '111',
+    title: 'AI Phone Agent: Build vs Buy? A Decision Framework for Voice AI',
+    excerpt: 'Should you build your own AI phone agent or buy a platform? Compare cost structure, control, speed, compliance, and lock-in, with a practical framework and the signals that tip the decision either way.',
+    category: 'Voice AI',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 25, 2026',
+    readTime: '4 min read',
+    slug: 'ai-phone-agent-build-vs-buy',
+    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80',
+    content: `
+**Buy a voice AI platform when you need to launch fast with standard use cases and moderate volume. Build when call volume is high, requirements are unusual, you need deep telephony or compliance control, or per-minute platform fees would dominate your costs.** Many teams do both in sequence: buy to validate, then build the parts that matter.
+
+## What "Buy" Means
+
+Hosted platforms bundle telephony, speech recognition, a language model, speech synthesis, and orchestration behind a dashboard or API. You configure prompts, tools, and call flows. You pay usage-based fees, usually per minute, on top of the underlying model costs the platform passes through or marks up.
+
+## What "Build" Means
+
+You assemble the stack: SIP trunks and media servers, a real-time pipeline (often with a framework, see [Pipecat vs LiveKit Agents](/blog/pipecat-vs-livekit-agents-voice-ai-framework)), providers for speech and language models, and your own orchestration and monitoring (see [AI call center architecture](/blog/ai-call-center-architecture-guide)).
+
+## Comparison
+
+| Factor | Buy | Build |
+| --- | --- | --- |
+| Time to first call | Days to weeks | Weeks to months |
+| Upfront effort | Low | Significant engineering |
+| Cost shape | Per-minute fees, simple to forecast at low volume | Fixed engineering plus usage costs; cheaper per minute at scale |
+| Control over latency | Limited to platform settings | Full control of every stage (see [sub-500 ms voice agents](/blog/architecting-sub-500ms-ai-voice-agents)) |
+| Telephony flexibility | Platform's carriers and features | Any carrier, BYOC, custom routing |
+| Compliance and data residency | Depends on vendor terms | You design to your requirements |
+| Customization | Within platform limits | Unlimited |
+| Lock-in | Prompts, flows, numbers tied to vendor | Portable if you abstract providers |
+| Ongoing ownership | Vendor maintains platform | You maintain everything |
+
+## Signals Pointing to Buy
+
+* A pilot or proof of concept is the goal
+* Standard use cases such as appointment booking or FAQ answering
+* Small engineering team without telephony experience
+* Low or uncertain call volume
+
+## Signals Pointing to Build
+
+* High minute volume where platform fees compound
+* Need for BYOC, custom SIP routing, or on-premises components (see [BYOC economics](/blog/byoc-economics-enterprise-carrier))
+* Strict HIPAA, financial, or data-residency requirements (see [HIPAA-compliant voice AI](/blog/hipaa-compliant-voice-ai-guide))
+* Deep integration with proprietary systems
+* Latency or voice quality that platforms cannot meet
+* Desire to avoid dependence on one vendor (see [Twilio alternatives](/blog/twilio-alternatives-voice-engineering-guide) and [Vapi, Retell, and Bland alternatives](/blog/vapi-retell-bland-alternatives-custom-voice-agent))
+
+## A Pragmatic Hybrid Path
+
+1. **Validate** the use case on a hosted platform with real calls.
+2. **Measure** containment rate, cost per call, and failure reasons.
+3. **Extract** your prompts, tools, and test cases into portable form.
+4. **Replace** the highest-cost or highest-risk layers first, often telephony, then the pipeline.
+5. **Keep abstraction layers** between your logic and each provider.
+
+## Cost Model to Run Before Deciding
+
+Estimate monthly minutes, multiply by the platform's all-in per-minute cost, and compare against the build's engineering cost amortized over expected life plus infrastructure and provider usage. Include maintenance. The crossover point depends heavily on your volume, and we do not publish a generic number, because there is not one.
+
+---
+
+**Weighing build vs buy for voice AI?** Our [AI voice agent development](/services/ai-voice-agents-usa) team can scope both paths honestly and build the parts that justify owning.
+`
+  },
+  {
+    id: '112',
+    title: 'ElevenLabs Alternatives for Voice AI: What to Evaluate in a Text-to-Speech Provider',
+    excerpt: 'Choosing a text-to-speech provider for phone agents is about latency, streaming, voice quality, language coverage, and cost control. Learn the criteria that matter and how to test providers fairly.',
+    category: 'Voice AI',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 26, 2026',
+    readTime: '4 min read',
+    slug: 'elevenlabs-alternatives-voice-ai-tts',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+    content: `
+**When teams look for ElevenLabs alternatives, they are usually trying to reduce cost, cut latency, or gain control over voices and data. The right provider is the one that measures best on your calls, so build a test, not a shortlist from reviews.** Provider quality and pricing change often, which is why this guide teaches evaluation rather than ranking names.
+
+## Why Teams Look at Alternatives
+
+* Per-character costs add up at call volume
+* First-audio latency too high for natural turn-taking
+* Data handling or residency requirements
+* Language or accent coverage gaps
+* Wanting a self-hosted or open-weight option for control
+
+## Criteria for Phone Voice Agents
+
+| Criterion | What to measure |
+| --- | --- |
+| **Time to first audio** | Delay from sending text to the first audio chunk (see [TTS latency optimization](/blog/tts-latency-optimization-streaming)) |
+| **Streaming support** | Can you send text incrementally and receive audio as it is produced? |
+| **Telephony audio** | Output at 8 kHz, mu-law or A-law options, or clean downsampling |
+| **Voice quality over a phone line** | Test after compression to G.711, not on studio headphones |
+| **Pronunciation control** | Names, numbers, addresses, phone digits, abbreviations |
+| **Language and accent coverage** | Every language your callers use |
+| **Interruption behavior** | How quickly can you cancel mid-sentence? (see [barge-in detection](/blog/barge-in-detection-voice-ai-agents)) |
+| **Reliability** | Rate limits, concurrency caps, uptime history |
+| **Pricing model** | Per character, per second, tiered, or committed |
+| **Data terms** | Retention, training on your data, regional processing |
+| **Licensing of voices** | Rights for commercial use and for cloned voices |
+
+## Provider Categories
+
+* **Hosted neural TTS from voice-specialist companies:** typically the most natural voices and fastest iteration
+* **Cloud-platform TTS:** broad language coverage and enterprise terms, with quality varying by voice
+* **Speech APIs bundled with realtime model APIs:** simpler integration, less choice of voice
+* **Open-weight and self-hosted models:** control over cost and data at the price of GPU operations
+
+## How to Run a Fair Test
+
+1. Write 30 to 50 real utterances from your call scripts, including numbers, names, and addresses.
+2. Generate each with every candidate using comparable settings.
+3. **Pass the audio through your actual telephony chain** (codec and bandwidth), then have several people rate it blind.
+4. Measure first-audio latency over many runs, at different times of day, reporting percentiles rather than averages.
+5. Run a concurrency test at your expected peak.
+6. Compare cost for your projected volume.
+
+For a deeper comparison of text-to-speech interfaces, see [text-to-speech API comparison for low latency](/blog/text-to-speech-api-low-latency-comparison). To pair TTS with recognition choices, read [Deepgram vs Whisper streaming ASR](/blog/deepgram-vs-whisper-streaming-asr).
+
+## Keep Providers Swappable
+
+Wrap each provider behind a small interface in your pipeline so you can change vendors without rewriting your agent. Frameworks make this easier (see [Pipecat vs LiveKit Agents](/blog/pipecat-vs-livekit-agents-voice-ai-framework)).
+
+---
+
+**Want a voice stack where providers are swappable and measurable?** Our [AI voice agent development](/services/ai-voice-agents-usa) team builds pipelines you can tune without being locked to one vendor.
+`
+  },
+  {
+    id: '113',
+    title: 'Vapi, Retell, and Bland Alternatives: When a Custom Voice Agent Makes Sense',
+    excerpt: 'Hosted voice agent platforms are fast to start with. Learn why teams outgrow them, what a custom replacement involves, and how to migrate without losing your prompts, flows, and phone numbers.',
+    category: 'Voice AI',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 27, 2026',
+    readTime: '4 min read',
+    slug: 'vapi-retell-bland-alternatives-custom-voice-agent',
+    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80',
+    content: `
+**Hosted platforms such as Vapi, Retell, and Bland let you launch a voice agent quickly. Teams look for alternatives when per-minute fees grow, they need telephony or latency control the platform does not offer, or they want to stop depending on one vendor.** The answer is not always "build your own"; sometimes it is simply a different platform, or a hybrid. (We do not rank vendors here. Their features and pricing change quickly, so check current documentation.)
+
+## Common Reasons Teams Move
+
+* **Cost at scale:** platform fees on top of model and telephony costs
+* **Latency ceiling:** limited control of the pipeline and region
+* **Telephony constraints:** needing your own carriers, numbers, or SIP routing (see [BYOC economics](/blog/byoc-economics-enterprise-carrier))
+* **Compliance:** data handling or hosting requirements (see [HIPAA-compliant voice AI](/blog/hipaa-compliant-voice-ai-guide))
+* **Customization:** unusual call flows, integrations, or analytics
+* **Resilience:** avoiding a single provider as a point of failure
+
+## Your Options
+
+| Option | Best when | Trade-off |
+| --- | --- | --- |
+| Another hosted platform | Fit and price differ by vendor | Same category of lock-in |
+| Open-source framework on managed infrastructure | You want control with less plumbing | Engineering and operations needed |
+| Fully custom pipeline | High volume or strict requirements | Highest effort, highest control |
+
+Frameworks to start from are compared in [Pipecat vs LiveKit Agents](/blog/pipecat-vs-livekit-agents-voice-ai-framework).
+
+## What a Custom Replacement Contains
+
+1. **Telephony:** SIP trunks, a media server, and call routing (see [AI call center architecture](/blog/ai-call-center-architecture-guide))
+2. **Pipeline:** streaming recognition, language model, and synthesis (see [sub-500 ms voice agent architecture](/blog/architecting-sub-500ms-ai-voice-agents))
+3. **Tool layer:** your business actions (see [LLM function calling for phone agents](/blog/llm-function-calling-phone-agents))
+4. **Orchestration:** conversation state, interruptions, transfers
+5. **Observability:** transcripts, latency traces, evaluation harness
+6. **Operations:** deployment, scaling, on-call
+
+## Migration Plan Without Downtime
+
+1. **Export** prompts, tool definitions, and example transcripts from the current platform.
+2. **Build an evaluation set** from real calls with expected outcomes.
+3. **Port the agent** to the new stack and run the evaluation until results match or beat the original.
+4. **Move phone numbers** carefully, or forward a number to the new system first (see [number porting](/blog/number-porting-enterprise-voip-guide)).
+5. **Shadow, then split traffic** by percentage, and compare containment, latency, and cost.
+6. **Cut over fully** and keep the old setup warm briefly for rollback.
+
+## Decision Aid
+
+If your monthly minutes are low and requirements standard, staying on a platform is rational. If you are paying heavily for minutes or hitting walls, a custom path is often worth scoping. The structured version of this decision is in [AI phone agent: build vs buy](/blog/ai-phone-agent-build-vs-buy).
+
+---
+
+**Ready to scope a platform-independent voice agent?** Our [AI voice agent development](/services/ai-voice-agents-usa) team builds and migrates production agents with your telephony, your data, and your rules.
+`
+  },
+  {
+    id: '114',
+    title: 'OpenAI Realtime API and Telephony: Connecting Speech-to-Speech Models to Phone Calls',
+    excerpt: 'Realtime speech-to-speech models promise lower latency for phone agents. Learn how they connect to SIP and PSTN calls, the audio and architecture considerations, and the trade-offs against a classic three-stage pipeline.',
+    category: 'Voice AI',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 28, 2026',
+    readTime: '4 min read',
+    slug: 'openai-realtime-api-sip-telephony',
+    image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80',
+    content: `
+**A realtime speech-to-speech API takes streaming audio in and returns streaming audio out from a single model session, instead of chaining separate recognition, language, and synthesis stages. To use it for phone calls you must bridge telephony audio into that session and back.** The connection, not the model, is where most production issues appear.
+
+## Two Architectural Styles
+
+**Classic pipeline:** speech-to-text, then a language model, then text-to-speech. Each stage can be swapped independently, and you can inspect text between stages (see [architecting sub-500 ms voice agents](/blog/architecting-sub-500ms-ai-voice-agents)).
+
+**Speech-to-speech:** one model hears audio and speaks audio. It can reduce latency and keep tone and prosody, but you control less of the intermediate steps.
+
+| | Pipeline | Speech-to-speech |
+| --- | --- | --- |
+| Latency | Sum of stages; optimizable | Often lower by design |
+| Control of voice and pronunciation | High, choose any TTS | Limited to model's voices |
+| Debugging | Easy to inspect transcripts at each stage | Harder to see inside |
+| Provider flexibility | Swap each component | Tied to model provider |
+| Tool use | Mature patterns | Supported, check specifics |
+| Cost | Sum of component prices | Single usage price; compare on your traffic |
+
+## Connecting Telephony
+
+Phone audio arrives as 8 kHz G.711 (mu-law or A-law). Model sessions usually expect specific sample rates and encodings. Typical designs:
+
+1. **Media server + WebSocket bridge.** FreeSWITCH or a SIP service forks the call audio over WebSocket to your app, which relays it to the model session and plays the response back (see [FreeSWITCH Event Socket guide](/blog/freeswitch-event-socket-esl-guide)).
+2. **WebRTC/SFU bridge.** A SIP-to-WebRTC layer joins the call to a room where your agent participates (see [Pipecat vs LiveKit Agents](/blog/pipecat-vs-livekit-agents-voice-ai-framework)).
+3. **Direct SIP support.** Some model providers offer SIP endpoints for incoming calls. Check current documentation for availability, supported features, and constraints before relying on it.
+
+## Audio Details That Cause Bugs
+
+* **Resampling** between 8 kHz telephony and model rates, with clean filters
+* **Codec conversion** (mu-law to linear PCM) done correctly (see [Opus vs G.711](/blog/opus-vs-g711-codec-voice-ai))
+* **Chunk size and buffering:** small, steady frames keep latency low
+* **Echo and feedback:** make sure the agent does not hear its own voice (see [barge-in detection](/blog/barge-in-detection-voice-ai-agents))
+* **Voice activity detection:** server-side vs your own, and how interruption is handled
+
+## Reliability and Operations
+
+* Reconnect and recover when a model session drops mid-call
+* Set timeouts and a fallback path (transfer to a human or take a message)
+* Track latency percentiles and cost per call from the first day
+* Handle concurrency limits and rate limits on the provider side
+* Record consent and disclosures where required (see [AI outbound calling and compliance](/blog/ai-outbound-calling-architecture-compliance))
+
+## When to Prefer Each
+
+Choose speech-to-speech to minimize latency and simplify the pipeline for general conversation. Choose the staged pipeline when you need specific voices, strict pronunciation, deep observability, or provider independence. A hybrid is common: speech-to-speech for conversation, plus your own tool layer.
+
+For the larger decision, see [AI phone agent: build vs buy](/blog/ai-phone-agent-build-vs-buy).
+
+---
+
+**Connecting realtime models to your phone system?** Our [AI voice agent development](/services/ai-voice-agents-usa) team builds the telephony bridges, fallbacks, and monitoring that make realtime agents reliable.
+`
+  },
+  {
+    id: '115',
+    title: 'Deepgram vs Whisper for Streaming Speech Recognition in Voice Agents',
+    excerpt: 'Compare managed streaming ASR with self-hosted Whisper-based setups for phone agents: latency, streaming behavior, telephony accuracy, cost, and operations. Includes a testing method that works for any recognizer.',
+    category: 'Voice AI',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 29, 2026',
+    readTime: '4 min read',
+    slug: 'deepgram-vs-whisper-streaming-asr',
+    image: 'https://images.unsplash.com/photo-1516110833967-0b5716ca1387?auto=format&fit=crop&w=800&q=80',
+    content: `
+**For live phone agents, the deciding factor is usually streaming behavior and latency, not headline accuracy. Managed streaming recognizers are built for low-latency partial results, while Whisper-family models were designed for batch transcription and need extra engineering to stream.** The best choice depends on your traffic, so test on your audio.
+
+## What a Voice Agent Needs from ASR
+
+* **Partial transcripts** that arrive as the person speaks
+* **Endpointing:** a reliable signal that the caller finished a turn
+* **Low and predictable latency**
+* **Accuracy on 8 kHz telephone audio,** with accents and background noise
+* **Support for domain vocabulary:** product names, drug names, addresses
+* **Stable concurrency** at your peak
+
+Background on these constraints is in [streaming ASR pipeline latency](/blog/streaming-asr-pipeline-latency).
+
+## Managed Streaming Services (for example Deepgram)
+
+**Strengths:** built for real-time WebSocket streaming, interim results, endpointing, telephony-tuned models, and no GPU operations on your side.
+
+**Considerations:** per-minute costs, data handling terms, rate limits, and dependence on a vendor's availability.
+
+## Whisper-Based Self-Hosting
+
+OpenAI's Whisper and derivatives (such as faster-whisper variants and distilled models) offer strong accuracy and open weights.
+
+**Strengths:** control over data, no per-minute fee, flexibility to fine-tune or choose model size.
+
+**Considerations:** Whisper processes audio in chunks, so streaming means chunking with overlap and voice activity detection, which adds latency and complexity. You must run and scale GPUs and manage model versions. Some hosted Whisper APIs exist but are generally batch-oriented. Check current offerings.
+
+## Comparison
+
+| Factor | Managed streaming ASR | Self-hosted Whisper variants |
+| --- | --- | --- |
+| Native streaming | Yes | Needs engineering |
+| Latency | Typically optimized for real time | Depends on model size, GPU, chunking |
+| Operations | Vendor-run | You run GPUs, scaling, upgrades |
+| Cost at scale | Usage-based | Hardware plus ops, may win at high steady volume |
+| Data control | Per vendor terms | Full control |
+| Customization | Vocabulary hints, vendor models | Fine-tuning possible |
+
+## How to Test Fairly
+
+1. **Collect 100 or more real call snippets** (with permission) at 8 kHz, covering noise, accents, and numbers.
+2. Create human reference transcripts.
+3. Run each candidate in **streaming mode** using the same audio chunking.
+4. Measure **word error rate**, but also **error rate on key entities** such as names, dates, and digits, which matter more.
+5. Measure **time to final transcript after speech ends** at p50 and p95.
+6. Test under concurrent load.
+7. Compute cost per hour at your volume.
+
+## Practical Guidance
+
+* Accuracy that looks close in a benchmark can differ on your callers, so trust your own data.
+* Keep ASR behind an interface so you can switch (see [Pipecat vs LiveKit Agents](/blog/pipecat-vs-livekit-agents-voice-ai-framework)).
+* Use domain hints for names and terminology.
+* Pair the decision with your speech synthesis choice (see [text-to-speech API comparison](/blog/text-to-speech-api-low-latency-comparison)) and overall [speech-to-text API comparison](/blog/speech-to-text-api-comparison-voice-agents).
+
+---
+
+**Need a recognition layer tuned to your callers?** Our [AI voice agent development](/services/ai-voice-agents-usa) team benchmarks and integrates ASR on your real call audio.
+`
+  },
+  {
+    id: '116',
+    title: 'Speech-to-Text API Comparison for Voice Agents: What to Compare Beyond Word Error Rate',
+    excerpt: 'A framework for comparing speech-to-text APIs for phone agents: streaming latency, endpointing, telephony accuracy, language support, diarization, pricing models, and data terms, plus a repeatable evaluation method.',
+    category: 'Voice AI',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 30, 2026',
+    readTime: '4 min read',
+    slug: 'speech-to-text-api-comparison-voice-agents',
+    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80',
+    content: `
+**The best speech-to-text API for a voice agent is the one that returns accurate text fastest on *your* phone audio at a price you can sustain. Word error rate on a public benchmark is only one input.** Vendors update models frequently, so this guide gives you criteria and a method instead of a ranked list that would be stale in a quarter.
+
+## The Comparison Matrix
+
+| Criterion | Why it matters for phone agents |
+| --- | --- |
+| **Streaming API** | Needed for real-time turns. Batch-only APIs cannot drive a live conversation |
+| **Interim results latency** | How soon partial words appear after speech |
+| **Endpointing quality** | Detecting end of turn without cutting people off or waiting too long |
+| **Telephony model / 8 kHz handling** | Phone audio is narrowband and noisy |
+| **Entity accuracy** | Numbers, names, emails, addresses, dates |
+| **Custom vocabulary / keyword boosting** | Brand and domain terms |
+| **Language and dialect coverage** | Each language your callers use, and code-switching |
+| **Diarization / multi-channel** | Separating caller and agent for analytics |
+| **Concurrency and rate limits** | Behavior at your peak |
+| **Pricing model** | Per minute, per second, per stream, committed volume |
+| **Data terms** | Retention, training use, regional processing, compliance attestations |
+| **Reliability** | Status history, SLAs, regional failover |
+
+## Provider Types
+
+* **Specialist real-time ASR vendors:** optimized for streaming and telephony
+* **Hyperscaler speech services:** broad language coverage, enterprise contracts
+* **Realtime multimodal model APIs:** speech handled inside the model session (see [OpenAI Realtime API and telephony](/blog/openai-realtime-api-sip-telephony))
+* **Open-weight models you host:** control and potentially lower cost at scale (see [Deepgram vs Whisper](/blog/deepgram-vs-whisper-streaming-asr))
+
+## Evaluation Method
+
+1. **Build a test set** of real calls (with consent and redaction), at original sample rate and codec, stratified by noise, accent, and call type.
+2. **Create reference transcripts** by human review.
+3. **Score entity accuracy,** not only overall error rate, since a perfect sentence with the wrong phone number still fails the call.
+4. **Measure latency** from end of speech to final transcript, at p50 and p95, over a few days.
+5. **Test failure behavior:** dropped connections, rate limiting, malformed audio.
+6. **Run a load test** at expected concurrency.
+7. **Model total cost** including retries and idle stream time.
+
+## Integration Advice
+
+* Normalize audio once at the edge, and send consistent formats
+* Implement automatic retry and a secondary provider for critical lines
+* Log provider latency per call so regressions are visible (see [streaming ASR pipeline latency](/blog/streaming-asr-pipeline-latency))
+* Keep it behind an interface, as discussed in [Pipecat vs LiveKit Agents](/blog/pipecat-vs-livekit-agents-voice-ai-framework)
+
+Pair recognition choices with synthesis (see [ElevenLabs alternatives and TTS evaluation](/blog/elevenlabs-alternatives-voice-ai-tts)) and the overall design in [AI call center architecture](/blog/ai-call-center-architecture-guide).
+
+---
+
+**Want recognition chosen on evidence from your own calls?** Our [AI voice agent development](/services/ai-voice-agents-usa) team runs structured provider evaluations and builds the integrations.
+`
+  },
+  {
+    id: '117',
+    title: 'Text-to-Speech API Comparison for Phone Agents: Latency, Streaming, and Telephony Audio',
+    excerpt: 'How to compare text-to-speech APIs for voice agents: first-audio latency, input streaming, output formats for telephony, pronunciation control, interruption handling, language coverage, and total cost.',
+    category: 'Voice AI',
+    author: 'Telephony Engineering Team',
+    date: 'Oct 31, 2026',
+    readTime: '4 min read',
+    slug: 'text-to-speech-api-low-latency-comparison',
+    image: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=800&q=80',
+    content: `
+**For a phone agent, the most important TTS metrics are how quickly the first audio arrives, whether you can stream text in and audio out, and how the voice sounds *after* it has been squeezed through a telephone line.** Studio demo quality is a poor predictor of call quality.
+
+## Metrics That Decide Quality
+
+| Metric | What to check |
+| --- | --- |
+| **Time to first byte of audio** | Measure p50 and p95 across many runs and times of day |
+| **Input streaming** | Can the LLM's tokens flow in as they are generated, or must you send full sentences? |
+| **Output streaming and format** | Raw PCM, mu-law 8 kHz, or compressed. Fewer conversions means less latency and artifacts |
+| **Cancellation** | How fast can you stop a response when the caller interrupts? (see [barge-in detection](/blog/barge-in-detection-voice-ai-agents)) |
+| **Prosody and naturalness** | Rated blind, on phone-quality audio |
+| **Pronunciation controls** | SSML or lexicons for names, digits, units |
+| **Language / accent coverage** | Per language you serve |
+| **Concurrency and rate limits** | Can it handle your peak simultaneous calls? |
+| **Pricing** | Per character, per audio second, or subscription tiers |
+| **Voice rights and data terms** | Commercial use, cloned voice consent, retention |
+
+## Techniques That Often Beat Provider Switching
+
+Before changing vendors, try the optimizations in [TTS latency optimization](/blog/tts-latency-optimization-streaming):
+
+* Start synthesis on the first sentence fragment instead of the full reply
+* Cache fixed phrases such as greetings and confirmations
+* Keep persistent connections open to avoid handshake delay
+* Place your pipeline in the same region as the provider
+* Use a short filler phrase while a slow tool call completes
+
+## Reading Digits, Names, and Addresses
+
+Test your hardest strings: phone numbers, 16-digit codes, dollar amounts, dates, and unusual names. Many errors in production calls come from number formatting. Convert numbers to spoken form in your own code when you need guaranteed behavior.
+
+## Evaluation Protocol
+
+1. Assemble 40 to 60 prompts from your real scripts.
+2. Synthesize with each candidate under the same settings.
+3. **Transcode to your actual call path** (for example G.711), then run blind listening tests (see [G.711 vs G.729](/blog/g711-vs-g729-codec-bandwidth) and [Opus vs G.711](/blog/opus-vs-g711-codec-voice-ai)).
+4. Measure latency with a script, not a stopwatch.
+5. Stress test concurrency.
+6. Calculate monthly cost at expected volume.
+
+Keep the choice reversible by isolating TTS behind an interface (see [Pipecat vs LiveKit Agents](/blog/pipecat-vs-livekit-agents-voice-ai-framework)). For the vendor-neutral selection process, see [ElevenLabs alternatives and TTS evaluation](/blog/elevenlabs-alternatives-voice-ai-tts), and for the other half of the pipeline, [speech-to-text API comparison](/blog/speech-to-text-api-comparison-voice-agents).
+
+---
+
+**Want a voice that sounds right on a real phone line?** Our [AI voice agent development](/services/ai-voice-agents-usa) team tunes the synthesis stage for latency, clarity, and cost.
+`
+  },
+  {
+    id: '118',
+    title: 'AI Appointment Scheduling by Phone: Calendar Integration Patterns That Work',
+    excerpt: 'How to build a voice agent that books appointments reliably: calendar and availability APIs, slot negotiation, time-zone handling, confirmations, rescheduling, and the failure cases that cause double bookings.',
+    category: 'Voice AI',
+    author: 'Telephony Engineering Team',
+    date: 'Nov 01, 2026',
+    readTime: '4 min read',
+    slug: 'ai-appointment-scheduling-phone-calendar',
+    image: 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?auto=format&fit=crop&w=800&q=80',
+    content: `
+**An AI phone agent can book appointments reliably when it reads real availability from your calendar or practice-management system, offers a small number of options, confirms details back to the caller, and writes the booking with checks against conflicts.** The conversation is the easy part. The integration is where bookings go wrong.
+
+## The Scheduling Flow
+
+1. **Identify the caller and intent:** new, existing, reschedule, cancel
+2. **Collect requirements:** service type, provider, location, preferred days and times
+3. **Query availability** for those constraints
+4. **Offer two or three slots** rather than reading a long list
+5. **Confirm the chosen slot** including date, time, time zone, and location
+6. **Write the booking** and receive an ID
+7. **Send a confirmation** by SMS or email, with the caller's consent
+8. **Handle changes** with the same pipeline in reverse
+
+## Integration Patterns
+
+| Pattern | Notes |
+| --- | --- |
+| Calendar APIs (Google Calendar, Microsoft 365) | Free/busy queries and event creation; fine for simple businesses |
+| Booking platforms | Use their availability and booking endpoints so rules stay in one place |
+| Practice-management or CRM systems | Often needed for dental, medical, legal, and field services (see [AI receptionist for dental practices](/blog/ai-receptionist-dental-practices) and [HubSpot lead capture](/blog/hubspot-ai-receptionist-lead-capture)) |
+| Your own scheduling service | Wrap legacy systems behind a clean API the agent can call |
+
+## Engineering Rules That Prevent Mistakes
+
+* **Make the agent call tools; validate in code.** The model proposes, your service decides (see [LLM function calling for phone agents](/blog/llm-function-calling-phone-agents)).
+* **Lock or re-check the slot** when booking. Two callers can pick the same time.
+* **Time zones:** store UTC, speak local time, and state the time zone when the caller or business may differ.
+* **Speak dates unambiguously:** "Tuesday, March 4th at 2:30 PM."
+* **Business rules** such as lead time, buffers, duration by service, and provider restrictions live in the scheduling service, not the prompt.
+* **Idempotency:** retries must not create duplicate bookings.
+* **Graceful failure:** if the system is unreachable, take details and promise a callback rather than guessing.
+
+## Conversation Design Tips
+
+* Ask one question at a time
+* Offer limited choices, then expand if the caller declines
+* Read back the confirmation and ask for a clear yes
+* Handle "next Friday" and "after lunch" with deterministic parsing plus clarification
+
+## Metrics
+
+Track booking completion rate, calls transferred to staff, no-show rate, and mistakes found in audit. Review transcripts of failed bookings weekly.
+
+## Compliance Notes
+
+Appointment data can be sensitive, especially in healthcare, and recordings and transcripts need appropriate handling (see [HIPAA-compliant voice AI guide](/blog/hipaa-compliant-voice-ai-guide) and [AI medical receptionist and HIPAA](/blog/ai-medical-receptionist-hipaa)). For a broader view of value, see [AI receptionist ROI](/blog/ai-receptionist-roi-missed-calls-cost).
+
+---
+
+**Want an AI receptionist that books straight into your calendar?** Our [AI receptionist](/services/ai-receptionist) service connects voice AI to your scheduling system with the safeguards above.
+`
+  },
+  {
+    id: '119',
+    title: 'Virtual Receptionist vs AI Receptionist: Cost, Quality, and Which to Choose',
+    excerpt: 'A virtual receptionist is usually a human team answering remotely; an AI receptionist is software. Compare cost structure, availability, quality, scalability, and compliance to choose the right fit for your business.',
+    category: 'Voice AI',
+    author: 'Telephony Engineering Team',
+    date: 'Nov 02, 2026',
+    readTime: '4 min read',
+    slug: 'virtual-receptionist-vs-ai-receptionist-cost',
+    image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80',
+    content: `
+**A virtual receptionist is typically a human operator, in a shared pool or dedicated, who answers calls remotely under your name. An AI receptionist is software that answers calls using speech recognition and a language model.** Humans excel at nuance and empathy. AI excels at availability, consistency, and cost at volume. Many businesses end up using both.
+
+## Cost Structure (Not Price List)
+
+Prices vary widely by provider and region, so compare structures:
+
+| | Virtual receptionist (human) | AI receptionist |
+| --- | --- | --- |
+| Typical billing | Per minute, per call, or monthly bundle of minutes | Per minute or per call, or monthly plan |
+| What drives cost | Labor, call volume, special handling | Usage, integrations, setup |
+| Scaling a spike | Depends on staffing; overage rates apply | Handles many simultaneous calls |
+| Setup effort | Scripts and training | Prompts, knowledge base, integrations |
+
+Get quotes for *your* call volume and call length, then compare cost per handled call, not the headline monthly fee.
+
+## Capability Comparison
+
+| Factor | Human virtual receptionist | AI receptionist |
+| --- | --- | --- |
+| Availability | Depends on service hours, many offer 24/7 at higher cost | 24/7 by default |
+| Simultaneous calls | Limited by staff | Many in parallel |
+| Handling unusual or emotional calls | Strong | Limited, escalate to a human |
+| Consistency | Varies by operator | Highly consistent within its design |
+| Multi-language | Depends on staffing | Possible with supported languages |
+| Integrations | Often limited to message relay | Can book, look up, and update systems (see [AI appointment scheduling](/blog/ai-appointment-scheduling-phone-calendar)) |
+| Training | Per operator | Update the prompt and knowledge base once |
+
+## Where Each Wins
+
+**Human fits:** high-touch brands, sensitive or complex conversations, low call volume where a personal touch is the product.
+
+**AI fits:** high volume of routine calls, after-hours and overflow coverage, appointment booking, lead qualification, and cost control (see [rise of the AI receptionist](/blog/rise-of-ai-receptionist) and [AI receptionist ROI](/blog/ai-receptionist-roi-missed-calls-cost)).
+
+## Hybrid Setup
+
+A common model is AI answering every call first, handling routine requests end to end, and transferring or taking messages for the rest to a human or staff member. This keeps costs down while preserving a human path.
+
+## Risks to Check
+
+* **Accuracy:** test with real call scenarios before launch
+* **Disclosure:** inform callers where required or good practice
+* **Compliance:** healthcare, legal, and financial calls have special rules (see [HIPAA-compliant voice AI guide](/blog/hipaa-compliant-voice-ai-guide) and [AI receptionist for law firms](/blog/ai-receptionist-law-firms-intake))
+* **Data handling:** where recordings and transcripts are stored
+
+## How to Decide
+
+1. Count your calls and categorize the reasons.
+2. Estimate how many are routine.
+3. Pilot AI on after-hours calls first.
+4. Review transcripts for a few weeks.
+5. Expand coverage as quality is proven.
+
+---
+
+**Curious what an AI receptionist could handle for you?** Our [AI receptionist](/services/ai-receptionist) team sets up a pilot on your real call scenarios and reports results honestly.
+`
+  },
+  {
+    id: '120',
+    title: 'AI Answering Service vs Human Answering Service: Which Fits Your Business?',
+    excerpt: 'Compare AI and human answering services on coverage, accuracy, empathy, integration, compliance, and total cost of ownership. Includes a decision checklist and a hybrid model that many businesses adopt.',
+    category: 'Voice AI',
+    author: 'Telephony Engineering Team',
+    date: 'Nov 03, 2026',
+    readTime: '4 min read',
+    slug: 'ai-answering-service-vs-human-answering-service',
+    image: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=800&q=80',
+    content: `
+**An AI answering service answers every call instantly, around the clock, and can act on what it hears by booking, looking up, or routing. A human answering service provides trained operators who handle conversations with judgment and empathy.** The right answer depends on the nature of your calls, not on which technology is newer.
+
+## What Each Does Well
+
+**AI answering service**
+
+* Answers immediately with no hold queue, including at 3 a.m. and during spikes
+* Handles many calls at once
+* Applies the same script and policy every time
+* Writes data directly into your systems
+* Cost per call stays low as volume grows
+
+**Human answering service**
+
+* Reads tone, urgency, and unusual situations
+* Handles ambiguous, emotional, or multi-part requests
+* Can improvise within guidelines
+* Feels personal to callers who expect a person
+
+## Practical Comparison
+
+| Question | AI | Human |
+| --- | --- | --- |
+| Will every call be answered promptly? | Yes, within capacity design | Depends on staffing and queue |
+| Can it handle a surge after an ad or outage? | Typically yes | May be limited |
+| Is it right for emergencies? | Needs reliable detection and instant human escalation | Strong, if protocols are clear |
+| Does it integrate with my calendar or CRM? | Often deeply | Varies, often via message or email |
+| How hard is it to change the script? | Update and test | Retrain operators |
+| What can go wrong? | Misunderstanding, awkward pauses, wrong action | Inconsistency, hold times, errors in transcription |
+
+## Industry Considerations
+
+* **Healthcare:** privacy rules and urgent symptoms require careful design (see [AI medical receptionist and HIPAA](/blog/ai-medical-receptionist-hipaa)).
+* **Legal:** intake needs accuracy, confidentiality, and clear limits on advice (see [AI receptionist for law firms](/blog/ai-receptionist-law-firms-intake)).
+* **Home services:** missed calls are lost jobs, so fast answering matters (see [AI voice agents for HVAC and home services](/blog/ai-voice-agents-home-services-hvac)).
+* **Restaurants and retail:** repetitive questions suit automation (see [AI voice agents for restaurants](/blog/ai-voice-agents-restaurants-reservations)).
+
+## Decision Checklist
+
+1. What percentage of your calls follow a repeatable pattern?
+2. What happens when a call is missed? Estimate lost revenue (see [cost of missed calls](/blog/ai-receptionist-roi-missed-calls-cost)).
+3. Do callers need a human for trust or complexity?
+4. What are your compliance obligations?
+5. Which systems must receive the call data?
+6. What volume and peak do you handle?
+
+## The Hybrid Model
+
+AI answers first, resolves routine calls, and escalates by rule to a human or on-call staff member for emergencies, VIPs, complaints, or when the caller asks. Humans focus on the calls that need them. Compare the human-vs-software cost structure in [virtual receptionist vs AI receptionist](/blog/virtual-receptionist-vs-ai-receptionist-cost).
+
+## Getting Started Safely
+
+Run the AI on after-hours calls first, review every transcript for two weeks, set an escalation rule for anything uncertain, and expand only when error rates meet your standard.
+
+---
+
+**Want to see how an AI answering service would handle your real calls?** Our [AI receptionist](/services/ai-receptionist) team runs pilots and tunes escalation rules around your business.
+`
+  },
+  {
+    id: '121',
+    title: 'Caller ID Reputation and "Spam Likely" Labels: Why Calls Get Flagged and How to Fix It',
+    excerpt: 'Legitimate businesses get labeled spam when analytics engines flag their numbers. Learn how call labeling works, what triggers it, how to improve answer rates, and how to remediate a flagged number.',
+    category: 'Telecom Compliance',
+    author: 'Telephony Engineering Team',
+    date: 'Nov 04, 2026',
+    readTime: '4 min read',
+    slug: 'caller-id-reputation-spam-likely-fix',
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80',
+    content: `
+**Calls get labeled "Spam Likely" when carrier and third-party analytics engines judge a number's behavior or attestation to look like robocalling.** The labels cut answer rates sharply, and they can hit legitimate outbound teams too. Prevention is easier than repair, but both are possible.
+
+## How Labeling Works
+
+Several parties may score a call independently:
+
+* **Originating and terminating carriers** apply their own analytics
+* **Third-party analytics vendors** that carriers license, which use call patterns, complaints, and registry data
+* **Handset apps** with crowdsourced reports
+* **Call authentication** results from STIR/SHAKEN influence trust (see [STIR/SHAKEN compliance](/blog/stir-shaken-compliance-voip-2026))
+
+No single database controls everything, which is why a number can look fine on one carrier and flagged on another.
+
+## What Tends to Trigger Flags
+
+| Behavior | Why it looks suspicious |
+| --- | --- |
+| High volume of short calls from one number | Resembles robocall patterns |
+| Low answer rate and many quick hangups | Recipients reject the calls |
+| Rapid dialing across many area codes | Looks like scanning or neighbor spoofing |
+| Poor or no call authentication | Lower trust |
+| Complaints and spam reports | Directly feeds scoring |
+| Reusing recycled or previously flagged numbers | Inherited reputation |
+| Calling lists without consent | Higher complaint rates |
+
+## Prevention
+
+1. **Authenticate properly.** Ensure your provider signs calls with the right attestation for numbers you own or are authorized to use.
+2. **Dial responsibly.** Spread volume across numbers sensibly, respect pacing, and avoid hammering unanswered numbers (see [predictive dialer architecture](/blog/predictive-dialer-architecture)).
+3. **Use consented, clean lists** and scrub against Do Not Call (see [auto dialer compliance](/blog/auto-dialer-types-compliance-build)).
+4. **Use local presence with care.** Display only numbers you own and can be called back on.
+5. **Make callbacks work.** A number that rings out or fails when called back increases suspicion.
+6. **Register numbers where programs exist,** such as branded calling or business registries, which may display your name.
+
+## Remediation When Flagged
+
+1. **Confirm** which carriers and apps flag you, by testing from multiple handsets and carriers.
+2. **Contact your carrier or provider** about their remediation process and any registry submissions.
+3. **Submit to analytics vendors** that accept business verification or dispute requests, noting each has its own process and timelines.
+4. **Fix the cause.** Re-dialing from the same pattern will re-flag you.
+5. **Consider rotating to fresh numbers** only after fixing behavior, since rotating to evade is a short-term trap and may breach terms.
+6. **Monitor** reputation continuously.
+
+## Monitoring
+
+Track answer rate and average call duration per number from your CDRs (see [call detail records explained](/blog/call-detail-records-cdr-explained)). A sudden drop is often your first sign.
+
+## Related Controls
+
+Spoofing by third parties can damage your number's reputation (see [call spoofing prevention](/blog/call-spoofing-prevention-guide)), and SMS has its own registration regime (see [10DLC registration guide](/blog/10dlc-registration-guide)).
+
+---
+
+**Seeing answer rates fall on legitimate outbound calls?** Our [call center SIP engineering](/services/call-center-sip-usa) team builds dialing, attestation, and monitoring practices that protect number reputation.
+`
+  },
+  {
+    id: '122',
+    title: '10DLC Registration Guide: Brands, Campaigns, and Getting Business SMS Delivered',
+    excerpt: '10DLC is the registration system for business text messaging over standard 10-digit numbers in the US. Learn how brands and campaigns work, what vendors check, common rejection reasons, and how to keep deliverability healthy.',
+    category: 'Telecom Compliance',
+    author: 'Telephony Engineering Team',
+    date: 'Nov 05, 2026',
+    readTime: '4 min read',
+    slug: '10dlc-registration-guide',
+    image: 'https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?auto=format&fit=crop&w=800&q=80',
+    content: `
+**10DLC (10-digit long code) registration is the process by which US businesses register their brand and messaging use case so that application-to-person (A2P) texts sent from standard local numbers are delivered.** Unregistered traffic is increasingly filtered or blocked, so registration is now a prerequisite, not an option.
+
+*Requirements, fees, and timelines are set by carriers and messaging providers and change. Treat this as an overview and confirm details with your provider.*
+
+## The Two Core Objects
+
+* **Brand:** your legal business identity (name, tax ID or equivalent, address, website, contact). Verification checks the identity against records.
+* **Campaign:** a registered use case under a brand, such as appointment reminders, customer care, or marketing, with sample messages and a description of how recipients opt in.
+
+Numbers are then attached to an approved campaign.
+
+## What Reviewers Look For
+
+1. **Consistent identity:** the brand name, website, and message content agree
+2. **Clear use case:** your sample messages match the declared category
+3. **Consent:** a described, compliant opt-in flow and visible opt-out handling (for example, honoring STOP)
+4. **Content rules:** restrictions on certain prohibited or high-risk categories
+5. **Working website** with privacy policy and terms
+
+## Common Reasons for Rejection
+
+| Reason | Fix |
+| --- | --- |
+| Mismatched business details | Use exact legal name and address as registered |
+| Vague or generic use case | Describe specifically what you send and to whom |
+| Sample messages missing required elements | Include your brand name and opt-out language where needed |
+| No proof of opt-in | Document where and how consent is collected |
+| Website missing or unrelated | Publish a real site with privacy policy |
+| Wrong campaign type | Choose the category that matches the traffic |
+
+## Throughput and Filtering
+
+Approved campaigns receive message-throughput limits that depend on the vetting results and campaign type. Filtering can still happen from content patterns like shortened links, repeated identical messages, or high complaint rates.
+
+## Good Practices
+
+* Keep opt-in records and honor opt-outs immediately
+* Send only what recipients agreed to
+* Avoid public URL shorteners, and use your own domain
+* Ramp volume gradually on new numbers
+* Monitor delivery rates and error codes from your messaging provider
+
+## How It Fits With Voice
+
+Voice calling has a parallel reputation and authentication system (see [caller ID reputation and spam labels](/blog/caller-id-reputation-spam-likely-fix) and [STIR/SHAKEN compliance](/blog/stir-shaken-compliance-voip-2026)). If your AI receptionist or dialer also sends texts, build registration into your launch plan (see [AI receptionist](/services/ai-receptionist) and [TCPA compliance for AI outbound calling](/blog/tcpa-compliance-ai-outbound-calling)).
+
+## Where Engineering Fits
+
+Messaging platforms should store consent, suppress opted-out numbers across channels, and expose delivery status for monitoring (see [telecom API middleware](/services/telecom-api-middleware)).
+
+---
+
+**Launching texting alongside your voice platform?** Our [telecom API and middleware](/services/telecom-api-middleware) team integrates messaging providers, consent tracking, and delivery monitoring into your product.
+`
+  },
+  {
+    id: '123',
+    title: 'Call Spoofing Prevention: How Spoofing Works and How Businesses Can Defend Against It',
+    excerpt: 'Call spoofing forges the caller ID shown to the recipient. Learn how spoofing works, the harm to your brand when your number is used, and the technical and procedural steps to prevent and respond to it.',
+    category: 'Telecom Compliance',
+    author: 'Telephony Engineering Team',
+    date: 'Nov 06, 2026',
+    readTime: '4 min read',
+    slug: 'call-spoofing-prevention-guide',
+    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80',
+    content: `
+**Call spoofing means falsifying the caller ID so that a call appears to come from a different number, often a trusted business or a local number.** Legitimate uses exist, such as a business showing its main number on calls from agents. Malicious spoofing is used for fraud, and it can damage the reputation of the number being impersonated.
+
+## How Spoofing Works
+
+Caller ID is data that the originating network supplies. On traditional interconnects, downstream networks historically trusted what they received. Anyone with access to an originating system that did not verify number ownership could set arbitrary values. Common variants:
+
+* **Neighbor spoofing:** showing a number that looks local to the recipient
+* **Brand impersonation:** showing a bank's or business's real number
+* **Rotation:** cycling many numbers to evade blocking
+
+## Industry Defenses
+
+**STIR/SHAKEN** is the framework in the US and Canada in which originating providers cryptographically sign calls with an attestation level indicating how confident they are about the caller's right to use the number, and terminating providers verify it. Attestation helps analytics distinguish authentic traffic, though it does not prove a call is wanted or legal (see [STIR/SHAKEN compliance](/blog/stir-shaken-compliance-voip-2026)).
+
+Regulators also require robocall mitigation programs from providers. Details vary by jurisdiction and role, so seek legal advice.
+
+## What Businesses Can Do
+
+**If you place calls:**
+
+1. Only display numbers you own or are authorized to use
+2. Work with a provider that signs calls and supports high attestation for your numbers
+3. Keep caller ID consistent and reachable by callback
+4. Register for branded or verified calling programs where available
+5. Monitor answer rates per number (see [caller ID reputation and spam labels](/blog/caller-id-reputation-spam-likely-fix))
+
+**If your number is being spoofed by others:**
+
+1. Document examples, with timestamps and recipient reports
+2. Notify your carrier and ask about their abuse process
+3. Report to relevant authorities such as the FTC and FCC in the US
+4. Warn customers through your website and email that you will not call asking for payment or credentials
+5. Tell customers how to verify a call, such as hanging up and calling a published number
+
+## If You Operate a Voice Platform
+
+You carry responsibility for what customers can display as caller ID:
+
+* Validate that a customer controls a number before allowing it as caller ID
+* Enforce outbound caller ID rules in routing, not just in the portal
+* Apply rate limits and fraud detection (see [toll fraud prevention](/blog/voip-toll-fraud-prevention) and [fraud detection with CDRs](/blog/voip-fraud-detection-cdr-analysis))
+* Keep records to cooperate with investigations
+
+## Header Handling
+
+SIP identity headers such as From, P-Asserted-Identity, and Identity carry caller information. Normalize or strip untrusted values at your edge (see [SIP headers reference](/blog/sip-headers-reference-guide) and [session border controller architecture](/blog/session-border-controller-architecture)).
+
+---
+
+**Running a platform where customers set caller ID?** Our [custom VoIP development](/services/custom-voip-development) team builds number-ownership validation, attestation integration, and abuse controls into the call path.
+`
+  },
+  {
+    id: '124',
+    title: 'SIP Trunk Provider Selection Checklist: 12 Questions to Ask Before You Sign',
+    excerpt: 'Choosing a SIP trunk provider affects call quality, cost, and resilience for years. Use this checklist to compare coverage, redundancy, pricing, compliance, support, and exit terms, and to run a fair trial.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Nov 07, 2026',
+    readTime: '4 min read',
+    slug: 'sip-trunk-provider-selection-checklist',
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
+    content: `
+**Pick a SIP trunk provider on measured quality, redundancy, compliance support, and exit terms, not on the lowest per-minute rate.** The cheapest trunk is expensive if calls fail or sound bad, or if you cannot leave. Use these twelve questions and verify answers with a trial.
+
+## The Checklist
+
+**Reliability and quality**
+
+1. **Redundancy:** multiple points of presence, geographically diverse, with failover to a secondary signaling address? What are the published uptime commitments and the remedy?
+2. **Carrier relationships:** direct interconnects or resold routes? Where does your traffic actually go?
+3. **Quality commitments:** will they allow a measured trial of completion rate, post-dial delay, and audio quality? (see [VoIP quality testing](/blog/voip-quality-testing-mos-jitter-packet-loss))
+
+**Technical fit**
+
+4. **Authentication:** IP-based, registration, or both? Support for TLS and SRTP? (see [SIP over TLS and SRTP](/blog/sip-tls-srtp-secure-voip-setup))
+5. **Codec and DTMF support:** G.711, Opus, G.729, and RFC 2833/4733 DTMF (see [G.711 vs G.729](/blog/g711-vs-g729-codec-bandwidth))
+6. **Capacity:** concurrent channel limits, calls-per-second limits, and burst policy (see [SIP trunking load testing](/blog/sip-trunking-load-testing-concurrency))
+
+**Compliance and numbers**
+
+7. **Call authentication:** STIR/SHAKEN signing and attestation handling (see [STIR/SHAKEN compliance](/blog/stir-shaken-compliance-voip-2026))
+8. **Emergency calling:** E911 support and address management (see [E911 compliance](/blog/e911-compliance-voip-karis-law))
+9. **Numbers and porting:** inventory, porting speed, and port-out terms (see [DID provider checklist](/blog/did-provider-evaluation-checklist))
+
+**Commercial and operational**
+
+10. **Pricing structure:** per-channel vs metered, rate decks per destination, billing increments, taxes and regulatory fees
+11. **Fraud and spend controls:** alerts, caps, and who pays for compromised-account traffic (see [toll fraud prevention](/blog/voip-toll-fraud-prevention))
+12. **Support and exit:** response times, named escalation, contract length, and how to leave
+
+## How to Run a Trial
+
+1. Provision a test trunk and send realistic call patterns, including your peak CPS.
+2. Measure answer-seizure ratio, post-dial delay, and audio quality by destination.
+3. Test failover by blocking the primary address.
+4. Review CDRs against your own records for billing accuracy (see [call detail records explained](/blog/call-detail-records-cdr-explained)).
+5. Test support responsiveness with a real question.
+
+## Multi-Provider Strategy
+
+Critical platforms usually use two or more providers with priority and failover routing, and sometimes cost-based selection (see [least cost routing](/blog/least-cost-routing-voip-lcr)). That also reduces lock-in (see [Twilio alternatives](/blog/twilio-alternatives-voice-engineering-guide)).
+
+For the broader buying context, read the [SIP trunking buyer's guide](/blog/sip-trunking-buyers-guide-2026) and compare options in [SIP trunk vs PRI](/blog/sip-trunk-vs-pri-differences-migration).
+
+---
+
+**Want trunk routing that can switch providers safely?** Our [Kamailio load balancing](/services/kamailio-load-balancing) team builds multi-carrier routing with failover and measured quality.
+`
+  },
+  {
+    id: '125',
+    title: 'How to Choose a VoIP Software Development Company: Questions, Red Flags, and Proof to Ask For',
+    excerpt: 'Hiring a VoIP development partner is different from hiring general web developers. Learn the skills to verify, the questions that expose real experience, the red flags, and how to structure an engagement that protects you.',
+    category: 'VoIP Engineering',
+    author: 'Telephony Engineering Team',
+    date: 'Nov 08, 2026',
+    readTime: '4 min read',
+    slug: 'voip-software-development-company-how-to-choose',
+    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80',
+    content: `
+**A good VoIP development company can show you production telephony systems they built and operated, explain the failure modes of SIP, NAT, and media in plain language, and propose an architecture before quoting a price.** General software skill does not transfer automatically. Real-time voice has unforgiving failure modes that only appear under load and on real networks.
+
+## Skills to Verify
+
+| Area | What strong looks like |
+| --- | --- |
+| SIP and signaling | Can explain a call flow and read a trace (see [SIP INVITE call flow](/blog/sip-invite-call-flow-explained)) |
+| Platforms | Hands-on FreeSWITCH, Asterisk, Kamailio, or OpenSIPS with clear opinions (see [FreeSWITCH vs Asterisk](/blog/freeswitch-vs-asterisk) and [OpenSIPS vs Kamailio](/blog/opensips-vs-kamailio)) |
+| Media and NAT | Understands RTP, codecs, STUN/TURN, SBCs (see [NAT traversal](/blog/nat-traversal-stun-turn-ice-voip)) |
+| Scale and reliability | Has built redundancy and failover (see [VoIP disaster recovery](/blog/voip-disaster-recovery-failover-design)) |
+| Security and fraud | Treats it as design, not an afterthought (see [VoIP security best practices](/blog/voip-security-best-practices)) |
+| Compliance | Familiar with call recording, E911, STIR/SHAKEN, HIPAA where relevant |
+| Operations | Monitoring, capture, load testing (see [monitoring with HEP](/blog/voip-monitoring-homer-hep-sip-capture)) |
+| Voice AI (if needed) | Real-time pipelines, latency work (see [AI call center architecture](/blog/ai-call-center-architecture-guide)) |
+
+## Questions That Reveal Experience
+
+1. "Walk me through debugging one-way audio." (Look for NAT, SDP, and RTP path reasoning.)
+2. "How would you scale registrations and calls independently?"
+3. "What happens to active calls when a node fails, and what do you accept losing?"
+4. "How do you prevent toll fraud on a multi-tenant platform?"
+5. "How do you load test, and what limits have you found?"
+6. "What would you not build, and what would you buy or reuse?"
+
+Good answers contain trade-offs and specifics. Poor answers are generic or promise that everything is easy.
+
+## Red Flags
+
+* Quotes a fixed price without understanding your call flows
+* No questions about carriers, volumes, or compliance
+* Portfolio of web apps but no telephony production references
+* Dismisses testing and monitoring as extras
+* Proprietary lock-in with no handover of source code or documentation
+* Cannot name platforms they have operated in production
+
+## Structuring the Engagement
+
+* **Start with a paid discovery or architecture phase** to produce a design, risks, and plan
+* **Phase delivery** with testable milestones, such as a working call path before advanced features
+* **Insist on ownership:** your repositories, your infrastructure accounts, documented runbooks
+* **Define acceptance criteria** in measurable terms: concurrent calls, setup time, failover behavior
+* **Plan support** after launch, including on-call expectations
+
+## Build, Buy, or Customize?
+
+Often the right answer mixes open-source components with custom logic. See [custom VoIP architecture for the enterprise](/blog/custom-voip-architecture-enterprise) and [open-source telephony vs CPaaS](/blog/open-source-telephony-vs-cpaas).
+
+## Evaluating Us the Same Way
+
+Ask us these questions, and ask for a call with the engineers who would do the work. If we are not the right fit, we will say so.
+
+---
+
+**Planning a VoIP or voice AI build?** Talk to our [custom VoIP development](/services/custom-voip-development) team about a scoped discovery phase.
+`
   }
 ];

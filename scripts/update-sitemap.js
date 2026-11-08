@@ -11,6 +11,14 @@ let sitemap = fs.readFileSync('public/sitemap.xml', 'utf-8');
 const eol = sitemap.includes('\r\n') ? '\r\n' : '\n';
 sitemap = sitemap.split('\r\n').join('\n');
 
+// Each post's own publish date (e.g. "Oct 14, 2026") becomes its <lastmod>, so the
+// sitemap tells crawlers the truth instead of stamping every URL with "today".
+const MONTHS = { Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6, Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12 };
+const dateBySlug = {};
+for (const m of blogData.matchAll(/date:\s*'([A-Za-z]{3}) (\d{1,2}), (\d{4})',[\s\S]*?slug:\s*'([^']+)'/g)) {
+  dateBySlug[m[4]] = `${m[3]}-${String(MONTHS[m[1]]).padStart(2, '0')}-${m[2].padStart(2, '0')}`;
+}
+
 const missing = slugs.filter((slug) => !sitemap.includes(`<loc>https://www.controvallc.com/blog/${slug}</loc>`));
 
 if (missing.length === 0) {
@@ -20,7 +28,7 @@ if (missing.length === 0) {
     .map(
       (slug) => `  <url>
     <loc>https://www.controvallc.com/blog/${slug}</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${dateBySlug[slug] || today}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

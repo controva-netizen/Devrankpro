@@ -25,6 +25,43 @@
 
 - [Blog](https://www.controvallc.com/blog): Engineering articles on VoIP architecture, AI voice infrastructure, SIP/telephony, and related topics.
 - [Sitemap](https://www.controvallc.com/sitemap.xml)
+- [RSS feed](https://www.controvallc.com/rss.xml)
+
+## Key guides (VoIP & SIP fundamentals)
+
+- [What is SIP and how it works](https://www.controvallc.com/blog/what-is-sip-protocol-how-it-works)
+- [SIP INVITE call flow explained](https://www.controvallc.com/blog/sip-invite-call-flow-explained)
+- [SIP response codes: 403, 408, 503 troubleshooting](https://www.controvallc.com/blog/sip-response-codes-403-408-503-troubleshooting)
+- [SIP ALG: what it is and how to disable it](https://www.controvallc.com/blog/sip-alg-what-it-is-how-to-disable)
+- [SDP offer/answer explained](https://www.controvallc.com/blog/sdp-offer-answer-explained)
+- [NAT traversal with STUN, TURN and ICE](https://www.controvallc.com/blog/nat-traversal-stun-turn-ice-voip)
+- [Session border controller architecture](https://www.controvallc.com/blog/session-border-controller-architecture)
+
+## Key guides (platforms & architecture)
+
+- [FreeSWITCH vs Asterisk](https://www.controvallc.com/blog/freeswitch-vs-asterisk)
+- [OpenSIPS vs Kamailio](https://www.controvallc.com/blog/opensips-vs-kamailio)
+- [Kamailio dispatcher load balancing configuration](https://www.controvallc.com/blog/kamailio-dispatcher-load-balancing-config)
+- [Class 4 vs Class 5 softswitch](https://www.controvallc.com/blog/class-4-vs-class-5-softswitch)
+- [White-label VoIP platform architecture](https://www.controvallc.com/blog/white-label-voip-platform-architecture)
+- [SIP trunk provider selection checklist](https://www.controvallc.com/blog/sip-trunk-provider-selection-checklist)
+- [Twilio alternatives: a voice engineering guide](https://www.controvallc.com/blog/twilio-alternatives-voice-engineering-guide)
+
+## Key guides (voice AI)
+
+- [AI call center architecture guide](https://www.controvallc.com/blog/ai-call-center-architecture-guide)
+- [Architecting sub-500ms AI voice agents](https://www.controvallc.com/blog/architecting-sub-500ms-ai-voice-agents)
+- [AI phone agent: build vs buy](https://www.controvallc.com/blog/ai-phone-agent-build-vs-buy)
+- [Pipecat vs LiveKit Agents](https://www.controvallc.com/blog/pipecat-vs-livekit-agents-voice-ai-framework)
+- [Virtual receptionist vs AI receptionist](https://www.controvallc.com/blog/virtual-receptionist-vs-ai-receptionist-cost)
+
+## Key guides (security & compliance)
+
+- [VoIP security best practices](https://www.controvallc.com/blog/voip-security-best-practices)
+- [VoIP toll fraud prevention](https://www.controvallc.com/blog/voip-toll-fraud-prevention)
+- [STIR/SHAKEN compliance](https://www.controvallc.com/blog/stir-shaken-compliance-voip-2026)
+- [HIPAA-compliant VoIP requirements](https://www.controvallc.com/blog/hipaa-compliant-voip-requirements-architecture)
+- [Caller ID reputation and spam-likely labels](https://www.controvallc.com/blog/caller-id-reputation-spam-likely-fix)
 
 ## Policies
 
