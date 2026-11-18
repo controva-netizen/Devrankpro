@@ -49,11 +49,12 @@ export default function BlogSlugPage() {
           '@id': `https://www.controvallc.com/blog/${post.slug}`
         },
         headline: post.title,
-        description: post.excerpt,
+        description: post.seoDescription ?? post.excerpt,
         image: post.image ? [post.image] : [],
         // Google requires ISO 8601; post.date is a display string like "Nov 08, 2026".
+        // dateModified only moves when a post is substantively revised (post.updated).
         datePublished: isoDate(post.date),
-        dateModified: isoDate(post.date),
+        dateModified: isoDate(post.updated ?? post.date),
         author: {
           '@type': /team|llc|controva/i.test(post.author) ? 'Organization' : 'Person',
           name: post.author,
@@ -76,8 +77,8 @@ export default function BlogSlugPage() {
   return (
     <article className="pt-32 pb-24 min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <SEO
-        title={`${post.title} | Controva Blog`}
-        description={post.excerpt}
+        title={post.seoTitle ?? `${post.title} | Controva Blog`}
+        description={post.seoDescription ?? post.excerpt}
         image={post.image || undefined}
         type="article"
         url={`https://www.controvallc.com/blog/${post.slug}`}
@@ -114,7 +115,12 @@ export default function BlogSlugPage() {
           </div>
           <div className="flex items-center gap-2">
             <Clock size={16} />
-            {post.date}
+            <time dateTime={isoDate(post.date)}>{post.date}</time>
+            {post.updated && post.updated !== post.date && (
+              <span>
+                · Updated <time dateTime={isoDate(post.updated)}>{post.updated}</time>
+              </span>
+            )}
           </div>
           <div className="flex items-center gap-2">
             <span className="w-1 h-1 rounded-full bg-current opacity-40"></span>
@@ -159,7 +165,30 @@ export default function BlogSlugPage() {
                     h3: ({node, ...props}) => <h3 className="text-xl md:text-2xl font-bold mt-8 mb-4 font-display" style={{ color: 'var(--text-primary)' }} {...props} />,
                     p: ({node, ...props}) => <p className="mb-6 leading-relaxed" {...props} />,
                     ul: ({node, ...props}) => <ul className="list-disc pl-6 mb-6 space-y-2" {...props} />,
+                    ol: ({node, ...props}) => <ol className="list-decimal pl-6 mb-6 space-y-2" {...props} />,
                     li: ({node, ...props}) => <li className="leading-relaxed" {...props} />,
+                    blockquote: ({node, ...props}) => <blockquote className="border-l-4 pl-5 my-6 italic" style={{ borderColor: 'var(--accent-1)' }} {...props} />,
+                    pre: ({node, ...props}) => (
+                      <pre
+                        className="mb-6 p-5 rounded-xl overflow-x-auto text-sm leading-relaxed"
+                        style={{ backgroundColor: 'var(--bg-tertiary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)' }}
+                        {...props}
+                      />
+                    ),
+                    // Fenced blocks arrive with a language class or a trailing newline; everything else is inline code.
+                    code: ({node, className, children, ...props}) =>
+                      /language-/.test(className ?? '') || String(children).includes('\n') ? (
+                        <code className={className} {...props}>{children}</code>
+                      ) : (
+                        <code className="px-1.5 py-0.5 rounded text-[0.9em]" style={{ backgroundColor: 'var(--bg-tertiary)', color: 'var(--text-primary)' }} {...props}>{children}</code>
+                      ),
+                    table: ({node, ...props}) => (
+                      <div className="mb-8 overflow-x-auto rounded-xl" style={{ border: '1px solid var(--border-subtle)' }}>
+                        <table className="w-full text-left text-sm border-collapse" {...props} />
+                      </div>
+                    ),
+                    th: ({node, ...props}) => <th className="px-4 py-3 font-semibold align-top" style={{ backgroundColor: 'var(--bg-tertiary)', color: 'var(--text-primary)' }} {...props} />,
+                    td: ({node, ...props}) => <td className="px-4 py-3 align-top border-t" style={{ borderColor: 'var(--border-subtle)' }} {...props} />,
                     strong: ({node, ...props}) => <strong className="font-semibold" style={{ color: 'var(--text-primary)' }} {...props} />,
                     a: ({node, href, children, ...props}) =>
                       href && href.startsWith('/') ? (
