@@ -448,6 +448,12 @@ export interface ServiceFaq {
   answer: string;
 }
 
+export interface ServiceDetail {
+  heading: string;
+  paragraphs?: string[];
+  bullets?: string[];
+}
+
 export interface NicheService {
   id: string;
   slug: string;
@@ -457,6 +463,8 @@ export interface NicheService {
   description: string;
   keywords: string;
   benefits: string[];
+  /* Optional longer-form sections rendered between the benefits and the FAQ. */
+  details?: ServiceDetail[];
   faqs: ServiceFaq[];
   /* Titles of entries in `caseStudies` that are genuinely relevant to this
      service — only set where the actual project matches, never as filler. */
@@ -737,6 +745,171 @@ export const nicheServices: NicheService[] = [
       {
         question: 'Can you integrate WebRTC with our existing SIP/PSTN phone system?',
         answer: 'Yes. We bridge WebRTC to SIP and the PSTN so browser users and phone users are on the same call, which is core to softphones and click-to-call features.'
+      }
+    ]
+  },
+  {
+    id: 'hire-voip-developers',
+    slug: 'hire-voip-developers',
+    title: 'Hire VoIP Developers',
+    heroTagline: 'Dedicated VoIP Engineering',
+    description: 'Hire VoIP developers who build and run production telephony: SIP, FreeSWITCH, Kamailio, WebRTC and carrier integrations. Custom VoIP software development services, scoped to your traffic.',
+    keywords: 'hire voip developers, hire voip developer, voip developers for hire, voip software development services, hire freeswitch developer, hire kamailio developer, voip development company',
+    benefits: [
+      'SIP, FreeSWITCH and Kamailio engineering in production',
+      'New builds, audits of existing systems, and ongoing support',
+      'Carrier interconnects, trunking and least-cost routing',
+      'Full documentation and SIP traces handed over, so you are never locked in'
+    ],
+    details: [
+      {
+        heading: 'What our VoIP developers build',
+        paragraphs: [
+          'Hiring a VoIP developer is different from hiring a general web developer. The work sits close to the network: SIP signaling, RTP media, NAT, codecs and carrier behavior. Our engineers work on that layer every day. Typical work includes:'
+        ],
+        bullets: [
+          'SIP proxies, registrars and load balancers with Kamailio, including dispatcher-based routing to media servers',
+          'Media servers and call logic on FreeSWITCH: dialplans, IVR, conferencing, recording and Event Socket (ESL) applications in Python, Node.js or C',
+          'Moving existing Asterisk systems to FreeSWITCH, and fixing or extending deployments that are already in production',
+          'SIP trunking, carrier interconnects, number porting and least-cost routing',
+          'WebRTC softphones and gateways that bridge browsers to SIP and the PSTN, with STUN/TURN',
+          'CDR processing, billing and CRM integrations through APIs',
+          'Docker and Kubernetes deployments, failover clusters, monitoring and load testing',
+          'Connectors that put voice AI agents on real phone calls'
+        ]
+      },
+      {
+        heading: 'How an engagement works',
+        paragraphs: [
+          'We keep the process simple and visible, so you can judge progress from evidence rather than status reports.'
+        ],
+        bullets: [
+          'Discovery and architecture audit: your traffic profile, carriers, existing stack, and what must not break',
+          'Design and cost model: a written architecture and an estimate you can review before committing',
+          'Staged build with load testing, so capacity and call quality are measured, not assumed',
+          'Handover: documentation and SIP traces, so your own team can run and extend the system',
+          'Optional retained support for monitoring, updates, incident response and capacity planning'
+        ]
+      },
+      {
+        heading: 'Have an existing system, or starting fresh?',
+        paragraphs: [
+          'Both are common. A large share of our work is debugging and extending live platforms: one-way audio, NAT problems, registration failures, SIP scanning and fraud attempts, and capacity limits. If you are starting new, we design the platform first and build it in stages.'
+        ]
+      },
+      {
+        heading: 'What to have ready before we talk',
+        bullets: [
+          'Your current setup, if any (PBX or platform, carriers, hosting)',
+          'Rough traffic: peak concurrent calls and calls per second',
+          'Integrations you need (CRM, billing, ticketing, AI services)',
+          'Compliance requirements such as HIPAA, call recording rules or STIR/SHAKEN',
+          'Your timeline and who on your side will own the system afterwards'
+        ]
+      },
+      {
+        heading: 'When a dedicated developer is not the right fit',
+        paragraphs: [
+          'If you only need phones that work for a small office, a hosted business phone service will be cheaper and simpler than custom engineering, and we will tell you so. Custom VoIP development pays off when you are building a product or platform, running at volume, need control that a hosted provider does not give you, or are tired of working around its limits.'
+        ]
+      }
+    ],
+    faqs: [
+      {
+        question: 'What does hiring a VoIP developer from Controva involve?',
+        answer: 'We start with a short discovery and architecture audit, agree a scope and estimate in writing, then build and test in stages. You can engage us for a defined project or for ongoing retained support. The first step is a conversation about what you are building.'
+      },
+      {
+        question: 'Which VoIP technologies do your developers work with?',
+        answer: 'SIP and RTP at the protocol level, FreeSWITCH and Kamailio as the core platforms, WebRTC with STUN/TURN, carrier trunking and number porting, and the surrounding APIs, billing, monitoring and deployment tooling. We also build connectors for voice AI agents.'
+      },
+      {
+        question: 'Can you work on a system someone else built?',
+        answer: 'Yes. Auditing, debugging and extending existing platforms is a large part of our work. We usually begin with a configuration and security review so the first changes are based on evidence.'
+      },
+      {
+        question: 'Do you only do new builds, or also support after launch?',
+        answer: 'Both. After delivery we can provide retained support for monitoring, updates, incident response and capacity planning, or hand over fully so your team takes it from there.'
+      },
+      {
+        question: 'Will we be locked in to you?',
+        answer: 'No. We hand over documentation and SIP traces so your own engineers can run the system. The platforms we build on are open source, which keeps the choice of who maintains them with you.'
+      },
+      {
+        question: 'How do I know a custom build is better than a hosted provider?',
+        answer: 'It depends on volume, control and what you are building. We will give you an honest view in the first conversation, including when a hosted service is the better choice for your situation.'
+      }
+    ]
+  },
+  {
+    id: 'hire-webrtc-developers',
+    slug: 'hire-webrtc-developers',
+    title: 'Hire WebRTC Developers',
+    heroTagline: 'Real-Time Voice and Video Engineering',
+    description: 'Hire WebRTC developers to build browser and mobile voice and video: softphones, click-to-call, SFU-based conferencing, and gateways that bridge WebRTC to SIP and the PSTN.',
+    keywords: 'hire webrtc developers, hire webrtc developer, webrtc developers for hire, webrtc development company, webrtc softphone development, sip.js developer, webrtc to sip gateway',
+    benefits: [
+      'Browser voice and video with no plugins or installs',
+      'WebRTC bridged to SIP and the PSTN',
+      'STUN/TURN built and tuned so calls connect behind real-world NATs',
+      'Production deployment, monitoring and support'
+    ],
+    details: [
+      {
+        heading: 'What our WebRTC developers build',
+        paragraphs: [
+          'WebRTC looks simple in a demo and gets difficult in production: firewalls, mobile networks, echo, device differences and scale. Our engineers combine WebRTC knowledge with deep SIP and telephony experience, which matters most when browsers have to talk to real phone systems.'
+        ],
+        bullets: [
+          'Browser and mobile softphones, click-to-call and embedded calling in web products',
+          'WebRTC to SIP gateways, connecting browser users to PBXs, carriers and the PSTN',
+          'Video conferencing and collaboration with SFU architecture, and MCU where it is the right choice',
+          'Custom signaling servers, and SIP.js or JsSIP based clients',
+          'STUN and TURN (such as coturn) deployment, so media connects through restrictive networks',
+          'Noise suppression and audio quality tuning',
+          'Telehealth and support-desk calling flows, with compliance requirements in mind'
+        ]
+      },
+      {
+        heading: 'Where WebRTC projects usually go wrong',
+        bullets: [
+          'No TURN server, or a poorly placed one, so some users cannot connect at all',
+          'Signaling that works in testing but not behind corporate firewalls',
+          'Choosing an MCU when an SFU would scale better, or the reverse',
+          'No measurement of call quality, so problems are found by customers first',
+          'A browser demo that was never connected to the real telephony stack'
+        ]
+      },
+      {
+        heading: 'How an engagement works',
+        bullets: [
+          'Discovery: what users do, what devices and networks they use, and how many join a call',
+          'Architecture: client, signaling, media path and any SIP or PSTN bridge, written down before we build',
+          'Staged build with testing on real-world networks, not just a fast office connection',
+          'Handover with documentation, plus optional retained support'
+        ]
+      }
+    ],
+    faqs: [
+      {
+        question: 'When should I hire a WebRTC developer rather than use a ready-made video service?',
+        answer: 'A hosted video or calling API is a good starting point for many products. A custom WebRTC build makes sense when you need control over media, costs at volume, tight integration with your own phone system, or features a hosted service does not offer.'
+      },
+      {
+        question: 'Can you connect WebRTC to our existing phone system?',
+        answer: 'Yes. We bridge WebRTC to SIP and the PSTN so browser users and phone users share the same call. That is the basis of softphones and click-to-call.'
+      },
+      {
+        question: 'Do you handle STUN and TURN servers?',
+        answer: 'Yes. We deploy and tune STUN and TURN so calls connect through firewalls and NAT, which is one of the most common causes of WebRTC calls failing for some users.'
+      },
+      {
+        question: 'Will users need to install anything?',
+        answer: 'No. WebRTC runs natively in modern browsers, so participants join from a link. We can also build native mobile integrations when you need them.'
+      },
+      {
+        question: 'Do you work on existing WebRTC applications?',
+        answer: 'Yes. We debug connection failures, audio problems and scaling limits in existing applications, and extend them with new features or SIP integration.'
       }
     ]
   }

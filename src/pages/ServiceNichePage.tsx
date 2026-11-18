@@ -20,6 +20,8 @@ const SEO_TITLE_OVERRIDES: Record<string, string> = {
   'financial-services-voip-usa': 'Low-Latency VoIP for Financial Services | Controva LLC',
   'healthcare-voip-usa': 'HIPAA-Compliant VoIP for Healthcare | Controva LLC',
   'webrtc-development-usa': 'Custom WebRTC Application Development | Controva LLC',
+  'hire-voip-developers': 'Hire VoIP Developers: SIP, FreeSWITCH, Kamailio | Controva',
+  'hire-webrtc-developers': 'Hire WebRTC Developers for Voice and Video | Controva',
 };
 
 export default function ServiceNichePage() {
@@ -133,6 +135,30 @@ export default function ServiceNichePage() {
           </div>
         </div>
       </section>
+
+      {service.details && service.details.length > 0 && (
+        <section className="py-24" style={{ backgroundColor: 'var(--bg-primary)' }}>
+          <div className="max-w-[860px] mx-auto px-6 space-y-14">
+            {service.details.map((d) => (
+              <div key={d.heading}>
+                <h2 className="text-2xl md:text-3xl font-bold font-display mb-5" style={{ color: 'var(--text-primary)' }}>
+                  {d.heading}
+                </h2>
+                {d.paragraphs?.map((p, i) => (
+                  <p key={i} className="mb-5 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{p}</p>
+                ))}
+                {d.bullets && (
+                  <ul className="list-disc pl-6 space-y-2" style={{ color: 'var(--text-secondary)' }}>
+                    {d.bullets.map((b) => (
+                      <li key={b} className="leading-relaxed">{b}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       <ResultsBarSection />
 
