@@ -1,12 +1,11 @@
 /**
- * Puppeteer is only used by prerender.js at build time.
- *
- * On Hostinger the full-Chrome download fails during `npm install` (stale
- * cache folder with a missing executable), which aborts the whole install and
- * the deploy. The much smaller chrome-headless-shell downloads fine and is all
- * prerender.js needs, so skip only full Chrome.
+ * Puppeteer is no longer used at build time: pages are prerendered by
+ * scripts/ssg.mjs (react-dom/static), which needs no browser. It remains only for
+ * the one-off PDF scripts in scripts/, which use a locally installed Chrome, so
+ * skip downloading any browser during `npm install` (this is what kept failing on
+ * Hostinger).
  */
 module.exports = {
   chrome: { skipDownload: true },
-  'chrome-headless-shell': { skipDownload: false },
+  'chrome-headless-shell': { skipDownload: true },
 };

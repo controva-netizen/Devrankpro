@@ -52,9 +52,19 @@ const STORAGE_KEY = 'controva_chatbot_session';
 const SETTINGS_KEY = 'controva_chatbot_settings';
 const INTERACTED_KEY = 'controva_chatbot_interacted';
 
+// localStorage does not exist during build-time prerendering (Node) and can throw
+// in locked-down browsers, so every read goes through this guard.
+function readStorage(key: string): string | null {
+  try {
+    return typeof localStorage === 'undefined' ? null : localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
 export function ChatbotProvider({ children }: { children: ReactNode }) {
   const [sessionId] = useState(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
+    const saved = readStorage(STORAGE_KEY);
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
@@ -67,7 +77,7 @@ export function ChatbotProvider({ children }: { children: ReactNode }) {
   });
 
   const [messages, setMessages] = useState<ChatMessage[]>(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
+    const saved = readStorage(STORAGE_KEY);
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
@@ -97,13 +107,13 @@ export function ChatbotProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(() => {
-    return localStorage.getItem(INTERACTED_KEY) === 'true';
+    return readStorage(INTERACTED_KEY) === 'true';
   });
   const [leadData, setLeadData] = useState<Partial<LeadData>>({});
   const [leadCaptureStep, setLeadCaptureStep] = useState<LeadCaptureStep>(null);
   const [unreadCount, setUnreadCount] = useState(0);
   const [settings] = useState<ChatbotSettings>(() => {
-    const saved = localStorage.getItem(SETTINGS_KEY);
+    const saved = readStorage(SETTINGS_KEY);
     if (saved) {
       try {
         return { ...defaultSettings, ...JSON.parse(saved) };
