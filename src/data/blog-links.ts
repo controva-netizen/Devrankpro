@@ -81,6 +81,20 @@ export const serviceLinks: ServiceLink[] = [
     keywords: ['webrtc', 'stun', 'turn', 'screen-sharing', 'opus', 'livekit'],
   },
   {
+    slug: 'hire-voip-developers',
+    path: '/services/hire-voip-developers',
+    title: 'Hire VoIP Developers',
+    blurb: 'Dedicated SIP, FreeSWITCH and Kamailio engineers for new builds, audits and ongoing support.',
+    keywords: ['pjsip', 'asterisk', 'opensips', 'avaya', 'pbx', 'did-', 'direct-inward'],
+  },
+  {
+    slug: 'hire-webrtc-developers',
+    path: '/services/hire-webrtc-developers',
+    title: 'Hire WebRTC Developers',
+    blurb: 'WebRTC engineers for softphones, click-to-call and gateways that bridge browsers to SIP.',
+    keywords: ['webrtc', 'jssip', 'sipjs', 'coturn'],
+  },
+  {
     slug: 'ai-receptionist',
     path: '/services/ai-receptionist',
     title: 'AI Receptionist',
