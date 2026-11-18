@@ -10,6 +10,17 @@ import ResultsBarSection from '@/components/sections/case-studies/ResultsBarSect
 import FAQSection from '@/components/shared/FAQSection';
 import { buildFaqPageSchema } from '@/data/faq';
 import RelatedWork from '@/components/shared/RelatedWork';
+import { clipDescription } from '@/lib/seo-text';
+
+// The on-page titles of these services are too long for a search-result title
+// (Google truncates after ~60 characters), so they get a shorter <title>.
+const SEO_TITLE_OVERRIDES: Record<string, string> = {
+  'ai-voice-agents-usa': 'Custom AI Voice Agents for USA Enterprises | Controva LLC',
+  'call-center-sip-usa': 'SIP Infrastructure for USA Call Centers | Controva LLC',
+  'financial-services-voip-usa': 'Low-Latency VoIP for Financial Services | Controva LLC',
+  'healthcare-voip-usa': 'HIPAA-Compliant VoIP for Healthcare | Controva LLC',
+  'webrtc-development-usa': 'Custom WebRTC Application Development | Controva LLC',
+};
 
 export default function ServiceNichePage() {
   const { niche } = useParams<{ niche: string }>();
@@ -46,8 +57,8 @@ export default function ServiceNichePage() {
   return (
     <main>
       <SEO
-        title={`${service.title} | Controva LLC`}
-        description={service.description}
+        title={SEO_TITLE_OVERRIDES[service.slug] ?? `${service.title} | Controva LLC`}
+        description={clipDescription(service.description)}
         keywords={service.keywords}
         url={`https://www.controvallc.com/services/${service.slug}`}
         schema={nicheSchema}

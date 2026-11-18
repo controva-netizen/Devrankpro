@@ -28,6 +28,8 @@ export const blogPosts: BlogPost[] = [
     readTime: '6 min read',
     slug: 'roi-of-headless-shopify',
     image: 'https://images.unsplash.com/photo-1770013413878-2530e2c3d82b?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Why Monolithic E-Commerce is Dead | Controva',
+    seoDescription: 'A technical breakdown of why enterprise brands are abandoning traditional Shopify setups for Next.js and Sanity, and how it directly impacts conversion rates.',
     content: `
 Every 100-millisecond delay in your server response time is actively stripping 1% off your bottom-line revenue. While ambitious founders and enterprise CEOs obsess over ad creatives, landing page copy, and marginal tweaks to their marketing funnels, they frequently ignore the single largest bottleneck throttling their scale: their underlying technical infrastructure.
 
@@ -113,6 +115,8 @@ Stop losing revenue to slow infrastructure. Book a highly technical strategy cal
     readTime: '8 min read',
     slug: 'ai-automation-pipeline',
     image: 'https://images.unsplash.com/photo-1557562645-4eee56b29bc1?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Stop Paying Humans for Data Entry | Controva',
+    seoDescription: 'How we built an autonomous lead qualification system using LLMs and Zapier that processes 10,000 leads per day with zero human intervention.',
     content: `
 ## The Era of Manual Data Entry is Over
 
@@ -141,6 +145,8 @@ By removing humans from the initial qualification loop, we achieved a **zero-sec
     readTime: '5 min read',
     slug: 'performance-marketing-vs-retainers',
     image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'The "Zero-Risk" Offer | Controva',
+    seoDescription: 'Traditional agency retainers align incentives poorly. Discover the mathematics behind performance-based marketing and why it guarantees better ROI.',
     content: `
 ## The Flaw in the Retainer Model
 
@@ -167,6 +173,8 @@ At Controva LLC, we believe that if an agency cannot guarantee a measurable retu
     readTime: '10 min read',
     slug: 'shopify-plus-to-nextjs-migration',
     image: 'https://images.unsplash.com/photo-1617909517054-64d4958be1c9?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Migrating from Shopify Plus to Next.js | Controva',
+    seoDescription: 'An inside look at the architecture decisions, caching strategies, and performance metrics behind a $10M/year store migration.',
     content: `
 ## Why We Migrated a $10M Store to Next.js
 
@@ -197,6 +205,8 @@ Speed is revenue. A headless architecture is no longer a luxury for enterprise e
     readTime: '7 min read',
     slug: 'reverse-engineering-b2b-funnel',
     image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Reverse-Engineering a $1M B2B Sales Funnel | Controva Blog',
+    seoDescription: 'Step-by-step analysis of the exact landing pages, email sequences, and ad creatives we used to scale a B2B SaaS client past the $1M ARR mark.',
     content: `
 ## Dissecting a $1M ARR Funnel
 
@@ -224,6 +234,8 @@ The result? A highly predictable, scalable machine that consistently generates q
     readTime: '6 min read',
     slug: 'ai-sales-development-rep',
     image: 'https://images.unsplash.com/photo-1718241905696-cb34c2c07bed?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'The AI Sales Development Rep | Controva',
+    seoDescription: 'Learn how to deploy an AI agent that handles your inbound lead responses, books meetings, and handles objections autonomously.',
     content: `
 ## The Future of Outbound Sales
 
@@ -250,6 +262,8 @@ By augmenting our sales team with AI, we ensured that no lead ever goes cold, an
     readTime: '4 min read',
     slug: 'rethinking-b2b-lead-generation',
     image: 'https://images.unsplash.com/photo-1758691736548-073bc97cdff4?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Rethinking B2B Lead Generation | Controva',
+    seoDescription: 'In enterprise B2B sales, traditional HTML contact forms are static bottlenecks.',
     content: `
 In enterprise B2B sales, friction at the point of contact directly cannibalizes your Customer Acquisition Cost (CAC). Traditional HTML contact forms have become static, uninspiring bottlenecks that fail to engage high-intent founders and decision-makers. At Controva LLC, we evaluate every touchpoint as an engineered system designed to maximize conversion velocity.
 
@@ -284,6 +298,8 @@ If your current infrastructure is failing to capture and qualify enterprise traf
     readTime: '5 min read',
     slug: 'interactive-case-studies-roi',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Bridging the Gap Between Engineering and ROI | Controva',
+    seoDescription: 'Non-technical enterprise decision-makers cannot parse raw code to understand business value.',
     content: `
 A critical failure point for engineering-driven growth agencies and SaaS platforms is how they present their data. When selling complex infrastructure—such as AI automation pipelines or Headless Shopify migrations—technical founders often rely on static code snippets to prove their capability. 
 
@@ -318,6 +334,8 @@ Stop relying on generic marketing speak. Book a strategy call with the architect
     readTime: '6 min read',
     slug: 'zero-shift-rendering-edge-deployments',
     image: 'https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Zero-Shift Rendering & Edge Deployments | Controva',
+    seoDescription: 'Every visual stutter directly degrades user trust. Discover how we audited our internal routing to eliminate Cumulative Layout Shift (CLS) and streamline…',
     content: `
 Every visual stutter, layout shift, and broken mobile menu directly degrades user trust and increases bounce rates. In high-performance e-commerce and B2B SaaS, UI stability is not a design preference; it is a strict engineering requirement. 
 
@@ -491,6 +509,8 @@ They are web GUIs built on Asterisk and FreeSWITCH respectively. They speed up P
     readTime: '9 min read',
     slug: 'open-source-telephony-vs-cpaas',
     image: 'https://images.unsplash.com/photo-1555963966-b7ae5404b6ed?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'The State of Open-Source Telephony | Controva',
+    seoDescription: 'Evaluating the pros and cons of deploying open-source telephony stacks versus relying on CPaaS providers like Twilio for massive scale.',
     content: `
 ## The CPaaS Tax: Why Scale Demands Open-Source
 
@@ -519,6 +539,8 @@ At Controva LLC, we frequently deploy a hybrid architecture. We utilize CPaaS pu
     readTime: '9 min read',
     slug: 'answer-engine-optimization-aeo-2026',
     image: 'https://images.unsplash.com/photo-1599658880436-c61792e70672?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Answer Engine Optimization (AEO) | Controva',
+    seoDescription: 'Traditional SEO is dying. As ChatGPT, Perplexity, and Google AI Overviews dominate search results, discover the exact AEO strategies to get your brand cited…',
     content: `
 ## The Death of the Ten Blue Links
 
@@ -576,6 +598,8 @@ Book a strategy call with the Controva growth team, and let us position your com
     readTime: '10 min read',
     slug: 'agentic-ai-workflows-2026',
     image: 'https://images.unsplash.com/photo-1676573408178-a5f280c3a320?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Agentic AI Workflows | Controva',
+    seoDescription: 'Zapier and Make are great for simple task automation. But to replace entire departments with AI, you need agentic systems capable of planning, deciding…',
     content: `
 ## The Limitation of Traditional Automation
 
@@ -631,6 +655,8 @@ The companies building autonomous systems today are the ones who will dictate ma
     readTime: '8 min read',
     slug: 'composable-commerce-architecture',
     image: 'https://images.unsplash.com/photo-1586880244406-556ebe35f282?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Composable Commerce | Controva',
+    seoDescription: 'Composable commerce allows brands to select best-in-class tools for each function—search, CMS, checkout, personalization—and compose them into a unified…',
     content: `
 ## The Problem with All-in-One Commerce Platforms
 
@@ -682,6 +708,8 @@ Book a technical strategy call with the Controva engineering team and we will id
     readTime: '7 min read',
     slug: 'first-party-data-strategy-2026',
     image: 'https://images.unsplash.com/photo-1758691736407-02406d18df6c?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'First-Party Data Strategy | Controva',
+    seoDescription: 'Third-party cookies are dead. Discover how to build a first-party data infrastructure that gives you more precise targeting than any cookie ever could…',
     content: `
 ## The Cookie Apocalypse Has Already Happened
 
@@ -741,6 +769,8 @@ Book a strategy call with the Controva growth team to audit your current data in
     readTime: '8 min read',
     slug: 'community-led-growth-b2b',
     image: 'https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Community-Led Growth | Controva',
+    seoDescription: 'The most sophisticated B2B growth playbook in 2026 is not cold email or paid ads.',
     content: `
 ## Why Cold Outbound is Collapsing
 
@@ -801,6 +831,8 @@ Book a strategy call with the Controva team to design your community architectur
     readTime: '11 min read',
     slug: 'multi-agent-ai-orchestration',
     image: 'https://images.unsplash.com/photo-1678227547309-f25998d4fc86?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Multi-Agent AI Orchestration | Controva',
+    seoDescription: 'The most powerful AI deployments in 2026 are not single models answering questions.',
     content: `
 ## Why Single LLM Deployments Hit a Ceiling
 
@@ -866,6 +898,8 @@ Contact Controva LLC to discuss how multi-agent orchestration can transform your
     readTime: '9 min read',
     slug: 'core-web-vitals-2026-technical-guide',
     image: 'https://images.unsplash.com/photo-1686061594225-3e92c0cd51b0?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Core Web Vitals in 2026 | Controva',
+    seoDescription: 'Google replaced FID with INP (Interaction to Next Paint) as a Core Web Vital.',
     content: `
 ## Why Core Web Vitals Are a Business Metric, Not Just a Technical One
 
@@ -924,6 +958,8 @@ Book a technical audit with the Controva engineering team. We will diagnose exac
     readTime: '7 min read',
     slug: 'engineering-anatomy-google-ads-campaign',
     image: 'https://images.unsplash.com/photo-1758873268745-dd2cf0d677b5?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'The Engineering Anatomy of a Profitable Google Ads Campaign',
+    seoDescription: 'Running Google Ads profitably is not about creative intuition. It is a precise engineering discipline involving bidding algorithms…',
     content: `
 ## The Reason Most Google Ads Campaigns Fail
 
@@ -981,6 +1017,8 @@ Book a strategy call with the Controva growth team and we will audit your curren
     readTime: '6 min read',
     slug: 'shopify-app-bloat-performance',
     image: 'https://images.unsplash.com/photo-1688561807440-8a57dfa77ee3?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Shopify App Bloat: The Hidden Performance Killer Destroying',
+    seoDescription: 'The average Shopify store has 23 installed apps. Each one is injecting JavaScript into your storefront.',
     content: `
 ## The App Store Trap
 
@@ -1040,6 +1078,8 @@ Book a performance audit with the Controva engineering team. We will measure you
     readTime: '8 min read',
     slug: 'ai-voice-agents-replace-ivr',
     image: 'https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'AI Voice Agents: Replacing Your IVR with Conversational',
+    seoDescription: 'Traditional Interactive Voice Response (IVR) systems have an 83% abandonment rate at the menu stage.',
     content: `
 ## The Death of "Press 1 for Sales"
 
@@ -1101,6 +1141,8 @@ Book a technical strategy call with Controva LLC to design your voice AI infrast
     readTime: '8 min read',
     slug: 'generative-engine-optimization-geo',
     image: 'https://images.unsplash.com/photo-1593437955835-fc8c51725430?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Generative Engine Optimization (GEO) | Controva',
+    seoDescription: 'GEO is the discipline of optimizing your brand and content to appear inside the synthesized answers produced by ChatGPT, Perplexity, and Google AI Overviews.',
     content: `
 ## The New Search Reality
 
@@ -1172,6 +1214,8 @@ Book a strategy call with the Controva growth team to audit your current AI cita
     readTime: '7 min read',
     slug: 'b2b-saas-pricing-strategy-value-based',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'B2B SaaS Pricing Strategy | Controva',
+    seoDescription: 'Most SaaS products are underpriced because their pricing was based on competitor research, not on the economic value delivered.',
     content: `
 ## Why Your SaaS Is Probably Underpriced
 
@@ -1234,6 +1278,8 @@ Book a strategy call with the Controva growth team to run a value quantification
     readTime: '10 min read',
     slug: 'enterprise-sla-architecture-99-99-uptime',
     image: 'https://images.unsplash.com/photo-1762163516269-3c143e04175c?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'The Technical Architecture of Enterprise-Grade | Controva',
+    seoDescription: 'Making an SLA promise is easy. Building the infrastructure that backs it is a precise engineering discipline.',
     content: `
 ## What 99.99% Uptime Actually Means
 
@@ -1300,6 +1346,8 @@ Book a technical strategy call with the Controva engineering team. We will audit
     readTime: '11 min read',
     slug: 'custom-voip-architecture-enterprise',
     image: 'https://images.unsplash.com/photo-1785682117029-86171f64c826?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Custom VoIP Architecture | Controva',
+    seoDescription: "When Twilio's per-minute pricing becomes the single largest line item in your operating budget, it is time to architect a custom VoIP infrastructure.",
     content: `
 ## The Twilio Ceiling
 
@@ -1376,6 +1424,8 @@ Book a technical strategy call with the Controva telephony engineering team. We 
     readTime: '6 min read',
     slug: 'rise-of-ai-receptionist',
     image: 'https://images.unsplash.com/photo-1553775282-20af80779df7?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'The Rise of the AI Receptionist | Controva',
+    seoDescription: 'Explore how AI receptionist software is transforming customer service, reducing wait times, and cutting operational costs for businesses across the USA.',
     content: `
 ## The End of the "Please Hold" Era
 
@@ -1423,6 +1473,8 @@ At Controva LLC, we do not just resell off-the-shelf SaaS bots. We engineer cust
     readTime: '7 min read',
     slug: 'ai-medical-receptionist-hipaa',
     image: 'https://images.unsplash.com/photo-1711397817812-f65474247a19?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Why Every Clinic Needs an AI Medical Receptionist | Controva',
+    seoDescription: 'Discover how an AI medical receptionist can handle appointment scheduling, triage, and patient FAQs while maintaining strict HIPAA compliance.',
     content: `
 ## The Staffing Crisis in Healthcare Administration
 
@@ -1467,6 +1519,8 @@ By deploying an **AI medical receptionist**, clinics can reduce front-desk workl
     readTime: '9 min read',
     slug: 'architecting-sub-500ms-ai-voice-agents',
     image: 'https://images.unsplash.com/photo-1676272682018-b1435bad1cf0?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Architecting Sub-500ms AI Voice Agents | Controva',
+    seoDescription: 'An engineering deep-dive into separating SIP signaling and media processing to build ultra-low-latency voice AI agents that handle thousands of concurrent…',
     content: `
 In conversational **voice ai agents**, latency is the single factor that separates an engaging, human-like dialogue from an awkward, robotic failure. Human conversation hinges on unconscious timing cues: conversational pauses typically range between 200ms and 500ms. If an AI telephone agent takes 1,200ms to respond after a caller finishes speaking, the caller perceives the system as lagging, talks over the response, or hangs up in frustration.
 
@@ -1562,6 +1616,8 @@ Off-the-shelf voice SaaS wrappers force you onto shared, congested cloud cluster
     readTime: '8 min read',
     slug: 'cpaas-margin-trap-byoc-sip-savings',
     image: 'https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'The CPaaS Margin Trap | Controva',
+    seoDescription: 'How enterprise contact centers are slashing telephony bills by 80% by migrating from proprietary CPaaS platforms to custom open-source SIP proxies and…',
     content: `
 For any high-volume contact center, healthcare network, or sales development organization, telecommunications spend is one of the largest line items on the P&L. Yet, thousands of growing companies remain trapped in the **CPaaS Margin Trap**—paying massive premiums to platforms like Twilio, Plivo, or Vonage for commodity carrier minutes.
 
@@ -1656,6 +1712,8 @@ Telephony is too important to leave behind proprietary black-box markups. By own
     readTime: '10 min read',
     slug: 'hipaa-compliant-voice-ai-guide',
     image: 'https://images.unsplash.com/photo-1613733539639-b7b0f93b96ea?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'The Complete Guide to HIPAA-Compliant Voice AI | Controva',
+    seoDescription: 'A comprehensive blueprint for healthcare leaders to deploy AI medical receptionists and answering services with end-to-end SRTP encryption, BAA compliance…',
     content: `
 Medical practices, hospital networks, and dental clinics across the United States are facing severe front-desk staffing shortages. The administrative burden of answering inbound calls, triaging patient inquiries, scheduling appointments, and handling prescription refill requests often leads to 15-minute hold times, missed patient appointments, and burned-out clinic staff.
 
@@ -1760,6 +1818,8 @@ HIPAA compliance is not a checkbox; it is an engineering discipline. At Controva
     readTime: '9 min read',
     slug: 'migrating-asterisk-to-freeswitch-concurrency',
     image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Asterisk vs FreeSWITCH for AI Telephony | Controva',
+    seoDescription: 'A technical post-mortem on why Asterisk channel locking breaks under heavy concurrent voice AI streaming…',
     content: `
 For over two decades, **Asterisk** was the undisputed king of open-source PBX software. Millions of telephone systems worldwide were built on its dialplan engine. However, the telecommunications landscape in 2026 has undergone an unprecedented paradigm shift: the arrival of real-time, bidirectional **voice ai agents** and sub-500ms conversational pipelines.
 
@@ -1854,6 +1914,8 @@ Its lockless concurrency model, superior media manipulation capabilities, and su
     readTime: '7 min read',
     slug: 'sip-trunking-buyers-guide-2026',
     image: 'https://images.unsplash.com/photo-1643155193188-38eb08e2b54f?auto=format&fit=crop&w=800&q=80',
+    seoTitle: "The Complete Buyer's Guide to SIP Trunking Providers in 2026",
+    seoDescription: 'How to evaluate SIP trunking providers on concurrency limits, codec support, geographic redundancy, and true per-minute economics before you sign a contract.',
     content: `
 Every VoIP deployment eventually comes down to one decision that quietly determines call quality, uptime, and margin for years: which **SIP trunking** provider carries your voice traffic. Unlike a CRM or a marketing tool, a bad trunking decision is expensive to reverse — number porting, carrier contracts, and 911 registration all have to be redone.
 
@@ -1910,6 +1972,8 @@ For enterprises running high-concurrency AI voice agents, the calculus often shi
     readTime: '7 min read',
     slug: 'stir-shaken-compliance-voip-2026',
     image: 'https://images.unsplash.com/photo-1711097383282-28097ae16b1d?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'STIR/SHAKEN Compliance | Controva',
+    seoDescription: 'A practical breakdown of STIR/SHAKEN attestation levels, why unattested calls get blocked or flagged as spam…',
     content: `
 If your outbound calls are increasingly landing as "Scam Likely" or getting silently blocked before they ring, the cause is almost always **STIR/SHAKEN** attestation — or the lack of it. The FCC mandate is no longer new, but enforcement has tightened significantly, and carriers now aggressively downgrade or drop traffic from origination points that can't prove call authenticity.
 
@@ -1953,6 +2017,8 @@ Autonomous outbound calling — appointment confirmations, AI SDR follow-ups, me
     readTime: '8 min read',
     slug: 'webrtc-vs-sip-protocol-comparison',
     image: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'WebRTC vs SIP: Choosing the Right Protocol',
+    seoDescription: 'WebRTC and SIP solve overlapping problems differently. Here is how to decide which protocol — or hybrid architecture — fits your product.',
     content: `
 Teams building a new communication product almost always hit the same fork in the road: **WebRTC or SIP?** The honest answer is that most production systems eventually need both — the question is which one sits at the edge and which one carries the PSTN leg.
 
@@ -2004,6 +2070,8 @@ FreeSWITCH natively bridges WebRTC endpoints (via \`mod_verto\` or native WebSoc
     readTime: '8 min read',
     slug: 'multi-tenant-pbx-architecture-saas',
     image: 'https://images.unsplash.com/photo-1758691736433-4078b93abd72?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Building a Multi-Tenant PBX | Controva',
+    seoDescription: 'The design decisions that determine whether a multi-tenant PBX scales to thousands of customers or collapses under cross-tenant contention.',
     content: `
 Building a telephony platform that serves one company is straightforward. Building one that serves **thousands of independent tenants** — each with their own dialplans, extensions, call recording rules, and billing — is an entirely different architectural problem, and most teams underestimate it until tenant #200 starts generating cross-contamination bugs.
 
@@ -2046,6 +2114,8 @@ Every call needs to resolve to exactly one tenant for billing, with call detail 
     readTime: '6 min read',
     slug: 'nat-traversal-stun-turn-ice-voip',
     image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'NAT Traversal for VoIP: STUN, TURN, and ICE Explained',
+    seoDescription: 'Why calls fail to connect behind corporate firewalls and home routers, and how STUN, TURN, and ICE solve the NAT traversal problem for real-time voice.',
     content: `
 "The call connects but there's no audio" is one of the most common VoIP support tickets — and it's almost always a **NAT traversal** failure, not a codec or server problem. Understanding STUN, TURN, and ICE is essential for anyone debugging real-time voice infrastructure.
 
@@ -2090,6 +2160,8 @@ A common mistake: assuming most calls will connect peer-to-peer and under-provis
     readTime: '7 min read',
     slug: 'barge-in-detection-voice-ai-agents',
     image: 'https://images.unsplash.com/photo-1746014600929-8e4bf8d370f9?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'How AI Voice Agents Handle Interruptions | Controva',
+    seoDescription: 'Natural conversation requires letting callers interrupt mid-sentence. Here is how modern voice AI pipelines detect and respond to barge-in in real time.',
     content: `
 The single fastest way to make an AI voice agent feel robotic is to make it finish every sentence no matter what the caller says. Real conversation is full of interruptions — "yeah," "wait, actually," "no I meant Tuesday" — and an agent that can't handle **barge-in** breaks the illusion immediately, no matter how good the underlying language model is.
 
@@ -2483,6 +2555,8 @@ Not always. A single managed trunk on a small deployment can work without one. A
     readTime: '8 min read',
     slug: 'twilio-vs-custom-sip-cost-breakdown',
     image: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Twilio vs Custom SIP: A Real Cost Breakdown at Scale',
+    seoDescription: 'The per-minute rate on a Twilio invoice is only part of the story. Here is what the actual cost curve looks like once call volume crosses enterprise scale.',
     content: `
 CPaaS platforms like Twilio win on speed to first call — a working phone integration in an afternoon is genuinely valuable early on. The problem is that the same pricing model that makes Twilio painless at low volume becomes the single largest line item in an operating budget once call volume scales into the enterprise range.
 
@@ -2529,6 +2603,8 @@ Beyond raw cost, owning the SIP layer removes platform risk entirely — no rate
     readTime: '6 min read',
     slug: 'ai-voice-agents-real-estate',
     image: 'https://images.unsplash.com/photo-1781229771042-2a859f8f8022?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'AI Voice Agents for Real Estate | Controva',
+    seoDescription: 'How real estate teams use AI voice agents to qualify inbound buyer and seller calls, schedule showings, and follow up on listing inquiries around the clock.',
     content: `
 Real estate is one of the few industries where a missed call has an immediately quantifiable cost — a buyer calling about a listing who doesn't get an answer within minutes moves on to the next agent, the next listing, the next brokerage. **AI voice agents** solve a problem that's structural to the industry: agents are in showings, on the phone with other clients, or simply asleep exactly when high-intent calls come in.
 
@@ -2566,6 +2642,8 @@ Brokerages deploying AI voice agents on their listing lines typically see the le
     readTime: '6 min read',
     slug: 'opus-vs-g711-codec-voice-ai',
     image: 'https://images.unsplash.com/photo-1604869515882-4d10fa4b0492?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Codec Selection for Voice AI | Controva',
+    seoDescription: 'A technical comparison of Opus and G.711 for real-time voice AI, and why codec choice directly determines transcription accuracy and perceived latency.',
     content: `
 Codec selection sounds like a low-level implementation detail until it starts silently degrading transcription accuracy across an entire voice AI deployment. The choice between **Opus** and **G.711** affects audio bandwidth, latency, and — critically for AI pipelines — how much usable signal actually reaches the speech-to-text model.
 
@@ -2611,6 +2689,8 @@ To actually realize Opus's accuracy advantage, the codec needs to be preserved a
     readTime: '8 min read',
     slug: 'freeswitch-horizontal-scaling-kamailio',
     image: 'https://images.unsplash.com/photo-1640552435845-d65c23b75934?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Scaling FreeSWITCH Horizontally | Controva',
+    seoDescription: 'How to move from a single FreeSWITCH box to a horizontally scaled cluster fronted by Kamailio, without breaking call state or media continuity.',
     content: `
 A single FreeSWITCH instance, well-tuned, can comfortably handle a few thousand concurrent calls. Past that point — or for any deployment that can't tolerate a single point of failure — the path forward is horizontal scaling: multiple FreeSWITCH media nodes behind a Kamailio load-balancing layer. Getting there without breaking call state requires a specific architecture.
 
@@ -2661,6 +2741,8 @@ Rather than maximizing calls-per-node, well-run clusters typically target 60–7
     readTime: '7 min read',
     slug: 'tcpa-compliance-ai-outbound-calling',
     image: 'https://images.unsplash.com/photo-1758518729908-d4220a678d81?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'TCPA Compliance for AI Outbound Calling | Controva',
+    seoDescription: 'AI-powered outbound calling introduces new TCPA risk. Here is what enterprises need in place before automating outbound voice at scale.',
     content: `
 The **Telephone Consumer Protection Act (TCPA)** predates modern voice AI by decades, but its penalties — up to $1,500 per violation — apply just as forcefully to an autonomous outbound calling agent as they do to a human dialer. Any enterprise automating outbound voice needs a compliance framework in place before scaling call volume, not after a complaint triggers a lawsuit.
 
@@ -2698,6 +2780,8 @@ TCPA draws a meaningful distinction between **informational calls** (appointment
     readTime: '6 min read',
     slug: 'ai-receptionist-law-firms-intake',
     image: 'https://images.unsplash.com/photo-1775144657626-29ff0a46ca90?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'AI Receptionist for Law Firms | Controva',
+    seoDescription: 'How law firms use AI receptionists to capture new client intake calls, screen for conflicts, and schedule consultations without losing leads to voicemail.',
     content: `
 For a law firm, a new client intake call is often the single most valuable phone call the firm receives all week — and it's routinely the one that goes to voicemail, because the attorneys and paralegals who could answer it are in depositions, court, or client meetings. **AI receptionists** built for legal intake close that gap.
 
@@ -2737,6 +2821,8 @@ Many high-value legal matters — a DUI arrest at 11pm, an emergency custody sit
     readTime: '7 min read',
     slug: 'number-porting-enterprise-voip-guide',
     image: 'https://images.unsplash.com/photo-1681735342773-d452708e87e7?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Number Porting for Enterprise VoIP | Controva',
+    seoDescription: 'A practical walkthrough of porting phone numbers to a new VoIP provider without dropping service, from LOA paperwork to the final cutover window.',
     content: `
 Number porting is the step in a VoIP migration that generates the most anxiety, and for good reason — a mishandled port can mean hours or days of inbound call outage on a company's primary line. Done correctly, it's a well-understood process with predictable timelines.
 
@@ -2782,6 +2868,8 @@ Immediately after cutover: place test calls from multiple carriers (mobile, land
     readTime: '6 min read',
     slug: 'e911-compliance-voip-karis-law',
     image: 'https://images.unsplash.com/photo-1511233744044-194342066754?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'E911 Compliance for VoIP | Controva',
+    seoDescription: "Kari's Law and RAY BAUM'S Act changed 911 requirements for multi-line telephone systems. Here is what VoIP deployments need to be compliant.",
     content: `
 Two federal requirements reshaped 911 obligations for business phone systems in recent years, and both apply directly to VoIP and multi-line telephone systems: **Kari's Law** and the **RAY BAUM'S Act**. Non-compliance carries real liability exposure, not just regulatory risk.
 
@@ -2825,6 +2913,8 @@ Beyond the obvious human safety risk, the FCC has issued real enforcement action
     readTime: '7 min read',
     slug: 'voice-biometrics-fraud-detection-ai',
     image: 'https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Voice Biometrics and Fraud Detection | Controva',
+    seoDescription: 'How voice biometrics and behavioral signals help autonomous phone systems detect fraud and verify caller identity without adding friction to legitimate calls.',
     content: `
 As more sensitive transactions move to voice channels — account verification, financial services callbacks, healthcare authentication — the phone channel has become a growing target for social engineering and account takeover fraud. **Voice biometrics** and behavioral fraud signals are increasingly built directly into autonomous phone systems to counter this without adding friction for legitimate callers.
 
@@ -2869,6 +2959,8 @@ The engineering challenge is layering these protections without turning every le
     readTime: '6 min read',
     slug: 'ai-voice-agents-home-services-hvac',
     image: 'https://images.unsplash.com/photo-1676210134188-4c05dd172f89?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'AI Voice Agents for Home Services | Controva',
+    seoDescription: 'How HVAC, plumbing, and home service companies use AI voice agents to book emergency service calls and estimate requests without losing business to voicemail.',
     content: `
 Home service businesses — HVAC, plumbing, electrical — run on phone calls, and a disproportionate share of the highest-value calls (a broken furnace in January, a burst pipe at 2am) arrive exactly when the office is closed and technicians are on other jobs. **AI voice agents** built for home services exist specifically to capture this window.
 
@@ -2906,6 +2998,8 @@ Home service call volume is highly seasonal — HVAC companies see call volume m
     readTime: '8 min read',
     slug: 'streaming-asr-pipeline-latency',
     image: 'https://images.unsplash.com/photo-1695668548342-c0c1ad479aee?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'The Engineering Behind Sub-500ms Speech-to-Text | Controva',
+    seoDescription: 'Why batch transcription is too slow for conversational voice AI, and how streaming ASR architectures achieve the latency needed for natural dialogue.',
     content: `
 Human conversation has an expected response rhythm — pauses longer than roughly 500ms start to feel unnatural, and pauses over a second read as a system that's "thinking" or broken. Hitting that bar for a full voice AI pipeline requires **streaming ASR (automatic speech recognition)**, not the batch transcription approach most people are familiar with from consumer transcription tools.
 
@@ -2953,6 +3047,8 @@ None of this works without a telephony layer capable of low-latency, full-duplex
     readTime: '8 min read',
     slug: 'mod-callcenter-freeswitch-queues',
     image: 'https://images.unsplash.com/photo-1640552435388-a54879e72b28?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Mod_callcenter Deep Dive | Controva',
+    seoDescription: 'A practical guide to configuring FreeSWITCH mod_callcenter for skills-based routing, queue strategies, and real-time agent management.',
     content: `
 Building a real call center queue — not just a ring group — requires genuine queue management: agent states, skills-based routing, overflow handling, and real-time reporting. FreeSWITCH's **mod_callcenter** provides this natively, but configuring it correctly for production traffic requires understanding a handful of concepts that aren't obvious from the documentation alone.
 
@@ -3002,6 +3098,8 @@ Production queue configurations need explicit answers to:
     readTime: '6 min read',
     slug: 'ai-receptionist-ecommerce-order-support',
     image: 'https://images.unsplash.com/photo-1688561808434-886a6dd97b8c?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'AI Receptionists for E-Commerce | Controva',
+    seoDescription: 'How e-commerce and DTC brands use AI voice agents to handle order status, returns, and shipping questions by phone without scaling a call center team.',
     content: `
 E-commerce support has largely migrated to chat and email, but phone volume never actually disappeared — it concentrated into the highest-friction, highest-anxiety moments: "where is my order," "I need to return this," "my package says delivered but I don't have it." These are exactly the calls customers most want answered immediately, and exactly the calls that are expensive to staff for at scale.
 
@@ -3039,6 +3137,8 @@ Despite the shift to digital-first support channels, phone remains the channel c
     readTime: '7 min read',
     slug: 'voip-disaster-recovery-failover-design',
     image: 'https://images.unsplash.com/photo-1785682117028-6fcf2c0b515b?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Disaster Recovery for VoIP | Controva',
+    seoDescription: 'Most VoIP failover plans have never actually been tested. Here is how to design and validate disaster recovery that holds up during a real outage.',
     content: `
 Most enterprise VoIP deployments have a disaster recovery plan documented somewhere. Far fewer have actually tested it against a real failure scenario — and the gap between a plan on paper and a system that survives an actual data center outage is where most enterprises discover their phones don't fail over the way they assumed.
 
@@ -3081,6 +3181,8 @@ A failover plan that has never been executed under controlled conditions is a hy
     readTime: '7 min read',
     slug: 'call-recording-compliance-state-guide',
     image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Call Recording Compliance | Controva',
+    seoDescription: 'One-party versus two-party consent laws vary significantly by state. Here is what VoIP businesses need to know before recording any call.',
     content: `
 Call recording is standard practice for quality assurance, training, and increasingly for voice AI training data — but the legal requirements around it vary meaningfully by state, and getting it wrong exposes a business to civil liability and, in some states, criminal penalties.
 
@@ -3123,6 +3225,8 @@ Beyond the consent question, recorded calls containing personal information carr
     readTime: '7 min read',
     slug: 'llm-function-calling-phone-agents',
     image: 'https://images.unsplash.com/photo-1758873268933-e0765262e58d?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Function Calling for Phone Agents | Controva',
+    seoDescription: 'The technical mechanism that lets a voice AI agent check a real calendar and book a real appointment mid-conversation, explained.',
     content: `
 When a voice AI agent says "I found an opening Tuesday at 2pm, want me to book that?" — that isn't the language model guessing plausibly. It's the result of **function calling**, the mechanism that lets an LLM reach outside its own text generation and actually query or modify a real system mid-conversation.
 
@@ -3173,6 +3277,8 @@ For any function that changes real-world state — booking an appointment, cance
     readTime: '6 min read',
     slug: 'rtp-srtp-voice-encryption-explained',
     image: 'https://images.unsplash.com/photo-1590065707046-4fde65275b2e?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'RTP and SRTP Explained: Securing Real-Time Voice Traffic',
+    seoDescription: 'How RTP carries voice media across a VoIP call, why unencrypted RTP is a real eavesdropping risk, and what SRTP changes.',
     content: `
 SIP gets most of the attention in VoIP security discussions, but SIP only handles call setup and signaling — the actual voice audio travels over a separate protocol, **RTP (Real-time Transport Protocol)**, and by default, RTP is completely unencrypted.
 
@@ -3217,6 +3323,8 @@ SRTP's encryption overhead is genuinely negligible on modern hardware — the co
     readTime: '6 min read',
     slug: 'ai-voice-agents-restaurants-reservations',
     image: 'https://images.unsplash.com/photo-1622021142947-da7dedc7c39a?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'AI Voice Agents for Restaurants | Controva',
+    seoDescription: 'How restaurants use AI voice agents to take reservations, phone orders, and answer common questions without pulling staff off the floor.',
     content: `
 A ringing phone during dinner service puts a restaurant in a genuine bind: answer it and pull a host or server away from guests in the building, or let it ring and lose a reservation or a to-go order. **AI voice agents** built for restaurants exist specifically to remove that trade-off.
 
@@ -3258,6 +3366,8 @@ Restaurant groups with multiple locations face a specific challenge: staffing co
     readTime: '7 min read',
     slug: 'salesforce-voip-integration-click-to-call',
     image: 'https://images.unsplash.com/photo-1763718528755-4bca23f82ac3?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Salesforce + VoIP Integration | Controva',
+    seoDescription: 'How to architect a Salesforce-integrated VoIP system that logs every call automatically and gives sales teams click-to-call without leaving the CRM.',
     content: `
 Sales teams lose meaningful time to the manual overhead around phone calls — looking up a number, dialing it separately from the CRM, and then remembering to log the outcome afterward. A properly built **Salesforce-VoIP integration** removes every one of those steps, and the engineering to do it well is more involved than the marketing pages of most CTI plugins suggest.
 
@@ -3307,6 +3417,8 @@ Once call data flows reliably into Salesforce, it becomes available for pipeline
     readTime: '7 min read',
     slug: 'multi-language-voice-ai-translation',
     image: 'https://images.unsplash.com/photo-1629904853893-c2c8981a1dc5?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Multi-Language Voice AI | Controva',
+    seoDescription: 'The technical approach behind voice AI agents that can converse fluently in multiple languages, and where real-time translation pipelines still struggle.',
     content: `
 Multi-language phone support has historically meant staffing bilingual agents or routing to a third-party interpretation service that adds noticeable delay to every exchange. Modern **multi-language voice AI** takes a fundamentally different architectural approach, and the design decisions behind it directly affect how natural the resulting conversation feels.
 
@@ -3350,6 +3462,8 @@ Even strong multilingual models show accuracy gaps across regional dialects and 
     readTime: '6 min read',
     slug: 'hubspot-ai-receptionist-lead-capture',
     image: 'https://images.unsplash.com/photo-1625296276703-3fbc924f07b5?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'HubSpot + AI Receptionist | Controva',
+    seoDescription: 'How to wire an AI receptionist directly into HubSpot so every inbound call becomes a tracked, enriched lead automatically.',
     content: `
 Most inbound calls that go unanswered represent a lead that simply vanishes — no CRM record, no follow-up task, nothing for a sales team to work. Wiring an **AI receptionist** directly into HubSpot changes that: every call, answered or not, becomes a structured, enriched CRM record automatically.
 
@@ -3387,6 +3501,8 @@ The most common implementation failure in call-to-CRM integrations is duplicate 
     readTime: '7 min read',
     slug: 'financial-services-voip-finra-sec-compliance',
     image: 'https://images.unsplash.com/photo-1764983255241-3768b4df0c57?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Financial Services VoIP | Controva',
+    seoDescription: 'What broker-dealers and financial services firms need in their VoIP infrastructure to meet FINRA Rule 3110 and SEC recordkeeping requirements.',
     content: `
 Financial services firms operate under some of the strictest telephony recordkeeping requirements of any industry, and a VoIP migration that doesn't account for **FINRA** and **SEC** obligations from the architecture phase creates compliance exposure that's expensive to retrofit later.
 
@@ -3433,6 +3549,8 @@ For firms deploying AI voice agents for client-facing interactions, the same rec
     readTime: '6 min read',
     slug: 'webrtc-screen-sharing-support-teams',
     image: 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'WebRTC Screen Sharing for Support Teams | Controva',
+    seoDescription: 'How to add live screen sharing and co-browsing to a support workflow using WebRTC, and where it delivers the biggest resolution-time wins.',
     content: `
 "Can you describe what you're seeing on your screen" is one of the least efficient sentences in customer support. **WebRTC-based screen sharing** — built directly into a support widget rather than requiring a separate download — closes that gap and measurably cuts resolution time for any issue with a visual component.
 
@@ -3483,6 +3601,8 @@ Screen sharing tools need clear, explicit consent flows (browsers already enforc
     readTime: '8 min read',
     slug: 'pbx-to-cloud-migration-zero-downtime',
     image: 'https://images.unsplash.com/photo-1785682117346-4b114502e9b8?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Legacy PBX to Cloud Migration: A Zero-Downtime Playbook',
+    seoDescription: 'A practical migration sequence for moving off a legacy on-premise PBX to a cloud VoIP platform without a disruptive cutover weekend.',
     content: `
 Migrating off a legacy on-premise PBX is one of those projects enterprises delay for years, largely because the assumed alternative is a disruptive "flip the switch on a Saturday night and hope it works" cutover. A properly sequenced migration doesn't have to work that way.
 
@@ -3531,6 +3651,8 @@ Enterprises expecting a multi-week project are usually closer to reality than th
     readTime: '7 min read',
     slug: 'byoc-economics-enterprise-carrier',
     image: 'https://images.unsplash.com/photo-1721995656938-ddc26c0f5071?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'The Economics of BYOC | Controva',
+    seoDescription: 'BYOC decouples the platform from the carrier relationship. Here is the actual cost and control logic behind why enterprises are adopting it.',
     content: `
 **BYOC (Bring Your Own Carrier)** decouples two things that CPaaS platforms have traditionally bundled together: the application/platform layer and the underlying carrier relationship that actually terminates calls to the PSTN. For enterprises with meaningful call volume, separating these two layers is increasingly where the real cost and control advantages live.
 
@@ -3576,6 +3698,8 @@ BYOC isn't free of cost — it shifts cost from a per-minute platform markup to 
     readTime: '6 min read',
     slug: 'ai-voice-agents-logistics-dispatch',
     image: 'https://images.unsplash.com/photo-1772298783095-be38fa901232?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'AI Voice Agents for Logistics | Controva',
+    seoDescription: 'How logistics and delivery companies use AI voice agents to handle driver dispatch calls, delivery status inquiries, and reschedule requests at scale.',
     content: `
 Logistics and delivery operations generate an enormous volume of routine, predictable phone traffic — "where is my delivery," "I need to reschedule," driver check-in calls — that scales linearly with order volume but doesn't require the judgment of a trained dispatcher for the overwhelming majority of cases. **AI voice agents** are increasingly absorbing this volume directly.
 
@@ -3616,6 +3740,8 @@ Beyond the direct cost savings, absorbing routine call volume measurably reduces
     readTime: '7 min read',
     slug: 'ivr-design-patterns-caller-experience',
     image: 'https://images.unsplash.com/photo-1626863905121-3b0c0ed7b94c?auto=format&fit=crop&w=800&q=80',
+    seoTitle: "Designing IVR Flows That Don't Frustrate Callers | Controva",
+    seoDescription: 'Most IVR menus are designed around internal org charts, not caller intent. Here is how to design call flows that actually get people where they need to go.',
     content: `
 "Press 1 for sales, press 2 for support, press 3 for billing" is the phone equivalent of a poorly organized website navigation menu — and it suffers from the same root cause: **the menu structure reflects the company's internal org chart, not how callers actually think about their problem.**
 
@@ -3663,6 +3789,8 @@ The clearest path past legacy IVR's structural limitations is replacing rigid me
     readTime: '7 min read',
     slug: 'sip-trunking-load-testing-concurrency',
     image: 'https://images.unsplash.com/photo-1639066648921-82d4500abf1a?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'High-Concurrency SIP Trunking | Controva',
+    seoDescription: 'How to properly load test SIP trunking infrastructure to find the real breaking point before a traffic spike finds it for you.',
     content: `
 Most VoIP infrastructure discovers its actual concurrency limit during a real traffic spike — a marketing campaign, an outage at a competitor driving calls, a seasonal peak — which is the single worst time to learn a system can't handle the load. Proper load testing finds that limit under controlled conditions instead.
 
@@ -3717,6 +3845,8 @@ Vendor-quoted concurrency numbers are frequently measured under ideal, minimal-f
     readTime: '6 min read',
     slug: 'ai-receptionist-roi-missed-calls-cost',
     image: 'https://images.unsplash.com/photo-1748609160056-7b95f30041f0?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'AI Receptionist ROI Calculator | Controva',
+    seoDescription: 'A framework for calculating the true cost of missed calls, and the ROI math businesses should run before and after deploying an AI receptionist.',
     content: `
 Most businesses can state their monthly call volume. Far fewer can state what a **missed call** actually costs them — and without that number, it's impossible to evaluate whether an AI receptionist is a genuine investment or an unnecessary expense.
 
@@ -3772,6 +3902,8 @@ Most phone systems can report missed call volume directly; if yours can't, a cal
     readTime: '6 min read',
     slug: 'tts-latency-optimization-streaming',
     image: 'https://images.unsplash.com/photo-1667264501379-c1537934c7ab?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Text-to-Speech Latency Optimization | Controva',
+    seoDescription: 'Why waiting for a full TTS render before playback kills conversational flow, and how streaming synthesis gets voice AI agents to first-audio in milliseconds.',
     content: `
 The gap between a voice AI agent that sounds natural and one that sounds sluggish frequently comes down to a single architectural decision: whether **text-to-speech (TTS)** synthesis streams audio as it generates, or waits to render a complete response before playback begins.
 
@@ -3821,6 +3953,8 @@ TTS streaming alone won't save a pipeline that's already slow at the ASR or LLM 
     readTime: '8 min read',
     slug: 'ringcentral-vonage-vs-custom-voip',
     image: 'https://images.unsplash.com/photo-1758873268695-1b55590e507a?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Zoom Phone, RingCentral, and Vonage | Controva',
+    seoDescription: 'A practical comparison of major UCaaS platforms against a custom-built VoIP architecture for enterprises with complex requirements.',
     content: `
 UCaaS platforms — Zoom Phone, RingCentral, Vonage Business, and similar — solve business telephony well for a large share of the market. Enterprises with complex requirements, however, routinely find themselves working around platform limitations rather than being genuinely served by them. Understanding where that line falls matters before signing a multi-year contract.
 
@@ -3872,6 +4006,8 @@ Many enterprises land on a hybrid approach — standard UCaaS for general office
     readTime: '7 min read',
     slug: 'future-of-voice-ai-2027-outlook',
     image: 'https://images.unsplash.com/photo-1758691737124-05c5bffe46f0?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'The Future of Voice AI | Controva',
+    seoDescription: 'Where voice AI infrastructure is heading beyond basic call answering — proactive outbound intelligence, agentic workflows, and deeper system autonomy.',
     content: `
 The AI receptionist — a voice agent that answers inbound calls, qualifies intent, and books appointments — has moved from novelty to standard infrastructure at a remarkable pace. The more interesting question for businesses evaluating voice AI now isn't whether to adopt it, but where the technology is headed next.
 
@@ -4355,6 +4491,8 @@ It depends on who is the regulated provider to the customer. Do not assume your 
     readTime: '9 min read',
     slug: 'ai-outbound-calling-architecture-compliance',
     image: 'https://images.unsplash.com/photo-1771758249853-415175dc29b9?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'AI Outbound Calling | Controva',
+    seoDescription: 'AI outbound calling uses voice agents to place calls at scale, from appointment reminders to lead follow-up.',
     content: `
 AI outbound calling means a voice agent, rather than a human, places the call, holds a natural conversation, and takes an action: confirming an appointment, following up on a lead, collecting a payment promise, or running a survey. Done well, it extends your team's reach. Done badly, it generates complaints, blocked numbers, and legal exposure.
 
@@ -4415,6 +4553,8 @@ The strongest deployments start small: appointment reminders and confirmations f
     readTime: '9 min read',
     slug: 'hipaa-compliant-voip-requirements-architecture',
     image: 'https://images.unsplash.com/photo-1581982231900-6a1a46b744c9?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'HIPAA Compliant VoIP | Controva',
+    seoDescription: 'What makes a VoIP system HIPAA compliant? This guide covers the technical safeguards, business associate agreements, call recording and voicemail rules…',
     content: `
 Healthcare practices run on the phone. Patients call to book appointments, discuss symptoms, and ask about test results, which means voice calls, voicemails, and recordings routinely contain protected health information (PHI). When that traffic runs over VoIP, the system carrying it falls under the HIPAA Security Rule.
 
@@ -4486,6 +4626,8 @@ Many UCaaS vendors will sign a BAA, but often only for specific plans, and the B
     readTime: '8 min read',
     slug: 'pipecat-vs-livekit-agents-voice-ai-framework',
     image: 'https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Pipecat vs LiveKit Agents | Controva',
+    seoDescription: 'Pipecat and LiveKit Agents are two popular open-source frameworks for building voice AI agents.',
     content: `
 Building a voice AI agent from scratch means wiring together streaming speech recognition, a language model, text-to-speech, turn detection, interruption handling, and a transport that carries audio to and from the caller. Two open-source frameworks have become common starting points for that work: **Pipecat** and **LiveKit Agents**.
 
@@ -4558,6 +4700,8 @@ Choosing a framework is perhaps ten percent of a production voice AI system. The
     readTime: '8 min read',
     slug: 'sip-trunk-vs-pri-differences-migration',
     image: 'https://images.unsplash.com/photo-1683322499436-f4383dd59f5a?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'SIP Trunk vs PRI: Differences, Costs, and How to Migrate',
+    seoDescription: 'PRI and SIP trunking both connect a business phone system to the public telephone network, but they work very differently.',
     content: `
 For decades, a PRI circuit was how a business connected its PBX to the phone network. Today most carriers are retiring traditional circuit-switched services, and SIP trunking has become the standard replacement. If you are comparing the two or planning a move, this guide explains the practical differences.
 
@@ -4635,6 +4779,8 @@ If a carrier still offers PRI at a good price, your PBX is hardware-only, and yo
     readTime: '8 min read',
     slug: 'voip-quality-testing-mos-jitter-packet-loss',
     image: 'https://images.unsplash.com/photo-1680992046626-418f7e910589?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'VoIP Quality Testing | Controva',
+    seoDescription: 'Bad call quality is rarely random. This guide explains the metrics that define VoIP quality, how to test them before and after launch…',
     content: `
 "The calls sound bad" is the most common and least useful bug report in telephony. Quality problems are measurable. Once you know which metric is off, you can usually trace the cause to the network, the codec, the media path, or the capacity of a specific node.
 
@@ -4723,6 +4869,8 @@ Decide what "good" means for your product: maximum acceptable post-dial delay, t
     readTime: '9 min read',
     slug: 'open-source-sbc-kamailio-rtpengine',
     image: 'https://images.unsplash.com/photo-1489436969537-cf0c1dc69cba?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Building an Open-Source SBC with Kamailio and rtpengine',
+    seoDescription: 'You can build a capable session border controller from open-source parts.',
     content: `
 A session border controller (SBC) sits at the edge of a voice network and handles the jobs that raw SIP servers should not: hiding internal topology, normalizing messages between incompatible systems, enforcing security policy, and anchoring media. Commercial SBCs do this well, and they are priced accordingly.
 
@@ -4810,6 +4958,8 @@ If you operate a carrier-style platform, run multi-tenant telephony, or need cus
     readTime: '8 min read',
     slug: 'sip-response-codes-403-408-503-troubleshooting',
     image: 'https://images.unsplash.com/photo-1682559736721-c2e77ff4c650?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'SIP Response Codes Explained | Controva',
+    seoDescription: 'SIP response codes tell you exactly where a call failed, if you know how to read them.',
     content: `
 Every SIP request gets a response, and the response code is the single most useful clue you have when a call fails. SIP borrows its numbering from HTTP, so if you have read web server logs, the families will feel familiar. Reading them accurately saves hours of guessing.
 
@@ -4917,6 +5067,8 @@ The distinction between 4xx and 5xx matters for troubleshooting. A 4xx usually m
     readTime: '4 min read',
     slug: 'what-is-sip-protocol-how-it-works',
     image: 'https://images.unsplash.com/photo-1548544027-1a96c4c24c7a?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'What Is SIP? The Session Initiation Protocol | Controva',
+    seoDescription: 'SIP is the signaling protocol that sets up, modifies, and ends voice and video sessions over IP.',
     content: `
 **SIP (Session Initiation Protocol) is the signaling protocol that starts, changes, and ends real-time sessions such as voice calls over an IP network.** It does not carry the audio itself. SIP negotiates the call; a separate protocol, RTP, carries the media. Understanding that split explains most VoIP behavior and most VoIP bugs.
 
@@ -4982,6 +5134,8 @@ WebRTC is a browser technology for real-time media, but it deliberately leaves s
     readTime: '4 min read',
     slug: 'sip-registration-authentication-explained',
     image: 'https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'SIP Registration and Authentication Explained | Controva',
+    seoDescription: 'How a SIP device registers, why the first REGISTER gets a 401, and how digest authentication, expiry, and keep-alives work.',
     content: `
 **SIP registration is how a device tells a registrar server where it can currently be reached, and digest authentication is how the server confirms the device is allowed to say so.** A registration binds an address of record, such as \`sip:alice@example.com\`, to a contact address such as \`sip:alice@203.0.113.7:5060\`. Calls to Alice are then routed to that contact.
 
@@ -5044,6 +5198,8 @@ Carrier SIP trunks often skip registration entirely and authenticate by source I
     readTime: '4 min read',
     slug: 'sip-invite-call-flow-explained',
     image: 'https://images.unsplash.com/photo-1617240016072-d92174e44171?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'SIP INVITE Call Flow Explained: From First Request to BYE',
+    seoDescription: 'A step-by-step walkthrough of a SIP call: INVITE, 100 Trying, 180 Ringing, 200 OK, ACK, media, and BYE.',
     content: `
 **A basic SIP call is a three-way handshake plus a teardown: INVITE, a final response such as 200 OK, then ACK, followed by media and finally BYE.** Learning to read this sequence is the fastest way to debug call setup problems.
 
@@ -5110,6 +5266,8 @@ Signaling succeeded, so the failure is in media: the SDP advertised a private ad
     readTime: '4 min read',
     slug: 'sip-headers-reference-guide',
     image: 'https://images.unsplash.com/photo-1607743386760-88ac62b89b8a?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'SIP Headers Reference Guide | Controva',
+    seoDescription: 'A practical reference for the SIP headers engineers touch most: Via, From, To, Call-ID, CSeq, Contact, Record-Route, and P-Asserted-Identity…',
     content: `
 **SIP headers carry the routing, identity, and transaction information that proxies and endpoints need to process a message.** Most real-world SIP faults can be traced to one mishandled header, so knowing the core set pays off quickly.
 
@@ -5182,6 +5340,8 @@ Interop problems often come from vendors using headers differently. A session bo
     readTime: '4 min read',
     slug: 'sdp-offer-answer-explained',
     image: 'https://images.unsplash.com/photo-1714846201700-35b42d937158?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'SDP Offer/Answer Explained | Controva',
+    seoDescription: 'SDP describes the media in a SIP call: codecs, IP address, and ports. Learn how the offer/answer model works, how to read an SDP body…',
     content: `
 **SDP (Session Description Protocol) is the text format SIP uses to describe the media of a call: which codecs each side supports, where to send audio, and in which direction.** SIP carries the SDP, and two parties use an offer/answer exchange to agree on a single media configuration.
 
@@ -5257,6 +5417,8 @@ For the signaling that carries SDP, start with [what SIP is and how it works](/b
     readTime: '4 min read',
     slug: 'sip-forking-parallel-serial-ringing',
     image: 'https://images.unsplash.com/photo-1591439657848-9f4b9ce436b9?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'SIP Forking Explained | Controva',
+    seoDescription: 'SIP forking lets one call ring several destinations at once or one after another.',
     content: `
 **SIP forking is when a proxy sends one incoming call to several destinations, either simultaneously (parallel) or one after another (serial).** It is how one number can ring a desk phone, a mobile app, and a softphone, and how hunt groups and ring groups are built.
 
@@ -5317,6 +5479,8 @@ Forking depends on knowing every live contact for a user, which comes from regis
     readTime: '4 min read',
     slug: 'sip-tls-srtp-secure-voip-setup',
     image: 'https://images.unsplash.com/photo-1660644808219-1f103401bc85?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'SIP over TLS and SRTP | Controva',
+    seoDescription: 'Plain SIP and RTP travel unencrypted. This guide explains how TLS protects signaling and SRTP protects audio, how to set them up…',
     content: `
 **To secure a VoIP call you need two layers: SIP over TLS to encrypt the signaling, and SRTP to encrypt the audio.** Using only one leaves the other exposed. Signaling reveals who is calling whom, and credentials; media reveals what was said.
 
@@ -5379,6 +5543,8 @@ Regulated sectors typically expect encryption in transit, plus access control an
     readTime: '4 min read',
     slug: 'voip-security-best-practices',
     image: 'https://images.unsplash.com/photo-1751448555253-f39c06e29d82?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'VoIP Security Best Practices | Controva',
+    seoDescription: 'The main threats to VoIP systems are toll fraud, credential attacks, eavesdropping, and denial of service.',
     content: `
 **VoIP security comes down to five controls: restrict who can reach your servers, authenticate everything, encrypt signaling and media, monitor for abuse, and limit what a compromised account can cost you.** A phone system is an internet-facing service with a direct billing meter attached, so it attracts attackers who expect to monetize access fast.
 
@@ -5453,6 +5619,8 @@ If any answer is uncomfortable, start there.
     readTime: '4 min read',
     slug: 'voip-toll-fraud-prevention',
     image: 'https://images.unsplash.com/photo-1584291527908-033f4d6542c8?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'VoIP Toll Fraud Prevention | Controva',
+    seoDescription: 'Toll fraud turns a compromised phone system into a source of huge call charges.',
     content: `
 **Toll fraud is the unauthorized use of a phone system to place calls, usually to high-cost international or premium-rate numbers, leaving the victim with the bill.** Attackers rarely need advanced skills. They need one weak password, one exposed port, or one misconfigured trunk.
 
@@ -5520,6 +5688,8 @@ If you run a multi-tenant or white-label platform, one compromised tenant can ex
     readTime: '4 min read',
     slug: 'voip-fraud-detection-cdr-analysis',
     image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'VoIP Fraud Detection with CDR Analysis | Controva',
+    seoDescription: 'Call detail records reveal fraud patterns early if you know what to look for.',
     content: `
 **You can detect most VoIP fraud from call detail records alone by watching for deviations from each account's normal behavior in destination, volume, timing, and cost.** CDRs are cheap, already collected, and difficult for an attacker to avoid generating.
 
@@ -5582,6 +5752,8 @@ CDRs contain personal data. Apply retention limits, access controls, and encrypt
     readTime: '4 min read',
     slug: 'freeswitch-fail2ban-firewall-hardening',
     image: 'https://images.unsplash.com/photo-1548092372-0d1bd40894a3?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'FreeSWITCH Fail2ban and Firewall Hardening | Controva',
+    seoDescription: 'A practical guide to protecting a FreeSWITCH server from SIP scanners and brute-force attempts using firewall rules, Fail2ban jails…',
     content: `
 **A FreeSWITCH server on a public IP will be scanned within hours. The standard defence is layered: a default-deny firewall, Fail2ban to ban sources that fail authentication, and Sofia settings that avoid answering unknown callers.** None of these is exotic, and together they remove most automated attack traffic.
 
@@ -5837,6 +6009,8 @@ CDRs can support investigations and disputes, but their weight depends on how th
     readTime: '4 min read',
     slug: 'voip-billing-system-architecture',
     image: 'https://images.unsplash.com/photo-1516383274235-5f42d6c6426d?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'VoIP Billing System Architecture | Controva',
+    seoDescription: 'How to design a VoIP billing system: ingesting CDRs, rating calls against rate decks, handling prepaid and postpaid balances…',
     content: `
 **A VoIP billing system turns raw call records into correct charges, and for prepaid or credit-limited customers it must also decide in real time whether a call is allowed to start or continue.** Designing it as two cooperating parts, an authorization path and a rating path, avoids most painful rework.
 
@@ -5904,6 +6078,8 @@ Off-the-shelf billing suits standard cases. Build or customize when pricing mode
     readTime: '4 min read',
     slug: 'least-cost-routing-voip-lcr',
     image: 'https://images.unsplash.com/photo-1698587173600-7c393b980627?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Least Cost Routing (LCR) in VoIP | Controva',
+    seoDescription: 'Least cost routing sends each call to the cheapest carrier that meets your quality bar.',
     content: `
 **Least cost routing (LCR) selects, for each call, the carrier route with the lowest price for that destination, while falling back to alternatives if the preferred route fails.** Done well it lowers termination spend. Done naively it quietly degrades call quality and completion.
 
@@ -5971,6 +6147,8 @@ Margin is the difference between what you charge and what you pay. The billing s
     readTime: '4 min read',
     slug: 'class-4-vs-class-5-softswitch',
     image: 'https://images.unsplash.com/photo-1680992046615-065f58bcb4d8?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Class 4 vs Class 5 Softswitch | Controva',
+    seoDescription: 'Class 4 softswitches route carrier-to-carrier wholesale traffic, while Class 5 softswitches provide subscriber features such as extensions and voicemail.',
     content: `
 **A Class 4 softswitch moves wholesale traffic between carriers, while a Class 5 softswitch serves end subscribers with features like extensions, voicemail, and call forwarding.** The terms come from the legacy telephone switching hierarchy, and they still describe two different jobs.
 
@@ -6034,6 +6212,8 @@ Commercial softswitches bundle routing, billing, and portals. Open-source buildi
     readTime: '4 min read',
     slug: 'what-is-a-softswitch-architecture',
     image: 'https://images.unsplash.com/photo-1785682117394-4c8d27afc12a?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'What Is a Softswitch? Architecture, Components | Controva',
+    seoDescription: 'A softswitch is software that controls call routing and signaling between networks, replacing legacy telephone exchange hardware.',
     content: `
 **A softswitch is software that handles call control, routing, and interconnection between telephone networks, doing in a general-purpose server what legacy telephone exchanges did in dedicated hardware.** It separates the *control* of calls from the *transport* of media, which is what makes IP telephony flexible.
 
@@ -6250,6 +6430,8 @@ Often because of quality or compliance trade-offs, such as more hops, weak calle
     readTime: '4 min read',
     slug: 'did-provider-evaluation-checklist',
     image: 'https://images.unsplash.com/photo-1597138768744-9f97be8cdd64?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'DID Provider Evaluation Checklist | Controva',
+    seoDescription: 'DIDs are the phone numbers that connect your platform to the PSTN. This checklist covers coverage, porting, quality, compliance, API capabilities…',
     content: `
 **A DID (Direct Inward Dialing) provider supplies the phone numbers that let callers on the public telephone network reach your system.** Number supply looks like a commodity, but quality, porting experience, and caller ID treatment vary a lot between providers, and switching later is painful.
 
@@ -6466,6 +6648,8 @@ Not necessarily. Bandwidth is different from latency. A fast connection can stil
     readTime: '4 min read',
     slug: 'g711-vs-g729-codec-bandwidth',
     image: 'https://images.unsplash.com/photo-1784558822669-22b6e5ce6b8b?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'G.711 vs G.729: Codec Bandwidth, Quality, and When to Use',
+    seoDescription: '729 compresses to 8 kbps at some quality cost. Compare bandwidth, CPU, licensing, and transcoding trade-offs to choose the right codec.',
     content: `
 **G.711 is an uncompressed-quality narrowband codec at 64 kbps, and G.729 is a compressed codec at 8 kbps.** G.711 sounds better and is simple and universally supported. G.729 saves bandwidth and costs quality and CPU, and it is largely a legacy choice now that bandwidth is cheap.
 
@@ -6526,6 +6710,8 @@ If one leg uses G.711 and the other G.729, a media server must decode and re-enc
     readTime: '4 min read',
     slug: 'voip-jitter-buffer-explained',
     image: 'https://images.unsplash.com/photo-1484557052118-f32bd25b45b5?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'VoIP Jitter Buffer Explained | Controva',
+    seoDescription: 'A jitter buffer smooths uneven packet arrival so audio plays evenly, at the price of added delay.',
     content: `
 **Jitter is variation in packet arrival time, and a jitter buffer is a short holding area at the receiver that evens it out before playback.** The trade-off is simple and unavoidable: a bigger buffer absorbs more variation but adds more delay.
 
@@ -6589,6 +6775,8 @@ FreeSWITCH, for example, exposes a \`jitterbuffer_msec\` channel variable to set
     readTime: '4 min read',
     slug: 'voip-monitoring-homer-hep-sip-capture',
     image: 'https://images.unsplash.com/photo-1764810815228-b7f9432eec5c?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'VoIP and SIP Monitoring with Homer and HEP | Controva',
+    seoDescription: 'Continuous SIP capture turns hours of guesswork into minutes. Learn how HEP-based capture with Homer works, what to monitor…',
     content: `
 **VoIP monitoring means recording every SIP message and key quality metric continuously, so that when a customer reports a bad call you can find it in minutes. HEP (Homer Encapsulation Protocol) and the open-source Homer stack are the most common way to do this.** Without capture, troubleshooting depends on reproducing the problem live, which rarely works for intermittent faults.
 
@@ -6655,6 +6843,8 @@ Active probing (synthetic test calls) detects problems before customers do, and 
     readTime: '4 min read',
     slug: 'ivr-testing-automation-strategies',
     image: 'https://images.unsplash.com/photo-1791481512258-db981df780ae?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'IVR Testing: Automated Strategies to Catch Broken Menus',
+    seoDescription: 'IVR systems fail quietly: a changed prompt, a dead integration, a menu loop.',
     content: `
 **IVR testing verifies that every menu path, prompt, integration, and failure route works as designed, ideally on every change, because IVR faults are silent: no error page, just frustrated callers.** Manual testing by dialing in does not scale, so effective teams automate.
 
@@ -6721,6 +6911,8 @@ Alert on synthetic call failures, long silences, and unexpected hangups. Design 
     readTime: '4 min read',
     slug: 'call-queue-acd-routing-design',
     image: 'https://images.unsplash.com/photo-1499159058454-75067059248a?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Call Queue and ACD Routing Design | Controva',
+    seoDescription: 'An automatic call distributor (ACD) queues callers and routes them to the right agent.',
     content: `
 **An ACD (automatic call distributor) holds incoming calls in queues and distributes them to available agents according to rules.** Good queue design balances caller wait time, agent utilization, and getting each caller to someone who can help.
 
@@ -6791,6 +6983,8 @@ Feed these from CDRs and queue events (see [call detail records explained](/blog
     readTime: '4 min read',
     slug: 'predictive-dialer-architecture',
     image: 'https://images.unsplash.com/photo-1581309558346-f325181f9df6?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Predictive Dialer Architecture | Controva',
+    seoDescription: 'A predictive dialer places several calls per available agent to minimize idle time.',
     content: `
 **A predictive dialer is an outbound calling engine that dials more numbers than there are free agents, predicting how many will be answered and how many agents will be free, so that agents spend their time talking rather than waiting.** Its central trade-off is agent utilization against the risk of answering a person when no agent is available.
 
@@ -6860,6 +7054,8 @@ For how dialer types differ, read [auto dialer types, compliance, and how to bui
     readTime: '4 min read',
     slug: 'auto-dialer-types-compliance-build',
     image: 'https://images.unsplash.com/photo-1775163024488-e88e4a71179f?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Auto Dialer Types, Compliance, and How to Build One',
+    seoDescription: 'An auto dialer automatically places outbound calls. This guide compares the main types, explains the compliance rules that apply…',
     content: `
 **An auto dialer is software that places outbound phone calls automatically from a contact list and connects answered calls to an agent or a recorded or AI-driven message.** The category covers everything from simple click-to-call lists to high-volume predictive systems, and the legal treatment differs by type.
 
@@ -6924,6 +7120,8 @@ This is general information, not legal advice. Specific obligations, including t
     readTime: '4 min read',
     slug: 'opensips-vs-kamailio',
     image: 'https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'OpenSIPS vs Kamailio: Which SIP Server Should You Choose?',
+    seoDescription: 'OpenSIPS and Kamailio share a common origin and solve similar problems.',
     content: `
 **OpenSIPS and Kamailio are both high-performance open-source SIP servers that descend from the same original project (SER/OpenSER), and for most workloads either will do the job.** The decision usually comes down to team familiarity, specific modules, and the ecosystem around each.
 
@@ -6985,6 +7183,8 @@ We build most edge and routing layers on Kamailio because of our team's depth wi
     readTime: '4 min read',
     slug: 'freeswitch-xml-curl-dynamic-configuration',
     image: 'https://images.unsplash.com/photo-1537884944318-390069bb8665?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'FreeSWITCH XML Curl: Dynamic Configuration from Your Own API',
+    seoDescription: 'mod_xml_curl lets FreeSWITCH fetch directory, dial plan, and configuration data from a web service at runtime.',
     content: `
 **\`mod_xml_curl\` makes FreeSWITCH request its configuration as XML from an HTTP endpoint at runtime, instead of reading static files.** This is the standard way to build multi-tenant or API-driven FreeSWITCH platforms where users, routes, and settings change without editing files or reloading.
 
@@ -7055,6 +7255,8 @@ Each registration refresh and call may trigger a request, so load grows with use
     readTime: '4 min read',
     slug: 'freeswitch-event-socket-esl-guide',
     image: 'https://images.unsplash.com/photo-1743090661056-e51700546169?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'FreeSWITCH Event Socket (ESL) Guide | Controva',
+    seoDescription: 'The Event Socket Library lets external programs control FreeSWITCH calls in real time.',
     content: `
 **The Event Socket Library (ESL) lets your own application connect to FreeSWITCH over TCP to receive call events and issue commands, which is how most custom call-control logic is built.** It turns FreeSWITCH into a programmable media engine controlled from Python, Node.js, Go, or any language that can speak the protocol.
 
@@ -7117,6 +7319,8 @@ Embedded scripts (Lua) avoid network hops and suit simple, high-volume logic. ES
     readTime: '4 min read',
     slug: 'kamailio-dispatcher-load-balancing-config',
     image: 'https://images.unsplash.com/photo-1684695749267-233af13276d0?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Kamailio Dispatcher Module | Controva',
+    seoDescription: "A practical guide to Kamailio's dispatcher module: destination sets, algorithms, health probing, failover…",
     content: `
 **Kamailio's \`dispatcher\` module distributes SIP requests across a set of destinations using a chosen algorithm, monitors their health with probes, and fails over automatically.** It is the workhorse behind most Kamailio-in-front-of-FreeSWITCH architectures.
 
@@ -7203,6 +7407,8 @@ Why this pattern scales is explained in [FreeSWITCH horizontal scaling with Kama
     readTime: '4 min read',
     slug: 'coturn-stun-turn-server-setup',
     image: 'https://images.unsplash.com/photo-1546124404-9e7e3cac2ec1?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'How to Set Up a coturn STUN/TURN Server for WebRTC and VoIP',
+    seoDescription: 'coturn is the standard open-source STUN and TURN server. This guide covers what each role does, a working configuration, credentials, firewall ports…',
     content: `
 **A STUN server tells a client its public address, and a TURN server relays media when a direct path is impossible. coturn implements both, and it is what most WebRTC deployments run.** If users on corporate networks or mobile data cannot connect, a correctly configured TURN server is usually the fix.
 
@@ -7283,6 +7489,8 @@ Each relayed call consumes bandwidth in both directions. Estimate relay share co
     readTime: '4 min read',
     slug: 'webrtc-to-sip-gateway-architecture',
     image: 'https://images.unsplash.com/photo-1507333199169-84fd735371fb?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'WebRTC to SIP Gateway Architecture | Controva',
+    seoDescription: "How to connect browser-based WebRTC clients to SIP infrastructure: the gateway's job, component options, codec and encryption translation…",
     content: `
 **A WebRTC-to-SIP gateway lets a browser or mobile app place and receive calls on a SIP/PSTN network by translating signaling and media between the two worlds.** Browsers speak WebRTC; carriers and PBXs speak SIP over UDP/TCP with plain RTP. Something has to sit in the middle.
 
@@ -7348,6 +7556,8 @@ Browsers use libraries such as JsSIP or SIP.js for SIP over WebSocket (see [JsSI
     readTime: '4 min read',
     slug: 'jssip-sipjs-webrtc-softphone',
     image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'JsSIP vs SIP.js: Building a Browser Softphone with WebRTC',
+    seoDescription: 'JsSIP and SIP.js are the two main JavaScript SIP libraries for browser calling. Compare them, see what a softphone needs beyond the library…',
     content: `
 **JsSIP and SIP.js are JavaScript libraries that implement SIP over WebSocket in the browser, letting you build a softphone that registers to a SIP server and places calls using WebRTC.** Both are mature and workable. The larger effort is everything around the library.
 
@@ -7406,6 +7616,8 @@ If your product only connects users to each other inside your app, direct WebRTC
     readTime: '4 min read',
     slug: 'ai-call-center-architecture-guide',
     image: 'https://images.unsplash.com/photo-1612447733386-a93717f1fb2a?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'AI Call Center Architecture | Controva',
+    seoDescription: 'A reference architecture for an AI-powered call center: telephony edge, voice agent pipeline, human handoff, integrations, QA…',
     content: `
 **An AI call center combines conventional telephony infrastructure with a real-time voice pipeline: audio from the phone network goes to speech recognition, a language model decides what to say or do, and synthesized speech goes back, with a clean path to a human agent when needed.** The AI is one component. The reliability of the phone layer around it decides whether the system works.
 
@@ -7468,6 +7680,8 @@ Open-source frameworks speed up the pipeline (see [Pipecat vs LiveKit Agents](/b
     readTime: '4 min read',
     slug: 'voice-bot-vs-chatbot-vs-ivr',
     image: 'https://images.unsplash.com/photo-1583090326628-1d834b505499?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Voice Bot vs Chatbot vs IVR | Controva',
+    seoDescription: 'Voice bots, chatbots, and IVRs all automate conversations but work very differently.',
     content: `
 **A traditional IVR navigates callers through fixed menus using keypad digits or limited speech commands. A chatbot holds text conversations. A voice bot holds spoken conversations, understanding free-form speech and replying in synthesized voice.** Modern voice bots combine the conversational flexibility of a chatbot with the reach of the phone.
 
@@ -7530,6 +7744,8 @@ Start with your top call reasons. If a short menu covers them, keep the IVR. If 
     readTime: '4 min read',
     slug: 'ai-phone-agent-build-vs-buy',
     image: 'https://images.unsplash.com/photo-1607706189992-eae578626c86?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'AI Phone Agent: Build vs Buy? A Decision Framework for Voice',
+    seoDescription: 'Should you build your own AI phone agent or buy a platform? Compare cost structure, control, speed, compliance, and lock-in…',
     content: `
 **Buy a voice AI platform when you need to launch fast with standard use cases and moderate volume. Build when call volume is high, requirements are unusual, you need deep telephony or compliance control, or per-minute platform fees would dominate your costs.** Many teams do both in sequence: buy to validate, then build the parts that matter.
 
@@ -7598,6 +7814,8 @@ Estimate monthly minutes, multiply by the platform's all-in per-minute cost, and
     readTime: '4 min read',
     slug: 'elevenlabs-alternatives-voice-ai-tts',
     image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'ElevenLabs Alternatives for Voice AI | Controva',
+    seoDescription: 'Choosing a text-to-speech provider for phone agents is about latency, streaming, voice quality, language coverage, and cost control.',
     content: `
 **When teams look for ElevenLabs alternatives, they are usually trying to reduce cost, cut latency, or gain control over voices and data. The right provider is the one that measures best on your calls, so build a test, not a shortlist from reviews.** Provider quality and pricing change often, which is why this guide teaches evaluation rather than ranking names.
 
@@ -7662,6 +7880,8 @@ Wrap each provider behind a small interface in your pipeline so you can change v
     readTime: '4 min read',
     slug: 'vapi-retell-bland-alternatives-custom-voice-agent',
     image: 'https://images.unsplash.com/photo-1619410283995-43d9134e7656?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Vapi, Retell, and Bland Alternatives | Controva',
+    seoDescription: 'Hosted voice agent platforms are fast to start with. Learn why teams outgrow them, what a custom replacement involves…',
     content: `
 **Hosted platforms such as Vapi, Retell, and Bland let you launch a voice agent quickly. Teams look for alternatives when per-minute fees grow, they need telephony or latency control the platform does not offer, or they want to stop depending on one vendor.** The answer is not always "build your own"; sometimes it is simply a different platform, or a hybrid. (We do not rank vendors here. Their features and pricing change quickly, so check current documentation.)
 
@@ -7721,6 +7941,8 @@ If your monthly minutes are low and requirements standard, staying on a platform
     readTime: '4 min read',
     slug: 'openai-realtime-api-sip-telephony',
     image: 'https://images.unsplash.com/photo-1744868562210-fffb7fa882d9?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'OpenAI Realtime API and Telephony | Controva',
+    seoDescription: 'Realtime speech-to-speech models promise lower latency for phone agents.',
     content: `
 **A realtime speech-to-speech API takes streaming audio in and returns streaming audio out from a single model session, instead of chaining separate recognition, language, and synthesis stages. To use it for phone calls you must bridge telephony audio into that session and back.** The connection, not the model, is where most production issues appear.
 
@@ -7784,6 +8006,8 @@ For the larger decision, see [AI phone agent: build vs buy](/blog/ai-phone-agent
     readTime: '4 min read',
     slug: 'deepgram-vs-whisper-streaming-asr',
     image: 'https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Deepgram vs Whisper for Streaming Speech | Controva',
+    seoDescription: 'Compare managed streaming ASR with self-hosted Whisper-based setups for phone agents: latency, streaming behavior, telephony accuracy, cost, and operations.',
     content: `
 **For live phone agents, the deciding factor is usually streaming behavior and latency, not headline accuracy. Managed streaming recognizers are built for low-latency partial results, while Whisper-family models were designed for batch transcription and need extra engineering to stream.** The best choice depends on your traffic, so test on your audio.
 
@@ -7855,6 +8079,8 @@ OpenAI's Whisper and derivatives (such as faster-whisper variants and distilled 
     readTime: '4 min read',
     slug: 'speech-to-text-api-comparison-voice-agents',
     image: 'https://images.unsplash.com/photo-1576836165612-8bc9b07e7778?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Speech-to-Text API Comparison for Voice Agents | Controva',
+    seoDescription: 'A framework for comparing speech-to-text APIs for phone agents: streaming latency, endpointing, telephony accuracy, language support, diarization…',
     content: `
 **The best speech-to-text API for a voice agent is the one that returns accurate text fastest on *your* phone audio at a price you can sustain. Word error rate on a public benchmark is only one input.** Vendors update models frequently, so this guide gives you criteria and a method instead of a ranked list that would be stale in a quarter.
 
@@ -7916,6 +8142,8 @@ Pair recognition choices with synthesis (see [ElevenLabs alternatives and TTS ev
     readTime: '4 min read',
     slug: 'text-to-speech-api-low-latency-comparison',
     image: 'https://images.unsplash.com/photo-1777264935754-aa53096c2d68?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Text-to-Speech API Comparison for Phone Agents | Controva',
+    seoDescription: 'How to compare text-to-speech APIs for voice agents: first-audio latency, input streaming, output formats for telephony, pronunciation control…',
     content: `
 **For a phone agent, the most important TTS metrics are how quickly the first audio arrives, whether you can stream text in and audio out, and how the voice sounds *after* it has been squeezed through a telephone line.** Studio demo quality is a poor predictor of call quality.
 
@@ -7974,6 +8202,8 @@ Keep the choice reversible by isolating TTS behind an interface (see [Pipecat vs
     readTime: '4 min read',
     slug: 'ai-appointment-scheduling-phone-calendar',
     image: 'https://images.unsplash.com/photo-1628062699790-7c45262b82b4?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'AI Appointment Scheduling by Phone | Controva',
+    seoDescription: 'How to build a voice agent that books appointments reliably: calendar and availability APIs, slot negotiation, time-zone handling, confirmations…',
     content: `
 **An AI phone agent can book appointments reliably when it reads real availability from your calendar or practice-management system, offers a small number of options, confirms details back to the caller, and writes the booking with checks against conflicts.** The conversation is the easy part. The integration is where bookings go wrong.
 
@@ -8037,6 +8267,8 @@ Appointment data can be sensitive, especially in healthcare, and recordings and 
     readTime: '4 min read',
     slug: 'virtual-receptionist-vs-ai-receptionist-cost',
     image: 'https://images.unsplash.com/photo-1546449993-d15627692071?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Virtual Receptionist vs AI Receptionist | Controva',
+    seoDescription: 'A virtual receptionist is usually a human team answering remotely; an AI receptionist is software.',
     content: `
 **A virtual receptionist is typically a human operator, in a shared pool or dedicated, who answers calls remotely under your name. An AI receptionist is software that answers calls using speech recognition and a language model.** Humans excel at nuance and empathy. AI excels at availability, consistency, and cost at volume. Many businesses end up using both.
 
@@ -8105,6 +8337,8 @@ A common model is AI answering every call first, handling routine requests end t
     readTime: '4 min read',
     slug: 'ai-answering-service-vs-human-answering-service',
     image: 'https://images.unsplash.com/photo-1763307411487-173bd98b1af0?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'AI Answering Service vs Human Answering Service | Controva',
+    seoDescription: 'Compare AI and human answering services on coverage, accuracy, empathy, integration, compliance, and total cost of ownership.',
     content: `
 **An AI answering service answers every call instantly, around the clock, and can act on what it hears by booking, looking up, or routing. A human answering service provides trained operators who handle conversations with judgment and empathy.** The right answer depends on the nature of your calls, not on which technology is newer.
 
@@ -8175,6 +8409,8 @@ Run the AI on after-hours calls first, review every transcript for two weeks, se
     readTime: '4 min read',
     slug: 'caller-id-reputation-spam-likely-fix',
     image: 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Caller ID Reputation and "Spam Likely" Labels | Controva',
+    seoDescription: 'Legitimate businesses get labeled spam when analytics engines flag their numbers.',
     content: `
 **Calls get labeled "Spam Likely" when carrier and third-party analytics engines judge a number's behavior or attestation to look like robocalling.** The labels cut answer rates sharply, and they can hit legitimate outbound teams too. Prevention is easier than repair, but both are possible.
 
@@ -8242,6 +8478,8 @@ Spoofing by third parties can damage your number's reputation (see [call spoofin
     readTime: '4 min read',
     slug: '10dlc-registration-guide',
     image: 'https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?auto=format&fit=crop&w=800&q=80',
+    seoTitle: '10DLC Registration Guide | Controva',
+    seoDescription: '10DLC is the registration system for business text messaging over standard 10-digit numbers in the US.',
     content: `
 **10DLC (10-digit long code) registration is the process by which US businesses register their brand and messaging use case so that application-to-person (A2P) texts sent from standard local numbers are delivered.** Unregistered traffic is increasingly filtered or blocked, so registration is now a prerequisite, not an option.
 
@@ -8308,6 +8546,8 @@ Messaging platforms should store consent, suppress opted-out numbers across chan
     readTime: '4 min read',
     slug: 'call-spoofing-prevention-guide',
     image: 'https://images.unsplash.com/photo-1602595688238-9fffe12d5af3?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'Call Spoofing Prevention | Controva',
+    seoDescription: 'Call spoofing forges the caller ID shown to the recipient. Learn how spoofing works, the harm to your brand when your number is used…',
     content: `
 **Call spoofing means falsifying the caller ID so that a call appears to come from a different number, often a trusted business or a local number.** Legitimate uses exist, such as a business showing its main number on calls from agents. Malicious spoofing is used for fraud, and it can damage the reputation of the number being impersonated.
 
@@ -8371,6 +8611,8 @@ SIP identity headers such as From, P-Asserted-Identity, and Identity carry calle
     readTime: '4 min read',
     slug: 'sip-trunk-provider-selection-checklist',
     image: 'https://images.unsplash.com/photo-1518181835702-6eef8b4b2113?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'SIP Trunk Provider Selection Checklist | Controva',
+    seoDescription: 'Choosing a SIP trunk provider affects call quality, cost, and resilience for years.',
     content: `
 **Pick a SIP trunk provider on measured quality, redundancy, compliance support, and exit terms, not on the lowest per-minute rate.** The cheapest trunk is expensive if calls fail or sound bad, or if you cannot leave. Use these twelve questions and verify answers with a trial.
 
@@ -8429,6 +8671,8 @@ For the broader buying context, read the [SIP trunking buyer's guide](/blog/sip-
     readTime: '4 min read',
     slug: 'voip-software-development-company-how-to-choose',
     image: 'https://images.unsplash.com/photo-1582653291997-079a1c04e5a1?auto=format&fit=crop&w=800&q=80',
+    seoTitle: 'How to Choose a VoIP Software Development Company | Controva',
+    seoDescription: 'Hiring a VoIP development partner is different from hiring general web developers.',
     content: `
 **A good VoIP development company can show you production telephony systems they built and operated, explain the failure modes of SIP, NAT, and media in plain language, and propose an architecture before quoting a price.** General software skill does not transfer automatically. Real-time voice has unforgiving failure modes that only appear under load and on real networks.
 
