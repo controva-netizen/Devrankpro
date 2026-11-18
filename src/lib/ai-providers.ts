@@ -89,7 +89,7 @@ export function getActiveProvider(): AIProvider {
 
 // Get preferred AI provider (from localStorage or auto-detect)
 export function getPreferredProvider(): AIProvider {
-  const saved = localStorage.getItem('controva_ai_provider') as AIProvider | null;
+  const saved = (() => { try { return localStorage.getItem('controva_ai_provider'); } catch { return null; } })() as AIProvider | null;
   if (saved && isProviderAvailable(saved)) return saved;
   
   const active = getActiveProvider();

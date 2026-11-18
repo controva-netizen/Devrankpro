@@ -5,26 +5,8 @@
     <link>https://www.controvallc.com/blog</link>
     <description>Engineering-driven insights on VoIP Architecture, FreeSWITCH, Kamailio, and AI Voice Automation.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Nov 2026 04:04:17 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 18 Nov 2026 04:41:02 GMT</lastBuildDate>
     <atom:link href="https://www.controvallc.com/rss.xml" rel="self" type="application/rss+xml" />
-
-    <item>
-      <title>VoIP Gateway Explained: FXO vs FXS, Analog, T1/E1 and SIP Gateways</title>
-      <link>https://www.controvallc.com/blog/voip-gateway-fxo-vs-fxs-explained</link>
-      <guid>https://www.controvallc.com/blog/voip-gateway-fxo-vs-fxs-explained</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 GMT</pubDate>
-      <description>A VoIP gateway connects phone systems that speak different languages. FXO vs FXS explained simply, the main gateway types, how to choose one, and how to troubleshoot common problems.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>How to Install FreeSWITCH on Debian 12: Packages, Docker and Your First Call</title>
-      <link>https://www.controvallc.com/blog/install-freeswitch-debian-first-call</link>
-      <guid>https://www.controvallc.com/blog/install-freeswitch-debian-first-call</guid>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 GMT</pubDate>
-      <description>A practical FreeSWITCH installation guide for Debian 12: package, Docker and source options, firewall ports, locking down default passwords, and placing your first test call.</description>
-      <category>VoIP Engineering</category>
-    </item>
 
     <item>
       <title>Kamailio Basic Configuration: Build a Working SIP Proxy Step by Step</title>
@@ -36,470 +18,83 @@
     </item>
 
     <item>
-      <title>SIP ALG: What It Is, Why It Breaks VoIP Calls, and How to Disable It</title>
-      <link>https://www.controvallc.com/blog/sip-alg-what-it-is-how-to-disable</link>
-      <guid>https://www.controvallc.com/blog/sip-alg-what-it-is-how-to-disable</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>SIP ALG rewrites SIP packets inside routers and firewalls and is a leading cause of one-way audio, failed registrations, and calls that drop. How to diagnose it and fix it.</description>
+      <title>How to Install FreeSWITCH on Debian 12: Packages, Docker and Your First Call</title>
+      <link>https://www.controvallc.com/blog/install-freeswitch-debian-first-call</link>
+      <guid>https://www.controvallc.com/blog/install-freeswitch-debian-first-call</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 GMT</pubDate>
+      <description>A practical FreeSWITCH installation guide for Debian 12: package, Docker and source options, firewall ports, locking down default passwords, and placing your first test call.</description>
       <category>VoIP Engineering</category>
     </item>
 
     <item>
-      <title>Twilio Alternatives for Voice: CPaaS, SIP Trunks and Open-Source Stacks Compared</title>
-      <link>https://www.controvallc.com/blog/twilio-alternatives-voice-engineering-guide</link>
-      <guid>https://www.controvallc.com/blog/twilio-alternatives-voice-engineering-guide</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>The right Twilio alternative depends on why you are leaving. A practical comparison of CPaaS rivals, BYOC SIP trunking, and self-hosted open-source voice, with a migration plan.</description>
+      <title>VoIP Gateway Explained: FXO vs FXS, Analog, T1/E1 and SIP Gateways</title>
+      <link>https://www.controvallc.com/blog/voip-gateway-fxo-vs-fxs-explained</link>
+      <guid>https://www.controvallc.com/blog/voip-gateway-fxo-vs-fxs-explained</guid>
+      <pubDate>Mon, 16 Nov 2026 00:00:00 GMT</pubDate>
+      <description>A VoIP gateway connects phone systems that speak different languages. FXO vs FXS explained simply, the main gateway types, how to choose one, and how to troubleshoot common problems.</description>
       <category>VoIP Engineering</category>
     </item>
 
     <item>
-      <title>White Label VoIP: How to Build or Choose a Platform That Scales</title>
-      <link>https://www.controvallc.com/blog/white-label-voip-platform-architecture</link>
-      <guid>https://www.controvallc.com/blog/white-label-voip-platform-architecture</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>What goes into a white label VoIP platform, from softswitch and billing to multi-tenancy and U.S. compliance, and how to decide whether to build, buy, or combine both.</description>
+      <title>How to Choose a VoIP Software Development Company: Questions, Red Flags, and Proof to Ask For</title>
+      <link>https://www.controvallc.com/blog/voip-software-development-company-how-to-choose</link>
+      <guid>https://www.controvallc.com/blog/voip-software-development-company-how-to-choose</guid>
+      <pubDate>Sun, 15 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Hiring a VoIP development partner is different from hiring general web developers. Learn the skills to verify, the questions that expose real experience, the red flags, and how to structure an engagement that protects you.</description>
       <category>VoIP Engineering</category>
     </item>
 
     <item>
-      <title>AI Outbound Calling: Architecture, Compliance, and What Actually Works</title>
-      <link>https://www.controvallc.com/blog/ai-outbound-calling-architecture-compliance</link>
-      <guid>https://www.controvallc.com/blog/ai-outbound-calling-architecture-compliance</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>AI outbound calling uses voice agents to place calls at scale, from appointment reminders to lead follow-up. Here is how the system is built, what the legal guardrails are in the US, and where teams go wrong.</description>
-      <category>Voice AI</category>
-    </item>
-
-    <item>
-      <title>HIPAA Compliant VoIP: Requirements, Architecture, and a Practical Checklist</title>
-      <link>https://www.controvallc.com/blog/hipaa-compliant-voip-requirements-architecture</link>
-      <guid>https://www.controvallc.com/blog/hipaa-compliant-voip-requirements-architecture</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>What makes a VoIP system HIPAA compliant? This guide covers the technical safeguards, business associate agreements, call recording and voicemail rules, and the architecture decisions that matter for healthcare practices.</description>
-      <category>Healthcare &amp; Compliance</category>
-    </item>
-
-    <item>
-      <title>Pipecat vs LiveKit Agents: Choosing a Framework for Real-Time Voice AI</title>
-      <link>https://www.controvallc.com/blog/pipecat-vs-livekit-agents-voice-ai-framework</link>
-      <guid>https://www.controvallc.com/blog/pipecat-vs-livekit-agents-voice-ai-framework</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>Pipecat and LiveKit Agents are two popular open-source frameworks for building voice AI agents. Here is how they differ in architecture, transport, and operations, and how to choose between them.</description>
-      <category>Voice AI</category>
-    </item>
-
-    <item>
-      <title>SIP Trunk vs PRI: Differences, Costs, and How to Migrate</title>
-      <link>https://www.controvallc.com/blog/sip-trunk-vs-pri-differences-migration</link>
-      <guid>https://www.controvallc.com/blog/sip-trunk-vs-pri-differences-migration</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>PRI and SIP trunking both connect a business phone system to the public telephone network, but they work very differently. Here is how they compare on cost, scalability, reliability, and migration.</description>
+      <title>SIP Trunk Provider Selection Checklist: 12 Questions to Ask Before You Sign</title>
+      <link>https://www.controvallc.com/blog/sip-trunk-provider-selection-checklist</link>
+      <guid>https://www.controvallc.com/blog/sip-trunk-provider-selection-checklist</guid>
+      <pubDate>Sat, 14 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Choosing a SIP trunk provider affects call quality, cost, and resilience for years. Use this checklist to compare coverage, redundancy, pricing, compliance, support, and exit terms, and to run a fair trial.</description>
       <category>VoIP Engineering</category>
     </item>
 
     <item>
-      <title>VoIP Quality Testing: MOS, Jitter, Packet Loss, and the Tools to Measure Them</title>
-      <link>https://www.controvallc.com/blog/voip-quality-testing-mos-jitter-packet-loss</link>
-      <guid>https://www.controvallc.com/blog/voip-quality-testing-mos-jitter-packet-loss</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>Bad call quality is rarely random. This guide explains the metrics that define VoIP quality, how to test them before and after launch, and which open-source tools are used to do it.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>Building an Open-Source SBC with Kamailio and rtpengine</title>
-      <link>https://www.controvallc.com/blog/open-source-sbc-kamailio-rtpengine</link>
-      <guid>https://www.controvallc.com/blog/open-source-sbc-kamailio-rtpengine</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>You can build a capable session border controller from open-source parts. This guide explains how Kamailio and rtpengine work together, what they do well, and where a commercial SBC is still the better choice.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>SIP Response Codes Explained: Troubleshooting 403, 408, and 503 Errors</title>
-      <link>https://www.controvallc.com/blog/sip-response-codes-403-408-503-troubleshooting</link>
-      <guid>https://www.controvallc.com/blog/sip-response-codes-403-408-503-troubleshooting</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>SIP response codes tell you exactly where a call failed, if you know how to read them. This guide explains the 4xx, 5xx, and 6xx families and gives a practical troubleshooting path for 403 Forbidden, 408 Request Timeout, and 503 Service Unavailable.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>What Is SIP? The Session Initiation Protocol Explained for Engineers</title>
-      <link>https://www.controvallc.com/blog/what-is-sip-protocol-how-it-works</link>
-      <guid>https://www.controvallc.com/blog/what-is-sip-protocol-how-it-works</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>SIP is the signaling protocol that sets up, modifies, and ends voice and video sessions over IP. This guide explains how SIP works, what its core components do, and where it fits next to RTP, SDP, and WebRTC.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>SIP Registration and Authentication Explained: Digest, Nonces, and Expiry</title>
-      <link>https://www.controvallc.com/blog/sip-registration-authentication-explained</link>
-      <guid>https://www.controvallc.com/blog/sip-registration-authentication-explained</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>How a SIP device registers, why the first REGISTER gets a 401, and how digest authentication, expiry, and keep-alives work. Includes a troubleshooting checklist for failed registrations.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>SIP INVITE Call Flow Explained: From First Request to BYE</title>
-      <link>https://www.controvallc.com/blog/sip-invite-call-flow-explained</link>
-      <guid>https://www.controvallc.com/blog/sip-invite-call-flow-explained</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>A step-by-step walkthrough of a SIP call: INVITE, 100 Trying, 180 Ringing, 200 OK, ACK, media, and BYE. Learn what each message does and how to read a call flow when something goes wrong.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>SIP Headers Reference Guide: Via, From, To, Contact, and Call-ID</title>
-      <link>https://www.controvallc.com/blog/sip-headers-reference-guide</link>
-      <guid>https://www.controvallc.com/blog/sip-headers-reference-guide</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>A practical reference for the SIP headers engineers touch most: Via, From, To, Call-ID, CSeq, Contact, Record-Route, and P-Asserted-Identity, with what each does and what commonly breaks.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>SDP Offer/Answer Explained: How VoIP Endpoints Negotiate Codecs and Media</title>
-      <link>https://www.controvallc.com/blog/sdp-offer-answer-explained</link>
-      <guid>https://www.controvallc.com/blog/sdp-offer-answer-explained</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>SDP describes the media in a SIP call: codecs, IP address, and ports. Learn how the offer/answer model works, how to read an SDP body, and the mistakes that cause one-way audio and failed codec negotiation.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>SIP Forking Explained: Parallel and Serial Ringing for Hunt Groups and Multi-Device Users</title>
-      <link>https://www.controvallc.com/blog/sip-forking-parallel-serial-ringing</link>
-      <guid>https://www.controvallc.com/blog/sip-forking-parallel-serial-ringing</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>SIP forking lets one call ring several destinations at once or one after another. Learn how parallel and serial forking work, how proxies and B2BUAs implement them, and the pitfalls around early media and voicemail.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>SIP over TLS and SRTP: How to Secure VoIP Signaling and Media</title>
-      <link>https://www.controvallc.com/blog/sip-tls-srtp-secure-voip-setup</link>
-      <guid>https://www.controvallc.com/blog/sip-tls-srtp-secure-voip-setup</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>Plain SIP and RTP travel unencrypted. This guide explains how TLS protects signaling and SRTP protects audio, how to set them up, and the certificate and interoperability issues that cause most failed rollouts.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>VoIP Security Best Practices: A Practical Hardening Checklist</title>
-      <link>https://www.controvallc.com/blog/voip-security-best-practices</link>
-      <guid>https://www.controvallc.com/blog/voip-security-best-practices</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>The main threats to VoIP systems are toll fraud, credential attacks, eavesdropping, and denial of service. This checklist covers network, authentication, encryption, monitoring, and operational controls that reduce risk.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>VoIP Toll Fraud Prevention: How Attacks Work and How to Stop Them</title>
-      <link>https://www.controvallc.com/blog/voip-toll-fraud-prevention</link>
-      <guid>https://www.controvallc.com/blog/voip-toll-fraud-prevention</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>Toll fraud turns a compromised phone system into a source of huge call charges. Learn the common attack patterns, the controls that prevent them, and how to detect and contain an incident quickly.</description>
+      <title>Call Spoofing Prevention: How Spoofing Works and How Businesses Can Defend Against It</title>
+      <link>https://www.controvallc.com/blog/call-spoofing-prevention-guide</link>
+      <guid>https://www.controvallc.com/blog/call-spoofing-prevention-guide</guid>
+      <pubDate>Fri, 13 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Call spoofing forges the caller ID shown to the recipient. Learn how spoofing works, the harm to your brand when your number is used, and the technical and procedural steps to prevent and respond to it.</description>
       <category>Telecom Compliance</category>
     </item>
 
     <item>
-      <title>VoIP Fraud Detection with CDR Analysis: Signals, Thresholds, and Alerts</title>
-      <link>https://www.controvallc.com/blog/voip-fraud-detection-cdr-analysis</link>
-      <guid>https://www.controvallc.com/blog/voip-fraud-detection-cdr-analysis</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>Call detail records reveal fraud patterns early if you know what to look for. This guide covers the key CDR fields, the signals that indicate abuse, and how to turn them into automated alerts.</description>
+      <title>10DLC Registration Guide: Brands, Campaigns, and Getting Business SMS Delivered</title>
+      <link>https://www.controvallc.com/blog/10dlc-registration-guide</link>
+      <guid>https://www.controvallc.com/blog/10dlc-registration-guide</guid>
+      <pubDate>Thu, 12 Nov 2026 00:00:00 GMT</pubDate>
+      <description>10DLC is the registration system for business text messaging over standard 10-digit numbers in the US. Learn how brands and campaigns work, what vendors check, common rejection reasons, and how to keep deliverability healthy.</description>
       <category>Telecom Compliance</category>
     </item>
 
     <item>
-      <title>FreeSWITCH Fail2ban and Firewall Hardening: Blocking SIP Attacks Automatically</title>
-      <link>https://www.controvallc.com/blog/freeswitch-fail2ban-firewall-hardening</link>
-      <guid>https://www.controvallc.com/blog/freeswitch-fail2ban-firewall-hardening</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>A practical guide to protecting a FreeSWITCH server from SIP scanners and brute-force attempts using firewall rules, Fail2ban jails, and sensible Sofia profile settings.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>Call Detail Records (CDR): Fields, Formats, KPIs and How to Build a CDR Pipeline</title>
-      <link>https://www.controvallc.com/blog/call-detail-records-cdr-explained</link>
-      <guid>https://www.controvallc.com/blog/call-detail-records-cdr-explained</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>A call detail record (CDR) is the system's record of every call attempt. What fields it holds, how phone systems generate it, which KPIs to compute, and how to build a pipeline you can trust.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>VoIP Billing System Architecture: Rating, Invoicing, and Real-Time Balance Control</title>
-      <link>https://www.controvallc.com/blog/voip-billing-system-architecture</link>
-      <guid>https://www.controvallc.com/blog/voip-billing-system-architecture</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>How to design a VoIP billing system: ingesting CDRs, rating calls against rate decks, handling prepaid and postpaid balances, and enforcing limits in real time without losing records.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>Least Cost Routing (LCR) in VoIP: How It Works and How to Implement It</title>
-      <link>https://www.controvallc.com/blog/least-cost-routing-voip-lcr</link>
-      <guid>https://www.controvallc.com/blog/least-cost-routing-voip-lcr</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>Least cost routing sends each call to the cheapest carrier that meets your quality bar. Learn how LCR works, how to build a rate-based routing table, and why cost alone is the wrong metric.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>Class 4 vs Class 5 Softswitch: Which One Does Your VoIP Business Need?</title>
-      <link>https://www.controvallc.com/blog/class-4-vs-class-5-softswitch</link>
-      <guid>https://www.controvallc.com/blog/class-4-vs-class-5-softswitch</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>Class 4 softswitches route carrier-to-carrier wholesale traffic, while Class 5 softswitches provide subscriber features such as extensions and voicemail. This guide explains the difference and how to choose.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>What Is a Softswitch? Architecture, Components, and Use Cases</title>
-      <link>https://www.controvallc.com/blog/what-is-a-softswitch-architecture</link>
-      <guid>https://www.controvallc.com/blog/what-is-a-softswitch-architecture</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>A softswitch is software that controls call routing and signaling between networks, replacing legacy telephone exchange hardware. Learn how softswitch architecture works and how it relates to SBCs, media servers, and PBXs.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>Wholesale VoIP Termination: How It Works, Pricing, Quality Metrics and Vendor Checklist</title>
-      <link>https://www.controvallc.com/blog/voip-wholesale-termination-business-guide</link>
-      <guid>https://www.controvallc.com/blog/voip-wholesale-termination-business-guide</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>A practical guide to wholesale VoIP termination: how calls reach the PSTN, how rates and increments work, which quality metrics to track, and how to evaluate carriers safely.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>DID Provider Evaluation Checklist: How to Choose Phone Number Suppliers for VoIP</title>
-      <link>https://www.controvallc.com/blog/did-provider-evaluation-checklist</link>
-      <guid>https://www.controvallc.com/blog/did-provider-evaluation-checklist</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>DIDs are the phone numbers that connect your platform to the PSTN. This checklist covers coverage, porting, quality, compliance, API capabilities, and contract terms to compare before choosing a provider.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>VoIP Latency: Causes, Acceptable Limits (G.114) and How to Reduce It</title>
-      <link>https://www.controvallc.com/blog/voip-latency-causes-and-fixes</link>
-      <guid>https://www.controvallc.com/blog/voip-latency-causes-and-fixes</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>VoIP latency is the delay between speaking and being heard. What causes it, the G.114 limits, how to measure it, and the fixes that actually reduce it.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>G.711 vs G.729: Codec Bandwidth, Quality, and When to Use Each</title>
-      <link>https://www.controvallc.com/blog/g711-vs-g729-codec-bandwidth</link>
-      <guid>https://www.controvallc.com/blog/g711-vs-g729-codec-bandwidth</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>G.711 delivers high-quality audio at about 64 kbps of codec payload, while G.729 compresses to 8 kbps at some quality cost. Compare bandwidth, CPU, licensing, and transcoding trade-offs to choose the right codec.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>VoIP Jitter Buffer Explained: Static vs Adaptive, Sizing, and Trade-Offs</title>
-      <link>https://www.controvallc.com/blog/voip-jitter-buffer-explained</link>
-      <guid>https://www.controvallc.com/blog/voip-jitter-buffer-explained</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>A jitter buffer smooths uneven packet arrival so audio plays evenly, at the price of added delay. Learn how static and adaptive buffers work, how to size them, and how to diagnose jitter problems.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>VoIP and SIP Monitoring with Homer and HEP: Capture, Search, and Alert</title>
-      <link>https://www.controvallc.com/blog/voip-monitoring-homer-hep-sip-capture</link>
-      <guid>https://www.controvallc.com/blog/voip-monitoring-homer-hep-sip-capture</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>Continuous SIP capture turns hours of guesswork into minutes. Learn how HEP-based capture with Homer works, what to monitor, and how to build useful dashboards and alerts for a VoIP platform.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>IVR Testing: Automated Strategies to Catch Broken Menus Before Callers Do</title>
-      <link>https://www.controvallc.com/blog/ivr-testing-automation-strategies</link>
-      <guid>https://www.controvallc.com/blog/ivr-testing-automation-strategies</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>IVR systems fail quietly: a changed prompt, a dead integration, a menu loop. Learn the layers of IVR testing, from functional paths to load, and how to automate them so every release is verified.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>Call Queue and ACD Routing Design: Strategies, Skills, and Service Levels</title>
-      <link>https://www.controvallc.com/blog/call-queue-acd-routing-design</link>
-      <guid>https://www.controvallc.com/blog/call-queue-acd-routing-design</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>An automatic call distributor (ACD) queues callers and routes them to the right agent. Learn the main routing strategies, skills-based design, queue metrics, and how to implement queues on FreeSWITCH and Asterisk.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>Predictive Dialer Architecture: How Outbound Dialing Engines Work</title>
-      <link>https://www.controvallc.com/blog/predictive-dialer-architecture</link>
-      <guid>https://www.controvallc.com/blog/predictive-dialer-architecture</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>A predictive dialer places several calls per available agent to minimize idle time. Learn the dialing modes, the pacing algorithm, the abandonment trade-off, and the compliance rules that shape the design.</description>
+      <title>Caller ID Reputation and "Spam Likely" Labels: Why Calls Get Flagged and How to Fix It</title>
+      <link>https://www.controvallc.com/blog/caller-id-reputation-spam-likely-fix</link>
+      <guid>https://www.controvallc.com/blog/caller-id-reputation-spam-likely-fix</guid>
+      <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Legitimate businesses get labeled spam when analytics engines flag their numbers. Learn how call labeling works, what triggers it, how to improve answer rates, and how to remediate a flagged number.</description>
       <category>Telecom Compliance</category>
     </item>
 
     <item>
-      <title>Auto Dialer Types, Compliance, and How to Build One</title>
-      <link>https://www.controvallc.com/blog/auto-dialer-types-compliance-build</link>
-      <guid>https://www.controvallc.com/blog/auto-dialer-types-compliance-build</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>An auto dialer automatically places outbound calls. This guide compares the main types, explains the compliance rules that apply, and outlines how to build a dialer on FreeSWITCH or Asterisk.</description>
-      <category>Telecom Compliance</category>
-    </item>
-
-    <item>
-      <title>OpenSIPS vs Kamailio: Which SIP Server Should You Choose?</title>
-      <link>https://www.controvallc.com/blog/opensips-vs-kamailio</link>
-      <guid>https://www.controvallc.com/blog/opensips-vs-kamailio</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>OpenSIPS and Kamailio share a common origin and solve similar problems. This comparison covers architecture, scripting, performance, modules, community, and a practical way to decide between them.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>FreeSWITCH XML Curl: Dynamic Configuration from Your Own API</title>
-      <link>https://www.controvallc.com/blog/freeswitch-xml-curl-dynamic-configuration</link>
-      <guid>https://www.controvallc.com/blog/freeswitch-xml-curl-dynamic-configuration</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>mod_xml_curl lets FreeSWITCH fetch directory, dial plan, and configuration data from a web service at runtime. Learn how it works, when to use it, and how to keep it fast and safe.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>FreeSWITCH Event Socket (ESL) Guide: Inbound vs Outbound Mode</title>
-      <link>https://www.controvallc.com/blog/freeswitch-event-socket-esl-guide</link>
-      <guid>https://www.controvallc.com/blog/freeswitch-event-socket-esl-guide</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>The Event Socket Library lets external programs control FreeSWITCH calls in real time. Learn inbound and outbound modes, common commands and events, and design patterns for reliable call-control applications.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>Kamailio Dispatcher Module: Load Balancing Configuration That Survives Failures</title>
-      <link>https://www.controvallc.com/blog/kamailio-dispatcher-load-balancing-config</link>
-      <guid>https://www.controvallc.com/blog/kamailio-dispatcher-load-balancing-config</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>A practical guide to Kamailio's dispatcher module: destination sets, algorithms, health probing, failover, and configuration patterns for balancing traffic across FreeSWITCH or Asterisk nodes.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>How to Set Up a coturn STUN/TURN Server for WebRTC and VoIP</title>
-      <link>https://www.controvallc.com/blog/coturn-stun-turn-server-setup</link>
-      <guid>https://www.controvallc.com/blog/coturn-stun-turn-server-setup</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>coturn is the standard open-source STUN and TURN server. This guide covers what each role does, a working configuration, credentials, firewall ports, and how to test that relaying actually works.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>WebRTC to SIP Gateway Architecture: Bridging Browsers and Phone Networks</title>
-      <link>https://www.controvallc.com/blog/webrtc-to-sip-gateway-architecture</link>
-      <guid>https://www.controvallc.com/blog/webrtc-to-sip-gateway-architecture</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>How to connect browser-based WebRTC clients to SIP infrastructure: the gateway's job, component options, codec and encryption translation, and the design choices that decide quality and scale.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>JsSIP vs SIP.js: Building a Browser Softphone with WebRTC</title>
-      <link>https://www.controvallc.com/blog/jssip-sipjs-webrtc-softphone</link>
-      <guid>https://www.controvallc.com/blog/jssip-sipjs-webrtc-softphone</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>JsSIP and SIP.js are the two main JavaScript SIP libraries for browser calling. Compare them, see what a softphone needs beyond the library, and learn the pitfalls of audio devices, reconnection, and security.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>AI Call Center Architecture: How to Build a Voice AI Contact Center Stack</title>
-      <link>https://www.controvallc.com/blog/ai-call-center-architecture-guide</link>
-      <guid>https://www.controvallc.com/blog/ai-call-center-architecture-guide</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>A reference architecture for an AI-powered call center: telephony edge, voice agent pipeline, human handoff, integrations, QA, and the controls needed to run it safely in production.</description>
+      <title>AI Answering Service vs Human Answering Service: Which Fits Your Business?</title>
+      <link>https://www.controvallc.com/blog/ai-answering-service-vs-human-answering-service</link>
+      <guid>https://www.controvallc.com/blog/ai-answering-service-vs-human-answering-service</guid>
+      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Compare AI and human answering services on coverage, accuracy, empathy, integration, compliance, and total cost of ownership. Includes a decision checklist and a hybrid model that many businesses adopt.</description>
       <category>Voice AI</category>
     </item>
 
     <item>
-      <title>Voice Bot vs Chatbot vs IVR: What Is the Difference and Which Do You Need?</title>
-      <link>https://www.controvallc.com/blog/voice-bot-vs-chatbot-vs-ivr</link>
-      <guid>https://www.controvallc.com/blog/voice-bot-vs-chatbot-vs-ivr</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>Voice bots, chatbots, and IVRs all automate conversations but work very differently. Compare how each handles input, understanding, and integration, and when each fits best.</description>
-      <category>Voice AI</category>
-    </item>
-
-    <item>
-      <title>AI Phone Agent: Build vs Buy? A Decision Framework for Voice AI</title>
-      <link>https://www.controvallc.com/blog/ai-phone-agent-build-vs-buy</link>
-      <guid>https://www.controvallc.com/blog/ai-phone-agent-build-vs-buy</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>Should you build your own AI phone agent or buy a platform? Compare cost structure, control, speed, compliance, and lock-in, with a practical framework and the signals that tip the decision either way.</description>
-      <category>Voice AI</category>
-    </item>
-
-    <item>
-      <title>ElevenLabs Alternatives for Voice AI: What to Evaluate in a Text-to-Speech Provider</title>
-      <link>https://www.controvallc.com/blog/elevenlabs-alternatives-voice-ai-tts</link>
-      <guid>https://www.controvallc.com/blog/elevenlabs-alternatives-voice-ai-tts</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>Choosing a text-to-speech provider for phone agents is about latency, streaming, voice quality, language coverage, and cost control. Learn the criteria that matter and how to test providers fairly.</description>
-      <category>Voice AI</category>
-    </item>
-
-    <item>
-      <title>Vapi, Retell, and Bland Alternatives: When a Custom Voice Agent Makes Sense</title>
-      <link>https://www.controvallc.com/blog/vapi-retell-bland-alternatives-custom-voice-agent</link>
-      <guid>https://www.controvallc.com/blog/vapi-retell-bland-alternatives-custom-voice-agent</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>Hosted voice agent platforms are fast to start with. Learn why teams outgrow them, what a custom replacement involves, and how to migrate without losing your prompts, flows, and phone numbers.</description>
-      <category>Voice AI</category>
-    </item>
-
-    <item>
-      <title>OpenAI Realtime API and Telephony: Connecting Speech-to-Speech Models to Phone Calls</title>
-      <link>https://www.controvallc.com/blog/openai-realtime-api-sip-telephony</link>
-      <guid>https://www.controvallc.com/blog/openai-realtime-api-sip-telephony</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>Realtime speech-to-speech models promise lower latency for phone agents. Learn how they connect to SIP and PSTN calls, the audio and architecture considerations, and the trade-offs against a classic three-stage pipeline.</description>
-      <category>Voice AI</category>
-    </item>
-
-    <item>
-      <title>Deepgram vs Whisper for Streaming Speech Recognition in Voice Agents</title>
-      <link>https://www.controvallc.com/blog/deepgram-vs-whisper-streaming-asr</link>
-      <guid>https://www.controvallc.com/blog/deepgram-vs-whisper-streaming-asr</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>Compare managed streaming ASR with self-hosted Whisper-based setups for phone agents: latency, streaming behavior, telephony accuracy, cost, and operations. Includes a testing method that works for any recognizer.</description>
-      <category>Voice AI</category>
-    </item>
-
-    <item>
-      <title>Speech-to-Text API Comparison for Voice Agents: What to Compare Beyond Word Error Rate</title>
-      <link>https://www.controvallc.com/blog/speech-to-text-api-comparison-voice-agents</link>
-      <guid>https://www.controvallc.com/blog/speech-to-text-api-comparison-voice-agents</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>A framework for comparing speech-to-text APIs for phone agents: streaming latency, endpointing, telephony accuracy, language support, diarization, pricing models, and data terms, plus a repeatable evaluation method.</description>
-      <category>Voice AI</category>
-    </item>
-
-    <item>
-      <title>Text-to-Speech API Comparison for Phone Agents: Latency, Streaming, and Telephony Audio</title>
-      <link>https://www.controvallc.com/blog/text-to-speech-api-low-latency-comparison</link>
-      <guid>https://www.controvallc.com/blog/text-to-speech-api-low-latency-comparison</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>How to compare text-to-speech APIs for voice agents: first-audio latency, input streaming, output formats for telephony, pronunciation control, interruption handling, language coverage, and total cost.</description>
+      <title>Virtual Receptionist vs AI Receptionist: Cost, Quality, and Which to Choose</title>
+      <link>https://www.controvallc.com/blog/virtual-receptionist-vs-ai-receptionist-cost</link>
+      <guid>https://www.controvallc.com/blog/virtual-receptionist-vs-ai-receptionist-cost</guid>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+      <description>A virtual receptionist is usually a human team answering remotely; an AI receptionist is software. Compare cost structure, availability, quality, scalability, and compliance to choose the right fit for your business.</description>
       <category>Voice AI</category>
     </item>
 
@@ -513,416 +108,470 @@
     </item>
 
     <item>
-      <title>Virtual Receptionist vs AI Receptionist: Cost, Quality, and Which to Choose</title>
-      <link>https://www.controvallc.com/blog/virtual-receptionist-vs-ai-receptionist-cost</link>
-      <guid>https://www.controvallc.com/blog/virtual-receptionist-vs-ai-receptionist-cost</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>A virtual receptionist is usually a human team answering remotely; an AI receptionist is software. Compare cost structure, availability, quality, scalability, and compliance to choose the right fit for your business.</description>
+      <title>Text-to-Speech API Comparison for Phone Agents: Latency, Streaming, and Telephony Audio</title>
+      <link>https://www.controvallc.com/blog/text-to-speech-api-low-latency-comparison</link>
+      <guid>https://www.controvallc.com/blog/text-to-speech-api-low-latency-comparison</guid>
+      <pubDate>Sat, 07 Nov 2026 00:00:00 GMT</pubDate>
+      <description>How to compare text-to-speech APIs for voice agents: first-audio latency, input streaming, output formats for telephony, pronunciation control, interruption handling, language coverage, and total cost.</description>
       <category>Voice AI</category>
     </item>
 
     <item>
-      <title>AI Answering Service vs Human Answering Service: Which Fits Your Business?</title>
-      <link>https://www.controvallc.com/blog/ai-answering-service-vs-human-answering-service</link>
-      <guid>https://www.controvallc.com/blog/ai-answering-service-vs-human-answering-service</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>Compare AI and human answering services on coverage, accuracy, empathy, integration, compliance, and total cost of ownership. Includes a decision checklist and a hybrid model that many businesses adopt.</description>
+      <title>Speech-to-Text API Comparison for Voice Agents: What to Compare Beyond Word Error Rate</title>
+      <link>https://www.controvallc.com/blog/speech-to-text-api-comparison-voice-agents</link>
+      <guid>https://www.controvallc.com/blog/speech-to-text-api-comparison-voice-agents</guid>
+      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+      <description>A framework for comparing speech-to-text APIs for phone agents: streaming latency, endpointing, telephony accuracy, language support, diarization, pricing models, and data terms, plus a repeatable evaluation method.</description>
       <category>Voice AI</category>
     </item>
 
     <item>
-      <title>Caller ID Reputation and "Spam Likely" Labels: Why Calls Get Flagged and How to Fix It</title>
-      <link>https://www.controvallc.com/blog/caller-id-reputation-spam-likely-fix</link>
-      <guid>https://www.controvallc.com/blog/caller-id-reputation-spam-likely-fix</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>Legitimate businesses get labeled spam when analytics engines flag their numbers. Learn how call labeling works, what triggers it, how to improve answer rates, and how to remediate a flagged number.</description>
+      <title>Deepgram vs Whisper for Streaming Speech Recognition in Voice Agents</title>
+      <link>https://www.controvallc.com/blog/deepgram-vs-whisper-streaming-asr</link>
+      <guid>https://www.controvallc.com/blog/deepgram-vs-whisper-streaming-asr</guid>
+      <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Compare managed streaming ASR with self-hosted Whisper-based setups for phone agents: latency, streaming behavior, telephony accuracy, cost, and operations. Includes a testing method that works for any recognizer.</description>
+      <category>Voice AI</category>
+    </item>
+
+    <item>
+      <title>OpenAI Realtime API and Telephony: Connecting Speech-to-Speech Models to Phone Calls</title>
+      <link>https://www.controvallc.com/blog/openai-realtime-api-sip-telephony</link>
+      <guid>https://www.controvallc.com/blog/openai-realtime-api-sip-telephony</guid>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Realtime speech-to-speech models promise lower latency for phone agents. Learn how they connect to SIP and PSTN calls, the audio and architecture considerations, and the trade-offs against a classic three-stage pipeline.</description>
+      <category>Voice AI</category>
+    </item>
+
+    <item>
+      <title>Vapi, Retell, and Bland Alternatives: When a Custom Voice Agent Makes Sense</title>
+      <link>https://www.controvallc.com/blog/vapi-retell-bland-alternatives-custom-voice-agent</link>
+      <guid>https://www.controvallc.com/blog/vapi-retell-bland-alternatives-custom-voice-agent</guid>
+      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Hosted voice agent platforms are fast to start with. Learn why teams outgrow them, what a custom replacement involves, and how to migrate without losing your prompts, flows, and phone numbers.</description>
+      <category>Voice AI</category>
+    </item>
+
+    <item>
+      <title>ElevenLabs Alternatives for Voice AI: What to Evaluate in a Text-to-Speech Provider</title>
+      <link>https://www.controvallc.com/blog/elevenlabs-alternatives-voice-ai-tts</link>
+      <guid>https://www.controvallc.com/blog/elevenlabs-alternatives-voice-ai-tts</guid>
+      <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Choosing a text-to-speech provider for phone agents is about latency, streaming, voice quality, language coverage, and cost control. Learn the criteria that matter and how to test providers fairly.</description>
+      <category>Voice AI</category>
+    </item>
+
+    <item>
+      <title>AI Phone Agent: Build vs Buy? A Decision Framework for Voice AI</title>
+      <link>https://www.controvallc.com/blog/ai-phone-agent-build-vs-buy</link>
+      <guid>https://www.controvallc.com/blog/ai-phone-agent-build-vs-buy</guid>
+      <pubDate>Sun, 01 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Should you build your own AI phone agent or buy a platform? Compare cost structure, control, speed, compliance, and lock-in, with a practical framework and the signals that tip the decision either way.</description>
+      <category>Voice AI</category>
+    </item>
+
+    <item>
+      <title>Voice Bot vs Chatbot vs IVR: What Is the Difference and Which Do You Need?</title>
+      <link>https://www.controvallc.com/blog/voice-bot-vs-chatbot-vs-ivr</link>
+      <guid>https://www.controvallc.com/blog/voice-bot-vs-chatbot-vs-ivr</guid>
+      <pubDate>Sat, 31 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Voice bots, chatbots, and IVRs all automate conversations but work very differently. Compare how each handles input, understanding, and integration, and when each fits best.</description>
+      <category>Voice AI</category>
+    </item>
+
+    <item>
+      <title>AI Call Center Architecture: How to Build a Voice AI Contact Center Stack</title>
+      <link>https://www.controvallc.com/blog/ai-call-center-architecture-guide</link>
+      <guid>https://www.controvallc.com/blog/ai-call-center-architecture-guide</guid>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <description>A reference architecture for an AI-powered call center: telephony edge, voice agent pipeline, human handoff, integrations, QA, and the controls needed to run it safely in production.</description>
+      <category>Voice AI</category>
+    </item>
+
+    <item>
+      <title>JsSIP vs SIP.js: Building a Browser Softphone with WebRTC</title>
+      <link>https://www.controvallc.com/blog/jssip-sipjs-webrtc-softphone</link>
+      <guid>https://www.controvallc.com/blog/jssip-sipjs-webrtc-softphone</guid>
+      <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
+      <description>JsSIP and SIP.js are the two main JavaScript SIP libraries for browser calling. Compare them, see what a softphone needs beyond the library, and learn the pitfalls of audio devices, reconnection, and security.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>WebRTC to SIP Gateway Architecture: Bridging Browsers and Phone Networks</title>
+      <link>https://www.controvallc.com/blog/webrtc-to-sip-gateway-architecture</link>
+      <guid>https://www.controvallc.com/blog/webrtc-to-sip-gateway-architecture</guid>
+      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
+      <description>How to connect browser-based WebRTC clients to SIP infrastructure: the gateway's job, component options, codec and encryption translation, and the design choices that decide quality and scale.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>How to Set Up a coturn STUN/TURN Server for WebRTC and VoIP</title>
+      <link>https://www.controvallc.com/blog/coturn-stun-turn-server-setup</link>
+      <guid>https://www.controvallc.com/blog/coturn-stun-turn-server-setup</guid>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <description>coturn is the standard open-source STUN and TURN server. This guide covers what each role does, a working configuration, credentials, firewall ports, and how to test that relaying actually works.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>Kamailio Dispatcher Module: Load Balancing Configuration That Survives Failures</title>
+      <link>https://www.controvallc.com/blog/kamailio-dispatcher-load-balancing-config</link>
+      <guid>https://www.controvallc.com/blog/kamailio-dispatcher-load-balancing-config</guid>
+      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
+      <description>A practical guide to Kamailio's dispatcher module: destination sets, algorithms, health probing, failover, and configuration patterns for balancing traffic across FreeSWITCH or Asterisk nodes.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>FreeSWITCH Event Socket (ESL) Guide: Inbound vs Outbound Mode</title>
+      <link>https://www.controvallc.com/blog/freeswitch-event-socket-esl-guide</link>
+      <guid>https://www.controvallc.com/blog/freeswitch-event-socket-esl-guide</guid>
+      <pubDate>Sun, 25 Oct 2026 00:00:00 GMT</pubDate>
+      <description>The Event Socket Library lets external programs control FreeSWITCH calls in real time. Learn inbound and outbound modes, common commands and events, and design patterns for reliable call-control applications.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>FreeSWITCH XML Curl: Dynamic Configuration from Your Own API</title>
+      <link>https://www.controvallc.com/blog/freeswitch-xml-curl-dynamic-configuration</link>
+      <guid>https://www.controvallc.com/blog/freeswitch-xml-curl-dynamic-configuration</guid>
+      <pubDate>Sat, 24 Oct 2026 00:00:00 GMT</pubDate>
+      <description>mod_xml_curl lets FreeSWITCH fetch directory, dial plan, and configuration data from a web service at runtime. Learn how it works, when to use it, and how to keep it fast and safe.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>OpenSIPS vs Kamailio: Which SIP Server Should You Choose?</title>
+      <link>https://www.controvallc.com/blog/opensips-vs-kamailio</link>
+      <guid>https://www.controvallc.com/blog/opensips-vs-kamailio</guid>
+      <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
+      <description>OpenSIPS and Kamailio share a common origin and solve similar problems. This comparison covers architecture, scripting, performance, modules, community, and a practical way to decide between them.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>Auto Dialer Types, Compliance, and How to Build One</title>
+      <link>https://www.controvallc.com/blog/auto-dialer-types-compliance-build</link>
+      <guid>https://www.controvallc.com/blog/auto-dialer-types-compliance-build</guid>
+      <pubDate>Thu, 22 Oct 2026 00:00:00 GMT</pubDate>
+      <description>An auto dialer automatically places outbound calls. This guide compares the main types, explains the compliance rules that apply, and outlines how to build a dialer on FreeSWITCH or Asterisk.</description>
       <category>Telecom Compliance</category>
     </item>
 
     <item>
-      <title>10DLC Registration Guide: Brands, Campaigns, and Getting Business SMS Delivered</title>
-      <link>https://www.controvallc.com/blog/10dlc-registration-guide</link>
-      <guid>https://www.controvallc.com/blog/10dlc-registration-guide</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>10DLC is the registration system for business text messaging over standard 10-digit numbers in the US. Learn how brands and campaigns work, what vendors check, common rejection reasons, and how to keep deliverability healthy.</description>
+      <title>Predictive Dialer Architecture: How Outbound Dialing Engines Work</title>
+      <link>https://www.controvallc.com/blog/predictive-dialer-architecture</link>
+      <guid>https://www.controvallc.com/blog/predictive-dialer-architecture</guid>
+      <pubDate>Wed, 21 Oct 2026 00:00:00 GMT</pubDate>
+      <description>A predictive dialer places several calls per available agent to minimize idle time. Learn the dialing modes, the pacing algorithm, the abandonment trade-off, and the compliance rules that shape the design.</description>
       <category>Telecom Compliance</category>
     </item>
 
     <item>
-      <title>Call Spoofing Prevention: How Spoofing Works and How Businesses Can Defend Against It</title>
-      <link>https://www.controvallc.com/blog/call-spoofing-prevention-guide</link>
-      <guid>https://www.controvallc.com/blog/call-spoofing-prevention-guide</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>Call spoofing forges the caller ID shown to the recipient. Learn how spoofing works, the harm to your brand when your number is used, and the technical and procedural steps to prevent and respond to it.</description>
+      <title>Call Queue and ACD Routing Design: Strategies, Skills, and Service Levels</title>
+      <link>https://www.controvallc.com/blog/call-queue-acd-routing-design</link>
+      <guid>https://www.controvallc.com/blog/call-queue-acd-routing-design</guid>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 GMT</pubDate>
+      <description>An automatic call distributor (ACD) queues callers and routes them to the right agent. Learn the main routing strategies, skills-based design, queue metrics, and how to implement queues on FreeSWITCH and Asterisk.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>IVR Testing: Automated Strategies to Catch Broken Menus Before Callers Do</title>
+      <link>https://www.controvallc.com/blog/ivr-testing-automation-strategies</link>
+      <guid>https://www.controvallc.com/blog/ivr-testing-automation-strategies</guid>
+      <pubDate>Mon, 19 Oct 2026 00:00:00 GMT</pubDate>
+      <description>IVR systems fail quietly: a changed prompt, a dead integration, a menu loop. Learn the layers of IVR testing, from functional paths to load, and how to automate them so every release is verified.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>VoIP and SIP Monitoring with Homer and HEP: Capture, Search, and Alert</title>
+      <link>https://www.controvallc.com/blog/voip-monitoring-homer-hep-sip-capture</link>
+      <guid>https://www.controvallc.com/blog/voip-monitoring-homer-hep-sip-capture</guid>
+      <pubDate>Sun, 18 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Continuous SIP capture turns hours of guesswork into minutes. Learn how HEP-based capture with Homer works, what to monitor, and how to build useful dashboards and alerts for a VoIP platform.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>VoIP Jitter Buffer Explained: Static vs Adaptive, Sizing, and Trade-Offs</title>
+      <link>https://www.controvallc.com/blog/voip-jitter-buffer-explained</link>
+      <guid>https://www.controvallc.com/blog/voip-jitter-buffer-explained</guid>
+      <pubDate>Sat, 17 Oct 2026 00:00:00 GMT</pubDate>
+      <description>A jitter buffer smooths uneven packet arrival so audio plays evenly, at the price of added delay. Learn how static and adaptive buffers work, how to size them, and how to diagnose jitter problems.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>G.711 vs G.729: Codec Bandwidth, Quality, and When to Use Each</title>
+      <link>https://www.controvallc.com/blog/g711-vs-g729-codec-bandwidth</link>
+      <guid>https://www.controvallc.com/blog/g711-vs-g729-codec-bandwidth</guid>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <description>G.711 delivers high-quality audio at about 64 kbps of codec payload, while G.729 compresses to 8 kbps at some quality cost. Compare bandwidth, CPU, licensing, and transcoding trade-offs to choose the right codec.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>VoIP Latency: Causes, Acceptable Limits (G.114) and How to Reduce It</title>
+      <link>https://www.controvallc.com/blog/voip-latency-causes-and-fixes</link>
+      <guid>https://www.controvallc.com/blog/voip-latency-causes-and-fixes</guid>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <description>VoIP latency is the delay between speaking and being heard. What causes it, the G.114 limits, how to measure it, and the fixes that actually reduce it.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>DID Provider Evaluation Checklist: How to Choose Phone Number Suppliers for VoIP</title>
+      <link>https://www.controvallc.com/blog/did-provider-evaluation-checklist</link>
+      <guid>https://www.controvallc.com/blog/did-provider-evaluation-checklist</guid>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
+      <description>DIDs are the phone numbers that connect your platform to the PSTN. This checklist covers coverage, porting, quality, compliance, API capabilities, and contract terms to compare before choosing a provider.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>Wholesale VoIP Termination: How It Works, Pricing, Quality Metrics and Vendor Checklist</title>
+      <link>https://www.controvallc.com/blog/voip-wholesale-termination-business-guide</link>
+      <guid>https://www.controvallc.com/blog/voip-wholesale-termination-business-guide</guid>
+      <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
+      <description>A practical guide to wholesale VoIP termination: how calls reach the PSTN, how rates and increments work, which quality metrics to track, and how to evaluate carriers safely.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>What Is a Softswitch? Architecture, Components, and Use Cases</title>
+      <link>https://www.controvallc.com/blog/what-is-a-softswitch-architecture</link>
+      <guid>https://www.controvallc.com/blog/what-is-a-softswitch-architecture</guid>
+      <pubDate>Mon, 12 Oct 2026 00:00:00 GMT</pubDate>
+      <description>A softswitch is software that controls call routing and signaling between networks, replacing legacy telephone exchange hardware. Learn how softswitch architecture works and how it relates to SBCs, media servers, and PBXs.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>Class 4 vs Class 5 Softswitch: Which One Does Your VoIP Business Need?</title>
+      <link>https://www.controvallc.com/blog/class-4-vs-class-5-softswitch</link>
+      <guid>https://www.controvallc.com/blog/class-4-vs-class-5-softswitch</guid>
+      <pubDate>Sun, 11 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Class 4 softswitches route carrier-to-carrier wholesale traffic, while Class 5 softswitches provide subscriber features such as extensions and voicemail. This guide explains the difference and how to choose.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>Least Cost Routing (LCR) in VoIP: How It Works and How to Implement It</title>
+      <link>https://www.controvallc.com/blog/least-cost-routing-voip-lcr</link>
+      <guid>https://www.controvallc.com/blog/least-cost-routing-voip-lcr</guid>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Least cost routing sends each call to the cheapest carrier that meets your quality bar. Learn how LCR works, how to build a rate-based routing table, and why cost alone is the wrong metric.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>VoIP Billing System Architecture: Rating, Invoicing, and Real-Time Balance Control</title>
+      <link>https://www.controvallc.com/blog/voip-billing-system-architecture</link>
+      <guid>https://www.controvallc.com/blog/voip-billing-system-architecture</guid>
+      <pubDate>Fri, 09 Oct 2026 00:00:00 GMT</pubDate>
+      <description>How to design a VoIP billing system: ingesting CDRs, rating calls against rate decks, handling prepaid and postpaid balances, and enforcing limits in real time without losing records.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>Call Detail Records (CDR): Fields, Formats, KPIs and How to Build a CDR Pipeline</title>
+      <link>https://www.controvallc.com/blog/call-detail-records-cdr-explained</link>
+      <guid>https://www.controvallc.com/blog/call-detail-records-cdr-explained</guid>
+      <pubDate>Thu, 08 Oct 2026 00:00:00 GMT</pubDate>
+      <description>A call detail record (CDR) is the system's record of every call attempt. What fields it holds, how phone systems generate it, which KPIs to compute, and how to build a pipeline you can trust.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>FreeSWITCH Fail2ban and Firewall Hardening: Blocking SIP Attacks Automatically</title>
+      <link>https://www.controvallc.com/blog/freeswitch-fail2ban-firewall-hardening</link>
+      <guid>https://www.controvallc.com/blog/freeswitch-fail2ban-firewall-hardening</guid>
+      <pubDate>Wed, 07 Oct 2026 00:00:00 GMT</pubDate>
+      <description>A practical guide to protecting a FreeSWITCH server from SIP scanners and brute-force attempts using firewall rules, Fail2ban jails, and sensible Sofia profile settings.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>VoIP Fraud Detection with CDR Analysis: Signals, Thresholds, and Alerts</title>
+      <link>https://www.controvallc.com/blog/voip-fraud-detection-cdr-analysis</link>
+      <guid>https://www.controvallc.com/blog/voip-fraud-detection-cdr-analysis</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Call detail records reveal fraud patterns early if you know what to look for. This guide covers the key CDR fields, the signals that indicate abuse, and how to turn them into automated alerts.</description>
       <category>Telecom Compliance</category>
     </item>
 
     <item>
-      <title>SIP Trunk Provider Selection Checklist: 12 Questions to Ask Before You Sign</title>
-      <link>https://www.controvallc.com/blog/sip-trunk-provider-selection-checklist</link>
-      <guid>https://www.controvallc.com/blog/sip-trunk-provider-selection-checklist</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>Choosing a SIP trunk provider affects call quality, cost, and resilience for years. Use this checklist to compare coverage, redundancy, pricing, compliance, support, and exit terms, and to run a fair trial.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>How to Choose a VoIP Software Development Company: Questions, Red Flags, and Proof to Ask For</title>
-      <link>https://www.controvallc.com/blog/voip-software-development-company-how-to-choose</link>
-      <guid>https://www.controvallc.com/blog/voip-software-development-company-how-to-choose</guid>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>Hiring a VoIP development partner is different from hiring general web developers. Learn the skills to verify, the questions that expose real experience, the red flags, and how to structure an engagement that protects you.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>The Complete Buyer's Guide to SIP Trunking Providers in 2026</title>
-      <link>https://www.controvallc.com/blog/sip-trunking-buyers-guide-2026</link>
-      <guid>https://www.controvallc.com/blog/sip-trunking-buyers-guide-2026</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>How to evaluate SIP trunking providers on concurrency limits, codec support, geographic redundancy, and true per-minute economics before you sign a contract.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>STIR/SHAKEN Compliance: What Every VoIP Business Needs to Know in 2026</title>
-      <link>https://www.controvallc.com/blog/stir-shaken-compliance-voip-2026</link>
-      <guid>https://www.controvallc.com/blog/stir-shaken-compliance-voip-2026</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>A practical breakdown of STIR/SHAKEN attestation levels, why unattested calls get blocked or flagged as spam, and how to implement compliant caller ID authentication.</description>
+      <title>VoIP Toll Fraud Prevention: How Attacks Work and How to Stop Them</title>
+      <link>https://www.controvallc.com/blog/voip-toll-fraud-prevention</link>
+      <guid>https://www.controvallc.com/blog/voip-toll-fraud-prevention</guid>
+      <pubDate>Mon, 05 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Toll fraud turns a compromised phone system into a source of huge call charges. Learn the common attack patterns, the controls that prevent them, and how to detect and contain an incident quickly.</description>
       <category>Telecom Compliance</category>
     </item>
 
     <item>
-      <title>WebRTC vs SIP: Choosing the Right Protocol for Your Communication Platform</title>
-      <link>https://www.controvallc.com/blog/webrtc-vs-sip-protocol-comparison</link>
-      <guid>https://www.controvallc.com/blog/webrtc-vs-sip-protocol-comparison</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>WebRTC and SIP solve overlapping problems differently. Here is how to decide which protocol — or hybrid architecture — fits your product.</description>
+      <title>VoIP Security Best Practices: A Practical Hardening Checklist</title>
+      <link>https://www.controvallc.com/blog/voip-security-best-practices</link>
+      <guid>https://www.controvallc.com/blog/voip-security-best-practices</guid>
+      <pubDate>Sun, 04 Oct 2026 00:00:00 GMT</pubDate>
+      <description>The main threats to VoIP systems are toll fraud, credential attacks, eavesdropping, and denial of service. This checklist covers network, authentication, encryption, monitoring, and operational controls that reduce risk.</description>
       <category>VoIP Engineering</category>
     </item>
 
     <item>
-      <title>Building a Multi-Tenant PBX: Architecture Patterns for SaaS Telephony Providers</title>
-      <link>https://www.controvallc.com/blog/multi-tenant-pbx-architecture-saas</link>
-      <guid>https://www.controvallc.com/blog/multi-tenant-pbx-architecture-saas</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>The design decisions that determine whether a multi-tenant PBX scales to thousands of customers or collapses under cross-tenant contention.</description>
+      <title>SIP over TLS and SRTP: How to Secure VoIP Signaling and Media</title>
+      <link>https://www.controvallc.com/blog/sip-tls-srtp-secure-voip-setup</link>
+      <guid>https://www.controvallc.com/blog/sip-tls-srtp-secure-voip-setup</guid>
+      <pubDate>Sat, 03 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Plain SIP and RTP travel unencrypted. This guide explains how TLS protects signaling and SRTP protects audio, how to set them up, and the certificate and interoperability issues that cause most failed rollouts.</description>
       <category>VoIP Engineering</category>
     </item>
 
     <item>
-      <title>NAT Traversal for VoIP: STUN, TURN, and ICE Explained</title>
-      <link>https://www.controvallc.com/blog/nat-traversal-stun-turn-ice-voip</link>
-      <guid>https://www.controvallc.com/blog/nat-traversal-stun-turn-ice-voip</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>Why calls fail to connect behind corporate firewalls and home routers, and how STUN, TURN, and ICE solve the NAT traversal problem for real-time voice.</description>
+      <title>SIP Forking Explained: Parallel and Serial Ringing for Hunt Groups and Multi-Device Users</title>
+      <link>https://www.controvallc.com/blog/sip-forking-parallel-serial-ringing</link>
+      <guid>https://www.controvallc.com/blog/sip-forking-parallel-serial-ringing</guid>
+      <pubDate>Fri, 02 Oct 2026 00:00:00 GMT</pubDate>
+      <description>SIP forking lets one call ring several destinations at once or one after another. Learn how parallel and serial forking work, how proxies and B2BUAs implement them, and the pitfalls around early media and voicemail.</description>
       <category>VoIP Engineering</category>
     </item>
 
     <item>
-      <title>How AI Voice Agents Handle Interruptions: Engineering Barge-In Detection</title>
-      <link>https://www.controvallc.com/blog/barge-in-detection-voice-ai-agents</link>
-      <guid>https://www.controvallc.com/blog/barge-in-detection-voice-ai-agents</guid>
+      <title>SDP Offer/Answer Explained: How VoIP Endpoints Negotiate Codecs and Media</title>
+      <link>https://www.controvallc.com/blog/sdp-offer-answer-explained</link>
+      <guid>https://www.controvallc.com/blog/sdp-offer-answer-explained</guid>
+      <pubDate>Thu, 01 Oct 2026 00:00:00 GMT</pubDate>
+      <description>SDP describes the media in a SIP call: codecs, IP address, and ports. Learn how the offer/answer model works, how to read an SDP body, and the mistakes that cause one-way audio and failed codec negotiation.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>SIP Headers Reference Guide: Via, From, To, Contact, and Call-ID</title>
+      <link>https://www.controvallc.com/blog/sip-headers-reference-guide</link>
+      <guid>https://www.controvallc.com/blog/sip-headers-reference-guide</guid>
+      <pubDate>Wed, 30 Sep 2026 00:00:00 GMT</pubDate>
+      <description>A practical reference for the SIP headers engineers touch most: Via, From, To, Call-ID, CSeq, Contact, Record-Route, and P-Asserted-Identity, with what each does and what commonly breaks.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>SIP INVITE Call Flow Explained: From First Request to BYE</title>
+      <link>https://www.controvallc.com/blog/sip-invite-call-flow-explained</link>
+      <guid>https://www.controvallc.com/blog/sip-invite-call-flow-explained</guid>
+      <pubDate>Tue, 29 Sep 2026 00:00:00 GMT</pubDate>
+      <description>A step-by-step walkthrough of a SIP call: INVITE, 100 Trying, 180 Ringing, 200 OK, ACK, media, and BYE. Learn what each message does and how to read a call flow when something goes wrong.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>SIP Registration and Authentication Explained: Digest, Nonces, and Expiry</title>
+      <link>https://www.controvallc.com/blog/sip-registration-authentication-explained</link>
+      <guid>https://www.controvallc.com/blog/sip-registration-authentication-explained</guid>
+      <pubDate>Mon, 28 Sep 2026 00:00:00 GMT</pubDate>
+      <description>How a SIP device registers, why the first REGISTER gets a 401, and how digest authentication, expiry, and keep-alives work. Includes a troubleshooting checklist for failed registrations.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>What Is SIP? The Session Initiation Protocol Explained for Engineers</title>
+      <link>https://www.controvallc.com/blog/what-is-sip-protocol-how-it-works</link>
+      <guid>https://www.controvallc.com/blog/what-is-sip-protocol-how-it-works</guid>
+      <pubDate>Sun, 27 Sep 2026 00:00:00 GMT</pubDate>
+      <description>SIP is the signaling protocol that sets up, modifies, and ends voice and video sessions over IP. This guide explains how SIP works, what its core components do, and where it fits next to RTP, SDP, and WebRTC.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>SIP Response Codes Explained: Troubleshooting 403, 408, and 503 Errors</title>
+      <link>https://www.controvallc.com/blog/sip-response-codes-403-408-503-troubleshooting</link>
+      <guid>https://www.controvallc.com/blog/sip-response-codes-403-408-503-troubleshooting</guid>
+      <pubDate>Sat, 26 Sep 2026 00:00:00 GMT</pubDate>
+      <description>SIP response codes tell you exactly where a call failed, if you know how to read them. This guide explains the 4xx, 5xx, and 6xx families and gives a practical troubleshooting path for 403 Forbidden, 408 Request Timeout, and 503 Service Unavailable.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>Building an Open-Source SBC with Kamailio and rtpengine</title>
+      <link>https://www.controvallc.com/blog/open-source-sbc-kamailio-rtpengine</link>
+      <guid>https://www.controvallc.com/blog/open-source-sbc-kamailio-rtpengine</guid>
+      <pubDate>Fri, 25 Sep 2026 00:00:00 GMT</pubDate>
+      <description>You can build a capable session border controller from open-source parts. This guide explains how Kamailio and rtpengine work together, what they do well, and where a commercial SBC is still the better choice.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>VoIP Quality Testing: MOS, Jitter, Packet Loss, and the Tools to Measure Them</title>
+      <link>https://www.controvallc.com/blog/voip-quality-testing-mos-jitter-packet-loss</link>
+      <guid>https://www.controvallc.com/blog/voip-quality-testing-mos-jitter-packet-loss</guid>
+      <pubDate>Thu, 24 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Bad call quality is rarely random. This guide explains the metrics that define VoIP quality, how to test them before and after launch, and which open-source tools are used to do it.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>SIP Trunk vs PRI: Differences, Costs, and How to Migrate</title>
+      <link>https://www.controvallc.com/blog/sip-trunk-vs-pri-differences-migration</link>
+      <guid>https://www.controvallc.com/blog/sip-trunk-vs-pri-differences-migration</guid>
+      <pubDate>Wed, 23 Sep 2026 00:00:00 GMT</pubDate>
+      <description>PRI and SIP trunking both connect a business phone system to the public telephone network, but they work very differently. Here is how they compare on cost, scalability, reliability, and migration.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>Pipecat vs LiveKit Agents: Choosing a Framework for Real-Time Voice AI</title>
+      <link>https://www.controvallc.com/blog/pipecat-vs-livekit-agents-voice-ai-framework</link>
+      <guid>https://www.controvallc.com/blog/pipecat-vs-livekit-agents-voice-ai-framework</guid>
       <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>Natural conversation requires letting callers interrupt mid-sentence. Here is how modern voice AI pipelines detect and respond to barge-in in real time.</description>
+      <description>Pipecat and LiveKit Agents are two popular open-source frameworks for building voice AI agents. Here is how they differ in architecture, transport, and operations, and how to choose between them.</description>
       <category>Voice AI</category>
     </item>
 
     <item>
-      <title>AI Receptionist for Dental Practices and DSOs: How It Works, Integrations and HIPAA</title>
-      <link>https://www.controvallc.com/blog/ai-receptionist-dental-practices</link>
-      <guid>https://www.controvallc.com/blog/ai-receptionist-dental-practices</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>How a dental AI receptionist answers calls, books appointments, and escalates emergencies, what it takes to integrate with practice software, and what DSOs and HIPAA require.</description>
+      <title>HIPAA Compliant VoIP: Requirements, Architecture, and a Practical Checklist</title>
+      <link>https://www.controvallc.com/blog/hipaa-compliant-voip-requirements-architecture</link>
+      <guid>https://www.controvallc.com/blog/hipaa-compliant-voip-requirements-architecture</guid>
+      <pubDate>Mon, 21 Sep 2026 00:00:00 GMT</pubDate>
+      <description>What makes a VoIP system HIPAA compliant? This guide covers the technical safeguards, business associate agreements, call recording and voicemail rules, and the architecture decisions that matter for healthcare practices.</description>
+      <category>Healthcare &amp; Compliance</category>
+    </item>
+
+    <item>
+      <title>AI Outbound Calling: Architecture, Compliance, and What Actually Works</title>
+      <link>https://www.controvallc.com/blog/ai-outbound-calling-architecture-compliance</link>
+      <guid>https://www.controvallc.com/blog/ai-outbound-calling-architecture-compliance</guid>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 GMT</pubDate>
+      <description>AI outbound calling uses voice agents to place calls at scale, from appointment reminders to lead follow-up. Here is how the system is built, what the legal guardrails are in the US, and where teams go wrong.</description>
       <category>Voice AI</category>
     </item>
 
     <item>
-      <title>What Is a Session Border Controller (SBC)? Functions, Architecture and Open-Source Options</title>
-      <link>https://www.controvallc.com/blog/session-border-controller-architecture</link>
-      <guid>https://www.controvallc.com/blog/session-border-controller-architecture</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>What a session border controller does, how it differs from a firewall or SIP proxy, how to deploy one, and how to build an open-source SBC with Kamailio and rtpengine.</description>
+      <title>White Label VoIP: How to Build or Choose a Platform That Scales</title>
+      <link>https://www.controvallc.com/blog/white-label-voip-platform-architecture</link>
+      <guid>https://www.controvallc.com/blog/white-label-voip-platform-architecture</guid>
+      <pubDate>Sat, 19 Sep 2026 00:00:00 GMT</pubDate>
+      <description>What goes into a white label VoIP platform, from softswitch and billing to multi-tenancy and U.S. compliance, and how to decide whether to build, buy, or combine both.</description>
       <category>VoIP Engineering</category>
     </item>
 
     <item>
-      <title>Twilio vs Custom SIP: A Real Cost Breakdown at Scale</title>
-      <link>https://www.controvallc.com/blog/twilio-vs-custom-sip-cost-breakdown</link>
-      <guid>https://www.controvallc.com/blog/twilio-vs-custom-sip-cost-breakdown</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>The per-minute rate on a Twilio invoice is only part of the story. Here is what the actual cost curve looks like once call volume crosses enterprise scale.</description>
+      <title>Twilio Alternatives for Voice: CPaaS, SIP Trunks and Open-Source Stacks Compared</title>
+      <link>https://www.controvallc.com/blog/twilio-alternatives-voice-engineering-guide</link>
+      <guid>https://www.controvallc.com/blog/twilio-alternatives-voice-engineering-guide</guid>
+      <pubDate>Fri, 18 Sep 2026 00:00:00 GMT</pubDate>
+      <description>The right Twilio alternative depends on why you are leaving. A practical comparison of CPaaS rivals, BYOC SIP trunking, and self-hosted open-source voice, with a migration plan.</description>
       <category>VoIP Engineering</category>
     </item>
 
     <item>
-      <title>AI Voice Agents for Real Estate: Never Miss a Lead Call Again</title>
-      <link>https://www.controvallc.com/blog/ai-voice-agents-real-estate</link>
-      <guid>https://www.controvallc.com/blog/ai-voice-agents-real-estate</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>How real estate teams use AI voice agents to qualify inbound buyer and seller calls, schedule showings, and follow up on listing inquiries around the clock.</description>
-      <category>Industry Solutions</category>
-    </item>
-
-    <item>
-      <title>Codec Selection for Voice AI: Why Opus is Replacing G.711 in Modern Pipelines</title>
-      <link>https://www.controvallc.com/blog/opus-vs-g711-codec-voice-ai</link>
-      <guid>https://www.controvallc.com/blog/opus-vs-g711-codec-voice-ai</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>A technical comparison of Opus and G.711 for real-time voice AI, and why codec choice directly determines transcription accuracy and perceived latency.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>Scaling FreeSWITCH Horizontally: A Guide to Clustering and Load Balancing with Kamailio</title>
-      <link>https://www.controvallc.com/blog/freeswitch-horizontal-scaling-kamailio</link>
-      <guid>https://www.controvallc.com/blog/freeswitch-horizontal-scaling-kamailio</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>How to move from a single FreeSWITCH box to a horizontally scaled cluster fronted by Kamailio, without breaking call state or media continuity.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>TCPA Compliance for AI Outbound Calling: What You Need to Know</title>
-      <link>https://www.controvallc.com/blog/tcpa-compliance-ai-outbound-calling</link>
-      <guid>https://www.controvallc.com/blog/tcpa-compliance-ai-outbound-calling</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>AI-powered outbound calling introduces new TCPA risk. Here is what enterprises need in place before automating outbound voice at scale.</description>
-      <category>Telecom Compliance</category>
-    </item>
-
-    <item>
-      <title>AI Receptionist for Law Firms: Client Intake Without the Wait</title>
-      <link>https://www.controvallc.com/blog/ai-receptionist-law-firms-intake</link>
-      <guid>https://www.controvallc.com/blog/ai-receptionist-law-firms-intake</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>How law firms use AI receptionists to capture new client intake calls, screen for conflicts, and schedule consultations without losing leads to voicemail.</description>
-      <category>Industry Solutions</category>
-    </item>
-
-    <item>
-      <title>Number Porting for Enterprise VoIP: A Step-by-Step Migration Guide</title>
-      <link>https://www.controvallc.com/blog/number-porting-enterprise-voip-guide</link>
-      <guid>https://www.controvallc.com/blog/number-porting-enterprise-voip-guide</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>A practical walkthrough of porting phone numbers to a new VoIP provider without dropping service, from LOA paperwork to the final cutover window.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>E911 Compliance for VoIP: What Changed with Kari's Law and RAY BAUM'S Act</title>
-      <link>https://www.controvallc.com/blog/e911-compliance-voip-karis-law</link>
-      <guid>https://www.controvallc.com/blog/e911-compliance-voip-karis-law</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>Kari's Law and RAY BAUM'S Act changed 911 requirements for multi-line telephone systems. Here is what VoIP deployments need to be compliant.</description>
-      <category>Telecom Compliance</category>
-    </item>
-
-    <item>
-      <title>Voice Biometrics and Fraud Detection in Autonomous Phone Systems</title>
-      <link>https://www.controvallc.com/blog/voice-biometrics-fraud-detection-ai</link>
-      <guid>https://www.controvallc.com/blog/voice-biometrics-fraud-detection-ai</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>How voice biometrics and behavioral signals help autonomous phone systems detect fraud and verify caller identity without adding friction to legitimate calls.</description>
-      <category>Voice AI</category>
-    </item>
-
-    <item>
-      <title>AI Voice Agents for Home Services: Answering Every HVAC and Plumbing Call</title>
-      <link>https://www.controvallc.com/blog/ai-voice-agents-home-services-hvac</link>
-      <guid>https://www.controvallc.com/blog/ai-voice-agents-home-services-hvac</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>How HVAC, plumbing, and home service companies use AI voice agents to book emergency service calls and estimate requests without losing business to voicemail.</description>
-      <category>Industry Solutions</category>
-    </item>
-
-    <item>
-      <title>The Engineering Behind Sub-500ms Speech-to-Text: Streaming ASR Pipelines Explained</title>
-      <link>https://www.controvallc.com/blog/streaming-asr-pipeline-latency</link>
-      <guid>https://www.controvallc.com/blog/streaming-asr-pipeline-latency</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>Why batch transcription is too slow for conversational voice AI, and how streaming ASR architectures achieve the latency needed for natural dialogue.</description>
-      <category>Voice AI</category>
-    </item>
-
-    <item>
-      <title>Mod_callcenter Deep Dive: Building Enterprise Call Queues in FreeSWITCH</title>
-      <link>https://www.controvallc.com/blog/mod-callcenter-freeswitch-queues</link>
-      <guid>https://www.controvallc.com/blog/mod-callcenter-freeswitch-queues</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>A practical guide to configuring FreeSWITCH mod_callcenter for skills-based routing, queue strategies, and real-time agent management.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>AI Receptionists for E-Commerce: Automating Order Status and Returns by Phone</title>
-      <link>https://www.controvallc.com/blog/ai-receptionist-ecommerce-order-support</link>
-      <guid>https://www.controvallc.com/blog/ai-receptionist-ecommerce-order-support</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>How e-commerce and DTC brands use AI voice agents to handle order status, returns, and shipping questions by phone without scaling a call center team.</description>
-      <category>Industry Solutions</category>
-    </item>
-
-    <item>
-      <title>Disaster Recovery for VoIP: Designing Failover That Actually Works</title>
-      <link>https://www.controvallc.com/blog/voip-disaster-recovery-failover-design</link>
-      <guid>https://www.controvallc.com/blog/voip-disaster-recovery-failover-design</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>Most VoIP failover plans have never actually been tested. Here is how to design and validate disaster recovery that holds up during a real outage.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>Call Recording Compliance: A State-by-State Guide for VoIP Businesses</title>
-      <link>https://www.controvallc.com/blog/call-recording-compliance-state-guide</link>
-      <guid>https://www.controvallc.com/blog/call-recording-compliance-state-guide</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>One-party versus two-party consent laws vary significantly by state. Here is what VoIP businesses need to know before recording any call.</description>
-      <category>Telecom Compliance</category>
-    </item>
-
-    <item>
-      <title>Function Calling for Phone Agents: How LLMs Actually Book Appointments</title>
-      <link>https://www.controvallc.com/blog/llm-function-calling-phone-agents</link>
-      <guid>https://www.controvallc.com/blog/llm-function-calling-phone-agents</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>The technical mechanism that lets a voice AI agent check a real calendar and book a real appointment mid-conversation, explained.</description>
-      <category>Voice AI</category>
-    </item>
-
-    <item>
-      <title>RTP and SRTP Explained: Securing Real-Time Voice Traffic</title>
-      <link>https://www.controvallc.com/blog/rtp-srtp-voice-encryption-explained</link>
-      <guid>https://www.controvallc.com/blog/rtp-srtp-voice-encryption-explained</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>How RTP carries voice media across a VoIP call, why unencrypted RTP is a real eavesdropping risk, and what SRTP changes.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>AI Voice Agents for Restaurants: Handling Reservations and Orders 24/7</title>
-      <link>https://www.controvallc.com/blog/ai-voice-agents-restaurants-reservations</link>
-      <guid>https://www.controvallc.com/blog/ai-voice-agents-restaurants-reservations</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>How restaurants use AI voice agents to take reservations, phone orders, and answer common questions without pulling staff off the floor.</description>
-      <category>Industry Solutions</category>
-    </item>
-
-    <item>
-      <title>Salesforce + VoIP Integration: Building a Click-to-Call CRM Workflow</title>
-      <link>https://www.controvallc.com/blog/salesforce-voip-integration-click-to-call</link>
-      <guid>https://www.controvallc.com/blog/salesforce-voip-integration-click-to-call</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>How to architect a Salesforce-integrated VoIP system that logs every call automatically and gives sales teams click-to-call without leaving the CRM.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>Multi-Language Voice AI: Architecting Real-Time Translation for Phone Support</title>
-      <link>https://www.controvallc.com/blog/multi-language-voice-ai-translation</link>
-      <guid>https://www.controvallc.com/blog/multi-language-voice-ai-translation</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>The technical approach behind voice AI agents that can converse fluently in multiple languages, and where real-time translation pipelines still struggle.</description>
-      <category>Voice AI</category>
-    </item>
-
-    <item>
-      <title>HubSpot + AI Receptionist: Automating Lead Capture from Every Missed Call</title>
-      <link>https://www.controvallc.com/blog/hubspot-ai-receptionist-lead-capture</link>
-      <guid>https://www.controvallc.com/blog/hubspot-ai-receptionist-lead-capture</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>How to wire an AI receptionist directly into HubSpot so every inbound call becomes a tracked, enriched lead automatically.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>Financial Services VoIP: Meeting FINRA and SEC Call Recording Requirements</title>
-      <link>https://www.controvallc.com/blog/financial-services-voip-finra-sec-compliance</link>
-      <guid>https://www.controvallc.com/blog/financial-services-voip-finra-sec-compliance</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>What broker-dealers and financial services firms need in their VoIP infrastructure to meet FINRA Rule 3110 and SEC recordkeeping requirements.</description>
-      <category>Telecom Compliance</category>
-    </item>
-
-    <item>
-      <title>WebRTC Screen Sharing for Support Teams: Building Co-Browsing Into Your App</title>
-      <link>https://www.controvallc.com/blog/webrtc-screen-sharing-support-teams</link>
-      <guid>https://www.controvallc.com/blog/webrtc-screen-sharing-support-teams</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>How to add live screen sharing and co-browsing to a support workflow using WebRTC, and where it delivers the biggest resolution-time wins.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>Legacy PBX to Cloud Migration: A Zero-Downtime Playbook</title>
-      <link>https://www.controvallc.com/blog/pbx-to-cloud-migration-zero-downtime</link>
-      <guid>https://www.controvallc.com/blog/pbx-to-cloud-migration-zero-downtime</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>A practical migration sequence for moving off a legacy on-premise PBX to a cloud VoIP platform without a disruptive cutover weekend.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>The Economics of BYOC: Why Enterprises Are Bringing Their Own Carrier</title>
-      <link>https://www.controvallc.com/blog/byoc-economics-enterprise-carrier</link>
-      <guid>https://www.controvallc.com/blog/byoc-economics-enterprise-carrier</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>BYOC decouples the platform from the carrier relationship. Here is the actual cost and control logic behind why enterprises are adopting it.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>AI Voice Agents for Logistics: Automating Dispatch and Delivery Status Calls</title>
-      <link>https://www.controvallc.com/blog/ai-voice-agents-logistics-dispatch</link>
-      <guid>https://www.controvallc.com/blog/ai-voice-agents-logistics-dispatch</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>How logistics and delivery companies use AI voice agents to handle driver dispatch calls, delivery status inquiries, and reschedule requests at scale.</description>
-      <category>Industry Solutions</category>
-    </item>
-
-    <item>
-      <title>Designing IVR Flows That Don't Frustrate Callers: A UX Engineering Guide</title>
-      <link>https://www.controvallc.com/blog/ivr-design-patterns-caller-experience</link>
-      <guid>https://www.controvallc.com/blog/ivr-design-patterns-caller-experience</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>Most IVR menus are designed around internal org charts, not caller intent. Here is how to design call flows that actually get people where they need to go.</description>
-      <category>Voice AI</category>
-    </item>
-
-    <item>
-      <title>High-Concurrency SIP Trunking: Load Testing Your Infrastructure Before It Breaks</title>
-      <link>https://www.controvallc.com/blog/sip-trunking-load-testing-concurrency</link>
-      <guid>https://www.controvallc.com/blog/sip-trunking-load-testing-concurrency</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>How to properly load test SIP trunking infrastructure to find the real breaking point before a traffic spike finds it for you.</description>
-      <category>VoIP Engineering</category>
-    </item>
-
-    <item>
-      <title>AI Receptionist ROI Calculator: What Are Missed Calls Actually Costing You?</title>
-      <link>https://www.controvallc.com/blog/ai-receptionist-roi-missed-calls-cost</link>
-      <guid>https://www.controvallc.com/blog/ai-receptionist-roi-missed-calls-cost</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>A framework for calculating the true cost of missed calls, and the ROI math businesses should run before and after deploying an AI receptionist.</description>
-      <category>Industry Solutions</category>
-    </item>
-
-    <item>
-      <title>Text-to-Speech Latency Optimization: Streaming TTS for Natural Conversations</title>
-      <link>https://www.controvallc.com/blog/tts-latency-optimization-streaming</link>
-      <guid>https://www.controvallc.com/blog/tts-latency-optimization-streaming</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>Why waiting for a full TTS render before playback kills conversational flow, and how streaming synthesis gets voice AI agents to first-audio in milliseconds.</description>
-      <category>Voice AI</category>
-    </item>
-
-    <item>
-      <title>Zoom Phone, RingCentral, and Vonage: How Custom VoIP Compares for Enterprise</title>
-      <link>https://www.controvallc.com/blog/ringcentral-vonage-vs-custom-voip</link>
-      <guid>https://www.controvallc.com/blog/ringcentral-vonage-vs-custom-voip</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>A practical comparison of major UCaaS platforms against a custom-built VoIP architecture for enterprises with complex requirements.</description>
+      <title>SIP ALG: What It Is, Why It Breaks VoIP Calls, and How to Disable It</title>
+      <link>https://www.controvallc.com/blog/sip-alg-what-it-is-how-to-disable</link>
+      <guid>https://www.controvallc.com/blog/sip-alg-what-it-is-how-to-disable</guid>
+      <pubDate>Thu, 17 Sep 2026 00:00:00 GMT</pubDate>
+      <description>SIP ALG rewrites SIP packets inside routers and firewalls and is a leading cause of one-way audio, failed registrations, and calls that drop. How to diagnose it and fix it.</description>
       <category>VoIP Engineering</category>
     </item>
 
@@ -930,44 +579,233 @@
       <title>The Future of Voice AI: What's Next After the AI Receptionist</title>
       <link>https://www.controvallc.com/blog/future-of-voice-ai-2027-outlook</link>
       <guid>https://www.controvallc.com/blog/future-of-voice-ai-2027-outlook</guid>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
+      <pubDate>Wed, 16 Sep 2026 00:00:00 GMT</pubDate>
       <description>Where voice AI infrastructure is heading beyond basic call answering — proactive outbound intelligence, agentic workflows, and deeper system autonomy.</description>
       <category>Voice AI</category>
     </item>
 
     <item>
-      <title>Architecting Sub-500ms AI Voice Agents: The Kamailio + FreeSWITCH Hybrid Pipeline</title>
-      <link>https://www.controvallc.com/blog/architecting-sub-500ms-ai-voice-agents</link>
-      <guid>https://www.controvallc.com/blog/architecting-sub-500ms-ai-voice-agents</guid>
-      <pubDate>Mon, 07 Sep 2026 00:00:00 GMT</pubDate>
-      <description>An engineering deep-dive into separating SIP signaling and media processing to build ultra-low-latency voice AI agents that handle thousands of concurrent calls with instant barge-in.</description>
-      <category>Telephony &amp; AI Engineering</category>
+      <title>Zoom Phone, RingCentral, and Vonage: How Custom VoIP Compares for Enterprise</title>
+      <link>https://www.controvallc.com/blog/ringcentral-vonage-vs-custom-voip</link>
+      <guid>https://www.controvallc.com/blog/ringcentral-vonage-vs-custom-voip</guid>
+      <pubDate>Tue, 15 Sep 2026 00:00:00 GMT</pubDate>
+      <description>A practical comparison of major UCaaS platforms against a custom-built VoIP architecture for enterprises with complex requirements.</description>
+      <category>VoIP Engineering</category>
     </item>
 
     <item>
-      <title>The CPaaS Margin Trap: Building a Twilio Alternative with Custom SIP &amp; BYOC</title>
-      <link>https://www.controvallc.com/blog/cpaas-margin-trap-byoc-sip-savings</link>
-      <guid>https://www.controvallc.com/blog/cpaas-margin-trap-byoc-sip-savings</guid>
-      <pubDate>Mon, 07 Sep 2026 00:00:00 GMT</pubDate>
-      <description>How enterprise contact centers are slashing telephony bills by 80% by migrating from proprietary CPaaS platforms to custom open-source SIP proxies and wholesale carrier routing.</description>
-      <category>Infrastructure &amp; ROI</category>
+      <title>Text-to-Speech Latency Optimization: Streaming TTS for Natural Conversations</title>
+      <link>https://www.controvallc.com/blog/tts-latency-optimization-streaming</link>
+      <guid>https://www.controvallc.com/blog/tts-latency-optimization-streaming</guid>
+      <pubDate>Mon, 14 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Why waiting for a full TTS render before playback kills conversational flow, and how streaming synthesis gets voice AI agents to first-audio in milliseconds.</description>
+      <category>Voice AI</category>
     </item>
 
     <item>
-      <title>The Complete Guide to HIPAA-Compliant Voice AI: Securing Autonomous Phone Agents for Clinics</title>
-      <link>https://www.controvallc.com/blog/hipaa-compliant-voice-ai-guide</link>
-      <guid>https://www.controvallc.com/blog/hipaa-compliant-voice-ai-guide</guid>
-      <pubDate>Mon, 07 Sep 2026 00:00:00 GMT</pubDate>
-      <description>A comprehensive blueprint for healthcare leaders to deploy AI medical receptionists and answering services with end-to-end SRTP encryption, BAA compliance, and EHR integration.</description>
-      <category>Healthcare &amp; Compliance</category>
+      <title>AI Receptionist ROI Calculator: What Are Missed Calls Actually Costing You?</title>
+      <link>https://www.controvallc.com/blog/ai-receptionist-roi-missed-calls-cost</link>
+      <guid>https://www.controvallc.com/blog/ai-receptionist-roi-missed-calls-cost</guid>
+      <pubDate>Sun, 13 Sep 2026 00:00:00 GMT</pubDate>
+      <description>A framework for calculating the true cost of missed calls, and the ROI math businesses should run before and after deploying an AI receptionist.</description>
+      <category>Industry Solutions</category>
     </item>
 
     <item>
-      <title>Asterisk vs FreeSWITCH for AI Telephony: Why Modern Voice Infrastructure Requires Event-Driven Architecture</title>
-      <link>https://www.controvallc.com/blog/migrating-asterisk-to-freeswitch-concurrency</link>
-      <guid>https://www.controvallc.com/blog/migrating-asterisk-to-freeswitch-concurrency</guid>
+      <title>High-Concurrency SIP Trunking: Load Testing Your Infrastructure Before It Breaks</title>
+      <link>https://www.controvallc.com/blog/sip-trunking-load-testing-concurrency</link>
+      <guid>https://www.controvallc.com/blog/sip-trunking-load-testing-concurrency</guid>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 GMT</pubDate>
+      <description>How to properly load test SIP trunking infrastructure to find the real breaking point before a traffic spike finds it for you.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>Designing IVR Flows That Don't Frustrate Callers: A UX Engineering Guide</title>
+      <link>https://www.controvallc.com/blog/ivr-design-patterns-caller-experience</link>
+      <guid>https://www.controvallc.com/blog/ivr-design-patterns-caller-experience</guid>
+      <pubDate>Fri, 11 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Most IVR menus are designed around internal org charts, not caller intent. Here is how to design call flows that actually get people where they need to go.</description>
+      <category>Voice AI</category>
+    </item>
+
+    <item>
+      <title>AI Voice Agents for Logistics: Automating Dispatch and Delivery Status Calls</title>
+      <link>https://www.controvallc.com/blog/ai-voice-agents-logistics-dispatch</link>
+      <guid>https://www.controvallc.com/blog/ai-voice-agents-logistics-dispatch</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+      <description>How logistics and delivery companies use AI voice agents to handle driver dispatch calls, delivery status inquiries, and reschedule requests at scale.</description>
+      <category>Industry Solutions</category>
+    </item>
+
+    <item>
+      <title>The Economics of BYOC: Why Enterprises Are Bringing Their Own Carrier</title>
+      <link>https://www.controvallc.com/blog/byoc-economics-enterprise-carrier</link>
+      <guid>https://www.controvallc.com/blog/byoc-economics-enterprise-carrier</guid>
+      <pubDate>Wed, 09 Sep 2026 00:00:00 GMT</pubDate>
+      <description>BYOC decouples the platform from the carrier relationship. Here is the actual cost and control logic behind why enterprises are adopting it.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>Legacy PBX to Cloud Migration: A Zero-Downtime Playbook</title>
+      <link>https://www.controvallc.com/blog/pbx-to-cloud-migration-zero-downtime</link>
+      <guid>https://www.controvallc.com/blog/pbx-to-cloud-migration-zero-downtime</guid>
+      <pubDate>Tue, 08 Sep 2026 00:00:00 GMT</pubDate>
+      <description>A practical migration sequence for moving off a legacy on-premise PBX to a cloud VoIP platform without a disruptive cutover weekend.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>WebRTC Screen Sharing for Support Teams: Building Co-Browsing Into Your App</title>
+      <link>https://www.controvallc.com/blog/webrtc-screen-sharing-support-teams</link>
+      <guid>https://www.controvallc.com/blog/webrtc-screen-sharing-support-teams</guid>
       <pubDate>Mon, 07 Sep 2026 00:00:00 GMT</pubDate>
-      <description>A technical post-mortem on why Asterisk channel locking breaks under heavy concurrent voice AI streaming, and why FreeSWITCH ESL and modular cores are the modern standard.</description>
+      <description>How to add live screen sharing and co-browsing to a support workflow using WebRTC, and where it delivers the biggest resolution-time wins.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>Financial Services VoIP: Meeting FINRA and SEC Call Recording Requirements</title>
+      <link>https://www.controvallc.com/blog/financial-services-voip-finra-sec-compliance</link>
+      <guid>https://www.controvallc.com/blog/financial-services-voip-finra-sec-compliance</guid>
+      <pubDate>Sun, 06 Sep 2026 00:00:00 GMT</pubDate>
+      <description>What broker-dealers and financial services firms need in their VoIP infrastructure to meet FINRA Rule 3110 and SEC recordkeeping requirements.</description>
+      <category>Telecom Compliance</category>
+    </item>
+
+    <item>
+      <title>HubSpot + AI Receptionist: Automating Lead Capture from Every Missed Call</title>
+      <link>https://www.controvallc.com/blog/hubspot-ai-receptionist-lead-capture</link>
+      <guid>https://www.controvallc.com/blog/hubspot-ai-receptionist-lead-capture</guid>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 GMT</pubDate>
+      <description>How to wire an AI receptionist directly into HubSpot so every inbound call becomes a tracked, enriched lead automatically.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>Multi-Language Voice AI: Architecting Real-Time Translation for Phone Support</title>
+      <link>https://www.controvallc.com/blog/multi-language-voice-ai-translation</link>
+      <guid>https://www.controvallc.com/blog/multi-language-voice-ai-translation</guid>
+      <pubDate>Fri, 04 Sep 2026 00:00:00 GMT</pubDate>
+      <description>The technical approach behind voice AI agents that can converse fluently in multiple languages, and where real-time translation pipelines still struggle.</description>
+      <category>Voice AI</category>
+    </item>
+
+    <item>
+      <title>Salesforce + VoIP Integration: Building a Click-to-Call CRM Workflow</title>
+      <link>https://www.controvallc.com/blog/salesforce-voip-integration-click-to-call</link>
+      <guid>https://www.controvallc.com/blog/salesforce-voip-integration-click-to-call</guid>
+      <pubDate>Thu, 03 Sep 2026 00:00:00 GMT</pubDate>
+      <description>How to architect a Salesforce-integrated VoIP system that logs every call automatically and gives sales teams click-to-call without leaving the CRM.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>AI Voice Agents for Restaurants: Handling Reservations and Orders 24/7</title>
+      <link>https://www.controvallc.com/blog/ai-voice-agents-restaurants-reservations</link>
+      <guid>https://www.controvallc.com/blog/ai-voice-agents-restaurants-reservations</guid>
+      <pubDate>Wed, 02 Sep 2026 00:00:00 GMT</pubDate>
+      <description>How restaurants use AI voice agents to take reservations, phone orders, and answer common questions without pulling staff off the floor.</description>
+      <category>Industry Solutions</category>
+    </item>
+
+    <item>
+      <title>RTP and SRTP Explained: Securing Real-Time Voice Traffic</title>
+      <link>https://www.controvallc.com/blog/rtp-srtp-voice-encryption-explained</link>
+      <guid>https://www.controvallc.com/blog/rtp-srtp-voice-encryption-explained</guid>
+      <pubDate>Tue, 01 Sep 2026 00:00:00 GMT</pubDate>
+      <description>How RTP carries voice media across a VoIP call, why unencrypted RTP is a real eavesdropping risk, and what SRTP changes.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>Function Calling for Phone Agents: How LLMs Actually Book Appointments</title>
+      <link>https://www.controvallc.com/blog/llm-function-calling-phone-agents</link>
+      <guid>https://www.controvallc.com/blog/llm-function-calling-phone-agents</guid>
+      <pubDate>Mon, 31 Aug 2026 00:00:00 GMT</pubDate>
+      <description>The technical mechanism that lets a voice AI agent check a real calendar and book a real appointment mid-conversation, explained.</description>
+      <category>Voice AI</category>
+    </item>
+
+    <item>
+      <title>Call Recording Compliance: A State-by-State Guide for VoIP Businesses</title>
+      <link>https://www.controvallc.com/blog/call-recording-compliance-state-guide</link>
+      <guid>https://www.controvallc.com/blog/call-recording-compliance-state-guide</guid>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 GMT</pubDate>
+      <description>One-party versus two-party consent laws vary significantly by state. Here is what VoIP businesses need to know before recording any call.</description>
+      <category>Telecom Compliance</category>
+    </item>
+
+    <item>
+      <title>Disaster Recovery for VoIP: Designing Failover That Actually Works</title>
+      <link>https://www.controvallc.com/blog/voip-disaster-recovery-failover-design</link>
+      <guid>https://www.controvallc.com/blog/voip-disaster-recovery-failover-design</guid>
+      <pubDate>Sat, 29 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Most VoIP failover plans have never actually been tested. Here is how to design and validate disaster recovery that holds up during a real outage.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>AI Receptionists for E-Commerce: Automating Order Status and Returns by Phone</title>
+      <link>https://www.controvallc.com/blog/ai-receptionist-ecommerce-order-support</link>
+      <guid>https://www.controvallc.com/blog/ai-receptionist-ecommerce-order-support</guid>
+      <pubDate>Fri, 28 Aug 2026 00:00:00 GMT</pubDate>
+      <description>How e-commerce and DTC brands use AI voice agents to handle order status, returns, and shipping questions by phone without scaling a call center team.</description>
+      <category>Industry Solutions</category>
+    </item>
+
+    <item>
+      <title>Mod_callcenter Deep Dive: Building Enterprise Call Queues in FreeSWITCH</title>
+      <link>https://www.controvallc.com/blog/mod-callcenter-freeswitch-queues</link>
+      <guid>https://www.controvallc.com/blog/mod-callcenter-freeswitch-queues</guid>
+      <pubDate>Thu, 27 Aug 2026 00:00:00 GMT</pubDate>
+      <description>A practical guide to configuring FreeSWITCH mod_callcenter for skills-based routing, queue strategies, and real-time agent management.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>The Engineering Behind Sub-500ms Speech-to-Text: Streaming ASR Pipelines Explained</title>
+      <link>https://www.controvallc.com/blog/streaming-asr-pipeline-latency</link>
+      <guid>https://www.controvallc.com/blog/streaming-asr-pipeline-latency</guid>
+      <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Why batch transcription is too slow for conversational voice AI, and how streaming ASR architectures achieve the latency needed for natural dialogue.</description>
+      <category>Voice AI</category>
+    </item>
+
+    <item>
+      <title>AI Voice Agents for Home Services: Answering Every HVAC and Plumbing Call</title>
+      <link>https://www.controvallc.com/blog/ai-voice-agents-home-services-hvac</link>
+      <guid>https://www.controvallc.com/blog/ai-voice-agents-home-services-hvac</guid>
+      <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
+      <description>How HVAC, plumbing, and home service companies use AI voice agents to book emergency service calls and estimate requests without losing business to voicemail.</description>
+      <category>Industry Solutions</category>
+    </item>
+
+    <item>
+      <title>Voice Biometrics and Fraud Detection in Autonomous Phone Systems</title>
+      <link>https://www.controvallc.com/blog/voice-biometrics-fraud-detection-ai</link>
+      <guid>https://www.controvallc.com/blog/voice-biometrics-fraud-detection-ai</guid>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 GMT</pubDate>
+      <description>How voice biometrics and behavioral signals help autonomous phone systems detect fraud and verify caller identity without adding friction to legitimate calls.</description>
+      <category>Voice AI</category>
+    </item>
+
+    <item>
+      <title>E911 Compliance for VoIP: What Changed with Kari's Law and RAY BAUM'S Act</title>
+      <link>https://www.controvallc.com/blog/e911-compliance-voip-karis-law</link>
+      <guid>https://www.controvallc.com/blog/e911-compliance-voip-karis-law</guid>
+      <pubDate>Sun, 23 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Kari's Law and RAY BAUM'S Act changed 911 requirements for multi-line telephone systems. Here is what VoIP deployments need to be compliant.</description>
+      <category>Telecom Compliance</category>
+    </item>
+
+    <item>
+      <title>Number Porting for Enterprise VoIP: A Step-by-Step Migration Guide</title>
+      <link>https://www.controvallc.com/blog/number-porting-enterprise-voip-guide</link>
+      <guid>https://www.controvallc.com/blog/number-porting-enterprise-voip-guide</guid>
+      <pubDate>Sat, 22 Aug 2026 00:00:00 GMT</pubDate>
+      <description>A practical walkthrough of porting phone numbers to a new VoIP provider without dropping service, from LOA paperwork to the final cutover window.</description>
       <category>VoIP Engineering</category>
     </item>
 
@@ -981,12 +819,30 @@
     </item>
 
     <item>
+      <title>AI Receptionist for Law Firms: Client Intake Without the Wait</title>
+      <link>https://www.controvallc.com/blog/ai-receptionist-law-firms-intake</link>
+      <guid>https://www.controvallc.com/blog/ai-receptionist-law-firms-intake</guid>
+      <pubDate>Thu, 20 Aug 2026 00:00:00 GMT</pubDate>
+      <description>How law firms use AI receptionists to capture new client intake calls, screen for conflicts, and schedule consultations without losing leads to voicemail.</description>
+      <category>Industry Solutions</category>
+    </item>
+
+    <item>
       <title>The Technical Architecture of Enterprise-Grade SLAs: How We Guarantee 99.99% Uptime</title>
       <link>https://www.controvallc.com/blog/enterprise-sla-architecture-99-99-uptime</link>
       <guid>https://www.controvallc.com/blog/enterprise-sla-architecture-99-99-uptime</guid>
       <pubDate>Wed, 19 Aug 2026 00:00:00 GMT</pubDate>
       <description>Making an SLA promise is easy. Building the infrastructure that backs it is a precise engineering discipline. Here is the exact architecture we deploy to guarantee enterprise-grade reliability.</description>
       <category>Engineering &amp; E-Commerce</category>
+    </item>
+
+    <item>
+      <title>TCPA Compliance for AI Outbound Calling: What You Need to Know</title>
+      <link>https://www.controvallc.com/blog/tcpa-compliance-ai-outbound-calling</link>
+      <guid>https://www.controvallc.com/blog/tcpa-compliance-ai-outbound-calling</guid>
+      <pubDate>Tue, 18 Aug 2026 00:00:00 GMT</pubDate>
+      <description>AI-powered outbound calling introduces new TCPA risk. Here is what enterprises need in place before automating outbound voice at scale.</description>
+      <category>Telecom Compliance</category>
     </item>
 
     <item>
@@ -999,12 +855,30 @@
     </item>
 
     <item>
+      <title>Scaling FreeSWITCH Horizontally: A Guide to Clustering and Load Balancing with Kamailio</title>
+      <link>https://www.controvallc.com/blog/freeswitch-horizontal-scaling-kamailio</link>
+      <guid>https://www.controvallc.com/blog/freeswitch-horizontal-scaling-kamailio</guid>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 GMT</pubDate>
+      <description>How to move from a single FreeSWITCH box to a horizontally scaled cluster fronted by Kamailio, without breaking call state or media continuity.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
       <title>Generative Engine Optimization (GEO): Getting Your Brand Inside AI Responses</title>
       <link>https://www.controvallc.com/blog/generative-engine-optimization-geo</link>
       <guid>https://www.controvallc.com/blog/generative-engine-optimization-geo</guid>
       <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
       <description>GEO is the discipline of optimizing your brand and content to appear inside the synthesized answers produced by ChatGPT, Perplexity, and Google AI Overviews. Here is the technical playbook.</description>
       <category>Growth &amp; Strategy</category>
+    </item>
+
+    <item>
+      <title>Codec Selection for Voice AI: Why Opus is Replacing G.711 in Modern Pipelines</title>
+      <link>https://www.controvallc.com/blog/opus-vs-g711-codec-voice-ai</link>
+      <guid>https://www.controvallc.com/blog/opus-vs-g711-codec-voice-ai</guid>
+      <pubDate>Fri, 14 Aug 2026 00:00:00 GMT</pubDate>
+      <description>A technical comparison of Opus and G.711 for real-time voice AI, and why codec choice directly determines transcription accuracy and perceived latency.</description>
+      <category>VoIP Engineering</category>
     </item>
 
     <item>
@@ -1053,12 +927,30 @@
     </item>
 
     <item>
+      <title>AI Voice Agents for Real Estate: Never Miss a Lead Call Again</title>
+      <link>https://www.controvallc.com/blog/ai-voice-agents-real-estate</link>
+      <guid>https://www.controvallc.com/blog/ai-voice-agents-real-estate</guid>
+      <pubDate>Sat, 08 Aug 2026 00:00:00 GMT</pubDate>
+      <description>How real estate teams use AI voice agents to qualify inbound buyer and seller calls, schedule showings, and follow up on listing inquiries around the clock.</description>
+      <category>Industry Solutions</category>
+    </item>
+
+    <item>
       <title>Core Web Vitals in 2026: The Technical Playbook for LCP, CLS, and INP</title>
       <link>https://www.controvallc.com/blog/core-web-vitals-2026-technical-guide</link>
       <guid>https://www.controvallc.com/blog/core-web-vitals-2026-technical-guide</guid>
       <pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
       <description>Google replaced FID with INP (Interaction to Next Paint) as a Core Web Vital. Learn the precise engineering techniques to dominate every performance metric and secure your search rankings.</description>
       <category>Engineering &amp; E-Commerce</category>
+    </item>
+
+    <item>
+      <title>Twilio vs Custom SIP: A Real Cost Breakdown at Scale</title>
+      <link>https://www.controvallc.com/blog/twilio-vs-custom-sip-cost-breakdown</link>
+      <guid>https://www.controvallc.com/blog/twilio-vs-custom-sip-cost-breakdown</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+      <description>The per-minute rate on a Twilio invoice is only part of the story. Here is what the actual cost curve looks like once call volume crosses enterprise scale.</description>
+      <category>VoIP Engineering</category>
     </item>
 
     <item>
@@ -1071,12 +963,30 @@
     </item>
 
     <item>
+      <title>What Is a Session Border Controller (SBC)? Functions, Architecture and Open-Source Options</title>
+      <link>https://www.controvallc.com/blog/session-border-controller-architecture</link>
+      <guid>https://www.controvallc.com/blog/session-border-controller-architecture</guid>
+      <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
+      <description>What a session border controller does, how it differs from a firewall or SIP proxy, how to deploy one, and how to build an open-source SBC with Kamailio and rtpengine.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
       <title>Community-Led Growth: How B2B Companies Are Replacing Cold Outbound with Warm Communities</title>
       <link>https://www.controvallc.com/blog/community-led-growth-b2b</link>
       <guid>https://www.controvallc.com/blog/community-led-growth-b2b</guid>
       <pubDate>Mon, 03 Aug 2026 00:00:00 GMT</pubDate>
       <description>The most sophisticated B2B growth playbook in 2026 is not cold email or paid ads. It is a community that generates leads, reduces churn, and drives referrals on autopilot.</description>
       <category>Growth &amp; Strategy</category>
+    </item>
+
+    <item>
+      <title>AI Receptionist for Dental Practices and DSOs: How It Works, Integrations and HIPAA</title>
+      <link>https://www.controvallc.com/blog/ai-receptionist-dental-practices</link>
+      <guid>https://www.controvallc.com/blog/ai-receptionist-dental-practices</guid>
+      <pubDate>Sun, 02 Aug 2026 00:00:00 GMT</pubDate>
+      <description>How a dental AI receptionist answers calls, books appointments, and escalates emergencies, what it takes to integrate with practice software, and what DSOs and HIPAA require.</description>
+      <category>Voice AI</category>
     </item>
 
     <item>
@@ -1089,12 +999,30 @@
     </item>
 
     <item>
+      <title>How AI Voice Agents Handle Interruptions: Engineering Barge-In Detection</title>
+      <link>https://www.controvallc.com/blog/barge-in-detection-voice-ai-agents</link>
+      <guid>https://www.controvallc.com/blog/barge-in-detection-voice-ai-agents</guid>
+      <pubDate>Fri, 31 Jul 2026 00:00:00 GMT</pubDate>
+      <description>Natural conversation requires letting callers interrupt mid-sentence. Here is how modern voice AI pipelines detect and respond to barge-in in real time.</description>
+      <category>Voice AI</category>
+    </item>
+
+    <item>
       <title>Composable Commerce: Why Modular Architecture is Replacing Monolithic Platforms</title>
       <link>https://www.controvallc.com/blog/composable-commerce-architecture</link>
       <guid>https://www.controvallc.com/blog/composable-commerce-architecture</guid>
       <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
       <description>Composable commerce allows brands to select best-in-class tools for each function—search, CMS, checkout, personalization—and compose them into a unified, scalable digital storefront.</description>
       <category>Engineering &amp; E-Commerce</category>
+    </item>
+
+    <item>
+      <title>NAT Traversal for VoIP: STUN, TURN, and ICE Explained</title>
+      <link>https://www.controvallc.com/blog/nat-traversal-stun-turn-ice-voip</link>
+      <guid>https://www.controvallc.com/blog/nat-traversal-stun-turn-ice-voip</guid>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
+      <description>Why calls fail to connect behind corporate firewalls and home routers, and how STUN, TURN, and ICE solve the NAT traversal problem for real-time voice.</description>
+      <category>VoIP Engineering</category>
     </item>
 
     <item>
@@ -1107,12 +1035,48 @@
     </item>
 
     <item>
+      <title>Building a Multi-Tenant PBX: Architecture Patterns for SaaS Telephony Providers</title>
+      <link>https://www.controvallc.com/blog/multi-tenant-pbx-architecture-saas</link>
+      <guid>https://www.controvallc.com/blog/multi-tenant-pbx-architecture-saas</guid>
+      <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
+      <description>The design decisions that determine whether a multi-tenant PBX scales to thousands of customers or collapses under cross-tenant contention.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>WebRTC vs SIP: Choosing the Right Protocol for Your Communication Platform</title>
+      <link>https://www.controvallc.com/blog/webrtc-vs-sip-protocol-comparison</link>
+      <guid>https://www.controvallc.com/blog/webrtc-vs-sip-protocol-comparison</guid>
+      <pubDate>Sun, 26 Jul 2026 00:00:00 GMT</pubDate>
+      <description>WebRTC and SIP solve overlapping problems differently. Here is how to decide which protocol — or hybrid architecture — fits your product.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
       <title>Answer Engine Optimization (AEO): The Complete 2026 Strategy Guide</title>
       <link>https://www.controvallc.com/blog/answer-engine-optimization-aeo-2026</link>
       <guid>https://www.controvallc.com/blog/answer-engine-optimization-aeo-2026</guid>
       <pubDate>Sat, 25 Jul 2026 00:00:00 GMT</pubDate>
       <description>Traditional SEO is dying. As ChatGPT, Perplexity, and Google AI Overviews dominate search results, discover the exact AEO strategies to get your brand cited by AI.</description>
       <category>Growth &amp; Strategy</category>
+    </item>
+
+    <item>
+      <title>STIR/SHAKEN Compliance: What Every VoIP Business Needs to Know in 2026</title>
+      <link>https://www.controvallc.com/blog/stir-shaken-compliance-voip-2026</link>
+      <guid>https://www.controvallc.com/blog/stir-shaken-compliance-voip-2026</guid>
+      <pubDate>Fri, 24 Jul 2026 00:00:00 GMT</pubDate>
+      <description>A practical breakdown of STIR/SHAKEN attestation levels, why unattested calls get blocked or flagged as spam, and how to implement compliant caller ID authentication.</description>
+      <category>Telecom Compliance</category>
+    </item>
+
+    <item>
+      <title>The Complete Buyer's Guide to SIP Trunking Providers in 2026</title>
+      <link>https://www.controvallc.com/blog/sip-trunking-buyers-guide-2026</link>
+      <guid>https://www.controvallc.com/blog/sip-trunking-buyers-guide-2026</guid>
+      <pubDate>Thu, 23 Jul 2026 00:00:00 GMT</pubDate>
+      <description>How to evaluate SIP trunking providers on concurrency limits, codec support, geographic redundancy, and true per-minute economics before you sign a contract.</description>
+      <category>VoIP Engineering</category>
     </item>
 
     <item>
@@ -1125,12 +1089,48 @@
     </item>
 
     <item>
+      <title>Asterisk vs FreeSWITCH for AI Telephony: Why Modern Voice Infrastructure Requires Event-Driven Architecture</title>
+      <link>https://www.controvallc.com/blog/migrating-asterisk-to-freeswitch-concurrency</link>
+      <guid>https://www.controvallc.com/blog/migrating-asterisk-to-freeswitch-concurrency</guid>
+      <pubDate>Tue, 21 Jul 2026 00:00:00 GMT</pubDate>
+      <description>A technical post-mortem on why Asterisk channel locking breaks under heavy concurrent voice AI streaming, and why FreeSWITCH ESL and modular cores are the modern standard.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
       <title>FreeSWITCH vs Asterisk vs Kamailio: Which VoIP Platform Should You Use?</title>
       <link>https://www.controvallc.com/blog/freeswitch-vs-asterisk</link>
       <guid>https://www.controvallc.com/blog/freeswitch-vs-asterisk</guid>
       <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
       <description>An engineer's comparison of FreeSWITCH, Asterisk, Kamailio and OpenSIPS: what each is built for, how they differ, and which to choose for a PBX, a multi-tenant platform, or a high-volume SIP edge.</description>
       <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>The Complete Guide to HIPAA-Compliant Voice AI: Securing Autonomous Phone Agents for Clinics</title>
+      <link>https://www.controvallc.com/blog/hipaa-compliant-voice-ai-guide</link>
+      <guid>https://www.controvallc.com/blog/hipaa-compliant-voice-ai-guide</guid>
+      <pubDate>Sun, 19 Jul 2026 00:00:00 GMT</pubDate>
+      <description>A comprehensive blueprint for healthcare leaders to deploy AI medical receptionists and answering services with end-to-end SRTP encryption, BAA compliance, and EHR integration.</description>
+      <category>Healthcare &amp; Compliance</category>
+    </item>
+
+    <item>
+      <title>The CPaaS Margin Trap: Building a Twilio Alternative with Custom SIP &amp; BYOC</title>
+      <link>https://www.controvallc.com/blog/cpaas-margin-trap-byoc-sip-savings</link>
+      <guid>https://www.controvallc.com/blog/cpaas-margin-trap-byoc-sip-savings</guid>
+      <pubDate>Sat, 18 Jul 2026 00:00:00 GMT</pubDate>
+      <description>How enterprise contact centers are slashing telephony bills by 80% by migrating from proprietary CPaaS platforms to custom open-source SIP proxies and wholesale carrier routing.</description>
+      <category>Infrastructure &amp; ROI</category>
+    </item>
+
+    <item>
+      <title>Architecting Sub-500ms AI Voice Agents: The Kamailio + FreeSWITCH Hybrid Pipeline</title>
+      <link>https://www.controvallc.com/blog/architecting-sub-500ms-ai-voice-agents</link>
+      <guid>https://www.controvallc.com/blog/architecting-sub-500ms-ai-voice-agents</guid>
+      <pubDate>Fri, 17 Jul 2026 00:00:00 GMT</pubDate>
+      <description>An engineering deep-dive into separating SIP signaling and media processing to build ultra-low-latency voice AI agents that handle thousands of concurrent calls with instant barge-in.</description>
+      <category>Telephony &amp; AI Engineering</category>
     </item>
 
     <item>

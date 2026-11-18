@@ -13,15 +13,25 @@ interface BlogContextType {
 const BlogContext = createContext<BlogContextType | null>(null);
 
 export function BlogProvider({ children }: { children: ReactNode }) {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
+  // Seed posts are available synchronously so the very first render (including
+  // build-time prerendering, where effects never run) already has real content
+  // instead of a "Loading..." placeholder. Supabase posts are merged in later.
+  const [posts, setPosts] = useState<BlogPost[]>(() =>
+    [...seedPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
+  );
+  // Only wait on the network when the visitor lands directly on a post that is
+  // not in the seed data (i.e. a Supabase-only post); otherwise render at once.
+  const [loading, setLoading] = useState(() => {
+    if (typeof window === 'undefined' || !supabase) return false;
+    const m = window.location.pathname.match(/^\/blog\/([^/]+)/);
+    return !!m && !seedPosts.some((p) => p.slug === m[1]);
+  });
 
   useEffect(() => {
     fetchPosts();
   }, []);
 
   const fetchPosts = async () => {
-    setLoading(true);
     if (!supabase) {
       setPosts(seedPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()));
       setLoading(false);

@@ -4,7 +4,6 @@ import { ArrowRight, TrendingUp, Users, Zap } from 'lucide-react';
 import { heroStats } from '@/data/content';
 import { useTheme } from '@/context/ThemeContext';
 import { Link } from 'react-router-dom';
-import SEO from '@/components/shared/SEO';
 
 /* ─── Animated stat counter ────────────────────────────── */
 function AnimatedCounter({ target, suffix = '' }: { target: string; suffix?: string }) {
@@ -210,7 +209,6 @@ export default function HeroSection() {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      <SEO />
       {/* ── Background Layer ── */}
       <div className="absolute inset-0 -z-20" style={{ backgroundColor: 'var(--bg-primary)' }} />
 

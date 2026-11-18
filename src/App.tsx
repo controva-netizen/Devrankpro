@@ -32,6 +32,17 @@ function ScrollToTop() {
   return null;
 }
 
+// The prerenderer (scripts/ssg.mjs) bakes each page's <title>/<meta>/<link> into
+// the static HTML and tags them data-ssg. Once React has rendered and owns the
+// head, remove those static copies so there are no duplicates and the tab title
+// follows client-side navigation.
+function RemovePrerenderedHead() {
+  useEffect(() => {
+    document.head.querySelectorAll('[data-ssg]').forEach((n) => n.remove());
+  }, []);
+  return null;
+}
+
 function PageWrapper({ children }: { children: React.ReactNode }) {
   return (
     <motion.div
@@ -70,14 +81,17 @@ function AnimatedRoutes() {
   );
 }
 
-export default function App() {
+// `helmetContext` is only passed by the build-time prerenderer
+// (src/entry-server.tsx) so it can read the <head> tags each page sets.
+export default function App({ helmetContext }: { helmetContext?: object }) {
   return (
-    <HelmetProvider>
+    <HelmetProvider context={helmetContext}>
       <ThemeProvider>
         <BlogProvider>
           <div className="min-h-screen relative" style={{ backgroundColor: 'var(--bg-primary)' }}>
             <CornerGlow />
             <ScrollToTop />
+            <RemovePrerenderedHead />
             <Navbar />
             <div className="relative z-10">
               <AnimatedRoutes />

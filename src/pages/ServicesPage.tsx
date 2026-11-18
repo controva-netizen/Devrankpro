@@ -329,8 +329,8 @@ export default function ServicesPage() {
   return (
     <main>
       <SEO 
-        title="Enterprise VoIP Engineering & AI Voice Infrastructure | Controva LLC"
-        description="We engineer carrier-grade VoIP networks, Kamailio & FreeSWITCH deployments, BYOC migrations, and low-latency Voice AI solutions. Built for enterprise concurrency."
+        title="Enterprise VoIP & AI Voice Engineering | Controva LLC"
+        description="Carrier-grade VoIP networks, Kamailio & FreeSWITCH deployments, BYOC migrations, and low-latency Voice AI, built for enterprise concurrency."
         keywords="enterprise VoIP engineering, SIP load balancer, carrier-grade telephony, BYOC migration, high-concurrency call routing, WebRTC integration, voice AI agents"
         url="https://www.controvallc.com/services"
         schema={servicesSchema}
