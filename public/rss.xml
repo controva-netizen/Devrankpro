@@ -5,33 +5,60 @@
     <link>https://www.controvallc.com/blog</link>
     <description>Engineering-driven insights on VoIP Architecture, FreeSWITCH, Kamailio, and AI Voice Automation.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Nov 2026 04:04:06 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 18 Nov 2026 04:04:17 GMT</lastBuildDate>
     <atom:link href="https://www.controvallc.com/rss.xml" rel="self" type="application/rss+xml" />
 
     <item>
-      <title>SIP ALG Explained: What It Is, Why It Breaks VoIP, and How to Disable It</title>
+      <title>VoIP Gateway Explained: FXO vs FXS, Analog, T1/E1 and SIP Gateways</title>
+      <link>https://www.controvallc.com/blog/voip-gateway-fxo-vs-fxs-explained</link>
+      <guid>https://www.controvallc.com/blog/voip-gateway-fxo-vs-fxs-explained</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 GMT</pubDate>
+      <description>A VoIP gateway connects phone systems that speak different languages. FXO vs FXS explained simply, the main gateway types, how to choose one, and how to troubleshoot common problems.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>How to Install FreeSWITCH on Debian 12: Packages, Docker and Your First Call</title>
+      <link>https://www.controvallc.com/blog/install-freeswitch-debian-first-call</link>
+      <guid>https://www.controvallc.com/blog/install-freeswitch-debian-first-call</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 GMT</pubDate>
+      <description>A practical FreeSWITCH installation guide for Debian 12: package, Docker and source options, firewall ports, locking down default passwords, and placing your first test call.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>Kamailio Basic Configuration: Build a Working SIP Proxy Step by Step</title>
+      <link>https://www.controvallc.com/blog/kamailio-basic-configuration-sip-proxy-tutorial</link>
+      <guid>https://www.controvallc.com/blog/kamailio-basic-configuration-sip-proxy-tutorial</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 GMT</pubDate>
+      <description>A hands-on Kamailio tutorial: install it, understand how kamailio.cfg is structured, and build a small SIP proxy that load-balances calls across two media servers with failover.</description>
+      <category>VoIP Engineering</category>
+    </item>
+
+    <item>
+      <title>SIP ALG: What It Is, Why It Breaks VoIP Calls, and How to Disable It</title>
       <link>https://www.controvallc.com/blog/sip-alg-what-it-is-how-to-disable</link>
       <guid>https://www.controvallc.com/blog/sip-alg-what-it-is-how-to-disable</guid>
       <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>SIP ALG rewrites SIP packets inside your router and is one of the most common causes of one-way audio, dropped registrations, and failed calls. Here is how it works, how to confirm it is the problem, and how to turn it off.</description>
+      <description>SIP ALG rewrites SIP packets inside routers and firewalls and is a leading cause of one-way audio, failed registrations, and calls that drop. How to diagnose it and fix it.</description>
       <category>VoIP Engineering</category>
     </item>
 
     <item>
-      <title>Twilio Alternatives for Voice: An Engineering Guide to Switching in 2026</title>
+      <title>Twilio Alternatives for Voice: CPaaS, SIP Trunks and Open-Source Stacks Compared</title>
       <link>https://www.controvallc.com/blog/twilio-alternatives-voice-engineering-guide</link>
       <guid>https://www.controvallc.com/blog/twilio-alternatives-voice-engineering-guide</guid>
       <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>Looking for a Twilio alternative for voice? This guide compares the real options, from other CPaaS vendors to carrier-direct SIP and self-hosted FreeSWITCH, and explains when each makes technical and financial sense.</description>
+      <description>The right Twilio alternative depends on why you are leaving. A practical comparison of CPaaS rivals, BYOC SIP trunking, and self-hosted open-source voice, with a migration plan.</description>
       <category>VoIP Engineering</category>
     </item>
 
     <item>
-      <title>White Label VoIP Platform Architecture: How to Build One That Scales</title>
+      <title>White Label VoIP: How to Build or Choose a Platform That Scales</title>
       <link>https://www.controvallc.com/blog/white-label-voip-platform-architecture</link>
       <guid>https://www.controvallc.com/blog/white-label-voip-platform-architecture</guid>
       <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>A white label VoIP platform lets you sell phone service under your own brand. This guide explains the architecture behind one, covering multi-tenancy, billing, provisioning, and the build-versus-buy decision.</description>
+      <description>What goes into a white label VoIP platform, from softswitch and billing to multi-tenancy and U.S. compliance, and how to decide whether to build, buy, or combine both.</description>
       <category>VoIP Engineering</category>
     </item>
 
@@ -198,11 +225,11 @@
     </item>
 
     <item>
-      <title>Call Detail Records (CDR) Explained: Fields, Formats, and What to Do With Them</title>
+      <title>Call Detail Records (CDR): Fields, Formats, KPIs and How to Build a CDR Pipeline</title>
       <link>https://www.controvallc.com/blog/call-detail-records-cdr-explained</link>
       <guid>https://www.controvallc.com/blog/call-detail-records-cdr-explained</guid>
       <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>CDRs are the log of every call your system handles. Learn what fields they contain, how FreeSWITCH, Asterisk, and Kamailio generate them, and how to use them for billing, troubleshooting, and fraud detection.</description>
+      <description>A call detail record (CDR) is the system's record of every call attempt. What fields it holds, how phone systems generate it, which KPIs to compute, and how to build a pipeline you can trust.</description>
       <category>VoIP Engineering</category>
     </item>
 
@@ -243,11 +270,11 @@
     </item>
 
     <item>
-      <title>VoIP Wholesale Termination: How the Business Works and What to Build</title>
+      <title>Wholesale VoIP Termination: How It Works, Pricing, Quality Metrics and Vendor Checklist</title>
       <link>https://www.controvallc.com/blog/voip-wholesale-termination-business-guide</link>
       <guid>https://www.controvallc.com/blog/voip-wholesale-termination-business-guide</guid>
       <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>Wholesale VoIP termination means buying call routes from carriers and selling them on at a margin. Learn the business model, the technical stack, and the quality, compliance, and risk issues that decide whether it works.</description>
+      <description>A practical guide to wholesale VoIP termination: how calls reach the PSTN, how rates and increments work, which quality metrics to track, and how to evaluate carriers safely.</description>
       <category>VoIP Engineering</category>
     </item>
 
@@ -261,11 +288,11 @@
     </item>
 
     <item>
-      <title>VoIP Latency: What Causes It, What Is Acceptable, and How to Reduce It</title>
+      <title>VoIP Latency: Causes, Acceptable Limits (G.114) and How to Reduce It</title>
       <link>https://www.controvallc.com/blog/voip-latency-causes-and-fixes</link>
       <guid>https://www.controvallc.com/blog/voip-latency-causes-and-fixes</guid>
       <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <description>Latency is the delay between speaking and being heard. Learn the components of VoIP delay, the thresholds where conversation breaks down, and practical fixes at the network, codec, and platform level.</description>
+      <description>VoIP latency is the delay between speaking and being heard. What causes it, the G.114 limits, how to measure it, and the fixes that actually reduce it.</description>
       <category>VoIP Engineering</category>
     </item>
 
@@ -603,20 +630,20 @@
     </item>
 
     <item>
-      <title>The Complete Guide to AI Receptionists for Dental Practices</title>
+      <title>AI Receptionist for Dental Practices and DSOs: How It Works, Integrations and HIPAA</title>
       <link>https://www.controvallc.com/blog/ai-receptionist-dental-practices</link>
       <guid>https://www.controvallc.com/blog/ai-receptionist-dental-practices</guid>
       <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>How AI receptionists handle appointment scheduling, insurance verification questions, and after-hours emergency triage for dental offices without adding front-desk headcount.</description>
-      <category>Industry Solutions</category>
+      <description>How a dental AI receptionist answers calls, books appointments, and escalates emergencies, what it takes to integrate with practice software, and what DSOs and HIPAA require.</description>
+      <category>Voice AI</category>
     </item>
 
     <item>
-      <title>SBC Architecture 101: Why Every VoIP Deployment Needs a Session Border Controller</title>
+      <title>What Is a Session Border Controller (SBC)? Functions, Architecture and Open-Source Options</title>
       <link>https://www.controvallc.com/blog/session-border-controller-architecture</link>
       <guid>https://www.controvallc.com/blog/session-border-controller-architecture</guid>
       <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
-      <description>What a Session Border Controller actually does, why it sits at the edge of every carrier-grade VoIP network, and how to decide between hardware, virtual, and software SBCs.</description>
+      <description>What a session border controller does, how it differs from a firewall or SIP proxy, how to deploy one, and how to build an open-source SBC with Kamailio and rtpengine.</description>
       <category>VoIP Engineering</category>
     </item>
 
@@ -1098,12 +1125,12 @@
     </item>
 
     <item>
-      <title>FreeSWITCH vs Asterisk: Architecting Enterprise VoIP Core</title>
+      <title>FreeSWITCH vs Asterisk vs Kamailio: Which VoIP Platform Should You Use?</title>
       <link>https://www.controvallc.com/blog/freeswitch-vs-asterisk</link>
       <guid>https://www.controvallc.com/blog/freeswitch-vs-asterisk</guid>
       <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
-      <description>A highly technical breakdown of the performance, threading models, and architectural differences between FreeSWITCH and Asterisk for enterprise VoIP infrastructure.</description>
-      <category>Engineering &amp; E-Commerce</category>
+      <description>An engineer's comparison of FreeSWITCH, Asterisk, Kamailio and OpenSIPS: what each is built for, how they differ, and which to choose for a PBX, a multi-tenant platform, or a high-volume SIP edge.</description>
+      <category>VoIP Engineering</category>
     </item>
 
     <item>

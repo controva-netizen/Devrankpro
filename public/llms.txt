@@ -36,6 +36,9 @@
 - [SDP offer/answer explained](https://www.controvallc.com/blog/sdp-offer-answer-explained)
 - [NAT traversal with STUN, TURN and ICE](https://www.controvallc.com/blog/nat-traversal-stun-turn-ice-voip)
 - [Session border controller architecture](https://www.controvallc.com/blog/session-border-controller-architecture)
+- [VoIP latency: causes and fixes](https://www.controvallc.com/blog/voip-latency-causes-and-fixes)
+- [Call detail records (CDR) explained](https://www.controvallc.com/blog/call-detail-records-cdr-explained)
+- [VoIP gateway: FXO vs FXS explained](https://www.controvallc.com/blog/voip-gateway-fxo-vs-fxs-explained)
 
 ## Key guides (platforms & architecture)
 
@@ -46,6 +49,9 @@
 - [White-label VoIP platform architecture](https://www.controvallc.com/blog/white-label-voip-platform-architecture)
 - [SIP trunk provider selection checklist](https://www.controvallc.com/blog/sip-trunk-provider-selection-checklist)
 - [Twilio alternatives: a voice engineering guide](https://www.controvallc.com/blog/twilio-alternatives-voice-engineering-guide)
+- [VoIP wholesale termination: a business guide](https://www.controvallc.com/blog/voip-wholesale-termination-business-guide)
+- [Install FreeSWITCH on Debian 12 and place a first call](https://www.controvallc.com/blog/install-freeswitch-debian-first-call)
+- [Kamailio basic configuration: a working SIP proxy](https://www.controvallc.com/blog/kamailio-basic-configuration-sip-proxy-tutorial)
 
 ## Key guides (voice AI)
 
@@ -54,6 +60,7 @@
 - [AI phone agent: build vs buy](https://www.controvallc.com/blog/ai-phone-agent-build-vs-buy)
 - [Pipecat vs LiveKit Agents](https://www.controvallc.com/blog/pipecat-vs-livekit-agents-voice-ai-framework)
 - [Virtual receptionist vs AI receptionist](https://www.controvallc.com/blog/virtual-receptionist-vs-ai-receptionist-cost)
+- [AI receptionist for dental practices](https://www.controvallc.com/blog/ai-receptionist-dental-practices)
 
 ## Key guides (security & compliance)
 
